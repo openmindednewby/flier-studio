@@ -1,0 +1,549 @@
+{
+ "before-story": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": null
+ },
+ "before-phone": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": null
+ },
+ "before-desktop": {
+  "seen": [
+   "classPrice",
+   "date",
+   "levels",
+   "logo",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [
+   "20\u00e2\u201a\u00ac",
+   "Party pass",
+   "Party pass includes",
+   "Salsa & Bachata room  \u00e2\u20ac\u00a2  Kizomba dedicated room  \u00e2\u20ac\u00a2  2 drinks",
+   "with Jimmy & Ismini"
+  ],
+  "report": null
+ },
+ "E-A": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 1080,
+   "H": 1920,
+   "pic": {
+    "x": 500,
+    "y": 843.5763888888889,
+    "w": 580,
+    "h": 1076.423611111111
+   },
+   "inside": true,
+   "opaque": 392663,
+   "covered": 0,
+   "cropped": false,
+   "faded": false
+  }
+ },
+ "E-B": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 1080,
+   "H": 1920,
+   "pic": {
+    "x": 0,
+    "y": 806.4583333333333,
+    "w": 600,
+    "h": 1113.5416666666667
+   },
+   "inside": true,
+   "opaque": 420279,
+   "covered": 0,
+   "cropped": false,
+   "faded": false
+  }
+ },
+ "E-C": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 1080,
+   "H": 1920,
+   "pic": {
+    "x": 223.4424695977549,
+    "y": 745,
+    "w": 633.1150608044902,
+    "h": 1175
+   },
+   "inside": true,
+   "opaque": 468011,
+   "covered": 0,
+   "cropped": false,
+   "faded": false,
+   "clear": [
+    {
+     "s": "KIZOMBA",
+     "d": 90
+    },
+    {
+     "s": "WORKSHOP",
+     "d": 90
+    },
+    {
+     "s": "Saturday 31 October",
+     "d": 90
+    },
+    {
+     "s": "Bailemos",
+     "d": 90
+    },
+    {
+     "s": "Dance School",
+     "d": 90
+    },
+    {
+     "s": "Level 1",
+     "d": 90
+    },
+    {
+     "s": "20:00 - 21:00",
+     "d": 90
+    },
+    {
+     "s": "Level 2",
+     "d": 90
+    },
+    {
+     "s": "21:00 - 22:00",
+     "d": 90
+    },
+    {
+     "s": "Party pass includes",
+     "d": 90
+    },
+    {
+     "s": "Salsa & Bachata room  \u00e2\u20ac\u00a2  Kizomba dedicated room  \u00e2\u20ac\u00a2  2 drinks",
+     "d": 90
+    },
+    {
+     "s": "with Jimmy & Ismini",
+     "d": 90
+    },
+    {
+     "s": "5\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "per hour",
+     "d": 77
+    },
+    {
+     "s": "20\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "Party pass",
+     "d": 48
+    }
+   ],
+   "scale": 1.099158091674462
+  }
+ },
+ "P-A": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 1170,
+   "H": 2532,
+   "pic": {
+    "x": 540,
+    "y": 1362.78125,
+    "w": 630,
+    "h": 1169.21875
+   },
+   "inside": true,
+   "opaque": 463326,
+   "covered": 0,
+   "cropped": false,
+   "faded": false
+  }
+ },
+ "P-B": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 1170,
+   "H": 2532,
+   "pic": {
+    "x": 261.7072029934518,
+    "y": 1332,
+    "w": 646.5855940130964,
+    "h": 1200
+   },
+   "inside": true,
+   "opaque": 488095,
+   "covered": 0,
+   "cropped": false,
+   "faded": false,
+   "clear": [
+    {
+     "s": "KIZOMBA",
+     "d": 90
+    },
+    {
+     "s": "WORKSHOP",
+     "d": 90
+    },
+    {
+     "s": "Saturday 31 October",
+     "d": 90
+    },
+    {
+     "s": "Bailemos",
+     "d": 90
+    },
+    {
+     "s": "Dance School",
+     "d": 90
+    },
+    {
+     "s": "Level 1",
+     "d": 90
+    },
+    {
+     "s": "20:00 - 21:00",
+     "d": 90
+    },
+    {
+     "s": "Level 2",
+     "d": 90
+    },
+    {
+     "s": "21:00 - 22:00",
+     "d": 90
+    },
+    {
+     "s": "Party pass includes",
+     "d": 90
+    },
+    {
+     "s": "Salsa & Bachata room  \u00e2\u20ac\u00a2  Kizomba dedicated room  \u00e2\u20ac\u00a2  2 drinks",
+     "d": 46
+    },
+    {
+     "s": "with Jimmy & Ismini",
+     "d": 90
+    },
+    {
+     "s": "5\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "per hour",
+     "d": 79
+    },
+    {
+     "s": "20\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "Party pass",
+     "d": 46
+    }
+   ],
+   "scale": 1.1225444340505144
+  }
+ },
+ "D-A": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 2560,
+   "H": 1440,
+   "pic": {
+    "x": 1759.5322731524789,
+    "y": 140,
+    "w": 700.467726847521,
+    "h": 1300
+   },
+   "inside": true,
+   "opaque": 572851,
+   "covered": 0,
+   "cropped": false,
+   "faded": false,
+   "clear": [
+    {
+     "s": "KIZOMBA",
+     "d": 90
+    },
+    {
+     "s": "WORKSHOP",
+     "d": 90
+    },
+    {
+     "s": "Saturday 31 October",
+     "d": 90
+    },
+    {
+     "s": "Bailemos",
+     "d": 90
+    },
+    {
+     "s": "Dance School",
+     "d": 90
+    },
+    {
+     "s": "Level 1",
+     "d": 90
+    },
+    {
+     "s": "20:00 - 21:00",
+     "d": 90
+    },
+    {
+     "s": "Level 2",
+     "d": 90
+    },
+    {
+     "s": "21:00 - 22:00",
+     "d": 90
+    },
+    {
+     "s": "5\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "per hour",
+     "d": 90
+    },
+    {
+     "s": "20\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "Party pass",
+     "d": 90
+    },
+    {
+     "s": "Party pass includes",
+     "d": 90
+    },
+    {
+     "s": "Salsa & Bachata room  \u00e2\u20ac\u00a2  Kizomba dedicated room  \u00e2\u20ac\u00a2  2 drinks",
+     "d": 90
+    },
+    {
+     "s": "with Jimmy & Ismini",
+     "d": 90
+    }
+   ],
+   "scale": 1.216089803554724
+  }
+ },
+ "D-B": {
+  "seen": [
+   "classPrice",
+   "date",
+   "footer",
+   "includes",
+   "levels",
+   "logo",
+   "partyPrice",
+   "picture",
+   "title1",
+   "title2",
+   "venue"
+  ],
+  "overflow": [],
+  "report": {
+   "W": 2560,
+   "H": 1440,
+   "pic": {
+    "x": 929.7661365762394,
+    "y": 140,
+    "w": 700.467726847521,
+    "h": 1300
+   },
+   "inside": true,
+   "opaque": 572819,
+   "covered": 0,
+   "cropped": false,
+   "faded": false,
+   "clear": [
+    {
+     "s": "KIZOMBA",
+     "d": 90
+    },
+    {
+     "s": "WORKSHOP",
+     "d": 58
+    },
+    {
+     "s": "Saturday 31 October",
+     "d": 47
+    },
+    {
+     "s": "Bailemos",
+     "d": 90
+    },
+    {
+     "s": "Dance School",
+     "d": 90
+    },
+    {
+     "s": "Level 1",
+     "d": 90
+    },
+    {
+     "s": "20:00 - 21:00",
+     "d": 90
+    },
+    {
+     "s": "Level 2",
+     "d": 90
+    },
+    {
+     "s": "21:00 - 22:00",
+     "d": 90
+    },
+    {
+     "s": "5\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "per hour",
+     "d": 90
+    },
+    {
+     "s": "20\u00e2\u201a\u00ac",
+     "d": 90
+    },
+    {
+     "s": "Party pass",
+     "d": 90
+    },
+    {
+     "s": "Party pass includes",
+     "d": 90
+    },
+    {
+     "s": "Salsa & Bachata room",
+     "d": 90
+    },
+    {
+     "s": "Kizomba dedicated room",
+     "d": 90
+    },
+    {
+     "s": "2 drinks",
+     "d": 90
+    },
+    {
+     "s": "with Jimmy & Ismini",
+     "d": 89
+    }
+   ],
+   "scale": 1.216089803554724
+  }
+ }
+}

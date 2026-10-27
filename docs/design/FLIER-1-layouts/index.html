@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flier Layout Pick</title>
+<meta name="description" content="FLIER-1 Flier Studio: pick the event flier, phone wallpaper and desktop wallpaper layouts. The dancers' picture is whole and nothing covers it.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f5f4f2;--card:#ffffff;--ink-1:#3f3833;--ink-2:#6d635a;--ink-3:#8f857b;--accent:#b8783f;--accent-soft:#f3e2cf;--rule-2:#e2dbd3;--shadow:rgba(60,40,20,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1c1a18;--card:#262320;--ink-1:#f0ebe5;--ink-2:#c3b8ad;--ink-3:#968b80;--accent:#e9b47f;--accent-soft:#3a2f25;--rule-2:#3a3530;--shadow:rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--paper:#1c1a18;--card:#262320;--ink-1:#f0ebe5;--ink-2:#c3b8ad;--ink-3:#968b80;--accent:#e9b47f;--accent-soft:#3a2f25;--rule-2:#3a3530;--shadow:rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink-1);font:16px/1.45 Fredoka,system-ui,sans-serif}
+main{max-width:1240px;margin:0 auto;padding:24px 16px 120px}
+.intro{margin:0 0 20px;color:var(--ink-2);max-width:70ch}
+.intro b{font:700 22px Oswald,sans-serif;color:var(--ink-1);letter-spacing:.3px;margin-right:8px}
+.block{margin:0 0 48px}
+h2{font:700 26px/1.15 Oswald,sans-serif;letter-spacing:.3px;margin:0 0 14px;padding-bottom:8px;border-bottom:3px solid var(--accent-soft)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
+.desktop .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,540px),1fr))}
+.opt{background:var(--card);border:1px solid var(--rule-2);border-radius:14px;padding:14px;box-shadow:0 4px 18px var(--shadow);display:flex;flex-direction:column;gap:10px}
+.opt header{display:flex;gap:12px;align-items:flex-start}
+.badge{flex:none;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--card);font:700 18px/36px Oswald,sans-serif;text-align:center}
+h3{margin:0;font:600 18px/1.25 Fredoka,sans-serif}
+.opt header p{margin:2px 0 0;color:var(--ink-2);font-size:14px}
+.pair{display:grid;grid-template-columns:2fr 3fr;gap:10px;align-items:end}
+.desktop .pair{grid-template-columns:1fr}
+figure{margin:0;display:flex;flex-direction:column;gap:4px}
+figure img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--rule-2);background:#f5f4f2}
+figcaption{font-size:13px;color:var(--ink-3)}
+figure[data-visual="after"] figcaption{color:var(--accent);font-weight:600}
+.inv{margin:0;font-size:14px;color:var(--ink-2)}
+.q{margin-top:16px;background:var(--card);border:1px solid var(--rule-2);border-radius:14px;padding:14px 16px}
+.qn{margin:0 0 8px;font-weight:600}
+.qi{font:700 15px Oswald,sans-serif;color:var(--accent);margin-right:6px}
+.opts{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.opts li{display:flex;gap:10px;align-items:center;min-height:44px}
+.lt{font:700 15px Oswald,sans-serif;color:var(--accent);width:20px}
+.withdrawn{margin:0;padding:10px 12px;border:2px solid var(--ink-1);border-radius:8px;background:var(--accent-soft);color:var(--ink-1);font-weight:600;font-size:15px}
+.withdrawn small{display:block;font-weight:500;color:var(--ink-2);font-size:13px}
+.opt.is-withdrawn .pair{opacity:.45}
+.unsure{margin:0;padding:10px 12px;border:2px solid var(--accent);border-radius:8px;background:var(--accent-soft);color:var(--ink-1);font-weight:600;font-size:15px}
+.unsure small{display:block;font-weight:500;color:var(--ink-2);font-size:13px}
+.score{margin-left:auto;flex:none;align-self:flex-start;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--ink-1);font:600 13px/1.4 Fredoka,system-ui,sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+  /* ---- answer-UI token defaults --------------------------------------
+     Zero-specificity (:where) so ANY host declaration on :root / html
+     (specificity 0,1,0) overrides every value below. Self-sufficient on a
+     host palette that defines none of these. Light is declared on the bare
+     selector first; the dark blocks only REDEFINE, so no colour has its
+     sole definition inside a media query or [data-theme] rule. -------- */
+  :where(html){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  @media (prefers-color-scheme:dark){
+    :where(html:not([data-theme="light"])){
+      --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+      --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  }
+  :where(html[data-theme="dark"]){
+    --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+    --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  :where(html[data-theme="light"]){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de}
+
+  /* ---- answerable questions ---- */
+  .q{position:relative}
+  .q.answered{border-color:var(--ink-3)}
+  .q .opts li{cursor:pointer; padding-left:34px; position:relative;
+    transition:background .12s ease}
+  .q .opts li:hover{background:var(--rule-1, rgba(0,0,0,.03))}
+  .q .opts li::before{content:''; position:absolute; left:6px; top:13px;
+    width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:50%}
+  .q .opts li[aria-checked="true"]::before{border-color:var(--ink-1, #111);
+    background:var(--ink-1, #111); box-shadow:inset 0 0 0 3px var(--paper, #fff)}
+  .q .opts li[aria-checked="true"]{background:var(--rule-1, rgba(0,0,0,.05))}
+  .q .opts li:focus-visible{outline:2px solid var(--ink-2); outline-offset:-2px}
+  .q .ansbox{margin:14px 0 0; padding-top:12px; border-top:1px solid var(--rule-2)}
+  .q .ansbox .st{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+  .q .ansbox .st b{color:var(--ink-1, #111)}
+  .q .note-in{display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    font-family:inherit; font-size:14px; color:inherit; caret-color:currentColor;
+    background:transparent; border:1px solid var(--rule-2); border-radius:0;
+    padding:8px 10px; resize:vertical; min-height:2.4em}
+  .q .note-in:focus{outline:none; border-color:var(--ink-3)}
+  .qbar{border:1px solid var(--rule-2); padding:10px 14px; margin:20px 0;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    justify-content:space-between; position:sticky; top:0; z-index:5;
+    background:var(--paper, #fff)}
+  .qbar .prog{font-family:var(--mono); font-size:13px; color:var(--ink-2)}
+  .qbar .prog b{color:var(--ink-1, #111); font-size:15px}
+  .qbar .acts{display:flex; gap:9px; flex-wrap:wrap}
+  .qbar button{font-family:inherit; font-size:13px; padding:7px 14px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .qbar button:hover{background:var(--rule-1, rgba(0,0,0,.05))}
+  .qbar button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .qbar .mode{font-family:var(--mono); font-size:11.5px; color:var(--ink-3);
+    flex-basis:100%}
+  .expwrap{display:none; position:fixed; z-index:50; left:50%; top:50%;
+    transform:translate(-50%,-50%); width:min(720px, calc(100vw - 32px));
+    max-height:calc(100vh - 32px); box-sizing:border-box; overflow:auto;
+    padding:16px; background:var(--paper, #fff); color:var(--ink-1, #111);
+    border:1px solid var(--ink-3); box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .expwrap.on{display:block}
+  .expwrap .exphead{display:flex; justify-content:space-between; align-items:center;
+    gap:10px; margin:0 0 10px; font-weight:600}
+  .expwrap .exphead span{display:flex; gap:8px}
+  .expwrap button{font-family:inherit; font-size:13px; padding:7px 14px; min-height:44px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .expwrap button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .expwrap textarea{width:100%; box-sizing:border-box; min-height:190px; height:50vh;
+    font-family:var(--mono); font-size:12px; line-height:1.55; padding:12px;
+    border:1px solid var(--rule-2); background:transparent; color:inherit}
+  .expwrap .hint{font-size:13px; color:var(--ink-2); margin:8px 0 0}
+</style></head><body><main>
+<p class="intro"><b>FLIER-1 Flier Studio</b>Pick one layout per format. Every option keeps all 11 items, and the dancers' picture is whole with nothing over it.</p>
+<section class="block story"><h2>Event flier · Sat 31 October · story 1080x1920</h2><div class="grid">
+<article class="opt" data-option="E-A" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<header><span class="badge">A</span><div><h3>Picture right, whole</h3><p>Today&#x27;s reading order; the includes list moves into the text column, off the dancers.</p></div><span class="score" title="design-critic score, round 1">Review 4.5/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-story.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/E-A.jpg" alt="After: option A, Picture right, whole" loading="lazy"><figcaption>After · A</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+<article class="opt" data-option="E-B" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<header><span class="badge">B</span><div><h3>Picture left, text right</h3><p>The dancers are read first; all details sit in one right column.</p></div><span class="score" title="design-critic score, round 1">Review 4.1/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-story.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/E-B.jpg" alt="After: option B, Picture left, text right" loading="lazy"><figcaption>After · B</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+<article class="opt" data-option="E-C" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<p class="unsure">Reviewer unsure (taste call, 3.9/5): your pick<small>Passes every hard check (11/11, picture whole, nothing over it); design review split on taste after two rounds.</small></p>
+<header><span class="badge">C</span><div><h3>Text on top, dancers on an arch</h3><p>Details first like a ticket; the two prices flank the dancers.</p></div><span class="score" title="design-critic score, round 2">Review 3.9/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-story.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/E-C.jpg?r=2" alt="After: option C, Text on top, dancers on an arch" loading="lazy"><figcaption>After · C</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+</div>
+<div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which layout should the event flier use?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Picture right, whole</span></li><li data-letter="B"><span class="lt">B</span><span>Picture left, text right</span></li><li data-letter="C"><span class="lt">C</span><span>Text on top, dancers on an arch (reviewer unsure, your pick)</span></li><li data-letter="D"><span class="lt">D</span><span>Changes needed (note)</span></li><li data-letter="E"><span class="lt">E</span><span>None, redraw</span></li></ul></div></section>
+<section class="block phone"><h2>Phone wallpaper · 1170x2532</h2><div class="grid">
+<article class="opt" data-option="P-A" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<header><span class="badge">A</span><div><h3>Clock-clear top, picture right</h3><p>Top 28% left empty for the lock-screen clock; dancers bottom right, details left.</p></div><span class="score" title="design-critic score, round 1">Review 4.3/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-phone.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/P-A.jpg" alt="After: option A, Clock-clear top, picture right" loading="lazy"><figcaption>After · A</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+<article class="opt" data-option="P-B" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<p class="unsure">Reviewer unsure (taste call, 3.6/5): your pick<small>Passes every hard check (11/11, picture whole, nothing over it); design review split on taste after two rounds.</small></p>
+<header><span class="badge">B</span><div><h3>Clock-clear top, dancers on an arch</h3><p>Details in one band under the clock zone; prices flank the dancers.</p></div><span class="score" title="design-critic score, round 2">Review 3.6/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-phone.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/P-B.jpg?r=2" alt="After: option B, Clock-clear top, dancers on an arch" loading="lazy"><figcaption>After · B</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+</div>
+<div class="q" data-qid="q2"><p class="qn"><span class="qi">Q2</span> Which layout should the phone wallpaper use?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Clock-clear top, picture right</span></li><li data-letter="B"><span class="lt">B</span><span>Clock-clear top, dancers on an arch (reviewer unsure, your pick)</span></li><li data-letter="C"><span class="lt">C</span><span>Changes needed (note)</span></li><li data-letter="D"><span class="lt">D</span><span>None, redraw</span></li></ul></div></section>
+<section class="block desktop"><h2>Desktop wallpaper · 2560x1440</h2><div class="grid">
+<article class="opt" data-option="D-A" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<header><span class="badge">A</span><div><h3>Details left, picture right</h3><p>Three detail columns; the icon column (left) and taskbar (bottom) stay clear of text.</p></div><span class="score" title="design-critic score, round 2">Review 4.25/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-desktop.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/D-A.jpg?r=2" alt="After: option A, Details left, picture right" loading="lazy"><figcaption>After · A</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+<article class="opt" data-option="D-B" data-inventory="11/11" data-aligned="pass" data-result="result.json">
+<p class="unsure">Reviewer unsure (taste call, 3.9/5): your pick<small>Passes every hard check (11/11, picture whole, nothing over it); design review split on taste after two rounds.</small></p>
+<header><span class="badge">B</span><div><h3>Dancers centred on an arch</h3><p>Titles left, details right, the dancers in the middle.</p></div><span class="score" title="design-critic score, round 2">Review 3.9/5</span></header>
+<div class="pair">
+<figure data-visual="before"><img src="img/before-desktop.jpg" alt="Before: today's renderer, picture cropped and faded" loading="lazy"><figcaption>Before · today</figcaption></figure>
+<figure data-visual="after"><img src="img/D-B.jpg?r=2" alt="After: option B, Dancers centred on an arch" loading="lazy"><figcaption>After · B</figcaption></figure>
+</div>
+<p class="inv"><strong>Inventory:</strong> 11/11 · picture whole, 0 px covered</p>
+</article>
+</div>
+<div class="q" data-qid="q3"><p class="qn"><span class="qi">Q3</span> Which layout should the desktop wallpaper use?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Details left, picture right</span></li><li data-letter="B"><span class="lt">B</span><span>Dancers centred on an arch (reviewer unsure, your pick)</span></li><li data-letter="C"><span class="lt">C</span><span>Changes needed (note)</span></li><li data-letter="D"><span class="lt">D</span><span>None, redraw</span></li></ul></div></section>
+</main></body></html>
+
+<script>
+(function () {
+  'use strict';
+  // Contrast guard: a host page forced dark (or light) while the OS scheme differs left
+  // --ink-1 #111 on a dark background, so typed notes were invisible (2026-10-01).
+  (function () {
+    function lum(c) {
+      var m = (c || '').match(/[\d.]+/g); if (!m || m.length < 3) return null;
+      var v = m.slice(0, 3).map(function (x) { x = x / 255;
+        return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    }
+    var el = document.body, bg = null;
+    while (el && el.nodeType === 1) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && !/rgba\([^)]*,\s*0\)|transparent/.test(c)) { bg = c; break; }
+      el = el.parentElement;
+    }
+    var root = document.documentElement;
+    var probe = document.createElement('span');
+    probe.style.color = 'var(--ink-1, #111)'; document.body.appendChild(probe);
+    var lb = lum(bg || 'rgb(255,255,255)'), li = lum(getComputedStyle(probe).color);
+    probe.remove();
+    if (lb === null || li === null) return;
+    if ((Math.max(lb, li) + 0.05) / (Math.min(lb, li) + 0.05) >= 4.5) return;
+    var dark = lb < 0.2, set = dark
+      ? ['#141414', '#f0efec', '#a8a49c', '#6f6b64', 'rgba(255,255,255,.06)', '#333029']
+      : ['#ffffff', '#111111', '#555555', '#8a8a8a', 'rgba(0,0,0,.05)', '#e2e2de'];
+    ['--paper', '--ink-1', '--ink-2', '--ink-3', '--rule-1', '--rule-2'].forEach(
+      function (k, i) { root.style.setProperty(k, set[i]); });
+  })();
+  var DOCKEY = 'flier1-layouts';
+  var DOCTITLE = 'FLIER-1 Flier Studio layout pick';
+  var LS = 'answers:' + DOCKEY;
+  var state = {};
+  var db = null;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(LS);
+      if (raw) state = JSON.parse(raw) || {};
+    } catch (e) { state = {}; }
+  }
+
+  function persistLocal() {
+    try { window.localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function persistDb(qid) {
+    if (!db) return;
+    var v = state[qid] || {};
+    db.doc('answers/' + qid).set({
+      question: v.question || '',
+      choice: v.choice || '',
+      choiceText: v.choiceText || '',
+      note: v.note || '',
+      doc: DOCKEY,
+      updatedAt: new Date().toISOString()
+    }).catch(function () { /* keep the local copy; export still works */ });
+  }
+
+  function save(qid) { persistLocal(); persistDb(qid); }
+
+  var blocks = [];
+
+  function render() {
+    var done = 0;
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      b.el.classList.toggle('answered', !!v.choice);
+      if (v.choice) done++;
+      b.opts.forEach(function (li) {
+        var on = li.getAttribute('data-letter') === v.choice;
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        li.setAttribute('tabindex', on || (!v.choice && li === b.opts[0]) ? '0' : '-1');
+      });
+      b.status.textContent = v.choice ? 'answered — ' : 'not answered yet';
+      if (v.choice) {
+        var bb = document.createElement('b');
+        bb.textContent = v.choice;
+        b.status.appendChild(bb);
+      }
+      if (b.note.value !== (v.note || '')) b.note.value = v.note || '';
+    });
+    if (bar) {
+      bar.prog.innerHTML = '<b>' + done + '</b> of ' + blocks.length + ' answered';
+    }
+  }
+
+  function choose(b, letter, text) {
+    var v = state[b.qid] || {};
+    if (v.choice === letter) { delete v.choice; delete v.choiceText; }
+    else { v.choice = letter; v.choiceText = text; }
+    v.question = b.question;
+    state[b.qid] = v;
+    save(b.qid);
+    render();
+  }
+
+  function buildExport() {
+    var out = ['# Answers \u2014 ' + DOCTITLE,
+               'recorded ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+               ''];
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      out.push('## ' + b.qid.toUpperCase() + ' \u2014 ' + b.question);
+      out.push(v.choice
+        ? '**Answer: ' + v.choice + '** \u2014 ' + (v.choiceText || '')
+        : '**Answer: (not answered)**');
+      if (v.note) out.push('Note: ' + v.note);
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
+  var bar = null;
+
+  function buildBar(firstQ) {
+    var el = document.createElement('div');
+    el.className = 'qbar';
+    el.innerHTML =
+      '<span class="prog"></span>' +
+      '<span class="acts">' +
+      '<button type="button" class="clr">Clear all</button>' +
+      '<button type="button" class="prim exp">Export answers</button>' +
+      '</span>' +
+      '<span class="mode"></span>';
+    var wrap = document.createElement('div');
+    wrap.className = 'expwrap';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-label', 'Exported answers');
+    wrap.innerHTML = '<div class="exphead">Your answers' +
+      '<span><button type="button" class="prim cpy">Copy</button>' +
+      '<button type="button" class="cls">Close</button></span></div>' +
+      '<textarea readonly aria-label="Answers for export"></textarea>' +
+      '<p class="hint">Press Copy, then paste the text into the conversation.</p>';
+    var section = firstQ.closest ? firstQ.closest('section') : null;
+    var anchor = section && section.parentNode ? section : firstQ;
+    anchor.parentNode.insertBefore(el, anchor);
+    document.body.appendChild(wrap);
+
+    bar = {
+      el: el,
+      prog: el.querySelector('.prog'),
+      mode: el.querySelector('.mode'),
+      exportBtn: el.querySelector('.exp'),
+      wrap: wrap,
+      ta: wrap.querySelector('textarea'),
+      hint: wrap.querySelector('.hint')
+    };
+
+    function closeExport() { wrap.classList.remove('on'); bar.exportBtn.focus(); }
+    wrap.querySelector('.cls').addEventListener('click', closeExport);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) closeExport();
+    });
+    wrap.querySelector('.cpy').addEventListener('click', function () {
+      bar.ta.focus();
+      bar.ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText)
+          navigator.clipboard.writeText(bar.ta.value).then(function () {
+            bar.hint.textContent = 'Copied. Paste it into the conversation.';
+          }, function () {});
+      } catch (e) {}
+      bar.hint.textContent = ok ? 'Copied. Paste it into the conversation.'
+        : 'The text is selected: press Ctrl+C (Cmd+C on a Mac), then paste it into the conversation.';
+    });
+
+    el.querySelector('.clr').addEventListener('click', function () {
+      blocks.forEach(function (b) {
+        state[b.qid] = { question: b.question, note: (state[b.qid] || {}).note || '' };
+        delete state[b.qid].choice;
+        save(b.qid);
+      });
+      render();
+    });
+
+    bar.exportBtn.addEventListener('click', function () {
+      var txt = buildExport();
+      bar.ta.value = txt;
+      bar.wrap.classList.add('on');
+      bar.hint.textContent = 'Press Copy, then paste the text into the conversation.';
+      bar.ta.focus();
+      bar.ta.select();
+    });
+  }
+
+  function init() {
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.q[data-qid]'));
+    if (!qs.length) return;
+
+    qs.forEach(function (el) {
+      var qid = el.getAttribute('data-qid');
+      var qn = el.querySelector('.qn');
+      var question = qn ? qn.textContent.replace(/\s+/g, ' ').replace(/^\s*Q\d+\s*/, '').trim() : qid;
+      var opts = Array.prototype.slice.call(el.querySelectorAll('.opts li[data-letter]'));
+      var group = el.querySelector('.opts');
+      if (group) group.setAttribute('role', 'radiogroup');
+
+      var box = document.createElement('div');
+      box.className = 'ansbox';
+      box.innerHTML = '<span class="st"></span>' +
+        '<textarea class="note-in" rows="2" placeholder="Optional \u2014 a caveat, a ' +
+        'condition, or why not the recommendation."></textarea>';
+      var oldAns = el.querySelector('.ans');
+      if (oldAns) oldAns.parentNode.replaceChild(box, oldAns);
+      else el.appendChild(box);
+
+      var b = {
+        el: el, qid: qid, question: question, opts: opts,
+        status: box.querySelector('.st'), note: box.querySelector('.note-in')
+      };
+
+      opts.forEach(function (li) {
+        li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
+        var span = li.querySelector('span:last-child');
+        var text = (span ? span.textContent : li.textContent)
+          .replace(/\s+/g, ' ').replace(/\s*recommended\s*$/i, '').trim();
+        li.addEventListener('click', function () {
+          choose(b, li.getAttribute('data-letter'), text);
+        });
+        li.addEventListener('keydown', function (ev) {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            choose(b, li.getAttribute('data-letter'), text);
+          }
+        });
+      });
+
+      b.note.addEventListener('input', function () {
+        var v = state[qid] || {};
+        v.note = b.note.value;
+        v.question = question;
+        state[qid] = v;
+        persistLocal();
+      });
+      b.note.addEventListener('blur', function () { persistDb(qid); });
+
+      blocks.push(b);
+    });
+
+    load();
+    buildBar(qs[0]);
+    render();
+
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('db').then(function (d) {
+        if (!d) { setMode('saved in this browser only'); return; }
+        db = d;
+        setMode('saved to this page \u2014 Claude can read these answers back');
+        d.collection('answers').get().then(function (snap) {
+          var touched = false;
+          snap.docs.forEach(function (doc) {
+            var data = doc.data() || {};
+            var cur = state[doc.id] || {};
+            if (!cur.choice && !cur.note && (data.choice || data.note)) {
+              state[doc.id] = {
+                question: data.question || cur.question || '',
+                choice: data.choice || '', choiceText: data.choiceText || '',
+                note: data.note || ''
+              };
+              touched = true;
+            }
+          });
+          if (touched) { persistLocal(); render(); }
+        }).catch(function () {});
+      }).catch(function () { setMode('saved in this browser only'); });
+    } else {
+      setMode('saved in this browser only');
+    }
+  }
+
+  function setMode(t) { if (bar) bar.mode.textContent = t; }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

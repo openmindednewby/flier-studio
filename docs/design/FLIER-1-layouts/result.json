@@ -1,0 +1,863 @@
+{
+ "pairMethod": "same-steps",
+ "note": "before = scratch copy of KizombaWarrior flier-studio/index.html (cropped+faded picture, W/H set to the format); after = mock.html, same content (31 Oct workshop). Form rows: none on a flier (0 rows), aligned=pass trivially.",
+ "options": {
+  "E-A": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 392663,
+   "textOverflow": [],
+   "formRows": 0
+  },
+  "E-B": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 420279,
+   "textOverflow": [],
+   "formRows": 0
+  },
+  "E-C": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 468011,
+   "textOverflow": [],
+   "formRows": 0,
+   "round": 2,
+   "coupleScaleVsRound1": 1.351,
+   "pictureBottomPx": 1920,
+   "minTextClearancePx": 48
+  },
+  "P-A": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 463326,
+   "textOverflow": [],
+   "formRows": 0
+  },
+  "P-B": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 488095,
+   "textOverflow": [],
+   "formRows": 0,
+   "round": 2,
+   "coupleScaleVsRound1": 1.361,
+   "pictureBottomPx": 2532,
+   "minTextClearancePx": 46
+  },
+  "D-A": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "levels",
+     "logo",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 572851,
+   "textOverflow": [],
+   "formRows": 0,
+   "round": 2,
+   "coupleScaleVsRound1": 1.0,
+   "pictureBottomPx": 1440,
+   "minTextClearancePx": 90
+  },
+  "D-B": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "classPrice",
+     "date",
+     "levels",
+     "logo",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   },
+   "pictureInside": true,
+   "pictureCoveredPx": 0,
+   "pictureOpaquePx": 572819,
+   "textOverflow": [],
+   "formRows": 0,
+   "round": 2,
+   "coupleScaleVsRound1": 1.0,
+   "pictureBottomPx": 1440,
+   "minTextClearancePx": 47
+  }
+ },
+ "frames": [
+  {
+   "option": "E-A",
+   "shot": "E-A-story",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-story.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1080x1920",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "E-A",
+   "shot": "E-A-story",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/E-A.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1080x1920",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "E-B",
+   "shot": "E-B-story",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-story.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1080x1920",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "E-B",
+   "shot": "E-B-story",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/E-B.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1080x1920",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "E-C",
+   "shot": "E-C-story",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-story.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1080x1920",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "E-C",
+   "shot": "E-C-story",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/E-C.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1080x1920",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "P-A",
+   "shot": "P-A-phone",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-phone.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1170x2532",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "P-A",
+   "shot": "P-A-phone",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/P-A.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1170x2532",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "P-B",
+   "shot": "P-B-phone",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-phone.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1170x2532",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "P-B",
+   "shot": "P-B-phone",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/P-B.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "1170x2532",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "D-A",
+   "shot": "D-A-desktop",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-desktop.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "2560x1440",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "levels",
+     "logo",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "D-A",
+   "shot": "D-A-desktop",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/D-A.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "2560x1440",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "levels",
+     "logo",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "D-B",
+   "shot": "D-B-desktop",
+   "side": "before",
+   "build": "prototype flier-studio/index.html @2026-10-27",
+   "file": "img/before-desktop.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "2560x1440",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "levels",
+     "logo",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  },
+  {
+   "option": "D-B",
+   "shot": "D-B-desktop",
+   "side": "after",
+   "build": "FLIER-1 mock.html",
+   "file": "img/D-B.jpg",
+   "pair": {
+    "route": "flier render: event 2026-10-31",
+    "state": "event flier, default doc",
+    "fixture": "prototype DEFAULTS 2026-10-27 (31 Oct, 20:00-22:00, 20€)",
+    "viewport": "2560x1440",
+    "scrollAnchor": "canvas origin 0,0",
+    "crop": "full canvas"
+   },
+   "visibleItems": {
+    "before": [
+     "classPrice",
+     "date",
+     "levels",
+     "logo",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ],
+    "after": [
+     "classPrice",
+     "date",
+     "footer",
+     "includes",
+     "levels",
+     "logo",
+     "partyPrice",
+     "picture",
+     "title1",
+     "title2",
+     "venue"
+    ]
+   }
+  }
+ ],
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "methodNote": "count = inventory items whose draw call lands inside the canvas (instrumented fillText/drawImage, render.cjs classify); rows = form rows auto-discovered per frame: a flier canvas has 0 side-by-side form controls"
+}

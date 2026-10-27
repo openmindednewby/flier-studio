@@ -1,0 +1,23 @@
+/** The 20 fixed prompts the AC-07 validity rate is measured on. */
+export const FIXED_PROMPTS: readonly string[] = [
+  'Kizomba workshop on Saturday 31 October, Level 1 20:00 - 21:00, party pass 20€',
+  'Salsa social night, Instagram post, dark colours',
+  'Bachata beginners class every Tuesday at 19:30, story',
+  'Upcoming kizomba workshops list for November',
+  'Desktop wallpaper with a night kizomba theme',
+  'Phone wallpaper, rose colours, tango',
+  'Square flier for a zouk party on Friday 6 November',
+  'Summer beach salsa party, sea colours, post',
+  'Valentine bachata night with a pink palette',
+  'Swing dance taster class on Sunday 15 November at 18:00',
+  'List of upcoming salsa and bachata workshops, Instagram post',
+  'Kizomba bootcamp weekend, elegant fonts, story',
+  'Tango milonga on Saturday 21 November 21:00 - 01:00',
+  'Lock screen wallpaper for kizomba lovers',
+  'Hip hop open class for teens, square',
+  'Yoga morning session on Sunday 22 November at 09:00',
+  'Bachata sensual masterclass with the picture on the left',
+  'Salsa workshop with text on top and the picture at the bottom',
+  'Laptop wallpaper, calm sand colours',
+  'Upcoming zouk socials schedule, story',
+];

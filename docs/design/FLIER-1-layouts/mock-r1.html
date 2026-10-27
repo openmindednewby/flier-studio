@@ -1,0 +1,168 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Sacramento&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="instrument.js"></script>
+<script src="assets-whole.js"></script>
+</head><body style="margin:0">
+<canvas id="cv"></canvas>
+<script>
+const FORMATS = { story:[1080,1920], phone:[1170,2532], desktop:[2560,1440] };
+const qs = new URLSearchParams(location.search);
+const FMT = qs.get('fmt') || 'story', LAYOUT = qs.get('layout') || 'A';
+const [W, H] = FORMATS[FMT];
+const C = { bg:'#f5f4f2', taupe:'#958a80', peach:'#e9b47f', ink:'#5f564f', soft:'#b3a89e', arch:'#efe3d6' };
+const BIG = 'Oswald', SCRIPT = 'Sacramento', ROUND = 'Fredoka';
+const S = { title1:'KIZOMBA', title2:'WORKSHOP', venue1:'Bailemos', venue2:'Dance School', levels:['Level 1','Level 2'],
+  classPrice:'5€', classLabel:'per hour', partyLabel:'Party pass', party:'20€', date:'Saturday 31 October',
+  slots:['20:00 - 21:00','21:00 - 22:00'], includes:['Salsa & Bachata room','Kizomba dedicated room','2 drinks'], footer:'with Jimmy & Ismini' };
+const img = {};
+let pic = null;
+
+function loadImage(src) { return new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = src; }); }
+function font(ctx, w, s, f) { ctx.font = `${w} ${s}px "${f}"`; }
+function fit(ctx, t, w, f, max, mw) { let s = max; font(ctx, w, s, f); while (s > 10 && ctx.measureText(t).width > mw) { s -= 2; font(ctx, w, s, f); } return s; }
+function text(ctx, str, x, y, { weight = 700, size, family = ROUND, color = C.ink, maxWidth = 9999, align = 'left' }) {
+  fit(ctx, str, weight, family, size, maxWidth); ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'alphabetic'; ctx.fillText(str, x, y);
+}
+function script(ctx, str, x, y, size, mw) {
+  const s = fit(ctx, str, 400, SCRIPT, size, mw);
+  ctx.fillStyle = C.peach; ctx.strokeStyle = C.peach; ctx.lineWidth = Math.max(2, s / 40); ctx.lineJoin = 'round';
+  ctx.textAlign = 'left'; ctx.strokeText(str, x, y); ctx.fillText(str, x, y);
+}
+function wrap(ctx, str, mw) { const ws = str.split(' '), out = []; let l = ''; for (const w of ws) { const t = l ? l + ' ' + w : w; if (ctx.measureText(t).width > mw && l) { out.push(l); l = w; } else l = t; } if (l) out.push(l); return out; }
+function rule(ctx, x1, x2, y, k = 1) { ctx.fillStyle = C.peach; ctx.globalAlpha = .85; ctx.fillRect(x1, y - 4 * k, x2 - x1, 8 * k); ctx.globalAlpha = 1; }
+function pin(ctx, cx, cy, r) {
+  ctx.save(); ctx.fillStyle = C.peach; ctx.globalAlpha = .55;
+  for (const [dx, dy, k] of [[0,0,1],[-.35,-.2,.75],[.35,.25,.7],[.1,-.4,.6],[-.2,.4,.6]]) { ctx.beginPath(); ctx.arc(cx + dx * r, cy + dy * r, r * k, 0, 7); ctx.fill(); }
+  ctx.globalAlpha = 1; ctx.strokeStyle = '#fff'; ctx.lineWidth = r * .09; ctx.lineJoin = 'round';
+  const pr = r * .38, py = cy - r * .2;
+  ctx.beginPath(); ctx.arc(cx, py, pr, Math.PI * .8, Math.PI * 2.2); ctx.lineTo(cx, py + pr * 1.9); ctx.closePath(); ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx, py, pr * .38, 0, 7); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(cx, py + pr * 2.05, pr * 1.2, pr * .35, 0, 0, 7); ctx.stroke(); ctx.restore();
+}
+/* contain + anchor: the whole picture inside the box, never cropped */
+function place(box, ax = 1, ay = 1) {
+  const i = img.couple, k = Math.min(box.w / i.width, box.h / i.height), w = i.width * k, h = i.height * k;
+  return { x: box.x + (box.w - w) * ax, y: box.y + (box.h - h) * ay, w, h };
+}
+function logo(ctx, x, y, w) { ctx.drawImage(img.logo, x, y, w, w * img.logo.height / img.logo.width); }
+function venue(ctx, x, y, k = 1, mw = 330) {
+  pin(ctx, x + 62 * k, y, 62 * k);
+  text(ctx, S.venue1, x + 150 * k, y - 8 * k, { weight:500, size:58 * k, family:BIG, maxWidth:mw });
+  text(ctx, S.venue2, x + 150 * k, y + 58 * k, { weight:500, size:58 * k, family:BIG, maxWidth:mw });
+}
+function levels(ctx, x, y, k = 1, gap = 165, mw = 400) {
+  S.levels.forEach((lv, i) => {
+    text(ctx, lv, x, y, { size:66 * k, maxWidth:mw });
+    text(ctx, S.slots[i], x + 20 * k, y + 70 * k, { size:60 * k, color:C.peach, maxWidth:mw });
+    y += gap * k;
+  });
+}
+function prices(ctx, x, y, k = 1, mw = 380, align = 'left') {
+  text(ctx, S.classPrice, x, y, { size:66 * k, maxWidth:mw, align });
+  text(ctx, S.classLabel, x, y + 62 * k, { weight:600, size:52 * k, color:C.peach, maxWidth:mw, align });
+  text(ctx, S.party, x, y + 150 * k, { size:66 * k, maxWidth:mw, align });
+  text(ctx, S.partyLabel, x, y + 212 * k, { weight:600, size:52 * k, color:C.peach, maxWidth:mw, align });
+}
+function includesList(ctx, x, y, mw, size) {
+  text(ctx, S.partyLabel + ' includes', x, y, { weight:600, size:size * .9, color:C.peach, maxWidth:mw });
+  y += size * 1.35; font(ctx, 600, size, ROUND);
+  for (const it of S.includes) {
+    const lines = wrap(ctx, it, mw - size); ctx.fillStyle = C.peach; ctx.beginPath(); ctx.arc(x + size * .28, y - size * .33, size * .22, 0, 7); ctx.fill();
+    for (const l of lines) { ctx.fillStyle = C.ink; ctx.textAlign = 'left'; ctx.fillText(l, x + size * .9, y); y += size * 1.18; }
+    y += size * .2;
+  }
+  return y;
+}
+function includesLine(ctx, x, y, mw, size) {
+  text(ctx, S.partyLabel + ' includes', x, y, { weight:600, size:size * .9, color:C.peach, maxWidth:mw });
+  text(ctx, S.includes.join('  •  '), x, y + size * 1.45, { size, maxWidth:mw });
+}
+function header(ctx, x, y1, y2, ys, size, ssize, mw = 680, smw = mw * 1.3) {
+  text(ctx, S.title1, x, y1, { size, family:BIG, color:C.taupe, maxWidth:mw });
+  text(ctx, S.title2, x, y2, { size, family:BIG, color:C.taupe, maxWidth:mw + 40 });
+  script(ctx, S.date, x + 38 * size / 250, ys, ssize, smw);
+}
+function arch(ctx, r) { ctx.save(); ctx.fillStyle = C.arch; ctx.beginPath(); const cx = r.x + r.w / 2, rad = r.w * .62;
+  ctx.moveTo(cx - rad, H); ctx.lineTo(cx - rad, r.y + rad * .9); ctx.arc(cx, r.y + rad * .9, rad, Math.PI, 0); ctx.lineTo(cx + rad, H); ctx.closePath(); ctx.fill(); ctx.restore(); }
+
+/* each layout: pic(rect) -> back(ctx) behind picture, fore(ctx) text; picture drawn between */
+const L = {
+  'story-A': { pic: () => place({ x:500, y:640, w:580, h:1280 }, 1, 1), fore(ctx) {
+    logo(ctx, 790, 40, 240); header(ctx, 52, 270, 560, 375, 250, 120);
+    rule(ctx, 0, 680, 620); venue(ctx, 40, 730); rule(ctx, 0, 460, 850);
+    levels(ctx, 52, 945, 1, 150, 400); prices(ctx, 52, 1265, .95, 400);
+    includesList(ctx, 52, 1565, 430, 34); text(ctx, S.footer, 52, H - 42, { weight:500, size:34, color:C.soft, maxWidth:380 }); } },
+  'story-B': { pic: () => place({ x:0, y:640, w:600, h:1280 }, 0, 1), fore(ctx) {
+    logo(ctx, 800, 40, 230); header(ctx, 52, 270, 560, 375, 250, 120);
+    rule(ctx, 400, W, 620); venue(ctx, 610, 730, .9, 300); rule(ctx, 610, W, 850);
+    levels(ctx, 620, 950, 1, 158, 420); prices(ctx, 620, 1300, 1, 400);
+    includesList(ctx, 620, 1620, 420, 38); text(ctx, S.footer, W - 40, H - 42, { weight:500, size:34, color:C.soft, maxWidth:420, align:'right' }); } },
+  'story-C': { pic: () => place({ x:270, y:1050, w:540, h:870 }, .5, 1), back(ctx, r) { arch(ctx, r); }, fore(ctx) {
+    logo(ctx, 850, 36, 196); header(ctx, 52, 225, 468, 318, 205, 104, 600);
+    rule(ctx, 0, W, 530); venue(ctx, 40, 640, .95, 330);
+    levels(ctx, 600, 615, .92, 150, 420); rule(ctx, 0, W, 890);
+    includesLine(ctx, 52, 960, 976, 38); text(ctx, S.footer, W - 52, 960, { weight:500, size:32, color:C.soft, maxWidth:380, align:'right' });
+    prices(ctx, 52, 1420, 1.25, 220); prices(ctx, 1028, 1420, 0, 0); /* noop guard */
+  } },
+  'phone-A': { pic: () => place({ x:540, y:1265, w:630, h:1267 }, 1, 1), fore(ctx) {
+    logo(ctx, 920, 720, 200); header(ctx, 56, 935, 1205, 1035, 230, 112, 700);
+    rule(ctx, 0, 700, 1265); venue(ctx, 44, 1365); rule(ctx, 0, 480, 1485);
+    levels(ctx, 56, 1585, 1, 145, 420);
+    text(ctx, S.classPrice + ' ' + S.classLabel, 56, 1925, { size:58, maxWidth:440 });
+    text(ctx, S.party + ' ' + S.partyLabel, 56, 1995, { size:58, maxWidth:440, color:C.ink });
+    includesList(ctx, 56, 2080, 440, 34); text(ctx, S.footer, 56, 760, { weight:500, size:34, color:C.soft, maxWidth:520 }); } },
+  'phone-B': { pic: () => place({ x:235, y:1650, w:700, h:882 }, .5, 1), back(ctx, r) { arch(ctx, r); }, fore(ctx) {
+    logo(ctx, 950, 740, 180); header(ctx, 56, 935, 1145, 1015, 180, 96, 600);
+    rule(ctx, 0, W, 1205); venue(ctx, 44, 1300, .95, 330); levels(ctx, 640, 1280, .88, 140, 460);
+    includesLine(ctx, 56, 1530, 1058, 36);
+    text(ctx, S.footer, W - 56, 1530, { weight:500, size:32, color:C.soft, maxWidth:420, align:'right' });
+    flankPrices(ctx, 2050, 220); } },
+  'desktop-A': { pic: () => place({ x:1720, y:70, w:740, h:1300 }, 1, 1), fore(ctx) {
+    logo(ctx, 1380, 70, 240); header(ctx, 220, 340, 650, 455, 270, 130, 900);
+    rule(ctx, 160, 1640, 730);
+    venue(ctx, 210, 860, 1, 330); levels(ctx, 760, 840, .95, 150, 360); prices(ctx, 1240, 840, .9, 340);
+    rule(ctx, 160, 1640, 1140); includesLine(ctx, 220, 1210, 1400, 40);
+    text(ctx, S.footer, 1640, 1210, { weight:500, size:34, color:C.soft, maxWidth:420, align:'right' }); } },
+  'desktop-B': { pic: () => place({ x:920, y:70, w:720, h:1300 }, .5, 1), back(ctx, r) { arch(ctx, r); }, fore(ctx) {
+    header(ctx, 200, 420, 760, 545, 290, 130, 640, 660);
+    text(ctx, S.footer, 210, 880, { weight:500, size:38, color:C.soft, maxWidth:620 });
+    logo(ctx, 2160, 60, 230);
+    venue(ctx, 1720, 420, 1, 380); rule(ctx, 1720, 2460, 540);
+    levels(ctx, 1730, 640, .95, 150, 360); prices(ctx, 2140, 640, .9, 300);
+    rule(ctx, 1720, 2460, 990); includesList(ctx, 1730, 1080, 700, 40); } },
+};
+function flankPrices(ctx, y, mw) {
+  text(ctx, S.classPrice, 56, y, { size:120, maxWidth:mw }); text(ctx, S.classLabel, 56, y + 70, { weight:600, size:52, color:C.peach, maxWidth:mw });
+  text(ctx, S.party, W - 56, y, { size:120, maxWidth:mw, align:'right' }); text(ctx, S.partyLabel, W - 56, y + 70, { weight:600, size:52, color:C.peach, maxWidth:mw, align:'right' });
+}
+L['story-C'].fore = (orig => function (ctx) {
+  logo(ctx, 850, 36, 196); header(ctx, 52, 225, 468, 318, 205, 104, 600);
+  rule(ctx, 0, W, 530); venue(ctx, 40, 640, .95, 330); levels(ctx, 600, 615, .92, 150, 420); rule(ctx, 0, W, 890);
+  includesLine(ctx, 52, 960, 976, 38); text(ctx, S.footer, W - 52, 960, { weight:500, size:32, color:C.soft, maxWidth:380, align:'right' });
+  flankPrices(ctx, 1480, 230);
+})();
+
+function draw(ctx, layers) {
+  const lay = L[FMT + '-' + LAYOUT];
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  if (lay.back) lay.back(ctx, pic);
+  if (layers.pic) ctx.drawImage(img.couple, pic.x, pic.y, pic.w, pic.h);
+  if (layers.fore) lay.fore(ctx);
+}
+(async () => {
+  const A = window.FLIER_ASSETS_WHOLE; [img.couple, img.logo] = await Promise.all([loadImage(A.couple), loadImage(A.logo)]);
+  await Promise.all([`700 100px "${BIG}"`, `500 100px "${BIG}"`, `400 100px "${SCRIPT}"`, `700 100px "${ROUND}"`, `600 100px "${ROUND}"`].map(f => document.fonts.load(f)));
+  pic = L[FMT + '-' + LAYOUT].pic();
+  const mk = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; return c; };
+  const cv = document.getElementById('cv'); cv.width = W; cv.height = H; draw(cv.getContext('2d'), { pic:1, fore:1 });
+  const noText = mk(); draw(noText.getContext('2d'), { pic:1 });
+  const mask = mk(); mask.getContext('2d').drawImage(img.couple, pic.x, pic.y, pic.w, pic.h);
+  const a = cv.getContext('2d').getImageData(0, 0, W, H).data, b = noText.getContext('2d').getImageData(0, 0, W, H).data, m = mask.getContext('2d').getImageData(0, 0, W, H).data;
+  let opaque = 0, covered = 0;
+  for (let i = 3; i < m.length; i += 4) if (m[i] > 8) { opaque++; if (a[i-3] !== b[i-3] || a[i-2] !== b[i-2] || a[i-1] !== b[i-1]) covered++; }
+  const inside = pic.x >= 0 && pic.y >= 0 && pic.x + pic.w <= W + .5 && pic.y + pic.h <= H + .5;
+  window.report = { W, H, pic, inside, opaque, covered, cropped:false, faded:false };
+  window.flierReady = true;
+})();
+</script></body></html>

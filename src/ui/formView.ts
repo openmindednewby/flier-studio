@@ -1,5 +1,6 @@
 import { flierDocSchema, type FlierDoc } from '@dloizides/poster-render';
 import { applyText, blocksToText, type BlockText } from '../form/docEdit';
+import { layoutsFor, withFormat } from '../form/layoutOptions';
 import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
 import { button, el, fileButton, labelled } from './dom';
@@ -18,9 +19,9 @@ const MULTI: readonly (keyof BlockText)[] = ['venue', 'schedule', 'prices', 'inc
 const scaleSchema = flierDocSchema.properties?.picture?.properties?.scale;
 const SCALE_STEP = '0.05';
 
-function select(options: readonly string[], value: string, testId: string): HTMLSelectElement {
+function select(options: readonly string[], value: string, testId: string, label: (o: string) => string = (o) => o): HTMLSelectElement {
   const node = el('select', { 'data-testid': testId });
-  node.append(...options.map((o) => el('option', { value: o, text: o })));
+  node.append(...options.map((o) => el('option', { value: o, text: label(o) })));
   node.value = value;
   return node;
 }
@@ -33,9 +34,14 @@ function textControls(text: BlockText): Record<keyof BlockText, HTMLInputElement
   return controls;
 }
 
+function picker(p: DocPicker, doc: FlierDoc): HTMLSelectElement {
+  if (p !== DocPicker.Layout) return select(schemaOptions(p), String(doc[p]), `pick-${p}`);
+  return select(layoutsFor(doc.format).map((e) => e.id), doc.layout, `pick-${p}`, (id) => FM(`layouts.${id}`));
+}
+
 /** The flier form; every control reads and writes the FlierDoc of the selected flier. */
 export function renderForm(container: HTMLElement, doc: FlierDoc, position: [number, number], actions: FormActions): void {
-  const pickers = Object.fromEntries(PICKERS.map((p) => [p, select(schemaOptions(p), String(doc[p]), `pick-${p}`)])) as Record<DocPicker, HTMLSelectElement>;
+  const pickers = Object.fromEntries(PICKERS.map((p) => [p, picker(p, doc)])) as Record<DocPicker, HTMLSelectElement>;
   const anchor = select(anchorOptions(), doc.picture?.anchor ?? '', 'pick-anchor');
   const scale = el('input', { type: 'range', min: String(scaleSchema?.minimum ?? 0), max: String(scaleSchema?.maximum ?? 1), step: SCALE_STEP, 'data-testid': 'pick-scale' });
   scale.value = String(doc.picture?.scale ?? 1);
@@ -43,8 +49,9 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   const read = (): FlierDoc => {
     const values = Object.fromEntries(Object.entries(texts).map(([k, c]) => [k, c.value])) as unknown as BlockText;
     const next = { ...applyText(doc, values), ...Object.fromEntries(PICKERS.map((p) => [p, pickers[p].value])) } as FlierDoc;
-    if (next.picture) next.picture = { ...next.picture, anchor: anchor.value as typeof next.picture.anchor, scale: Number(scale.value) };
-    return next;
+    const shaped = withFormat(next, next.format);
+    if (shaped.picture) shaped.picture = { ...shaped.picture, anchor: anchor.value as typeof shaped.picture.anchor, scale: Number(scale.value) };
+    return shaped;
   };
   container.oninput = (): void => actions.change(read());
   container.replaceChildren(

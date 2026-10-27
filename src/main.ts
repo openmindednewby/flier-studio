@@ -35,13 +35,13 @@ function refreshPreviews(): void {
   window.clearTimeout(timer);
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(state.docs);
-    state.canvases = renderPreviews(previewGrid, state.docs, book, state.selected, select);
+    state.canvases = await renderPreviews(previewGrid, state.docs, book, state.selected, select);
   }, RENDER_DELAY_MS);
 }
 
 function showForm(): void {
   renderForm(formBox, state.docs[state.selected], [state.selected + 1, state.docs.length], {
-    change: (doc) => { state.docs[state.selected] = doc; refreshPreviews(); },
+    change: (doc) => { const reshaped = doc.format !== state.docs[state.selected].format; state.docs[state.selected] = doc; if (reshaped) showForm(); refreshPreviews(); },
     upload: (kind, file) => void upload(kind, file),
     add: () => { state.docs.push(JSON.parse(JSON.stringify(state.docs[state.selected])) as FlierDoc); select(state.docs.length - 1); },
     remove: () => { if (state.docs.length > 1) { state.docs.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
@@ -70,7 +70,7 @@ function apply(docs: FlierDoc[]): void {
 
 async function downloadAll(): Promise<void> {
   for (const [i, canvas] of state.canvases.entries()) {
-    downloadCanvas(canvas, state.docs[i], i);
+    await downloadCanvas(canvas, state.docs[i], i);
     await new Promise((r) => setTimeout(r, DOWNLOAD_GAP_MS));
   }
 }

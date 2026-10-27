@@ -1,8 +1,10 @@
 import { FlierDocError, exportPng, render, type FlierDoc, type PosterAssets, type PosterCanvas } from '@dloizides/poster-render';
 import { FM } from '../i18n/fm';
 import { button, downloadBlob, el } from './dom';
+import { fontsReady, type FontLoader } from './fonts';
 
-export function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number): void {
+export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
+  await fontsReady(fonts);
   downloadBlob(exportPng(canvas), `flier-${String(index + 1)}-${doc.format}.png`);
 }
 
@@ -16,7 +18,8 @@ function draw(doc: FlierDoc, assets: PosterAssets, canvas: HTMLCanvasElement): s
 }
 
 /** One live canvas per flier with edit and PNG download; returns the canvases in doc order. */
-export function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, selected: number, select: (i: number) => void): HTMLCanvasElement[] {
+export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, selected: number, select: (i: number) => void, fonts: FontLoader = document.fonts): Promise<HTMLCanvasElement[]> {
+  await fontsReady(fonts);
   const canvases = docs.map(() => el('canvas', { role: 'img' }));
   const figures = docs.map((doc, i) => {
     const canvas = canvases[i];
@@ -27,7 +30,7 @@ export function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[]
       error === null ? canvas : el('p', { class: 'error', role: 'alert', text: FM('form.invalid', error) }),
       el('figcaption', { class: 'row' }, [
         button('previews.edit', `edit-${n}`, () => select(i)),
-        button('previews.download', `download-${n}`, () => downloadCanvas(canvas, doc, i)),
+        button('previews.download', `download-${n}`, () => void downloadCanvas(canvas, doc, i)),
       ]),
     ]);
   });

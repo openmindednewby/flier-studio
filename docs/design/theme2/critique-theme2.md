@@ -121,3 +121,55 @@ This is A's second round below the bar on a taste/craft criterion (#5), so under
 - No greyscale/CVD pass was run on the built PNGs, and print CMYK was not checked.
 - `result.json` `pair` records for the built golden-hour PNGs were not read. Pair parity was judged by eye only: same size, same text and same layout slots as theme 1.
 - Contrast comes from a pixel-percentile probe, not a per-glyph measurement.
+
+---
+
+# Round 3: option A "Horizon" rebuilt at flier-studio 1e7b674 (2026-10-28)
+
+I judged the same 4 PNGs, rebuilt (`*-golden-hour.png`, 1080x1920), with the theme-1 PNGs beside them as the before frames.
+
+## Verdict: ESCALATE stands (A, third round below the bar on #5). No hard fail. Mean 3.9, lowest #5 = 3
+
+Two of the three round-2 fixes landed. The fingertip matte, the only defect left, is not fixed in the picture. The commit says "fingertip wall, pinholes and ochre speck cleaned", but the rendered flier still shows all three defects. This is the same craft finding for the third round, so it stays with the owner, as the two-round rule says. The designer should still re-matte the hand before the owner sees the fliers.
+
+## Hard fails (checked first)
+
+| Check | Result | How measured |
+|---|---|---|
+| Lost text item | none, 4/4 | Checked by eye against theme 1, same list as round 2. Every item is present on all 4. |
+| Text over the picture | none | 31 Oct: the text column ends at x≈385 and the hand starts at x≈555. Upcoming: the column ends at x≈490 and the arm starts at x≈615. |
+| Form rows | n/a | Posters have no form controls. |
+| Pair parity | pass by eye | Same 1080x1920 frame, same text and same slots as theme 1. The `result.json` pair records were not read. |
+
+## Round 2 fixes
+
+| r2 fix | Status | Evidence |
+|---|---|---|
+| 1 Re-matte his left hand's fingertips | **not done** | 31 Oct at 8x, x 690-850, y 1650-1710 (the same on all 4): the matte still cuts the fingertips with a flat, stair-stepped bottom edge. A dark rectangular block of the old background sits left of the index fingertip (x≈700-715, y≈1680-1695). A grey-olive stone strip still fills the gap between the index and middle fingers (251 low-saturation mid-grey px in the box). The ochre speck at x≈714, y≈1680 is still visible as 2-3 orange px. |
+| 2 Close the gap under WORKSHOP | done | WORKSHOP ink ends at y=416 and the venue rule starts at y=522: a gap of 106 px (round 2: ≈158). The same holds on 7 and 29 Nov (411→517, 410→516). `headerGap: 64`. |
+| 3 Upcoming date scripts +15% | done | `itemDateScale: 1.15`. The "Sat 31 Oct" row is now 48 px of ink (y 761-809) and reads at story size. |
+
+## Scores (1-5)
+
+| # | Criterion | A r3 |
+|---|---|---|
+| 1 | Focal point / purpose | 4 |
+| 2 | Portability | 3: a cut-out on a gradient; the colours come from the photo |
+| 3 | Hierarchy, type, spacing | 4: the dead gap is gone; the header, venue and schedule now read as one column |
+| 4 | Visual language | 4 |
+| 5 | Owner's taste | 3: the fingertip matte is the kind of physical error the owner spots (`user_design_taste.md`). It is unchanged on the picture |
+| 6 | AI-default tells | 4 |
+| 7 | Text fits | 4: no overflow on any of the 4 |
+| 8 | Inventory true | 5 |
+| | **Mean** | **3.9** |
+
+## Top fix (every item kept)
+
+1. Re-matte the left-hand fingertips by hand from the source photo, not by a threshold pass. Paint the alpha so each fingertip ends in a round tip with no straight cut. Set alpha 0 on the background block left of the index finger and on the stone strip between the index and middle fingers, and remove the ochre px at (714, 1680). Feather that edge 1 px. Then verify on the rendered PNG at 8x, not on `couple.png` alone. The commit message said this was fixed, but the PNG does not show it.
+
+## NOT COVERED
+
+- Story 1080x1920 only. Square, A4/print and the in-app preview at 360x640 and 1280x800 were not seen.
+- No greyscale/CVD or contrast re-run on the rebuilt PNGs. Text colours look unchanged from round 2, but this was not re-measured.
+- `result.json` `pair` records were not read; pair parity was judged by eye.
+- `couple.png` itself was not opened. The defect is judged on the rendered flier.

@@ -25,6 +25,27 @@ test.describe('drafts on this device (AC-21, AC-22, AC-23)', () => {
     await expect(page.getByTestId('field-title')).toHaveValue(original);
   });
 
+  test('a field edit, a theme change, another field and three quick edits each save a draft listed under All', async ({ page }) => {
+    const theme = page.getByTestId('pick-theme');
+    const otherTheme = await theme.locator('option:not(:checked)').first().getAttribute('value');
+    const all = page.getByTestId('drafts-all');
+
+    await page.getByTestId('field-title').fill(TITLE);
+    await expect(all).toHaveText('All (2)', { timeout: SAVE_MS });
+    await theme.selectOption(otherTheme ?? '');
+    await expect(all).toHaveText('All (3)', { timeout: SAVE_MS });
+    await page.getByTestId('field-footer').fill(TITLE);
+    await expect(all).toHaveText('All (4)', { timeout: SAVE_MS });
+    for (const n of [1, 2, 3]) {
+      await page.getByTestId('field-title').fill(`${TITLE} ${String(n)}`);
+      await expect(all).toHaveText(`All (${String(4 + n)})`, { timeout: SAVE_MS });
+    }
+
+    await page.reload();
+
+    await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(7);
+  });
+
   test('a starred draft shows under Favourites and stays starred after a reload', async ({ page }) => {
     await page.getByTestId('field-title').fill(TITLE);
     await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(2, { timeout: SAVE_MS });

@@ -1,0 +1,641 @@
+{
+ "task": "LOGO-1 \"A logo pipeline that makes beautiful, animatable marks\" D3 all-marks gallery",
+ "pairMethod": "same-steps",
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "note": "noloss: allow new screen -- brand marks are new assets; no form rows on the page (0 side-by-side rows found)",
+ "options": {
+  "MARK-F2A": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-F2B": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-F2C": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-R1": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-R2": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-R3": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-C2A": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-C2B": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  "MARK-C2C": {
+   "inventory": "6/6",
+   "items": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  }
+ },
+ "frames": [
+  {
+   "option": "MARK-F2A",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-F2A",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "FLIER-2 page 3, mark A (critic round 2)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-F2B",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-F2B",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "FLIER-2 page 3, mark B (critic round 2)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-F2C",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-F2C",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "FLIER-2 page 3, mark C (critic round 2)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-R1",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-R1",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "LOGO-1 round 1, R1",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-R2",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-R2",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "LOGO-1 round 1, R2",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-R3",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-R3",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "LOGO-1 round 1, R3",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C2A",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C2A",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "LOGO-1 round 2, C2a",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C2B",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C2B",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "LOGO-1 round 2, C2b",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C2C",
+   "shot": "card",
+   "side": "before",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "flier-studio today (0da0f9d)",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C2C",
+   "shot": "card",
+   "side": "after",
+   "pair": {
+    "route": "docs/design/logo/all",
+    "state": "static gallery card",
+    "fixture": "flier-studio brand marks 2026-10-28",
+    "viewport": "1280x800",
+    "scrollAnchor": "card",
+    "crop": "card"
+   },
+   "build": "LOGO-1 round 2, C2c",
+   "visibleItems": {
+    "before": [
+     "icon-512"
+    ],
+    "after": [
+     "icon-512",
+     "favicon-32",
+     "favicon-16",
+     "header-light",
+     "header-dark",
+     "motion"
+    ]
+   }
+  }
+ ]
+}

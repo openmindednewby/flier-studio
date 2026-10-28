@@ -2,6 +2,10 @@ import { expect, test, type Page } from '@playwright/test';
 import { Panel, openPanel } from './panel';
 
 const HIT = 44;
+const CENTRE_SHIFT = 0.5;
+const END_SHIFT = 1;
+const EDGE_SLACK_PX = 2;
+const LINE_SPAN = 1.2;
 
 interface Run { text: string; x: number; y: number; size: number; width: number; align: string }
 
@@ -33,7 +37,7 @@ test.describe('AC-32 / AC-33 Replace text previews every match before any change
     await expect(rows.first()).toBeVisible();
     const n = await rows.count();
     expect(n).toBeGreaterThan(1);
-    await expect(page.getByTestId('replace-count')).toHaveText(new RegExp(`^${String(n)} matches in \\d fliers, ${String(n)} ticked$`));
+    await expect(page.getByTestId('replace-count')).toHaveText(new RegExp(`^${String(n)} matches in \\d fliers?, ${String(n)} ticked$`));
     await expect(page.getByTestId('replace-match-1')).toContainText('Intermediates');
     await expect(page.getByTestId('replace-match-1')).toContainText('Improvers');
     await expect(page.locator('[data-testid^="preview-"] .replace-mark')).toHaveCount(n);
@@ -66,7 +70,7 @@ test.describe('AC-32 / AC-33 Replace text previews every match before any change
   });
 });
 
-test('each mark outlines its matched line on the flier, not the corner, and the 360 bar counts them', async ({ page }, info) => {
+test('AC-33 each mark outlines its matched line on the flier, not the corner, and the 360 bar counts the marks drawn', async ({ page }, info) => {
   await page.addInitScript(() => {
     const fill = CanvasRenderingContext2D.prototype.fillText;
     CanvasRenderingContext2D.prototype.fillText = function record(this: CanvasRenderingContext2D, text: string, x: number, y: number): void {
@@ -81,7 +85,7 @@ test('each mark outlines its matched line on the flier, not the corner, and the 
   await search(page, 'Intermediates', 'Improvers');
 
   await expect(page.locator('[data-testid="preview-1"] .replace-mark').first()).toBeVisible();
-  const where = await page.getByTestId('preview-1').locator('canvas').evaluate((node) => {
+  const where = await page.getByTestId('preview-1').locator('canvas').evaluate((node, k) => {
     const canvas = node as HTMLCanvasElement & { runs?: Run[] };
     const run = (canvas.runs ?? []).find((r) => r.text.toLowerCase().includes('intermediates'));
     const mark = canvas.parentElement?.querySelector('.replace-mark');
@@ -91,12 +95,29 @@ test('each mark outlines its matched line on the flier, not the corner, and the 
     const s = c.width / canvas.width;
     const cx = (m.left + m.width / 2 - c.left) / s;
     const cy = (m.top + m.height / 2 - c.top) / s;
-    const left = run.x - run.width * (run.align === 'center' ? 0.5 : ['right', 'end'].includes(run.align) ? 1 : 0);
-    const inside = cx >= left - 2 && cx <= left + run.width + 2 && Math.abs(cy - run.y) <= run.size * 1.2;
+    const left = run.x - run.width * (run.align === 'center' ? k.centre : ['right', 'end'].includes(run.align) ? k.end : 0);
+    const inside = cx >= left - k.slack && cx <= left + run.width + k.slack && Math.abs(cy - run.y) <= run.size * k.span;
     return inside ? 'inside' : `mark at ${String(cx)},${String(cy)}, line ${JSON.stringify(run)}`;
-  });
+  }, { centre: CENTRE_SHIFT, end: END_SHIFT, slack: EDGE_SLACK_PX, span: LINE_SPAN });
   expect(where).toBe('inside');
-  if (info.project.name === 'mobile') await expect(page.getByTestId('mini-highlighted')).toHaveText(/^\d+ highlighted$/);
+  if (info.project.name !== 'mobile') return;
+  const drawn = await page.locator('[data-testid^="preview-"] .replace-mark').count();
+  await expect(page.getByTestId('mini-highlighted')).toHaveText(`${String(drawn)} highlighted`);
+});
+
+test('AC-33 See in the 360 bar lands the marked flier below the sticky rail', async ({ page }, info) => {
+  test.skip(info.project.name !== 'mobile', 'the bar and the sticky rail exist only below 1024');
+  await open(page);
+  await search(page, 'Intermediates', 'Improvers');
+  await expect(page.locator('[data-testid="preview-1"] .replace-mark').first()).toBeAttached();
+
+  await page.getByTestId('mini-see-marks').click();
+
+  await expect.poll(async () => {
+    const rail = await page.locator('.rail').boundingBox();
+    const flier = await page.locator('.replace-marks').first().locator('xpath=ancestor::figure').boundingBox();
+    return (flier?.y ?? 0) >= (rail?.y ?? 0) + (rail?.height ?? 0);
+  }).toBe(true);
 });
 
 test.describe('AC-34 Replace applies only the ticked matches after saving a draft', () => {

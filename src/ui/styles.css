@@ -9,6 +9,7 @@
   --hit: 44px;
   --gap: 16px;
   --radius: 12px;
+  --rail-h: 72px;
 }
 
 * { box-sizing: border-box; }

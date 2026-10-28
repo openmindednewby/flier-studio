@@ -1,6 +1,7 @@
 import type { BlockText } from '../form/docEdit';
 import { findMatches, type ReplaceMatch } from '../form/replaceText';
 import { FM } from '../i18n/fm';
+import { plural } from '../i18n/plural';
 import { el, labelled } from './dom';
 import { lineBox, textRunsOf, type LineBox, type TextRun } from './textRuns';
 
@@ -36,9 +37,11 @@ function markAt(line: LineBox, canvas: HTMLCanvasElement, on: boolean, n: number
   return mark;
 }
 
-function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], ticked: (m: ReplaceMatch) => boolean, find: string): void {
+/** Draws a numbered mark on each match it can place and announces how many it drew. */
+export function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], ticked: (m: ReplaceMatch) => boolean, find: string): void {
   grid.querySelectorAll('.replace-marks').forEach((n) => n.remove());
   const perFlier = new Map<number, number>();
+  let drawn = 0;
   matches.forEach((m, i) => {
     const k = perFlier.get(m.flier) ?? 0;
     perFlier.set(m.flier, k + 1);
@@ -48,8 +51,9 @@ function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], ticked: 
     if (trim === null || canvas === null || run === undefined) return;
     const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true' }));
     box.append(markAt(lineBox(run), canvas, ticked(m), i + 1));
+    drawn += 1;
   });
-  document.dispatchEvent(new CustomEvent<number>(MARKS_EVENT, { detail: matches.length }));
+  document.dispatchEvent(new CustomEvent<number>(MARKS_EVENT, { detail: drawn }));
 }
 
 function matchRow(m: ReplaceMatch, i: number, ticked: boolean, toggle: (on: boolean) => void): HTMLLIElement {
@@ -79,7 +83,7 @@ export function replacePanel(grid: HTMLElement, actions: ReplaceActions): Replac
   const isTicked = (m: ReplaceMatch): boolean => !off.has(keyOf(m));
   const sync = (): void => {
     const ticked = matches.filter(isTicked).length;
-    count.textContent = FM('replace.count', String(matches.length), String(new Set(matches.map((m) => m.flier)).size), String(ticked));
+    count.textContent = FM('replace.count', plural('replace.matches', matches.length), plural('replace.fliers', new Set(matches.map((m) => m.flier)).size), String(ticked));
     apply.textContent = FM('replace.apply', String(ticked));
     apply.disabled = ticked === 0;
     drawMarks(grid, matches, isTicked, find.value);

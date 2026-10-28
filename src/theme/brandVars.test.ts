@@ -30,3 +30,14 @@ describe('brandCssVars', () => {
     expect(reduced.match(/--motion-\w+: \d+ms/g)?.map((m) => m.split(': ')[1])).toEqual([still, still, still]);
   });
 });
+
+describe('brandCssVars mark ink', () => {
+  it('with the dark theme, keeps the light root mark ink and halo', () => {
+    const ink = `--mark-ink: ${FLIER_TOKENS.primary}`;
+    const halo = `--mark-halo: ${FLIER_TOKENS.onBrand}`;
+
+    const css = brandCssVars();
+
+    expect([block(css, ':root {').includes(ink), block(css, ':root {').includes(halo), block(css, ':root[data-theme="dark"]').includes('--mark-')]).toEqual([true, true, false]);
+  });
+});

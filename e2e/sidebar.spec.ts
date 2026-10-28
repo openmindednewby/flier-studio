@@ -160,7 +160,7 @@ test.describe('AC-30 / AC-31 All fliers says what each setting changes', () => {
   });
 });
 
-test('tapping Fliers in the rail makes it the active item instead of the last panel', async ({ page }) => {
+test('AC-29 tapping Fliers in the rail makes it the active item instead of the last panel', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('nav-configs').click();
 

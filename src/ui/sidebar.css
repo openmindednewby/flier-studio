@@ -19,7 +19,7 @@
   .rail a[aria-current="true"] { box-shadow: inset 0 -3px 0 var(--brand-fill); }
   .rail .rail-toggle svg { transform: rotate(90deg); }
   .rail[data-collapsed="true"] .rail-toggle svg { transform: rotate(-90deg); }
-  .controls > .card { scroll-margin-top: 72px; }
+  .controls > .card, .previews, .preview-grid, .preview-grid figure { scroll-margin-top: var(--rail-h); }
 }
 
 @media (min-width: 1024px) {
@@ -56,7 +56,7 @@
 .replace-results { display: grid; gap: 10px; min-width: 0; }
 .replace-results[hidden], .replace > p[hidden] { display: none; }
 .replace-count { margin: 0; font-weight: 600; }
-.replace-list { list-style: none; margin: 0; padding: 0; display: grid; border: 1px solid var(--border); border-radius: 8px; max-height: 360px; overflow: auto; }
+.replace-list { list-style: none; margin: 0; padding: 0; display: grid; border: 1px solid var(--border); border-radius: 8px; }
 .replace-list:empty { display: none; }
 .replace-list li + li { border-top: 1px solid var(--border); }
 .replace-list label { grid-template-columns: 24px minmax(0, 1fr); align-items: start; gap: 4px 10px; padding: 8px 12px; min-height: var(--hit); cursor: pointer; }
@@ -66,7 +66,8 @@
 .replace-list ins { text-decoration: none; font-weight: 700; }
 .replace-results > button { justify-self: start; width: auto; }
 .replace-marks { position: absolute; inset: 0; pointer-events: none; }
-.replace-mark { position: absolute; box-sizing: border-box; border: 2px solid var(--brand-fill); border-radius: 4px; }
+.replace-mark { position: absolute; box-sizing: border-box; border: 2px solid var(--mark-ink); border-radius: 4px; box-shadow: 0 0 0 1px var(--mark-halo); }
 .replace-mark.off { border-style: dashed; }
-.replace-mark > b { position: absolute; right: 100%; top: 50%; margin-right: 4px; transform: translateY(-50%); min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--brand-fill); color: var(--on-brand-fill); font: 600 12px/22px system-ui, sans-serif; text-align: center; }
+.replace-mark > b { position: absolute; right: 100%; top: 50%; margin-right: 4px; transform: translateY(-50%); min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--mark-ink); color: var(--mark-halo); box-shadow: 0 0 0 1px var(--mark-halo); font: 600 12px/22px system-ui, sans-serif; text-align: center; }
+.replace-mark.off > b { box-sizing: border-box; border: 2px dashed var(--mark-ink); background: var(--mark-halo); color: var(--mark-ink); line-height: 18px; }
 .mini-marked[hidden], .mini-preview > button[hidden] { display: none; }

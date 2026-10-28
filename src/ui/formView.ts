@@ -37,8 +37,10 @@ function textControls(text: BlockText): Record<keyof BlockText, HTMLInputElement
 }
 
 function labelledValue(labelKey: string, control: HTMLInputElement, value: HTMLOutputElement): HTMLLabelElement {
+  const nameId = `label-${labelKey.replace('.', '-')}`;
   control.setAttribute('aria-description', FM('hint.field', FM(labelKey)));
-  return el('label', {}, [el('span', { class: 'label-head' }, [el('span', { text: FM(labelKey) }), value]), control]);
+  control.setAttribute('aria-labelledby', nameId);
+  return el('label', {}, [el('span', { class: 'label-head' }, [el('span', { id: nameId, text: FM(labelKey) }), value]), control]);
 }
 
 function groups(controls: Record<string, HTMLElement>): HTMLElement[] {

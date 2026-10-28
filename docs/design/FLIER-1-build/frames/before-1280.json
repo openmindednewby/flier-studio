@@ -1,0 +1,69 @@
+{
+ "option": "app",
+ "shot": "1280",
+ "side": "before",
+ "build": "1fde6fa",
+ "file": "app-before-1280.png",
+ "anchorTopPx": 0,
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, no edits",
+  "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+  "viewport": "1280x800",
+  "scrollAnchor": "flier-form",
+  "crop": "viewport"
+ },
+ "visibleItems": {
+  "before": [
+   "field-includesHeading",
+   "field-script",
+   "field-title",
+   "field-titleBottom",
+   "pick-anchor",
+   "pick-background",
+   "pick-fonts",
+   "pick-format",
+   "pick-layout",
+   "pick-palette",
+   "pick-scale",
+   "upload-logo",
+   "upload-picture"
+  ],
+  "after": [
+   "field-includesHeading",
+   "field-script",
+   "field-title",
+   "field-titleBottom",
+   "pick-anchor",
+   "pick-background",
+   "pick-fonts",
+   "pick-format",
+   "pick-layout",
+   "pick-palette",
+   "pick-scale",
+   "upload-logo",
+   "upload-picture"
+  ]
+ },
+ "formRows": {
+  "rows": [
+   [
+    "pick-format",
+    "pick-palette"
+   ],
+   [
+    "pick-fonts",
+    "pick-background"
+   ],
+   [
+    "pick-anchor",
+    "pick-scale"
+   ],
+   [
+    "upload-picture",
+    "upload-logo"
+   ]
+  ],
+  "misaligned": []
+ }
+}

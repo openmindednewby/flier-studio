@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>FLIER-1 "Flier Studio" app form: before and after</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0 auto; max-width: 1200px; padding: 16px; }
+.pair { display: grid; gap: 16px; grid-template-columns: 1fr; margin-bottom: 32px; }
+@media (min-width: 1024px) { .pair { grid-template-columns: 1fr 1fr; } }
+figure { margin: 0; }
+img { border: 1px solid; max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<h1>FLIER-1 "Flier Studio" app form: before (1fde6fa) and after</h1>
+<p>Same route, state, fixture, viewport, scroll anchor and crop per pair; only the build differs. Records: <a href="result.json">result.json</a>, written by build-result.mjs from frames/*.json (e2e/appCapture.spec.ts).</p>
+<article data-option="app" data-inventory="21/21" data-aligned="pass" data-result="result.json">
+<h2>360x640, full height</h2>
+<div class="pair">
+<figure data-visual="before"><img src="app-before-360-full.png" alt="Before, 360 full height"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="app-after-360-full.png" alt="After, 360 full height"><figcaption>After</figcaption></figure>
+</div>
+<h2>360x640, anchored on Previews</h2>
+<div class="pair">
+<figure data-visual="before"><img src="app-before-360-previews.png" alt="Before, 360 previews"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="app-after-360-previews.png" alt="After, 360 previews"><figcaption>After</figcaption></figure>
+</div>
+<h2>1280x800, full height</h2>
+<div class="pair">
+<figure data-visual="before"><img src="app-before-1280-full.png" alt="Before, 1280 full height"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="app-after-1280-full.png" alt="After, 1280 full height"><figcaption>After</figcaption></figure>
+</div>
+</article>
+</body>
+</html>

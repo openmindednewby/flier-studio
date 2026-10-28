@@ -1,0 +1,24 @@
+{
+ "option": "app",
+ "shot": "360-previews",
+ "side": "before",
+ "build": "1fde6fa",
+ "file": "app-before-360-previews.png",
+ "anchorTopPx": 0,
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, no edits",
+  "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+  "viewport": "360x640",
+  "scrollAnchor": "previews",
+  "crop": "viewport"
+ },
+ "visibleItems": {
+  "before": [],
+  "after": []
+ },
+ "formRows": {
+  "rows": [],
+  "misaligned": []
+ }
+}

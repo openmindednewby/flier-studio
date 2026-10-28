@@ -60,7 +60,13 @@ describe('index.html', () => {
     const found = ['rel="manifest" href="/manifest.json"', 'src="/sw-register.js"', 'name="theme-color"'].filter((s) => html.includes(s));
 
     expect(found).toHaveLength(3);
-    expect(html).toContain('name="theme-color" content="' + KATALOGOS_TOKENS.dark.background + '" media="(prefers-color-scheme: dark)"');
-    expect(html).toContain('name="theme-color" content="' + KATALOGOS_TOKENS.light.background + '" media="(prefers-color-scheme: light)"');
+  });
+
+  it('with the PWA wiring, sets one page theme colour equal to the manifest theme_color', () => {
+    const html = withThemeColor(read('index.html'));
+
+    const colours = [...html.matchAll(/name="theme-color" content="([^"]+)"/g)].map((m) => m[1]);
+
+    expect(colours).toEqual([buildManifest(config.manifest).theme_color]);
   });
 });

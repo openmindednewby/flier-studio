@@ -1,14 +1,13 @@
-import { KATALOGOS_TOKENS } from '@dloizides/design-tokens';
+import { createRequire } from 'node:module';
 import type { Plugin } from 'vite';
 
 export const THEME_COLOR_SLOT = '<!-- theme-color -->';
 
-/** The light and dark theme-color meta tags, both read from the design tokens. */
+const pwaConfig = createRequire(import.meta.url)('../pwa-sw.config.cjs') as { manifest: { themeColor: string } };
+
+/** The theme-color meta tag, read from the manifest theme colour so the page and the installed app match. */
 export function themeColorTags(): string {
-  return [
-    `<meta name="theme-color" content="${KATALOGOS_TOKENS.light.background}" media="(prefers-color-scheme: light)" />`,
-    `<meta name="theme-color" content="${KATALOGOS_TOKENS.dark.background}" media="(prefers-color-scheme: dark)" />`,
-  ].join('\n  ');
+  return `<meta name="theme-color" content="${pwaConfig.manifest.themeColor}" />`;
 }
 
 export function withThemeColor(html: string): string {

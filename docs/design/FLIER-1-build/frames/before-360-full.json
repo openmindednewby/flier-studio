@@ -1,0 +1,85 @@
+{
+ "option": "app",
+ "shot": "360-full",
+ "side": "before",
+ "build": "1fde6fa",
+ "file": "app-before-360-full.png",
+ "anchorTopPx": 0,
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, no edits",
+  "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+  "viewport": "360x640",
+  "scrollAnchor": "page-top",
+  "crop": "full-page"
+ },
+ "visibleItems": {
+  "before": [
+   "add-flier",
+   "field-footer",
+   "field-includesHeading",
+   "field-includesItems",
+   "field-items",
+   "field-prices",
+   "field-schedule",
+   "field-script",
+   "field-title",
+   "field-titleBottom",
+   "field-venue",
+   "pick-anchor",
+   "pick-background",
+   "pick-fonts",
+   "pick-format",
+   "pick-layout",
+   "pick-palette",
+   "pick-scale",
+   "remove-flier",
+   "upload-logo",
+   "upload-picture"
+  ],
+  "after": [
+   "add-flier",
+   "field-footer",
+   "field-includesHeading",
+   "field-includesItems",
+   "field-items",
+   "field-prices",
+   "field-schedule",
+   "field-script",
+   "field-title",
+   "field-titleBottom",
+   "field-venue",
+   "pick-anchor",
+   "pick-background",
+   "pick-fonts",
+   "pick-format",
+   "pick-layout",
+   "pick-palette",
+   "pick-scale",
+   "remove-flier",
+   "upload-logo",
+   "upload-picture"
+  ]
+ },
+ "formRows": {
+  "rows": [
+   [
+    "pick-format",
+    "pick-palette"
+   ],
+   [
+    "pick-fonts",
+    "pick-background"
+   ],
+   [
+    "pick-anchor",
+    "pick-scale"
+   ],
+   [
+    "upload-picture",
+    "upload-logo"
+   ]
+  ],
+  "misaligned": []
+ }
+}

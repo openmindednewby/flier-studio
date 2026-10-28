@@ -3,7 +3,7 @@
 .rail { display: flex; gap: 2px; background: var(--surface); z-index: 6; }
 .rail ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; }
 .rail a, .rail .rail-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: auto; min-height: var(--hit); min-width: var(--hit); padding: 4px 2px; border: 0; border-radius: 8px; background: transparent; color: var(--text); text-decoration: none; text-align: center; line-height: 1.1; font-size: 0.72rem; font-weight: 400; }
-.rail a[aria-current="page"] { background: var(--background); box-shadow: inset 3px 0 0 var(--brand-fill); font-weight: 600; }
+.rail a[aria-current="true"] { background: var(--background); box-shadow: inset 3px 0 0 var(--brand-fill); font-weight: 600; }
 .rail a:focus-visible, .rail .rail-toggle:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: -3px; }
 .rail-icon { flex: 0 0 20px; }
 .rail-label { overflow-wrap: anywhere; }
@@ -16,7 +16,7 @@
   .rail ul { flex: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .rail a { min-height: 52px; min-width: 0; font-size: 0.68rem; }
   .rail[data-collapsed="true"] a { min-height: var(--hit); }
-  .rail a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--brand-fill); }
+  .rail a[aria-current="true"] { box-shadow: inset 0 -3px 0 var(--brand-fill); }
   .rail .rail-toggle svg { transform: rotate(90deg); }
   .rail[data-collapsed="true"] .rail-toggle svg { transform: rotate(-90deg); }
   .controls > .card { scroll-margin-top: 72px; }
@@ -65,6 +65,8 @@
 .replace-list s { color: var(--text-secondary); }
 .replace-list ins { text-decoration: none; font-weight: 700; }
 .replace-results > button { justify-self: start; width: auto; }
-.replace-marks { position: absolute; top: 6px; left: 6px; display: flex; flex-wrap: wrap; gap: 4px; pointer-events: none; }
-.replace-mark { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; border: 2px solid var(--focus-ring); background: var(--text); color: var(--surface); font: 600 12px/18px system-ui, sans-serif; text-align: center; }
-.replace-mark.off { background: var(--surface); color: var(--text); border-style: dashed; }
+.replace-marks { position: absolute; inset: 0; pointer-events: none; }
+.replace-mark { position: absolute; box-sizing: border-box; border: 2px solid var(--brand-fill); border-radius: 4px; }
+.replace-mark.off { border-style: dashed; }
+.replace-mark > b { position: absolute; right: 100%; top: 50%; margin-right: 4px; transform: translateY(-50%); min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--brand-fill); color: var(--on-brand-fill); font: 600 12px/22px system-ui, sans-serif; text-align: center; }
+.mini-marked[hidden], .mini-preview > button[hidden] { display: none; }

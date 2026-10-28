@@ -168,7 +168,7 @@ function setSetting(id: SettingId, value: string): void {
 }
 
 async function replaceText(ticked: readonly ReplaceMatch[], replacement: string): Promise<void> {
-  await autosave.save(state.fliers, thumbOf(state.canvases[0]));
+  if (!(await autosave.save(state.fliers, thumbOf(state.canvases[0])))) return;
   const docs = docsOf();
   const texts = applyMatches(docs.map(blocksToText), ticked, replacement);
   const touched = new Set(ticked.map((m) => m.flier));

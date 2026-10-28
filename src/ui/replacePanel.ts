@@ -2,6 +2,7 @@ import type { BlockText } from '../form/docEdit';
 import { findMatches, type ReplaceMatch } from '../form/replaceText';
 import { FM } from '../i18n/fm';
 import { el, labelled } from './dom';
+import { lineBox, textRunsOf, type LineBox, type TextRun } from './textRuns';
 
 export interface ReplaceActions {
   texts(): BlockText[];
@@ -13,16 +14,42 @@ export interface ReplacePanel {
   refresh(): void;
 }
 
-const keyOf = (m: ReplaceMatch): string => `${String(m.flier)}:${m.field}:${String(m.at)}`;
+/** Fired on document after the marks are redrawn; detail = how many matches are highlighted. */
+export const MARKS_EVENT = 'flier:replace-marks';
+const MARK_PAD = 3;
 
-function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], ticked: (m: ReplaceMatch) => boolean): void {
-  grid.querySelectorAll('.replace-marks').forEach((n) => n.remove());
-  matches.forEach((m, i) => {
-    const trim = grid.querySelector(`[data-testid="preview-${String(m.flier + 1)}"] .trim`);
-    if (trim === null) return;
-    const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true' }));
-    box.append(el('span', { class: ticked(m) ? 'replace-mark' : 'replace-mark off', text: String(i + 1) }));
+const keyOf = (m: ReplaceMatch): string => `${String(m.flier)}:${m.field}:${String(m.at)}`;
+const px = (n: number): string => `${String(Math.round(n))}px`;
+
+function runFor(runs: readonly TextRun[], needle: string, k: number): TextRun | undefined {
+  const hits = runs.filter((r) => r.text.toLowerCase().includes(needle));
+  return hits[Math.min(k, hits.length - 1)];
+}
+
+function markAt(line: LineBox, canvas: HTMLCanvasElement, on: boolean, n: number): HTMLElement {
+  const scale = canvas.width > 0 ? canvas.clientWidth / canvas.width : 0;
+  const mark = el('span', { class: on ? 'replace-mark' : 'replace-mark off' }, [el('b', { text: String(n) })]);
+  Object.assign(mark.style, {
+    left: px(canvas.offsetLeft + line.x * scale - MARK_PAD), top: px(canvas.offsetTop + line.y * scale - MARK_PAD),
+    width: px(line.width * scale + 2 * MARK_PAD), height: px(line.height * scale + 2 * MARK_PAD),
   });
+  return mark;
+}
+
+function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], ticked: (m: ReplaceMatch) => boolean, find: string): void {
+  grid.querySelectorAll('.replace-marks').forEach((n) => n.remove());
+  const perFlier = new Map<number, number>();
+  matches.forEach((m, i) => {
+    const k = perFlier.get(m.flier) ?? 0;
+    perFlier.set(m.flier, k + 1);
+    const trim = grid.querySelector<HTMLElement>(`[data-testid="preview-${String(m.flier + 1)}"] .trim`);
+    const canvas = trim?.querySelector('canvas') ?? null;
+    const run = canvas === null ? undefined : runFor(textRunsOf(canvas), find.toLowerCase(), k);
+    if (trim === null || canvas === null || run === undefined) return;
+    const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true' }));
+    box.append(markAt(lineBox(run), canvas, ticked(m), i + 1));
+  });
+  document.dispatchEvent(new CustomEvent<number>(MARKS_EVENT, { detail: matches.length }));
 }
 
 function matchRow(m: ReplaceMatch, i: number, ticked: boolean, toggle: (on: boolean) => void): HTMLLIElement {
@@ -55,7 +82,7 @@ export function replacePanel(grid: HTMLElement, actions: ReplaceActions): Replac
     count.textContent = FM('replace.count', String(matches.length), String(new Set(matches.map((m) => m.flier)).size), String(ticked));
     apply.textContent = FM('replace.apply', String(ticked));
     apply.disabled = ticked === 0;
-    drawMarks(grid, matches, isTicked);
+    drawMarks(grid, matches, isTicked, find.value);
   };
   const refresh = (): void => {
     matches = findMatches(actions.texts(), find.value, withText.value, word.checked);

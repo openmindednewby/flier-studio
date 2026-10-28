@@ -119,4 +119,37 @@ describe('DraftAutosave', () => {
     expect(events.failed).toHaveBeenCalledTimes(1);
     expect(events.full).not.toHaveBeenCalled();
   });
+
+  it('with a QuotaExceededError on add, resolves false', async () => {
+    const store = new DraftStore(new IDBFactory());
+    vi.spyOn(store, 'add').mockRejectedValue(new DOMException('full', 'QuotaExceededError'));
+    const autosave = new DraftAutosave(store, { saved: vi.fn(), full: vi.fn(), failed: vi.fn() });
+
+    const ok = await autosave.save(fliers, '', 1);
+
+    expect(ok).toBe(false);
+  });
+
+  it('with a failed add, retries the same fliers on the next save instead of skipping them', async () => {
+    const store = new DraftStore(new IDBFactory());
+    const add = vi.spyOn(store, 'add').mockRejectedValueOnce(new DOMException('gone', 'InvalidStateError'));
+    const autosave = new DraftAutosave(store, { saved: vi.fn(), full: vi.fn(), failed: vi.fn() });
+    await autosave.save(fliers, '', 1);
+
+    const ok = await autosave.save(fliers, '', 2);
+
+    expect(ok).toBe(true);
+    expect(add).toHaveBeenCalledTimes(2);
+  });
+
+  it('with unchanged fliers already saved, resolves true without adding', async () => {
+    const store = new DraftStore(new IDBFactory());
+    const autosave = new DraftAutosave(store, { saved: vi.fn(), full: vi.fn(), failed: vi.fn() });
+    await autosave.save(fliers, '', 1);
+
+    const ok = await autosave.save(fliers, '', 2);
+
+    expect(ok).toBe(true);
+    expect(await store.list()).toHaveLength(1);
+  });
 });

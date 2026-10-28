@@ -3,6 +3,8 @@ import { Panel, openPanel } from './panel';
 
 const HIT = 44;
 
+interface Run { text: string; x: number; y: number; size: number; width: number; align: string }
+
 const contents = (page: Page): Promise<string[]> =>
   page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { content: object }[]).map((f) => JSON.stringify(f.content)));
 
@@ -64,6 +66,39 @@ test.describe('AC-32 / AC-33 Replace text previews every match before any change
   });
 });
 
+test('each mark outlines its matched line on the flier, not the corner, and the 360 bar counts them', async ({ page }, info) => {
+  await page.addInitScript(() => {
+    const fill = CanvasRenderingContext2D.prototype.fillText;
+    CanvasRenderingContext2D.prototype.fillText = function record(this: CanvasRenderingContext2D, text: string, x: number, y: number): void {
+      const canvas = this.canvas as HTMLCanvasElement & { runs?: Run[] };
+      const size = Number(/(\d+(?:\.\d+)?)px/.exec(this.font)?.[1] ?? '0');
+      canvas.runs = [...(canvas.runs ?? []), { text, x, y, size, width: this.measureText(text).width, align: this.textAlign }];
+      fill.call(this, text, x, y);
+    };
+  });
+  await open(page);
+
+  await search(page, 'Intermediates', 'Improvers');
+
+  await expect(page.locator('[data-testid="preview-1"] .replace-mark').first()).toBeVisible();
+  const where = await page.getByTestId('preview-1').locator('canvas').evaluate((node) => {
+    const canvas = node as HTMLCanvasElement & { runs?: Run[] };
+    const run = (canvas.runs ?? []).find((r) => r.text.toLowerCase().includes('intermediates'));
+    const mark = canvas.parentElement?.querySelector('.replace-mark');
+    if (run === undefined || mark === null || mark === undefined) return 'no run or mark';
+    const c = canvas.getBoundingClientRect();
+    const m = mark.getBoundingClientRect();
+    const s = c.width / canvas.width;
+    const cx = (m.left + m.width / 2 - c.left) / s;
+    const cy = (m.top + m.height / 2 - c.top) / s;
+    const left = run.x - run.width * (run.align === 'center' ? 0.5 : ['right', 'end'].includes(run.align) ? 1 : 0);
+    const inside = cx >= left - 2 && cx <= left + run.width + 2 && Math.abs(cy - run.y) <= run.size * 1.2;
+    return inside ? 'inside' : `mark at ${String(cx)},${String(cy)}, line ${JSON.stringify(run)}`;
+  });
+  expect(where).toBe('inside');
+  if (info.project.name === 'mobile') await expect(page.getByTestId('mini-highlighted')).toHaveText(/^\d+ highlighted$/);
+});
+
 test.describe('AC-34 Replace applies only the ticked matches after saving a draft', () => {
   test('Replace changes the ticked matches in one step, keeps the unticked one and saves a draft first', async ({ page }) => {
     await open(page);
@@ -80,5 +115,23 @@ test.describe('AC-34 Replace applies only the ticked matches after saving a draf
     await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(2);
     await page.getByTestId('draft-restore-2').click();
     await expect.poll(async () => count((await contents(page)).join(','), 'Improvers')).toBe(0);
+  });
+
+  test('when the draft cannot be saved first, Replace changes nothing and the page keeps saying why', async ({ page }) => {
+    await page.addInitScript(() => {
+      IDBObjectStore.prototype.add = function full(): IDBRequest {
+        throw new DOMException('full', 'QuotaExceededError');
+      };
+    });
+    await open(page);
+    const before = await contents(page);
+    await search(page, 'Intermediates', 'Improvers');
+    await expect(page.getByTestId('replace-tick-1')).toBeVisible();
+
+    await page.getByTestId('replace-apply').click();
+
+    await expect(page.getByTestId('status')).toContainText('Storage on this device is full');
+    expect(await contents(page)).toEqual(before);
+    await expect(page.getByTestId('status')).not.toContainText('Replaced');
   });
 });

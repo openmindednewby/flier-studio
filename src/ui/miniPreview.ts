@@ -1,5 +1,6 @@
 import { FM } from '../i18n/fm';
 import { el, textButton } from './dom';
+import { MARKS_EVENT } from './replacePanel';
 
 const THUMB_BOX = { width: 54, height: 70 };
 const PIXEL_RATIO = 2;
@@ -67,8 +68,18 @@ export function createMiniPreview(actions: MiniPreviewActions): MiniPreview {
   const sheet = createSheet();
   const shown = { source: undefined as HTMLCanvasElement | undefined, index: 0 };
   open.addEventListener('click', () => { if (shown.source) sheet.show(shown.source, shown.index); });
-  const text = el('div', { class: 'mini-text' }, [position, el('span', { class: 'muted', text: FM('mini.label') })]);
-  const bar = el('aside', { class: 'mini-preview', 'data-testid': 'mini-preview', 'aria-label': FM('mini.bar') }, [open, text, seeAll]);
+  const marked = el('span', { class: 'mini-marked', 'data-testid': 'mini-highlighted' });
+  const seeMarks = textButton('', 'mini-see-marks', () => document.querySelector('.replace-marks')?.closest('figure')?.scrollIntoView({ block: 'start' }));
+  setLabel(seeMarks, FM('mini.see'));
+  const text = el('div', { class: 'mini-text' }, [position, el('span', { class: 'muted', text: FM('mini.label') }), marked]);
+  const bar = el('aside', { class: 'mini-preview', 'data-testid': 'mini-preview', 'aria-label': FM('mini.bar') }, [open, text, seeMarks, seeAll]);
+  const showMarks = (count: number): void => {
+    marked.textContent = FM('mini.highlighted', String(count));
+    marked.hidden = count === 0;
+    seeMarks.hidden = count === 0;
+  };
+  showMarks(0);
+  document.addEventListener(MARKS_EVENT, (e) => showMarks((e as CustomEvent<number>).detail));
 
   const update = (source: HTMLCanvasElement | undefined, index: number, total: number): void => {
     Object.assign(shown, { source, index });

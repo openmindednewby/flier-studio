@@ -41,13 +41,13 @@ export function sectionRail(panels: Partial<Record<PanelKey, HTMLElement>>, flie
     return el('a', { href: `#${(panels[key] ?? fliers).id}`, title: label, 'aria-label': label, 'data-testid': `nav-${key}`, 'aria-description': FM('hint.jump', label) }, [railIcon(key), el('span', { class: 'rail-label', text: label })]);
   });
   const show = (key: PanelKey, reveal = false): void => {
+    links.forEach((a, i) => (ORDER[i] === key ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
     const panel = panels[key];
     if (panel === undefined) {
       fliers.scrollIntoView({ block: 'start' });
       return;
     }
     for (const [k, p] of Object.entries(panels)) p.hidden = k !== key;
-    links.forEach((a, i) => (ORDER[i] === key ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
     if (reveal) panel.scrollIntoView({ block: 'nearest' });
   };
   links.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); show(ORDER[i], true); }));

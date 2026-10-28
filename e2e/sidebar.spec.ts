@@ -49,7 +49,7 @@ test.describe('AC-29 the sidebar switches the panel', () => {
     const shown = await visiblePanels(page);
 
     expect(shown).toEqual(['flier-form']);
-    await expect(page.getByTestId('nav-form')).toHaveAttribute('aria-current', 'page');
+    await expect(page.getByTestId('nav-form')).toHaveAttribute('aria-current', 'true');
   });
 
   test('a rail item shows only its panel, marks itself current with a 3 px accent bar and is 44 px with a tooltip', async ({ page }) => {
@@ -59,8 +59,8 @@ test.describe('AC-29 the sidebar switches the panel', () => {
     await openPanel(page, Panel.Drafts);
 
     expect(await visiblePanels(page)).toEqual(['drafts-panel']);
-    await expect(drafts).toHaveAttribute('aria-current', 'page');
-    await expect(page.getByTestId('nav-form')).not.toHaveAttribute('aria-current', 'page');
+    await expect(drafts).toHaveAttribute('aria-current', 'true');
+    await expect(page.getByTestId('nav-form')).not.toHaveAttribute('aria-current', 'true');
     const shadow = await drafts.evaluate((n) => getComputedStyle(n).boxShadow);
     expect(shadow).toContain(`${String(ACCENT_PX)}px`);
     for (const link of await page.getByTestId('section-nav').getByRole('link').all()) {
@@ -158,4 +158,14 @@ test.describe('AC-30 / AC-31 All fliers says what each setting changes', () => {
 
     await expect.poll(() => page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { style: { palette: string } }[]).map((f) => f.style.palette))).toEqual(Array(4).fill(value));
   });
+});
+
+test('tapping Fliers in the rail makes it the active item instead of the last panel', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('nav-configs').click();
+
+  await page.getByTestId('nav-previews').click();
+
+  await expect(page.getByTestId('nav-previews')).toHaveAttribute('aria-current', 'true');
+  await expect(page.getByTestId('nav-configs')).not.toHaveAttribute('aria-current', 'true');
 });

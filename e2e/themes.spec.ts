@@ -45,7 +45,10 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     const overflowing = await page.getByTestId('theme-row').evaluate((row) =>
       [...row.querySelectorAll<HTMLElement>('span, select')].filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.textContent));
     expect(overflowing).toEqual([]);
-    if (info.project.name === 'desktop') await expectFieldsAligned(page, '[data-testid="replace-text"] .row');
+    if (info.project.name === 'desktop') {
+      await expectFieldsAligned(page, '[data-testid="all-fliers-row"] > *');
+      await expectFieldsAligned(page, '[data-testid="replace-text"] .row');
+    }
     else expect((await scope.boundingBox())?.y ?? 0).toBeGreaterThanOrEqual(((await theme.boundingBox())?.y ?? 0) + HIT);
   });
 

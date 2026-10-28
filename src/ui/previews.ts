@@ -1,8 +1,9 @@
-import { FlierDocError, exportPng, render, type FlierDoc, type PosterAssets, type PosterCanvas } from '@dloizides/poster-render';
+import { FlierDocError, exportPng, render, type FlierDoc, type PosterAssets } from '@dloizides/poster-render';
 import { listHint } from '../form/listHint';
 import { FM } from '../i18n/fm';
 import { button, downloadBlob, el, textButton } from './dom';
 import { fontsReady, type FontLoader } from './fonts';
+import { recordingCanvas } from './textRuns';
 
 export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
   await fontsReady(fonts);
@@ -11,7 +12,7 @@ export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, i
 
 function draw(doc: FlierDoc, assets: PosterAssets, canvas: HTMLCanvasElement): string | null {
   try {
-    render(doc, assets, canvas as unknown as PosterCanvas);
+    render(doc, assets, recordingCanvas(canvas));
     return null;
   } catch (e) {
     return e instanceof FlierDocError ? e.errors.join('; ') : String(e);

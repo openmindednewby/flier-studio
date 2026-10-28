@@ -8,10 +8,10 @@ const DUMP = process.env.RECUT_DUMP ?? '';
 const SHOTS = process.env.RECUT_SHOTS ?? '';
 const TALL = process.env.RECUT_TALL === '1';
 const CUT_TIMEOUT_MS = 180_000;
-const MIN_BRUSH = 4;
+const MIN_BRUSH = 1;
 const PHOTO_WIDTH = Number(process.env.RECUT_PHOTO_WIDTH ?? '0');
-const UPLOAD_SETTLE_MS = 3000;
 const MAX_BRUSH = 64;
+const ZOOM_STEPS = Number(process.env.RECUT_ZOOM ?? '1') - 1;
 
 interface Stroke {
   mode: 'keep' | 'erase';
@@ -27,14 +27,25 @@ async function shoot(page: Page, state: string, project: string): Promise<void> 
   await page.screenshot({ path: join(SHOTS, `dialog-${state}-${project}.png`) });
 }
 
+async function canvasGeo(page: Page): Promise<{ x: number; y: number; w: number; h: number; mw: number; mh: number; view: DOMRect }> {
+  return page.getByTestId('cutout-canvas').evaluate((c: HTMLCanvasElement) => {
+    const r = c.getBoundingClientRect();
+    return { x: r.x, y: r.y, w: r.width, h: r.height, mw: c.width, mh: c.height, view: (c.parentElement ?? c).getBoundingClientRect().toJSON() as DOMRect };
+  });
+}
+
 async function brush(page: Page, strokes: Stroke[]): Promise<void> {
-  const canvas = page.getByTestId('cutout-canvas');
-  const geo = await canvas.evaluate((c: HTMLCanvasElement) => { const r = c.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height, mw: c.width, mh: c.height }; });
+  for (let i = 0; i < ZOOM_STEPS; i++) await page.getByTestId('cutout-zoom-in').click();
+  let geo = await canvasGeo(page);
   const toClient = ([mx, my]: [number, number]): [number, number] => [geo.x + (mx / geo.mw) * geo.w, geo.y + (my / geo.mh) * geo.h];
-  const scale = geo.mw / geo.w;
+  const inView = ([cx, cy]: [number, number]): boolean => cx > geo.view.x + MAX_BRUSH && cx < geo.view.x + geo.view.width - MAX_BRUSH && cy > geo.view.y + MAX_BRUSH && cy < geo.view.y + geo.view.height - MAX_BRUSH;
   let set = '';
   for (const s of strokes) {
-    const css = Math.min(MAX_BRUSH, Math.max(MIN_BRUSH, Math.round(s.radius / scale)));
+    if (!inView(toClient(s.points[0]))) {
+      await page.getByTestId('cutout-stage').evaluate((st, [fx, fy]) => { st.scrollLeft = fx * st.scrollWidth - st.clientWidth / 2; st.scrollTop = fy * st.scrollHeight - st.clientHeight / 2; }, [s.points[0][0] / geo.mw, s.points[0][1] / geo.mh]);
+      geo = await canvasGeo(page);
+    }
+    const css = Math.min(MAX_BRUSH, Math.max(MIN_BRUSH, Math.round(s.radius / (geo.mw / geo.w))));
     if (set !== `${s.mode}${css}`) {
       await page.getByTestId(s.mode === 'keep' ? 'cutout-keep' : 'cutout-erase').click();
       await page.getByTestId('cutout-brush').evaluate((el: HTMLInputElement, v) => { el.value = String(v); }, css);
@@ -54,8 +65,6 @@ test('cuts the uploaded photo through the dialog, erase-brushes the listed strok
   await page.goto('/');
   await page.locator('canvas').first().waitFor();
   await page.getByTestId('upload-picture').setInputFiles(PHOTO);
-  await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');
-  await page.waitForTimeout(UPLOAD_SETTLE_MS);
 
   await page.getByTestId('remove-background').click();
   await expect(page.getByTestId('cutout-cancel')).toBeFocused();

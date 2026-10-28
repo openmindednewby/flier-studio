@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { cutPicture, cutoutFile, lazy } from './cutoutFlow';
+import { cutPicture, cutoutFile, inFlight, lazy } from './cutoutFlow';
 
 describe('lazy', () => {
   it('before the first call, never builds the value', () => {
@@ -60,5 +60,37 @@ describe('cutoutFile', () => {
     const file = cutoutFile(blob);
 
     expect([file.name, file.type, file.size]).toEqual(['cutout.png', 'image/png', 3]);
+  });
+});
+
+describe('inFlight', () => {
+  it('with an upload still running, settles only after the upload finishes', async () => {
+    const work = inFlight();
+    const order: string[] = [];
+    let finish = (): void => undefined;
+    void work.track(new Promise<void>((resolve) => { finish = resolve; }).then(() => { order.push('upload'); }));
+    const waited = work.settled().then(() => { order.push('cut'); });
+
+    finish();
+    await waited;
+
+    expect(order).toEqual(['upload', 'cut']);
+  });
+
+  it('with a failed upload, still settles', async () => {
+    const work = inFlight();
+    work.track(Promise.reject(new Error('disk full'))).catch(() => undefined);
+
+    const settled = work.settled();
+
+    await expect(settled).resolves.toBeUndefined();
+  });
+
+  it('with nothing tracked, settles at once', async () => {
+    const work = inFlight();
+
+    const settled = work.settled();
+
+    await expect(settled).resolves.toBeUndefined();
   });
 });

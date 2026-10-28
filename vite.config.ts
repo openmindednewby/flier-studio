@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitest/config';
-import { bgRemovalAssetsPlugin } from './scripts/bgRemovalAssets';
+import { bgRemovalAssetsPlugin } from '@dloizides/background-removal/vite';
 import { themeColorPlugin } from './scripts/themeColor';
 
 export default defineConfig({
-  plugins: [themeColorPlugin(), bgRemovalAssetsPlugin(__dirname)],
+  plugins: [themeColorPlugin(), bgRemovalAssetsPlugin()],
   build: { outDir: 'dist', target: 'es2022' },
   worker: { format: 'es' },
   optimizeDeps: { exclude: ['@dloizides/llm-run', '@dloizides/background-removal'] },

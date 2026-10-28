@@ -19,7 +19,11 @@ test('Remove background cuts the flier picture on the device, opens on Use cut-o
   await page.getByTestId('remove-background').click();
   const dialog = page.getByTestId('cutout-dialog');
   await expect(page.getByTestId('cutout-cancel')).toBeFocused();
+  await expect(page.getByTestId('cutout-progress')).toBeVisible();
+  for (const id of ['cutout-keep', 'cutout-erase', 'cutout-move', 'cutout-zoom-in', 'cutout-brush', 'cutout-use']) await expect(page.getByTestId(id)).toBeDisabled();
   await expect(page.getByTestId('cutout-use')).toBeEnabled({ timeout: CUT_TIMEOUT_MS });
+  await expect(page.getByTestId('cutout-progress')).toBeHidden();
+  await expect(page.locator('#cutout-title')).toBeInViewport({ ratio: 1 });
 
   await expect(page.getByTestId('cutout-use')).toBeFocused();
   const small = await dialog.evaluate((d, min) => [...d.querySelectorAll('button, input')]
@@ -36,6 +40,12 @@ test('Remove background cuts the flier picture on the device, opens on Use cut-o
   await page.mouse.down();
   await page.mouse.move(x + 20, y + 20);
   await page.mouse.up();
+  const shownWidth = await page.getByTestId('cutout-canvas').evaluate((c) => c.clientWidth);
+  await page.getByTestId('cutout-zoom-in').click();
+  await page.getByTestId('cutout-zoom-in').click();
+  await expect(page.getByTestId('cutout-zoom')).toHaveText('3x');
+  expect(await page.getByTestId('cutout-canvas').evaluate((c) => c.clientWidth)).toBeCloseTo(shownWidth * 3, -1);
+  await expect(page.locator('#cutout-title')).toBeInViewport({ ratio: 1 });
   await page.getByTestId('cutout-use').click();
   await expect(dialog).toHaveCount(0);
   await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');

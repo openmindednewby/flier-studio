@@ -19,6 +19,24 @@ export async function cutPicture(imageId: string | undefined, deps: CutoutDeps):
   return (await deps.remover()).removeBackground(photo);
 }
 
+export interface InFlight {
+  track<T>(work: Promise<T>): Promise<T>;
+  settled(): Promise<void>;
+}
+
+/** Remembers unfinished work so a cut waits for the picture the user just uploaded. */
+export function inFlight(): InFlight {
+  const pending = new Set<Promise<unknown>>();
+  return {
+    track: (work) => {
+      pending.add(work);
+      work.then(() => pending.delete(work), () => pending.delete(work));
+      return work;
+    },
+    settled: async () => { await Promise.allSettled([...pending]); },
+  };
+}
+
 export function cutoutFile(png: Blob): File {
   return new File([png], 'cutout.png', { type: 'image/png' });
 }

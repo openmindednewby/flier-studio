@@ -6,7 +6,7 @@
   "description": "Flier Studio: event fliers and wallpapers rendered in the browser (fliers.dloizides.com).",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && pwa-sw-gen ./pwa-sw.config.cjs ./dist",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@dloizides/e2e-helpers": "^1.1.0",
+    "@dloizides/pwa-sw": "^1.6.0",
     "@playwright/test": "^1.48.0",
     "@types/node": "^22.20.5",
     "fake-indexeddb": "^6.0.0",

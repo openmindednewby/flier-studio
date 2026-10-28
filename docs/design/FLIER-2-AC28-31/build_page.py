@@ -16,7 +16,10 @@ OPT = {
     'C': ('Icon sidebar, labels on demand',
           'A 64 px icon-only sidebar is the resting state (tooltips name each icon); the chevron at its foot opens a 216 px labelled panel over the page. One tools column scrolls, as in A. On a phone one sticky "Sections" bar opens the list of six links. All fliers is the same two-column settings list as B.'),
 }
-SHOTS = [('1280', 'light', 'top', 'First load'), ('1280', 'light', 'allfliers', 'All fliers: every setting says what it changes; Shared text lists its fields'),
+SHOTS = [('1280', 'light', 'replace', 'Replace text (AC-32..34): Find Intermediates, Replace with Improvers; 6 matches listed and marked on the fliers, match 2 unticked (dashed)'),
+         ('360', 'light', 'replace', 'Replace text at 360: the match list, the count and Replace 5 ticked'),
+         ('360', 'light', 'highlight', 'Replace text at 360: the same matches marked on the fliers, numbered as in the list'),
+         ('1280', 'light', 'top', 'First load'), ('1280', 'light', 'allfliers', 'All fliers: every setting says what it changes; Shared text lists its fields'),
          ('1280', 'light', 'editing', 'Editing a lower Text field: the fliers stay beside the form'),
          ('360', 'light', 'top', 'First load'), ('360', 'light', 'allfliers', 'All fliers'), ('360', 'light', 'editing', 'Editing a lower Text field: the live preview bar stays on screen'),
          ('1280', 'dark', 'top', 'Dark, first load'), ('360', 'dark', 'top', 'Dark, first load')]
@@ -53,6 +56,8 @@ def article(o, title, desc):
 def fate(x):
     if x['id'] == 'pick-theme-scope':
         return 'dropped D11'
+    if x['id'] == 'replace-text':
+        return 'new (AC-32..34, D20)'
     if x['id'] in MOVED:
         return 'moved to the left tools column'
     return 'state, kept' if x['kind'] in ('state', 'absent-live') else 'kept'
@@ -71,9 +76,10 @@ body = f'''
 <body>
 <main>
 <p class="withdrawn">Critic pending &mdash; do not pick.</p>
-<h1>FLIER-2 "Flier Studio follow-ups": thin sidebar, tools on the left, fliers alone on the right (AC-28..31)</h1>
+<h1>FLIER-2 "Flier Studio follow-ups": thin sidebar, tools on the left, fliers alone on the right, Replace text (AC-28..34)</h1>
 <p class="meta">Live build ffd9a68 with each option applied by moving the real nodes (<code>mockups.ts</code>, <code>registry.ts</code>). Galaxy S5 360x640 and Desktop Chrome 1280x800, light and dark, clock frozen at 2026-10-28 15:00Z, the same steps for before and after (<code>capture.spec.ts</code>, <code>frames/*.json</code>, <code>result.json</code>). The new All fliers settings (Layout, Colours, Fonts for every flier, Custom layouts) are a target, not built yet.</p>
 <p>All three: Generate and Saved configs move into the left tools column; the right column holds only the fliers and stays pinned on desktop. Download all PNGs and "Generate with on-device AI" stay on the header row. All fliers becomes a settings list. Look of every flier: Theme, Layout, Colours, Fonts, Custom layouts, each saying what it changes, plus a line saying the on-device AI can set any of them. Shared text: the scope picker, then the three shared fields with their current values (Footer, Level names, Class price). A new setting joins the list as one more row, so adding one never re-lays the page.</p>
+<p><b>Replace text (AC-32..34, D20)</b>, the last group in All fliers in every option: Find and Replace with, a Whole word only box (capital letters never matter). As soon as Find has text, every match is listed (number, flier, field, old line struck through, new line in bold) with a count, and the same number marks the word on each flier: solid when ticked, dashed when unticked. Replace changes only the ticked matches, in one step, after saving a draft so Drafts can undo it. The preset already says Beginners, so the frames search Intermediates; your Level 1 to Beginners works the same way. A stacks Find over Replace with; B and C put them side by side at 480 px and wider. The tool is a target, not built yet.</p>
 {arts}
 <h2>Information inventory (role Visitor, {n} rows)</h2>
 <p class="meta">Rows 1-76 from the AC-24..27 round, re-sighted on live ffd9a68, then {n - 76} items new since ffd9a68 (contents links, fold toggles, AI entry, Generate and Saved configs cards). Same fate in A, B and C; counted visible-in-frame over every anchored shot (result.json).</p>

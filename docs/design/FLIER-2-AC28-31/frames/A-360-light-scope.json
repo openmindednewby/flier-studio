@@ -15,14 +15,11 @@
  },
  "focusedOnLoad": "BODY",
  "inViewport": [
-  "add-flier",
   "all-ai-line",
   "all-custom-layouts",
   "all-fliers",
   "all-fliers-row",
   "all-fonts",
-  "flier-form",
-  "flier-form-toggle",
   "mini-open",
   "mini-position",
   "mini-preview",
@@ -35,6 +32,9 @@
   "nav-previews",
   "pick-scope",
   "rail-toggle",
+  "replace-find",
+  "replace-text",
+  "replace-with",
   "section-nav",
   "shared-fields",
   "shared-state"
@@ -53,7 +53,9 @@
  "railCollapsed": false,
  "draftsInView": false,
  "hscroll": false,
- "flier1Top": 4699,
- "titleTop": 1601,
- "pageHeight": 5670
+ "hlMarks": 0,
+ "matchRows": 0,
+ "flier1Top": 5028,
+ "titleTop": 1930,
+ "pageHeight": 5998
 }

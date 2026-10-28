@@ -3,12 +3,13 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { mockup } from './mockups';
 import { registry } from './registry';
+import { recordCanvasText, replaceTool } from './replace';
 
 const OUT = join(process.cwd(), 'docs/design/FLIER-2-AC28-31');
 const BUILD = 'ffd9a68';
 const CLOCK = new Date('2026-10-28T15:00:00Z');
 const FIXTURE = 'kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z';
-const ALL = ['top', 'allfliers', 'scope', 'form', 'hint', 'editing', 'drafts', 'generate', 'configs', 'pictures', 'text', 'fliers', 'rail'];
+const ALL = ['top', 'allfliers', 'scope', 'form', 'hint', 'editing', 'drafts', 'generate', 'configs', 'pictures', 'text', 'fliers', 'replace', 'highlight', 'rail'];
 const DESK = { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } };
 const RUNS = [
   { name: '360', scheme: 'light', use: devices['Galaxy S5'], size: '360x640', shots: ALL },
@@ -17,13 +18,15 @@ const RUNS = [
   { name: '1280', scheme: 'dark', use: DESK, size: '1280x800', shots: ['top', 'allfliers'] },
 ] as const;
 const SIDES = ['before', 'A', 'B', 'C'];
-const PANEL: Record<string, string> = { allfliers: 'all', scope: 'all', form: 'form', editing: 'form', pictures: 'form', text: 'form', drafts: 'drafts', generate: 'ai', configs: 'configs' };
+const PANEL: Record<string, string> = { allfliers: 'all', scope: 'all', form: 'form', editing: 'form', pictures: 'form', text: 'form', drafts: 'drafts', generate: 'ai', configs: 'configs', replace: 'all', highlight: 'all' };
 const CENTER: Record<string, string> = { scope: 'pick-scope', hint: 'select-hint', editing: 'field-items', generate: 'prompt-generate', configs: 'config-save', pictures: 'pick-anchor', text: 'field-venue', fliers: 'download-1' };
 const ANCHOR: Record<string, string> = {
   top: 'window.scrollTo(0, 0)',
   allfliers: 'window.scrollTo(all-fliers top - 16)',
   form: 'window.scrollTo(flier-form top - 16)',
   drafts: 'window.scrollTo(drafts-panel top - 16)',
+  replace: 'window.scrollTo(all-fliers bottom at viewport bottom - 16)',
+  highlight: 'window.scrollTo(preview-grid top - 16)',
   ...Object.fromEntries(Object.entries(CENTER).map(([k, v]) => [k, `${v} scrollIntoView block center`])),
 };
 
@@ -61,6 +64,7 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
       rightOnlyFliers: rightKids.every((k) => k === 'preview-grid' || k === 'select-hint'), rightKids,
       railWidth: nav ? Math.round(box(nav).width) : null, railCollapsed: !!nav?.hasAttribute('data-collapsed'),
       draftsInView: inView(document.querySelector('[data-testid="drafts-panel"]')), hscroll: document.documentElement.scrollWidth > innerWidth,
+      hlMarks: [...document.querySelectorAll('.mk-hl')].filter(inView).length, matchRows: document.querySelectorAll('[data-testid="replace-matches"] li').length,
       flier1Top: f ? Math.round(box(f).top + scrollY) : null, titleTop: (() => { const t = document.querySelector('[data-testid="field-title"]'); return t && seen(t) ? Math.round(box(t).top + scrollY) : null; })(), pageHeight: document.documentElement.scrollHeight,
     };
   });
@@ -68,11 +72,13 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
 
 async function ready(page: Page, side: string): Promise<void> {
   await page.clock.setFixedTime(CLOCK);
+  await page.addInitScript(recordCanvasText);
   await page.goto('/');
   await page.locator('[data-testid="preview-grid"][data-render="done"]').waitFor();
   await page.evaluate(() => document.fonts.ready);
   if (side === 'before') return;
   await page.evaluate(registry, side);
+  await page.evaluate(replaceTool, side);
   await page.evaluate(mockup, side);
   await page.waitForTimeout(300);
 }
@@ -84,6 +90,9 @@ async function place(page: Page, side: string, shot: string): Promise<void> {
   for (const [s, id] of [['form', 'flier-form'], ['allfliers', 'all-fliers'], ['drafts', 'drafts-panel']]) {
     if (shot === s) await page.evaluate((x) => { const n = document.querySelector(`[data-testid="${x}"]`); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); }, id);
   }
+  if (shot === 'replace' || shot === 'highlight') await page.evaluate(() => (window as unknown as { mkReplace?: (f: string, r: string, u: number) => void }).mkReplace?.('Intermediates', 'Improvers', 1));
+  if (shot === 'replace') await page.evaluate(() => { const n = document.querySelector('[data-testid="all-fliers"]'); if (n) window.scrollTo(0, n.getBoundingClientRect().bottom + scrollY - innerHeight + 16); });
+  if (shot === 'highlight') await page.evaluate(() => { const n = document.querySelector('[data-testid="preview-grid"]'); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); });
   if (CENTER[shot]) await page.evaluate((id) => document.querySelector(`[data-testid="${id}"]`)?.scrollIntoView({ block: 'center' }), CENTER[shot]);
   await page.waitForTimeout(300);
 }
@@ -103,7 +112,7 @@ for (const r of RUNS) {
           const file = `${side}-${r.name}-${r.scheme}-${shot}.png`;
           await page.screenshot({ path: join(OUT, file) });
           const s = await scan(page);
-          const pair = shot === 'rail' ? null : { route: '/', state: `first load, flier 1 of 4 selected, every card open; ${shot}`, fixture: FIXTURE, viewport: r.size, colorScheme: r.scheme, scrollAnchor: ANCHOR[shot], crop: 'viewport' };
+          const pair = shot === 'rail' ? null : { route: '/', state: `first load, flier 1 of 4 selected, every card open; ${shot}${shot === 'replace' || shot === 'highlight' ? ' (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)' : ''}`, fixture: FIXTURE, viewport: r.size, colorScheme: r.scheme, scrollAnchor: ANCHOR[shot], crop: 'viewport' };
           const frame = { option: side, side: side === 'before' ? 'before' : 'after', shot, build: side === 'before' ? BUILD : `${BUILD} + mockup ${side}`, file, pair, focusedOnLoad, ...s };
           writeFileSync(join(OUT, 'frames', file.replace('.png', '.json')), `${JSON.stringify(frame, null, 1)}\n`);
           if (side === 'before') continue;
@@ -114,6 +123,8 @@ for (const r of RUNS) {
           expect.soft(s.rightOnlyFliers, `${file} right column = fliers`).toBe(true);
           if (shot === 'top') expect.soft(s.dlOnHeader, `${file} download-all on header row`).toBe(true);
           if (shot === 'editing') expect.soft(s.previewBeside, `${file} preview beside the form`).toBe(true);
+          if (shot === 'replace') expect.soft(s.matchRows, `${file} match list`).toBeGreaterThan(0);
+          if (shot === 'highlight' || (shot === 'replace' && r.name === '1280')) expect.soft(s.hlMarks, `${file} matches marked on the fliers`).toBeGreaterThan(0);
           if (shot === 'drafts') expect.soft(s.draftsInView, `${file} drafts in view`).toBe(true);
         }
       });

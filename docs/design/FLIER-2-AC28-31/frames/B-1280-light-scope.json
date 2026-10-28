@@ -15,7 +15,6 @@
  },
  "focusedOnLoad": "field-title",
  "inViewport": [
-  "add-flier",
   "all-ai-line",
   "all-custom-layouts",
   "all-fliers",
@@ -36,7 +35,6 @@
   "nav-form",
   "nav-previews",
   "pick-scope",
-  "pick-theme",
   "preview-1",
   "preview-2",
   "preview-3",
@@ -44,10 +42,14 @@
   "preview-grid",
   "previews",
   "rail-toggle",
+  "replace-find",
+  "replace-matches",
+  "replace-text",
+  "replace-with",
+  "replace-word",
   "section-nav",
   "shared-fields",
-  "shared-state",
-  "theme-row"
+  "shared-state"
  ],
  "misaligned": [],
  "textFit": [],
@@ -63,7 +65,9 @@
  "railCollapsed": false,
  "draftsInView": false,
  "hscroll": false,
- "flier1Top": 361,
+ "hlMarks": 0,
+ "matchRows": 0,
+ "flier1Top": 497,
  "titleTop": null,
- "pageHeight": 1153
+ "pageHeight": 1378
 }

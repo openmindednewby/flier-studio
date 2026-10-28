@@ -46,7 +46,7 @@ export function registry(side: string): void {
   const val = (id: string): string => ((q(id) as HTMLInputElement | null)?.value ?? '').trim();
   const levels = val('field-schedule').split('\n').map((l) => l.split('|')[0].trim()).filter(Boolean).slice(0, 3).join(', ');
   const fields = mk('dl', 'mk-fields'); fields.setAttribute('data-testid', 'shared-fields');
-  for (const [k, v] of [['Footer', val('field-footer')], ['Level names', levels], ['Class price', val('field-prices').split('\n')[0]]]) fields.append(mk('dt', '', k), mk('dd', '', v || 'Empty on this flier'));
+  for (const [k, v] of [['Footer', val('field-footer')], ['Level names', levels], ['Class price', val('field-prices').split('\n')[0].split('|').map((p) => p.trim()).filter(Boolean).join(' ')]]) fields.append(mk('dt', '', k), mk('dd', '', v || 'Empty on this flier'));
   const state = mk('p', 'mk-scope-state'); state.setAttribute('data-testid', 'shared-state');
   const say = (): void => { state.textContent = scope.value === 'all' ? `On: these 3 fields read the same on all ${count} fliers.` : 'Off: editing them changes only the selected flier.'; };
   scope.addEventListener('change', say); say();

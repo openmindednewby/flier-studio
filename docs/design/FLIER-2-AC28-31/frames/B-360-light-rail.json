@@ -8,12 +8,11 @@
  "focusedOnLoad": "BODY",
  "inViewport": [
   "ai-entry",
+  "all-fliers",
+  "all-fliers-row",
+  "all-fliers-toggle",
   "brand",
   "download-all",
-  "field-title",
-  "flier-form",
-  "flier-form-toggle",
-  "group-toggle-layout",
   "mini-open",
   "mini-position",
   "mini-preview",
@@ -24,9 +23,10 @@
   "nav-drafts",
   "nav-form",
   "nav-previews",
-  "pick-layout",
+  "pick-theme",
   "rail-toggle",
-  "section-nav"
+  "section-nav",
+  "theme-row"
  ],
  "misaligned": [],
  "textFit": [],
@@ -42,7 +42,9 @@
  "railCollapsed": true,
  "draftsInView": false,
  "hscroll": false,
- "flier1Top": 2348,
- "titleTop": 416,
- "pageHeight": 3319
+ "hlMarks": 0,
+ "matchRows": 6,
+ "flier1Top": 2173,
+ "titleTop": null,
+ "pageHeight": 3143
 }

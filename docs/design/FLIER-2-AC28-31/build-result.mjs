@@ -12,8 +12,9 @@ const liveNew = beforeIds.filter((id) => id && !known.has(id) && !/^(preview|edi
 const rows = [
   ...base.map((r) => ({ ...r, kind: r.kind === 'probe' && !beforeIds.includes(r.id) ? 'absent-live' : r.kind })),
   ...liveNew.map((id, i) => ({ n: base.length + 1 + i, item: `live ffd9a68 item \`${id}\``, id, source: 're-sighted live ffd9a68', kind: 'probe' })),
-];
-const SHOWN = ['1280-light-top', '1280-light-allfliers', '1280-light-editing', '360-light-top', '360-light-allfliers', '360-light-editing', '1280-dark-top', '360-dark-top'];
+  { n: 0, item: 'Replace text tool (AC-32..34, D20): Find, Replace with, Whole word only, match list with ticks, Replace ticked, highlights on the fliers', id: 'replace-text', source: 'new, D20', kind: 'probe' },
+].map((r, i) => ({ ...r, n: r.n || i + 1 }));
+const SHOWN = ['1280-light-replace', '1280-light-highlight', '360-light-replace', '360-light-highlight', '1280-light-top', '1280-light-allfliers', '1280-light-editing', '360-light-top', '360-light-allfliers', '360-light-editing', '1280-dark-top', '360-dark-top'];
 const options = {};
 const out = [];
 for (const o of ['A', 'B', 'C']) {
@@ -29,9 +30,10 @@ for (const o of ['A', 'B', 'C']) {
     railCollapsedWidth1280: mine.find((f) => f.file === `${o}-1280-light-${o === 'C' ? 'top' : 'rail'}.png`)?.railWidth,
     railOpenWidth1280: mine.find((f) => f.file === `${o}-1280-light-${o === 'C' ? 'rail' : 'top'}.png`)?.railWidth,
     misaligned: mine.flatMap((f) => f.misaligned), textFit: mine.flatMap((f) => f.textFit), hscroll: mine.some((f) => f.hscroll), under44: [...new Set(mine.flatMap((f) => f.under44))],
+    replace: Object.fromEntries(mine.filter((f) => f.shot === 'replace' || f.shot === 'highlight').map((f) => [f.file, { marks: f.hlMarks, rows: f.matchRows }])),
     focusedOnLoad: Object.fromEntries(mine.filter((f) => f.shot === 'top').map((f) => [f.file, f.focusedOnLoad])),
     flier1Top360: mine.find((f) => f.file === `${o}-360-light-top.png`)?.flier1Top, pageHeight360: mine.find((f) => f.file === `${o}-360-light-top.png`)?.pageHeight,
-    items: { note: 'pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames', before: ['brand'], after: ['brand'] },
+    items: { note: 'pair-content check narrowed to the 4th flier and the 360 live-preview bar (the items whose visibility is the same in every pair): AC-28 moves Generate and Saved configs between columns by design, and AC-32 lengthens All fliers so the header leaves the frame at the replace anchor; inventory is counted visible-in-frame over all frames', before: ['preview-4', 'mini-preview'], after: ['preview-4', 'mini-preview'] },
   };
   for (const f of mine.filter((x) => x.pair && SHOWN.includes(x.file.replace(/^[ABC]-/, '').replace('.png', '')))) {
     const b = before.find((x) => x.file === f.file.replace(/^[ABC]-/, 'before-'));

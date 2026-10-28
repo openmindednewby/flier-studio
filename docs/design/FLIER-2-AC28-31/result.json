@@ -707,11 +707,18 @@
    "id": "section-nav",
    "source": "re-sighted live ffd9a68",
    "kind": "probe"
+  },
+  {
+   "n": 92,
+   "item": "Replace text tool (AC-32..34, D20): Find, Replace with, Whole word only, match list with ticks, Replace ticked, highlights on the fliers",
+   "id": "replace-text",
+   "source": "new, D20",
+   "kind": "probe"
   }
  ],
  "options": {
   "A": {
-   "inventory": "91/91",
+   "inventory": "92/92",
    "lost": [],
    "previewBesideWhileEditing": true,
    "aiNote": true,
@@ -723,26 +730,46 @@
    "textFit": [],
    "hscroll": false,
    "under44": [],
+   "replace": {
+    "A-1280-light-highlight.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "A-1280-light-replace.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "A-360-light-highlight.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "A-360-light-replace.png": {
+     "marks": 0,
+     "rows": 6
+    }
+   },
    "focusedOnLoad": {
     "A-1280-dark-top.png": "field-title",
     "A-1280-light-top.png": "field-title",
     "A-360-dark-top.png": "BODY",
     "A-360-light-top.png": "BODY"
    },
-   "flier1Top360": 4699,
-   "pageHeight360": 5670,
+   "flier1Top360": 5028,
+   "pageHeight360": 5998,
    "items": {
-    "note": "pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames",
+    "note": "pair-content check narrowed to the 4th flier and the 360 live-preview bar (the items whose visibility is the same in every pair): AC-28 moves Generate and Saved configs between columns by design, and AC-32 lengthens All fliers so the header leaves the frame at the replace anchor; inventory is counted visible-in-frame over all frames",
     "before": [
-     "brand"
+     "preview-4",
+     "mini-preview"
     ],
     "after": [
-     "brand"
+     "preview-4",
+     "mini-preview"
     ]
    }
   },
   "B": {
-   "inventory": "91/91",
+   "inventory": "92/92",
    "lost": [],
    "previewBesideWhileEditing": true,
    "aiNote": true,
@@ -754,6 +781,24 @@
    "textFit": [],
    "hscroll": false,
    "under44": [],
+   "replace": {
+    "B-1280-light-highlight.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "B-1280-light-replace.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "B-360-light-highlight.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "B-360-light-replace.png": {
+     "marks": 0,
+     "rows": 6
+    }
+   },
    "focusedOnLoad": {
     "B-1280-dark-top.png": "field-title",
     "B-1280-light-top.png": "field-title",
@@ -763,17 +808,19 @@
    "flier1Top360": 2358,
    "pageHeight360": 3329,
    "items": {
-    "note": "pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames",
+    "note": "pair-content check narrowed to the 4th flier and the 360 live-preview bar (the items whose visibility is the same in every pair): AC-28 moves Generate and Saved configs between columns by design, and AC-32 lengthens All fliers so the header leaves the frame at the replace anchor; inventory is counted visible-in-frame over all frames",
     "before": [
-     "brand"
+     "preview-4",
+     "mini-preview"
     ],
     "after": [
-     "brand"
+     "preview-4",
+     "mini-preview"
     ]
    }
   },
   "C": {
-   "inventory": "91/91",
+   "inventory": "92/92",
    "lost": [],
    "previewBesideWhileEditing": true,
    "aiNote": true,
@@ -785,21 +832,41 @@
    "textFit": [],
    "hscroll": false,
    "under44": [],
+   "replace": {
+    "C-1280-light-highlight.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "C-1280-light-replace.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "C-360-light-highlight.png": {
+     "marks": 6,
+     "rows": 6
+    },
+    "C-360-light-replace.png": {
+     "marks": 0,
+     "rows": 6
+    }
+   },
    "focusedOnLoad": {
     "C-1280-dark-top.png": "field-title",
     "C-1280-light-top.png": "field-title",
     "C-360-dark-top.png": "BODY",
     "C-360-light-top.png": "BODY"
    },
-   "flier1Top360": 4653,
-   "pageHeight360": 5624,
+   "flier1Top360": 4982,
+   "pageHeight360": 5952,
    "items": {
-    "note": "pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames",
+    "note": "pair-content check narrowed to the 4th flier and the 360 live-preview bar (the items whose visibility is the same in every pair): AC-28 moves Generate and Saved configs between columns by design, and AC-32 lengthens All fliers so the header leaves the frame at the replace anchor; inventory is counted visible-in-frame over all frames",
     "before": [
-     "brand"
+     "preview-4",
+     "mini-preview"
     ],
     "after": [
-     "brand"
+     "preview-4",
+     "mini-preview"
     ]
    }
   }
@@ -1107,6 +1174,212 @@
      "remove-flier",
      "section-nav",
      "select-hint"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-highlight",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-highlight",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-1280-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-row",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-find",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
+     "section-nav",
+     "shared-fields",
+     "shared-state"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-replace",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-replace",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-1280-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "flier-form",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-find",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
+     "section-nav",
+     "shared-state"
     ]
    }
   },
@@ -1456,6 +1729,159 @@
      "nav-previews",
      "rail-toggle",
      "remove-flier",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-highlight",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-highlight",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-360-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-replace",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-replace",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-360-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
      "section-nav"
     ]
    }
@@ -1851,6 +2277,217 @@
   },
   {
    "option": "B",
+   "shot": "1280-light-highlight",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-highlight",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-1280-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-row",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-find",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
+     "section-nav",
+     "shared-fields",
+     "shared-state"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-replace",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-replace",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-1280-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-find",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
+     "section-nav",
+     "shared-fields",
+     "shared-state"
+    ]
+   }
+  },
+  {
+   "option": "B",
    "shot": "1280-light-top",
    "side": "before",
    "build": "ffd9a68",
@@ -2196,6 +2833,158 @@
      "previews",
      "rail-toggle",
      "remove-flier",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-highlight",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-highlight",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-360-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-replace",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-replace",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-360-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
      "section-nav"
     ]
    }
@@ -2595,6 +3384,217 @@
   },
   {
    "option": "C",
+   "shot": "1280-light-highlight",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-highlight",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-1280-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-row",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-find",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
+     "section-nav",
+     "shared-fields",
+     "shared-state"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-replace",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-replace",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-1280-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-find",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
+     "section-nav",
+     "shared-fields",
+     "shared-state"
+    ]
+   }
+  },
+  {
+   "option": "C",
    "shot": "1280-light-top",
    "side": "before",
    "build": "ffd9a68",
@@ -2924,6 +3924,153 @@
      "mini-see-all",
      "rail-toggle",
      "remove-flier",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-highlight",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-highlight",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-360-light-highlight.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; highlight (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(preview-grid top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-replace",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-replace",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-360-light-replace.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; replace (where a Replace text tool exists: Find Intermediates, Replace with Improvers, match 2 unticked)",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers bottom at viewport bottom - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "rail-toggle",
+     "replace-apply",
+     "replace-matches",
+     "replace-text",
+     "replace-with",
+     "replace-word",
      "section-nav"
     ]
    }

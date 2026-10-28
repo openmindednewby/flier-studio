@@ -23,7 +23,6 @@
   "drafts-list",
   "drafts-panel",
   "drafts-panel-toggle",
-  "flier-form",
   "generate",
   "mini-open",
   "mini-position",
@@ -55,7 +54,9 @@
  "railCollapsed": false,
  "draftsInView": true,
  "hscroll": false,
- "flier1Top": 4699,
- "titleTop": 1601,
- "pageHeight": 5670
+ "hlMarks": 0,
+ "matchRows": 0,
+ "flier1Top": 5028,
+ "titleTop": 1930,
+ "pageHeight": 5998
 }

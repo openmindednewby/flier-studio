@@ -1469,6 +1469,102 @@
    },
    "enlargeFit": [],
    "textFit": []
+  },
+  {
+   "option": "drafts-date",
+   "shot": "drafts-360",
+   "side": "before",
+   "build": "11a57f8",
+   "file": "build/drafts-before-360.png",
+   "pair": {
+    "route": "/",
+    "state": "drafts panel expanded, All filter, 2 drafts (load + one title edit)",
+    "fixture": "kizomba preset, fresh storage, clock fixed at 2026-10-28T16:58:00 Asia/Nicosia, locale en-GB, title edit \"Text fit check\"",
+    "viewport": "360x640",
+    "scrollAnchor": "drafts-panel (scrollIntoView block start)",
+    "crop": "element drafts-panel"
+   },
+   "visibleItems": [
+    "draft-restore-n",
+    "draft-star-n",
+    "drafts-all",
+    "drafts-favourites",
+    "drafts-list",
+    "drafts-panel",
+    "drafts-panel-toggle"
+   ]
+  },
+  {
+   "option": "drafts-date",
+   "shot": "drafts-1280",
+   "side": "before",
+   "build": "11a57f8",
+   "file": "build/drafts-before-1280.png",
+   "pair": {
+    "route": "/",
+    "state": "drafts panel expanded, All filter, 2 drafts (load + one title edit)",
+    "fixture": "kizomba preset, fresh storage, clock fixed at 2026-10-28T16:58:00 Asia/Nicosia, locale en-GB, title edit \"Text fit check\"",
+    "viewport": "1280x800",
+    "scrollAnchor": "drafts-panel (scrollIntoView block start)",
+    "crop": "element drafts-panel"
+   },
+   "visibleItems": [
+    "draft-restore-n",
+    "draft-star-n",
+    "drafts-all",
+    "drafts-favourites",
+    "drafts-list",
+    "drafts-panel",
+    "drafts-panel-toggle"
+   ]
+  },
+  {
+   "option": "drafts-date",
+   "shot": "drafts-360",
+   "side": "after",
+   "build": "ab9a3ab",
+   "file": "build/drafts-after-360.png",
+   "pair": {
+    "route": "/",
+    "state": "drafts panel expanded, All filter, 2 drafts (load + one title edit)",
+    "fixture": "kizomba preset, fresh storage, clock fixed at 2026-10-28T16:58:00 Asia/Nicosia, locale en-GB, title edit \"Text fit check\"",
+    "viewport": "360x640",
+    "scrollAnchor": "drafts-panel (scrollIntoView block start)",
+    "crop": "element drafts-panel"
+   },
+   "visibleItems": [
+    "draft-restore-n",
+    "draft-star-n",
+    "drafts-all",
+    "drafts-favourites",
+    "drafts-list",
+    "drafts-panel",
+    "drafts-panel-toggle"
+   ]
+  },
+  {
+   "option": "drafts-date",
+   "shot": "drafts-1280",
+   "side": "after",
+   "build": "ab9a3ab",
+   "file": "build/drafts-after-1280.png",
+   "pair": {
+    "route": "/",
+    "state": "drafts panel expanded, All filter, 2 drafts (load + one title edit)",
+    "fixture": "kizomba preset, fresh storage, clock fixed at 2026-10-28T16:58:00 Asia/Nicosia, locale en-GB, title edit \"Text fit check\"",
+    "viewport": "1280x800",
+    "scrollAnchor": "drafts-panel (scrollIntoView block start)",
+    "crop": "element drafts-panel"
+   },
+   "visibleItems": [
+    "draft-restore-n",
+    "draft-star-n",
+    "drafts-all",
+    "drafts-favourites",
+    "drafts-list",
+    "drafts-panel",
+    "drafts-panel-toggle"
+   ]
   }
  ]
 }

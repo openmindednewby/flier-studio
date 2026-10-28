@@ -1,0 +1,5 @@
+import { defineConfig } from '@playwright/test';
+const W = process.env.WHICH ?? 'after';
+const PORT = W === 'before' ? 4193 : 4194;
+export default defineConfig({ testDir: '.', testMatch: /critic\.spec\.ts/, reporter: 'list', workers: 4, timeout: 180_000, outputDir: `./test-results-${W}`, use: { baseURL: `http://localhost:${PORT}` },
+  webServer: { command: `npx vite preview --port ${PORT} --strictPort`, cwd: `C:/Users/loizi/AppData/Local/Temp/claude/C--desktopContents-projects-SaaS/3e7e03ef-ba91-4fde-9b26-b216b5463f57/scratchpad/wt5-${W}`, url: `http://localhost:${PORT}/`, reuseExistingServer: false, timeout: 60_000 } });

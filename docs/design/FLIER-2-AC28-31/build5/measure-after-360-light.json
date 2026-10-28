@@ -1,0 +1,520 @@
+{
+ "pair": {
+  "route": "/",
+  "viewport": "360x640",
+  "scheme": "light",
+  "fixture": "Beginners->Level 1",
+  "anchor": "mini-see-marks"
+ },
+ "marks": [
+  {
+   "n": "1",
+   "inside": true,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 180.1,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 20,
+    "y": 158.1,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": -22,
+   "centreDy": -16.5,
+   "badgeInViewport": true,
+   "badgeInTrim": true,
+   "trim": {
+    "x": 16,
+    "y": 72
+   }
+  },
+  {
+   "n": "2",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 180.1,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "y": 174.6,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 72
+   }
+  },
+  {
+   "n": "3",
+   "inside": true,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 575.5,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 20,
+    "y": 553.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": -22,
+   "centreDy": -16.5,
+   "badgeInViewport": true,
+   "badgeInTrim": true,
+   "trim": {
+    "x": 16,
+    "y": 467
+   }
+  },
+  {
+   "n": "4",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 585.5,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "y": 580.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  },
+  {
+   "n": "5",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 622.5,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "y": 617.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  },
+  {
+   "n": "6",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 660.5,
+    "w": 57,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "y": 655.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  }
+ ],
+ "marksUnticked": [
+  {
+   "n": "1",
+   "inside": true,
+   "below": false,
+   "off": true,
+   "mark": {
+    "x": 20,
+    "y": 180.1,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 20,
+    "y": 158.1,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": -22,
+   "centreDy": -16.5,
+   "badgeInViewport": true,
+   "badgeInTrim": true,
+   "trim": {
+    "x": 16,
+    "y": 72
+   }
+  },
+  {
+   "n": "2",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 180.1,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "y": 174.6,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 72
+   }
+  },
+  {
+   "n": "3",
+   "inside": true,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 575.5,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 20,
+    "y": 553.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": -22,
+   "centreDy": -16.5,
+   "badgeInViewport": true,
+   "badgeInTrim": true,
+   "trim": {
+    "x": 16,
+    "y": 467
+   }
+  },
+  {
+   "n": "4",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 585.5,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "y": 580.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  },
+  {
+   "n": "5",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 622.5,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "y": 617.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  },
+  {
+   "n": "6",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 660.5,
+    "w": 57,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "y": 655.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  }
+ ],
+ "marksIntermediates": [
+  {
+   "n": "1",
+   "inside": true,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 190.1,
+    "w": 54,
+    "h": 10
+   },
+   "badge": {
+    "x": 20,
+    "y": 168.1,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": -22,
+   "centreDy": -16,
+   "badgeInViewport": true,
+   "badgeInTrim": true,
+   "trim": {
+    "x": 16,
+    "y": 72
+   }
+  },
+  {
+   "n": "2",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 190.1,
+    "w": 54,
+    "h": 10
+   },
+   "badge": {
+    "x": 166,
+    "y": 184.1,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 72
+   }
+  },
+  {
+   "n": "3",
+   "inside": true,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 586.5,
+    "w": 54,
+    "h": 10
+   },
+   "badge": {
+    "x": 20,
+    "y": 564.5,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": -22,
+   "centreDy": -16,
+   "badgeInViewport": true,
+   "badgeInTrim": true,
+   "trim": {
+    "x": 16,
+    "y": 467
+   }
+  },
+  {
+   "n": "4",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 592.5,
+    "w": 70,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "y": 587,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  },
+  {
+   "n": "5",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 629.5,
+    "w": 70,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "y": 624,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  },
+  {
+   "n": "6",
+   "inside": false,
+   "below": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 667.5,
+    "w": 70,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "y": 662,
+    "w": 22,
+    "h": 22
+   },
+   "coverOwnPx": 0,
+   "coverOtherMarksPx": 0,
+   "badgeRightToMarkLeft": 2,
+   "centreDy": 0,
+   "badgeInViewport": true,
+   "badgeInTrim": false,
+   "trim": {
+    "x": 186,
+    "y": 467
+   }
+  }
+ ],
+ "hscroll": false
+}

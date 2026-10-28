@@ -1,0 +1,71 @@
+import { test, type Page } from '@playwright/test';
+import { writeFileSync } from 'node:fs';
+const W = process.env.WHICH ?? 'after';
+const HERE = 'C:/desktopContents/projects/SaaS/apps/flier-studio/docs/design/FLIER-2-AC28-31/build5';
+const MEAS = 'C:/Users/loizi/AppData/Local/Temp/claude/C--desktopContents-projects-SaaS/3e7e03ef-ba91-4fde-9b26-b216b5463f57/scratchpad/critic-b5';
+const VPS = [{ w: 360, h: 640, mobile: true }, { w: 1280, h: 800, mobile: false }];
+const SCHEMES = ['light', 'dark'] as const;
+
+async function markMeasure(page: Page) {
+  return page.evaluate(() => {
+    const marks = [...document.querySelectorAll('.replace-mark')] as HTMLElement[];
+    const R = (e: Element) => e.getBoundingClientRect();
+    const ov = (a: DOMRect, b: DOMRect) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+    return marks.map((m, i) => {
+      const r = R(m); const b = R(m.querySelector('b')!); const t = m.closest('.trim')!.getBoundingClientRect();
+      const others = marks.filter((_, j) => j !== i).map((o) => ov(b, R(o))).reduce((s, v) => s + v, 0);
+      return { n: m.textContent, inside: m.classList.contains('badge-inside'), below: m.classList.contains('badge-below'), off: m.classList.contains('off'),
+        mark: { x: Math.round(r.left * 10) / 10, y: Math.round(r.top * 10) / 10, w: Math.round(r.width), h: Math.round(r.height) },
+        badge: { x: Math.round(b.left * 10) / 10, y: Math.round(b.top * 10) / 10, w: Math.round(b.width), h: Math.round(b.height) },
+        coverOwnPx: Math.round(ov(b, r)), coverOtherMarksPx: Math.round(others),
+        badgeRightToMarkLeft: Math.round((r.left - b.right) * 10) / 10, centreDy: Math.round(((b.top + b.bottom) / 2 - (r.top + r.bottom) / 2) * 10) / 10,
+        badgeInViewport: b.left >= 0 && b.right <= innerWidth, badgeInTrim: b.left >= t.left - 0.5 && b.right <= t.right + 0.5 && b.top >= t.top - 0.5 && b.bottom <= t.bottom + 0.5,
+        trim: { x: Math.round(t.left), y: Math.round(t.top) } };
+    });
+  });
+}
+
+for (const vp of VPS) for (const scheme of SCHEMES) test(`${vp.w}-${scheme}`, async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, isMobile: vp.mobile, hasTouch: vp.mobile, deviceScaleFactor: 1, colorScheme: scheme });
+  const page = await ctx.newPage();
+  const out: Record<string, unknown> = { pair: { route: '/', viewport: `${vp.w}x${vp.h}`, scheme, fixture: 'Beginners->Level 1', anchor: vp.mobile ? 'mini-see-marks' : 'preview-grid top-16' } };
+  const shot = async (name: string) => { await page.waitForTimeout(300); await page.screenshot({ path: `${HERE}/${W}-${vp.w}-${scheme}-${name}.png` }); };
+  const zoom = async (name: string, idx: number) => {
+    const m = page.locator('.replace-mark').nth(idx); const bb = await m.boundingBox(); if (!bb) return;
+    const x = Math.max(0, Math.min(bb.x - 60, vp.w - 240)); await page.screenshot({ path: `${HERE}/${W}-${vp.w}-${scheme}-${name}.png`, clip: { x, y: Math.max(0, bb.y - 50), width: Math.min(240, vp.w), height: 120 } });
+  };
+  await page.goto('/');
+  await page.locator('[data-testid="preview-grid"][data-render="done"]').waitFor();
+  await page.waitForTimeout(1500);
+  const seeded = await page.evaluate(() => { const k = 'flier-studio:fliers'; const v = localStorage.getItem(k); if (!v || !v.includes('Beginners')) return false; localStorage.setItem(k, v.split('Beginners').join('Level 1')); return true; });
+  if (!seeded) throw new Error('fixture: no stored fliers with Beginners');
+  await page.reload();
+  await page.locator('[data-testid="preview-grid"][data-render="done"]').waitFor();
+  await page.getByTestId('nav-all').click();
+  await page.getByTestId('replace-with').fill('Beginners');
+  await page.getByTestId('replace-find').fill('Level 1');
+  await page.getByTestId('replace-tick-1').waitFor();
+  const toGrid = () => page.evaluate(() => { const n = document.querySelector('[data-testid="preview-grid"]'); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); });
+  const goMarks = async () => { if (vp.mobile) { const see = page.getByTestId('mini-see-marks'); await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); if (await see.isVisible()) await see.click(); else await toGrid(); } else await toGrid(); };
+  await goMarks();
+  await shot('replace-marks');
+  const marks = await markMeasure(page); out.marks = marks;
+  await zoom('mark1-zoom', 0);
+  const col2 = (marks as { trim: { x: number } }[]).findIndex((m) => m.trim.x > 100);
+  if (col2 >= 0) await zoom('mark-col2-zoom', col2);
+  await page.getByTestId('replace-tick-1').uncheck();
+  await goMarks();
+  await shot('replace-unticked-marks');
+  out.marksUnticked = await markMeasure(page);
+  await zoom('mark1-unticked-zoom', 0);
+  await page.getByTestId('nav-all').click();
+  await page.getByTestId('replace-find').fill('');
+  await page.getByTestId('replace-find').fill('Intermediates');
+  await page.waitForTimeout(500);
+  await goMarks();
+  await shot('intermediates-marks');
+  out.marksIntermediates = await markMeasure(page);
+  out.hscroll = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
+  writeFileSync(`${MEAS}/measure-${W}-${vp.w}-${scheme}.json`, JSON.stringify(out, null, 1));
+  await ctx.close();
+});

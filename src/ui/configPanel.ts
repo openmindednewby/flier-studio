@@ -3,6 +3,7 @@ import { FM } from '../i18n/fm';
 import { kizombaPreset } from '../presets/kizomba';
 import type { ConfigStore } from '../store/configStore';
 import { button, downloadBlob, el, fileButton, labelled } from './dom';
+import { shareRow } from './shareControls';
 
 export interface ConfigActions {
   current(): FlierDoc[];
@@ -60,6 +61,7 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
       button('config.delete', 'config-delete', remove), button('config.export', 'config-export', () => exportConfig(store, saved.value)),
       fileButton('config.import', 'config-import', 'application/json,.json', (f) => void importFile(f)),
     ]),
+    shareRow(actions.current, actions.status),
     button('config.preset', 'config-preset', () => actions.apply(kizombaPreset())),
   );
   refresh();

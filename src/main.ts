@@ -1,7 +1,11 @@
 import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/design-tokens';
 import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
+import { EditScope } from './form/EditScope';
+import { nextDocs } from './form/sharedFields';
 import { FM } from './i18n/fm';
 import { kizombaPreset } from './presets/kizomba';
+import { importShared } from './share/importShared';
+import { decodeShare, shareFragmentOf } from './share/shareCodec';
 import { ConfigStore } from './store/configStore';
 import { ImageStore } from './store/imageStore';
 import { WorkingDocStore } from './store/workingDocStore';
@@ -10,6 +14,7 @@ import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
 import { createMiniPreview } from './ui/miniPreview';
 import { focusTitle, renderForm } from './ui/formView';
+import { openImportDialog } from './ui/importDialog';
 import { downloadCanvas, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
 import { UploadKind } from './ui/UploadKind';
@@ -20,7 +25,7 @@ const DOWNLOAD_GAP_MS = 300;
 const DESKTOP_MIN = 1024;
 
 const working = new WorkingDocStore();
-const state = { docs: working.load() ?? kizombaPreset(), selected: 0, canvases: [] as HTMLCanvasElement[] };
+const state = { docs: working.load() ?? kizombaPreset(), selected: 0, scope: EditScope.This, canvases: [] as HTMLCanvasElement[] };
 const assets = new AssetBook(new ImageStore());
 const configs = new ConfigStore();
 
@@ -47,8 +52,10 @@ function refreshPreviews(): void {
 
 function showForm(): void {
   renderForm(formBox, state.docs[state.selected], [state.selected + 1, state.docs.length], {
-    change: (doc) => { const reshaped = doc.format !== state.docs[state.selected].format; state.docs[state.selected] = doc; if (reshaped) showForm(); refreshPreviews(); },
+    change: (doc) => { const reshaped = doc.format !== state.docs[state.selected].format; state.docs = nextDocs(state.scope, state.docs, state.selected, doc); if (reshaped) showForm(); refreshPreviews(); },
     upload: (kind, file) => void upload(kind, file),
+    scope: () => state.scope,
+    setScope: (scope) => { state.scope = scope; },
     add: () => { state.docs.push(JSON.parse(JSON.stringify(state.docs[state.selected])) as FlierDoc); select(state.docs.length - 1); },
     remove: () => { if (state.docs.length > 1) { state.docs.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
   });
@@ -72,6 +79,19 @@ function select(index: number): void {
 function apply(docs: FlierDoc[]): void {
   state.docs = docs;
   select(0);
+}
+
+function renderConfigs(): void {
+  renderConfigPanel(configBox, configs, { current: () => state.docs, apply, status: (m) => { status.textContent = m; } });
+}
+
+async function checkShare(): Promise<void> {
+  const fragment = shareFragmentOf(location.hash);
+  if (fragment === null) return;
+  openImportDialog(await decodeShare(fragment), {
+    accept: (docs) => { const names = importShared(configs, docs); renderConfigs(); status.textContent = FM('share.imported', String(names.length)); },
+    closed: () => history.replaceState(null, '', location.pathname + location.search),
+  });
 }
 
 async function downloadAll(): Promise<void> {
@@ -100,9 +120,11 @@ async function start(): Promise<void> {
     mini.bar,
   );
   renderPromptPanel(promptBox, (doc) => apply([doc]));
-  renderConfigPanel(configBox, configs, { current: () => state.docs, apply, status: (m) => { status.textContent = m; } });
+  renderConfigs();
   select(0);
   if (window.innerWidth >= DESKTOP_MIN) focusTitle(formBox);
+  window.addEventListener('hashchange', () => void checkShare());
+  await checkShare();
 }
 
 void start();

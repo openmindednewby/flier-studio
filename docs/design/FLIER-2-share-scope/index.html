@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>FLIER-2 "Flier Studio follow-ups": scope toggle and share import dialog, before and after</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0 auto; padding: 16px; max-width: 1200px; }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+figure { margin: 0; }
+img { width: 100%; height: auto; border: 1px solid; }
+h2 { margin-top: 32px; }
+</style>
+</head>
+<body>
+<h1>FLIER-2 "Flier Studio follow-ups": before and after</h1>
+<p>Before = build 353d5ed (HEAD before FLIER-2). After = the FLIER-2 build. Same route, same fresh storage, same viewport, full-page crop from the page top; captured by <code>capture.spec.ts</code>, measured in <code>result.json</code>.</p>
+
+<article data-option="scope" data-inventory="48/48" data-aligned="pass" data-result="result.json">
+<h2>AC-10 scope toggle ("Shared text edits apply to") and the Share row</h2>
+<h3>360x640</h3>
+<div class="pair">
+<figure data-visual="before"><img src="scope-before-360.png" alt="Before, 360 full page"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="scope-after-360.png" alt="After, 360 full page with the scope select and the share row"><figcaption>After</figcaption></figure>
+</div>
+<h3>1280x800</h3>
+<div class="pair">
+<figure data-visual="before"><img src="scope-before-1280.png" alt="Before, 1280 full page"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="scope-after-1280.png" alt="After, 1280 full page with the scope select and the share row"><figcaption>After</figcaption></figure>
+</div>
+</article>
+
+<article data-option="share" data-inventory="48/48" data-aligned="pass" data-result="result.json">
+<h2>AC-12 import dialog on opening a 4-flier share link</h2>
+<h3>360x640</h3>
+<div class="pair">
+<figure data-visual="before"><img src="share-before-360.png" alt="Before, 360, the link opens the app with no prompt"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="share-after-360.png" alt="After, 360, the Import 4 templates dialog"><figcaption>After</figcaption></figure>
+</div>
+<h3>1280x800</h3>
+<div class="pair">
+<figure data-visual="before"><img src="share-before-1280.png" alt="Before, 1280, the link opens the app with no prompt"><figcaption>Before</figcaption></figure>
+<figure data-visual="after"><img src="share-after-1280.png" alt="After, 1280, the Import 4 templates dialog"><figcaption>After</figcaption></figure>
+</div>
+</article>
+</body>
+</html>

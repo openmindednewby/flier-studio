@@ -101,9 +101,13 @@ export class ConfigStore {
   public importJson(json: string): ImportOutcome {
     const read = readImport(json);
     if (typeof read === 'string') return { ok: false, error: read };
-    const name = this.freeName(read.name);
-    this.save(name, read.docs);
-    return { ok: true, name };
+    return { ok: true, name: this.addNew(read.name, read.docs) };
+  }
+
+  public addNew(name: string, docs: readonly FlierDoc[]): string {
+    const free = this.freeName(name);
+    this.save(free, docs);
+    return free;
   }
 
   private index(): IndexEntry[] {

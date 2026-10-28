@@ -1,5 +1,6 @@
 import { flierDocSchema, type FlierDoc } from '@dloizides/poster-render';
 import { applyText, blocksToText, type BlockText } from '../form/docEdit';
+import { EditScope } from '../form/EditScope';
 import { layoutsFor, withFormat } from '../form/layoutOptions';
 import { FORM_GROUPS } from '../form/formGroups';
 import { scalePercent } from '../form/pictureScale';
@@ -13,6 +14,8 @@ export interface FormActions {
   upload(kind: UploadKind, file: File): void;
   add(): void;
   remove(): void;
+  scope(): EditScope;
+  setScope(scope: EditScope): void;
 }
 
 const PICKERS: readonly DocPicker[] = [DocPicker.Format, DocPicker.Layout, DocPicker.Palette, DocPicker.Fonts, DocPicker.Background];
@@ -75,6 +78,8 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     return shaped;
   };
   container.oninput = (): void => actions.change(read());
+  const scope = select([EditScope.This, EditScope.All], actions.scope(), 'pick-scope', (o) => FM(`form.scopes.${o}`));
+  scope.addEventListener('change', () => actions.setScope(scope.value as EditScope));
   const controls: Record<string, HTMLElement> = {
     ...Object.fromEntries(PICKERS.map((p) => [p, labelled(`form.${p}`, pickers[p])])),
     ...Object.fromEntries([...SINGLE, ...MULTI].map((key) => [key, labelled(`form.${key}`, texts[key])])),
@@ -86,6 +91,7 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   container.replaceChildren(
     el('h2', { text: FM('form.heading') }),
     el('p', { class: 'muted', text: FM('form.editing', String(position[0]), String(position[1])) }),
+    el('div', { class: 'row' }, [labelled('form.scope', scope)]),
     ...groups(controls),
     el('div', { class: 'row actions' }, [button('form.add', 'add-flier', actions.add), button('form.remove', 'remove-flier', actions.remove)]),
   );

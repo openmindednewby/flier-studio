@@ -138,3 +138,8 @@ body { padding-bottom: calc(var(--mini-bar) + env(safe-area-inset-bottom)); }
   body { padding-bottom: 0; }
   .mini-preview { display: none; }
 }
+
+.import-dialog { width: min(92vw, 480px); max-width: 480px; box-sizing: border-box; padding: var(--gap); background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); }
+.import-dialog::backdrop { background: color-mix(in srgb, var(--background) 72%, transparent); }
+.import-dialog h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.import-dialog .row { margin-top: 16px; }

@@ -1,6 +1,7 @@
 import { expect, test, type Browser, type Page } from '@playwright/test';
 import { kizombaPreset } from '../src/presets/kizomba';
 import { packPayload } from '../src/share/shareCodec';
+import { Panel, openPanel } from './panel';
 
 const BASE = 'http://localhost:4178';
 const LINK_LIMIT = 8000;
@@ -22,12 +23,14 @@ async function recipient(browser: Browser, page: Page): Promise<Page> {
   const other = await context.newPage();
   await ready(other);
   await other.getByTestId('field-title').fill('MINE');
+  await openPanel(other, Panel.Configs);
   await other.getByTestId('config-name').fill('My set');
   await other.getByTestId('config-save').click();
   return other;
 }
 
 async function shareLink(page: Page): Promise<string> {
+  await openPanel(page, Panel.Configs);
   await page.getByTestId('config-share').click();
   await expect(page.getByTestId('share-url')).toHaveValue(/#share=/);
   return page.getByTestId('share-url').inputValue();
@@ -97,6 +100,7 @@ test.describe('safe import (AC-13)', () => {
   for (const [name, make] of bad) {
     test(`a ${name} link imports nothing and says why`, async ({ page }) => {
       await ready(page);
+      await openPanel(page, Panel.Configs);
       await page.getByTestId('config-name').fill('Mine');
       await page.getByTestId('config-save').click();
       const before = await storage(page);

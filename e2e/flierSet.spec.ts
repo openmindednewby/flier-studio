@@ -1,4 +1,5 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const HIT = 44;
 const FLIERS = 4;
@@ -41,6 +42,7 @@ test.describe('flier set (AC-18, AC-19, AC-20, D13)', () => {
   });
 
   test('the All fliers card holds Theme, shared edits and Add flier, and a theme change re-renders every flier', async ({ page }) => {
+    await openPanel(page, Panel.All);
     const card = page.getByTestId('all-fliers');
     await expect(card.getByTestId('pick-theme')).toBeVisible();
     await expect(card.getByTestId('pick-scope')).toBeVisible();
@@ -83,6 +85,8 @@ test.describe('flier set (AC-18, AC-19, AC-20, D13)', () => {
 
   for (const [card, probe] of [['all-fliers', 'pick-theme'], ['drafts-panel', 'drafts-list']] as const) {
     test(`the ${card} card folds with a 44 px keyboard toggle and remembers it after a reload`, async ({ page }) => {
+      const panel = card === 'all-fliers' ? Panel.All : Panel.Drafts;
+      await openPanel(page, panel);
       const toggle = page.getByTestId(`${card}-toggle`);
       await expect(toggle).toHaveAttribute('aria-expanded', 'true');
       const box = (await toggle.boundingBox()) ?? { width: 0, height: 0 };
@@ -94,6 +98,7 @@ test.describe('flier set (AC-18, AC-19, AC-20, D13)', () => {
       await expect(toggle).toHaveAttribute('aria-expanded', 'false');
       await expect(page.getByTestId(probe)).toBeHidden();
       await page.reload();
+      await openPanel(page, panel);
       await expect(page.getByTestId(`${card}-toggle`)).toHaveAttribute('aria-expanded', 'false');
       await page.getByTestId(`${card}-toggle`).focus();
       await page.keyboard.press('Enter');

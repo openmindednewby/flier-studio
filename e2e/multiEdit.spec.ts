@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const HIT = 44;
 
@@ -12,14 +13,18 @@ test.describe('multi edit scope (AC-10)', () => {
   });
 
   test('with All fliers, a footer edit lands on every flier; with This flier, only on the current one', async ({ page }) => {
+    await openPanel(page, Panel.All);
     const scope = page.getByTestId('pick-scope');
     expect((await scope.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(HIT);
 
     await scope.selectOption('all');
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-footer').fill('Hosted by Bailemos');
 
     await expect.poll(() => footers(page)).toEqual(Array(4).fill('Hosted by Bailemos'));
+    await openPanel(page, Panel.All);
     await scope.selectOption('this');
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-footer').fill('Only flier one');
     await expect.poll(() => footers(page)).toEqual(['Only flier one', 'Hosted by Bailemos', 'Hosted by Bailemos', 'Hosted by Bailemos']);
   });

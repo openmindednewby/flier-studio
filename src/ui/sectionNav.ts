@@ -1,27 +1,64 @@
 import { FM } from '../i18n/fm';
+import { localFoldStore, type FoldStore } from './collapsible';
 import { el } from './dom';
+import { PanelKey } from './PanelKey';
+import { railIcon } from './railIcons';
 
-const NUMBER_WIDTH = 2;
-const SECTIONS: readonly (readonly [string, string])[] = [
-  ['all-fliers', 'all'],
-  ['flier-form', 'form'],
-  ['drafts-panel', 'drafts'],
-  ['generate', 'ai'],
-  ['preview-grid', 'previews'],
-  ['saved-configs', 'configs'],
-];
+const RAIL_KEY = 'flier-studio:rail';
+const COLLAPSED = 'collapsed';
+const ORDER: readonly PanelKey[] = [PanelKey.All, PanelKey.Form, PanelKey.Drafts, PanelKey.Ai, PanelKey.Previews, PanelKey.Configs];
 
-/** The contents card: one numbered 44 px link per section of the page. */
-export function sectionNav(): HTMLElement {
-  const links = SECTIONS.map(([target, key], i) => {
-    const label = FM(`nav.${key}`);
-    const link = el('a', { href: `#${target}`, 'data-testid': `nav-${key}`, 'aria-description': FM('hint.jump', label) }, [el('span', { class: 'n', text: String(i + 1).padStart(NUMBER_WIDTH, '0') }), label]);
-    return el('li', {}, [link]);
-  });
-  return el('nav', { class: 'section-nav card', 'aria-label': FM('nav.label'), 'data-testid': 'section-nav' }, [el('ul', {}, links)]);
+export interface Rail {
+  readonly nav: HTMLElement;
+  show(key: PanelKey, reveal?: boolean): void;
 }
 
-/** The one-line entry above the fliers that names the on-device AI and jumps to the Generate card. */
-export function aiEntry(): HTMLElement {
-  return el('a', { class: 'ai-entry', href: '#generate', 'data-testid': 'ai-entry', 'aria-description': FM('hint.jump', FM('nav.ai')) }, [FM('prompt.entry')]);
+function railToggle(nav: HTMLElement, store: FoldStore): HTMLButtonElement {
+  const word = el('span', { class: 'rail-label' });
+  const toggle = el('button', { type: 'button', class: 'rail-toggle', 'data-testid': 'rail-toggle' }, [railIcon('fold'), word]);
+  const set = (collapsed: boolean): void => {
+    const text = FM(collapsed ? 'nav.expand' : 'nav.collapse');
+    nav.dataset.collapsed = String(collapsed);
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', text);
+    toggle.setAttribute('aria-description', FM('hint.button', text));
+    toggle.title = text;
+    word.textContent = text;
+  };
+  set(store.read(RAIL_KEY) === COLLAPSED);
+  toggle.addEventListener('click', () => {
+    const collapsed = nav.dataset.collapsed !== 'true';
+    set(collapsed);
+    store.write(RAIL_KEY, collapsed ? COLLAPSED : 'open');
+  });
+  return toggle;
+}
+
+/** The sidebar: one icon + caption item per section; a panel item shows only that panel, Fliers scrolls to them. */
+export function sectionRail(panels: Partial<Record<PanelKey, HTMLElement>>, fliers: HTMLElement, store: FoldStore = localFoldStore): Rail {
+  const links = ORDER.map((key) => {
+    const label = FM(`nav.${key}`);
+    return el('a', { href: `#${(panels[key] ?? fliers).id}`, title: label, 'aria-label': label, 'data-testid': `nav-${key}`, 'aria-description': FM('hint.jump', label) }, [railIcon(key), el('span', { class: 'rail-label', text: label })]);
+  });
+  const show = (key: PanelKey, reveal = false): void => {
+    const panel = panels[key];
+    if (panel === undefined) {
+      fliers.scrollIntoView({ block: 'start' });
+      return;
+    }
+    for (const [k, p] of Object.entries(panels)) p.hidden = k !== key;
+    links.forEach((a, i) => (ORDER[i] === key ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
+    if (reveal) panel.scrollIntoView({ block: 'nearest' });
+  };
+  links.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); show(ORDER[i], true); }));
+  const nav = el('nav', { class: 'rail', 'aria-label': FM('nav.label'), 'data-testid': 'section-nav' }, [el('ul', {}, links.map((a) => el('li', {}, [a])))]);
+  nav.append(railToggle(nav, store));
+  return { nav, show };
+}
+
+/** The one-line entry above the fliers that names the on-device AI and opens the Generate panel. */
+export function aiEntry(open: () => void): HTMLElement {
+  const entry = el('a', { class: 'ai-entry', href: '#generate', 'data-testid': 'ai-entry', 'aria-description': FM('hint.jump', FM('nav.ai')) }, [FM('prompt.entry')]);
+  entry.addEventListener('click', (e) => { e.preventDefault(); open(); });
+  return entry;
 }

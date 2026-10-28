@@ -3,8 +3,8 @@ import { Panel, openPanel } from './panel';
 
 const HIT = 44;
 
-const schedules = (page: Page): Promise<string[]> =>
-  page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { content: { blocks: { schedule?: { label: string }[] } } }[]).map((f) => (f.content.blocks.schedule ?? []).map((r) => r.label).join(',')));
+const contents = (page: Page): Promise<string[]> =>
+  page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { content: object }[]).map((f) => JSON.stringify(f.content)));
 
 const count = (text: string, word: string): number => text.split(word).length - 1;
 
@@ -23,7 +23,7 @@ async function search(page: Page, find: string, replacement: string): Promise<vo
 test.describe('AC-32 / AC-33 Replace text previews every match before any change', () => {
   test('a case-insensitive search lists each match, counts it and marks it on the fliers, changing nothing', async ({ page }) => {
     await open(page);
-    const before = await schedules(page);
+    const before = await contents(page);
 
     await search(page, 'intermediates', 'Improvers');
 
@@ -35,7 +35,7 @@ test.describe('AC-32 / AC-33 Replace text previews every match before any change
     await expect(page.getByTestId('replace-match-1')).toContainText('Intermediates');
     await expect(page.getByTestId('replace-match-1')).toContainText('Improvers');
     await expect(page.locator('[data-testid^="preview-"] .replace-mark')).toHaveCount(n);
-    expect(await schedules(page)).toEqual(before);
+    expect(await contents(page)).toEqual(before);
     expect((await page.getByTestId('replace-apply').boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(HIT);
   });
 
@@ -74,11 +74,11 @@ test.describe('AC-34 Replace applies only the ticked matches after saving a draf
 
     await page.getByTestId('replace-apply').click();
 
-    await expect.poll(async () => count((await schedules(page)).join(','), 'Improvers')).toBe(n - 1);
-    expect(count((await schedules(page)).join(','), 'Intermediates')).toBe(1);
+    await expect.poll(async () => count((await contents(page)).join(','), 'Improvers')).toBe(n - 1);
+    expect(count((await contents(page)).join(','), 'Intermediates')).toBe(1);
     await openPanel(page, Panel.Drafts);
     await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(2);
     await page.getByTestId('draft-restore-2').click();
-    await expect.poll(async () => count((await schedules(page)).join(','), 'Improvers')).toBe(0);
+    await expect.poll(async () => count((await contents(page)).join(','), 'Improvers')).toBe(0);
   });
 });

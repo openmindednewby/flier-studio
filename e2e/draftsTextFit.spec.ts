@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const SAVE_MS = 1000;
 const TOLERANCE_PX = 1;
@@ -26,9 +27,12 @@ const overflowingText = (page: Page): Promise<string[]> =>
 test.describe('drafts list text fit (TEXT-FIT-1)', () => {
   test('with two drafts in en-GB, every date and count stays inside its cell and Restore lines up', async ({ page }) => {
     await page.goto('/');
+    await openPanel(page, Panel.Drafts);
     const rows = page.getByTestId('drafts-list').getByRole('listitem');
     await expect(rows).toHaveCount(1);
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-title').fill('Text fit check');
+    await openPanel(page, Panel.Drafts);
     await expect(rows).toHaveCount(2, { timeout: SAVE_MS });
 
     const overflow = await overflowingText(page);

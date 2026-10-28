@@ -1,8 +1,9 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const HIT = 44;
-const LEFT_COLUMN = ['section-nav', 'all-fliers', 'flier-form', 'drafts-panel'];
-const RIGHT_COLUMN = ['preview-grid', 'generate', 'saved-configs'];
+const PANELS: readonly (readonly [Panel, string])[] = [[Panel.All, 'all-fliers'], [Panel.Form, 'flier-form'], [Panel.Drafts, 'drafts-panel'], [Panel.Generate, 'generate'], [Panel.Configs, 'saved-configs']];
+const RIGHT_COLUMN = ['preview-grid'];
 const GROUPS = ['layout', 'pictures', 'text'];
 
 async function open(page: Page): Promise<void> {
@@ -20,6 +21,7 @@ test.describe('AC-24 on-device AI is named', () => {
   test('the Generate card carries the On-device AI badge and the keyword fallback note', async ({ page }) => {
     await open(page);
 
+    await openPanel(page, Panel.Generate);
     const card = page.getByTestId('generate');
 
     await expect(card.getByRole('heading', { level: 2 })).toContainText('On-device AI');
@@ -55,15 +57,18 @@ test.describe('AC-24 on-device AI is named', () => {
 });
 
 test.describe('AC-25 left column: contents card, All fliers, Flier, Drafts', () => {
-  test('the left column stacks the contents card, All fliers, the form and Drafts in that order', async ({ page }) => {
+  test('the sidebar comes before every panel it opens: above it at 360, left of it at 1280', async ({ page }, info) => {
     await open(page);
 
-    const boxes = await Promise.all(LEFT_COLUMN.map((id) => box(page.getByTestId(id))));
-
-    boxes.slice(1).forEach((b, i) => expect(b.y).toBeGreaterThan(boxes[i].y));
+    for (const [panel, id] of PANELS) {
+      await openPanel(page, panel);
+      const [nav, b] = await Promise.all([box(page.getByTestId('section-nav')), box(page.getByTestId(id))]);
+      if (info.project.name === 'mobile') expect(b.y).toBeGreaterThan(nav.y);
+      else expect(b.x).toBeGreaterThanOrEqual(nav.x + nav.width);
+    }
   });
 
-  test('at 1280 the previews, Generate and Saved configs sit right of the form', async ({ page }, info) => {
+  test('at 1280 the previews sit right of the form', async ({ page }, info) => {
     test.skip(info.project.name === 'mobile', 'desktop layout');
     await open(page);
     const form = await box(page.getByTestId('flier-form'));
@@ -77,6 +82,7 @@ test.describe('AC-25 left column: contents card, All fliers, Flier, Drafts', () 
     test.skip(info.project.name !== 'mobile', 'mobile layout');
     await open(page);
     const viewport = page.viewportSize()?.height ?? 0;
+    await openPanel(page, Panel.All);
 
     const [nav, fliers] = await Promise.all([box(page.getByTestId('section-nav')), box(page.getByTestId('all-fliers'))]);
 
@@ -86,7 +92,7 @@ test.describe('AC-25 left column: contents card, All fliers, Flier, Drafts', () 
   test('every contents link is 44 px tall and jumps to its section', async ({ page }) => {
     await open(page);
     const links = page.getByTestId('section-nav').getByRole('link');
-    await expect(links).toHaveText(['01All fliers', '02Flier', '03Drafts', '04Generate', '05Previews', '06Saved configs']);
+    await expect(links).toHaveText(['All fliers', 'Flier', 'Drafts', 'Generate', 'Fliers', 'Saved configs']);
 
     await page.getByTestId('nav-drafts').click();
 

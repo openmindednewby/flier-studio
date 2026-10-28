@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const SAVE_MS = 1000;
 const KEEP = 50;
@@ -7,6 +8,7 @@ const TITLE = 'Draft check title';
 test.describe('drafts on this device (AC-21, AC-22, AC-23)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    await openPanel(page, Panel.Drafts);
     await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(1);
   });
 
@@ -14,13 +16,16 @@ test.describe('drafts on this device (AC-21, AC-22, AC-23)', () => {
     const original = await page.getByTestId('field-title').inputValue();
     const rows = page.getByTestId('drafts-list').getByRole('listitem');
 
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-title').fill(TITLE);
+    await openPanel(page, Panel.Drafts);
 
     await expect(rows).toHaveCount(2, { timeout: SAVE_MS });
     await expect(rows.first().getByRole('img')).toBeVisible();
     await expect(rows.first()).toContainText('4 fliers');
     await page.reload();
     await expect(page.getByTestId('field-title')).toHaveValue(TITLE);
+    await openPanel(page, Panel.Drafts);
     await page.getByTestId('draft-restore-2').click();
     await expect(page.getByTestId('field-title')).toHaveValue(original);
   });
@@ -30,10 +35,13 @@ test.describe('drafts on this device (AC-21, AC-22, AC-23)', () => {
     const otherTheme = await theme.locator('option:not(:checked)').first().getAttribute('value');
     const all = page.getByTestId('drafts-all');
 
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-title').fill(TITLE);
     await expect(all).toHaveText('All (2)', { timeout: SAVE_MS });
+    await openPanel(page, Panel.All);
     await theme.selectOption(otherTheme ?? '');
     await expect(all).toHaveText('All (3)', { timeout: SAVE_MS });
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-footer').fill(TITLE);
     await expect(all).toHaveText('All (4)', { timeout: SAVE_MS });
     for (const n of [1, 2, 3]) {
@@ -42,12 +50,15 @@ test.describe('drafts on this device (AC-21, AC-22, AC-23)', () => {
     }
 
     await page.reload();
+    await openPanel(page, Panel.Drafts);
 
     await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(7);
   });
 
   test('a starred draft shows under Favourites and stays starred after a reload', async ({ page }) => {
+    await openPanel(page, Panel.Form);
     await page.getByTestId('field-title').fill(TITLE);
+    await openPanel(page, Panel.Drafts);
     await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(2, { timeout: SAVE_MS });
 
     await page.getByTestId('draft-star-2').click();
@@ -63,10 +74,12 @@ test.describe('drafts on this device (AC-21, AC-22, AC-23)', () => {
   test('unstarred drafts stop at the last 50 and a starred one is never pruned', async ({ page }) => {
     test.setTimeout(120_000);
     await page.getByTestId('draft-star-1').click();
+    await openPanel(page, Panel.Form);
     for (let i = 1; i <= KEEP + 2; i++) {
       await page.getByTestId('field-title').fill(`${TITLE} ${String(i)}`);
       await expect(page.getByTestId('drafts-all')).toHaveText(`All (${String(Math.min(i, KEEP) + 1)})`, { timeout: 2 * SAVE_MS });
     }
+    await openPanel(page, Panel.Drafts);
 
     await page.getByTestId('drafts-favourites').click();
 
@@ -100,6 +113,7 @@ test('without IndexedDB the app still renders and edits the fliers, with no draf
   await page.getByTestId('field-title').fill(TITLE);
 
   await expect(page.getByTestId('field-title')).toHaveValue(TITLE);
+  await openPanel(page, Panel.Drafts);
   await expect(page.getByTestId('drafts-empty')).toBeVisible();
 });
 
@@ -110,6 +124,7 @@ test('when a star cannot be saved the page says so', async ({ page }) => {
     };
   });
   await page.goto('/');
+  await openPanel(page, Panel.Drafts);
   await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(1);
 
   await page.getByTestId('draft-star-1').click();

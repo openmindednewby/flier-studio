@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 test.describe('mini preview bar', () => {
   test.beforeEach(async ({ page }) => {
@@ -56,6 +57,7 @@ test.describe('mini preview bar', () => {
 
   test('at 360 focusing the scope select scrolls it clear of the bar', async ({ page }, info) => {
     test.skip(info.project.name !== 'mobile');
+    await openPanel(page, Panel.All);
     const scope = page.getByTestId('pick-scope');
 
     await scope.focus();

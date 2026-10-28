@@ -3,7 +3,11 @@ import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
 import { cutPicture, cutoutFile, inFlight, lazy } from './cutout/cutoutFlow';
 import { DraftAutosave } from './drafts/draftAutosave';
 import { DraftStore, type Draft } from './drafts/draftStore';
+import { applySetting } from './form/allSettings';
+import { applyText, blocksToText } from './form/docEdit';
 import { EditScope } from './form/EditScope';
+import { applyMatches, type ReplaceMatch } from './form/replaceText';
+import type { SettingId } from './form/SettingId';
 import { nextDocs } from './form/sharedFields';
 import { withGenerated } from './form/generatedFlier';
 import { applyTheme, withDocs } from './form/themeScope';
@@ -28,9 +32,11 @@ import { focusInitial, renderForm } from './ui/formView';
 import { openImportDialog } from './ui/importDialog';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
-import { aiEntry, sectionNav } from './ui/sectionNav';
+import { PanelKey } from './ui/PanelKey';
+import { aiEntry, sectionRail } from './ui/sectionNav';
 import { UploadKind } from './ui/UploadKind';
 import './ui/styles.css';
+import './ui/sidebar.css';
 
 const RENDER_DELAY_MS = 150;
 const DOWNLOAD_GAP_MS = 300;
@@ -57,7 +63,11 @@ const allFliers = allFliersCard({
   scope: () => state.scope,
   setScope: (scope) => { state.scope = scope; },
   add: () => { state.fliers.push(cloneFlier(state.fliers[state.selected])); select(state.fliers.length - 1); },
-});
+  docs: docsOf,
+  setSetting: (id, value) => setSetting(id, value),
+  openGenerate: () => rail.show(PanelKey.Ai, true),
+  replace: (ticked, replacement) => void replaceText(ticked, replacement),
+}, previewGrid);
 const draftStore = new DraftStore();
 const drafts = draftsPanel({ restore: (draft) => restore(draft), star: (draft, on) => void draftStore.star(draft.id, on).then(showDrafts, (e: unknown) => { status.textContent = FM('drafts.starFailed', String(e)); }) });
 const autosave = new DraftAutosave(draftStore, {
@@ -65,6 +75,8 @@ const autosave = new DraftAutosave(draftStore, {
   full: () => { status.textContent = FM('drafts.full'); },
   failed: (reason) => { status.textContent = FM('drafts.failed', reason); },
 });
+
+const rail = sectionRail({ [PanelKey.All]: allFliers.card, [PanelKey.Form]: formBox, [PanelKey.Drafts]: drafts.card, [PanelKey.Ai]: promptBox, [PanelKey.Configs]: configBox }, previewGrid);
 
 function showDrafts(): void {
   draftStore.list().then((list) => drafts.show(list), () => undefined);
@@ -149,6 +161,23 @@ function setTheme(id: string): void {
   refreshPreviews();
 }
 
+function setSetting(id: SettingId, value: string): void {
+  state.fliers = withDocs(state.fliers, applySetting(docsOf(), id, value));
+  showForm();
+  refreshPreviews();
+}
+
+async function replaceText(ticked: readonly ReplaceMatch[], replacement: string): Promise<void> {
+  await autosave.save(state.fliers, thumbOf(state.canvases[0]));
+  const docs = docsOf();
+  const texts = applyMatches(docs.map(blocksToText), ticked, replacement);
+  const touched = new Set(ticked.map((m) => m.flier));
+  state.fliers = withDocs(state.fliers, docs.map((d, i) => (touched.has(i) ? applyText(d, texts[i]) : d)));
+  status.textContent = FM('replace.done', String(ticked.length));
+  showForm();
+  refreshPreviews();
+}
+
 function apply(docs: FlierDoc[], themes?: readonly string[] | null): void {
   state.fliers = docs.map((d, i) => toThemed(d, themeById(themes?.[i] ?? '')?.id));
   select(0);
@@ -188,19 +217,19 @@ async function start(): Promise<void> {
   const previews = el('section', { class: 'previews', 'data-testid': 'previews' }, [
     previewGrid,
     el('p', { class: 'muted', 'data-testid': 'select-hint', text: FM('previews.hint') }),
-    promptBox,
-    configBox,
   ]);
   const topRow = el('div', { class: 'top-row' }, [brandHeading(document.documentElement.dataset.theme === 'dark'), button('previews.downloadAll', 'download-all', () => void downloadAll(), 'primary')]);
   app.replaceChildren(
-    el('header', {}, [topRow, el('p', { class: 'lead', text: FM('app.lead') }), aiEntry(), status]),
-    el('main', {}, [el('div', { class: 'controls' }, [sectionNav(), allFliers.card, formBox, drafts.card]), previews]),
+    el('header', {}, [topRow, el('p', { class: 'lead', text: FM('app.lead') }), aiEntry(() => rail.show(PanelKey.Ai, true)), status]),
+    rail.nav,
+    el('main', {}, [el('div', { class: 'controls' }, [allFliers.card, formBox, drafts.card, promptBox, configBox]), previews]),
     mini.bar,
     mini.sheet,
   );
   renderPromptPanel(promptBox, (doc) => { state.fliers = withGenerated(state.fliers, doc); select(state.fliers.length - 1); });
   renderConfigs();
   showDrafts();
+  rail.show(PanelKey.Form);
   select(0);
   if (window.innerWidth >= DESKTOP_MIN) focusInitial(formBox);
   window.addEventListener('hashchange', () => void checkShare());

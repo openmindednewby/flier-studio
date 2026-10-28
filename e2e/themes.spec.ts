@@ -2,6 +2,7 @@ import { expectFieldsAligned } from '@dloizides/e2e-helpers';
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const HIT = 44;
 const FLIERS = 4;
@@ -32,6 +33,7 @@ test.describe('poster themes (AC-14, AC-15)', () => {
   test('the Theme control and its scope are labelled, 44 px tall, aligned at desktop, stacked at 360 and their text fits', async ({ page }, info) => {
     await page.goto('/');
     await page.locator('canvas').first().waitFor();
+    await openPanel(page, Panel.All);
     const theme = page.getByTestId('pick-theme');
     const scope = page.getByTestId('pick-scope');
 
@@ -43,13 +45,14 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     const overflowing = await page.getByTestId('theme-row').evaluate((row) =>
       [...row.querySelectorAll<HTMLElement>('span, select')].filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.textContent));
     expect(overflowing).toEqual([]);
-    if (info.project.name === 'desktop') await expectFieldsAligned(page, '[data-testid="all-fliers-row"]');
+    if (info.project.name === 'desktop') await expectFieldsAligned(page, '[data-testid="replace-text"] .row');
     else expect((await scope.boundingBox())?.y ?? 0).toBeGreaterThanOrEqual(((await theme.boundingBox())?.y ?? 0) + HIT);
   });
 
   test('at every viewport each Theme row option text fits inside its select, and file inputs paint nothing', async ({ page }) => {
     await page.goto('/');
     await page.locator('canvas').first().waitFor();
+    await openPanel(page, Panel.All);
 
     const clipped = await page.getByTestId('theme-row').evaluate((row, arrow) =>
       [...row.querySelectorAll('select')].flatMap((select) => {
@@ -85,6 +88,7 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     await page.goto('/');
     const before = await renders(page);
     const text = await contentOf(page);
+    await openPanel(page, Panel.All);
 
     await page.getByTestId('pick-theme').selectOption({ label: 'Golden hour' });
 

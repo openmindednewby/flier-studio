@@ -1,0 +1,37 @@
+{
+ "before": {},
+ "options": [
+  {
+   "id": "horizon",
+   "name": "A Horizon",
+   "paletteSlot": "sea",
+   "palette": { "background": "#DCE5E7", "tint": "#D3DEE1", "title": "#2F566F", "accent": "#8A4325", "ink": "#1F2D36", "soft": "#46606F", "card": "#F4F1EC", "arch": "#C7D4D6" },
+   "horizon": { "seaFrom": 0.86, "gapBelowText": 0.012, "sky": [[0, "#BFD3D8"], [0.55, "#D4DDDD"], [1, "#EADCCB"]], "sea": [[0, "#557C96"], [0.5, "#4B6F87"], [1, "#3D5262"]] },
+   "fontSlot": "modern",
+   "fonts": { "display": "\"Fraunces\", serif", "script": "\"Allura\", cursive", "body": "\"Jost\", sans-serif" },
+   "background": "solid",
+   "picture": { "imageId": "cutout", "anchor": "bottom", "scale": 1 },
+   "layout": "picture-right"
+  },
+  {
+   "id": "bluehour",
+   "name": "B Blue hour",
+   "paletteSlot": "night",
+   "palette": { "background": "#1C2830", "tint": "#22313A", "title": "#F2CBAA", "accent": "#DF8F65", "ink": "#F2EEE8", "soft": "#A3B4BF", "card": "#263640", "arch": "#3E6580" },
+   "fontSlot": "modern",
+   "background": "solid",
+   "picture": { "imageId": "cutout", "anchor": "bottom", "scale": 1 },
+   "layout": "arch"
+  },
+  {
+   "id": "seawindow",
+   "name": "C Sea window",
+   "paletteSlot": "rose",
+   "palette": { "background": "#F3EFE9", "tint": "#E9E3DA", "title": "#3B6480", "accent": "#8F4A29", "ink": "#22313A", "soft": "#4E5F6A", "card": "#FFFFFF", "arch": "#DCE5E7" },
+   "fontSlot": "elegant",
+   "background": "tint",
+   "picture": { "imageId": "photo", "anchor": "bottom", "scale": 1 },
+   "layout": "picture-bottom"
+  }
+ ]
+}

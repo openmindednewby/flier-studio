@@ -1,0 +1,23 @@
+A ink on sky mid: #1F2D36 on #D4DDDD = 10.21:1
+A ink on sky top: #1F2D36 on #BFD3D8 = 9.10:1
+A title on sky top: #2F566F on #BFD3D8 = 5.04:1
+A accent (includes heading, prices) on sky warm: #9C4E2C on #EADCCB = 4.41:1
+A accent on sky mid: #9C4E2C on #D4DDDD = 4.29:1
+A soft (footer) on sky warm: #46606F on #EADCCB = 4.93:1
+B ink on bg: #F2EEE8 on #1C2830 = 13.02:1
+B title on bg: #F2CBAA on #1C2830 = 9.96:1
+B accent on bg: #DF8F65 on #1C2830 = 5.91:1
+B soft (footer) on bg: #A3B4BF on #1C2830 = 7.05:1
+B arch vs bg (shape): #3E6580 on #1C2830 = 2.42:1
+C ink on tint: #22313A on #E9E3DA = 10.50:1
+C title on paper: #3B6480 on #F3EFE9 = 5.52:1
+C accent on tint: #A65A35 on #E9E3DA = 3.98:1
+C soft (footer) on tint: #5F717D on #E9E3DA = 3.97:1
+C tint vs paper: #E9E3DA on #F3EFE9 = 1.11:1
+1 theme1 title on bg: #958a80 on #f5f4f2 = 3.07:1
+1 theme1 accent on bg: #e9b47f on #f5f4f2 = 1.69:1
+1 theme1 soft on bg: #b3a89e on #f5f4f2 = 2.12:1
+#8A4325 #D4DDDD 5.22
+#8A4325 #EADCCB 5.36
+#8F4A29 #E9E3DA 5.18
+#4E5F6A #E9E3DA 5.2

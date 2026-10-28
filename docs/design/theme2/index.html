@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Golden hour options</title>
+<style>:root{--bg:#f4f2ee;--card:#fff;--ink:#1f2629;--ink2:#545c60;--rule:#8c8279;--flag:#7a2e12;--flagbg:#fbe9df}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16191b;--card:#1f2427;--ink:#eceae6;--ink2:#a9b0b3;--rule:#6d757a;--flag:#ffd3bd;--flagbg:#3a2218}}
+:root[data-theme="dark"]{--bg:#16191b;--card:#1f2427;--ink:#eceae6;--ink2:#a9b0b3;--rule:#6d757a;--flag:#ffd3bd;--flagbg:#3a2218}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1240px;margin:0 auto;padding:16px}
+h1{font-size:1.6rem;margin:8px 0 4px} h2{font-size:1.25rem;margin:0}
+.sub{color:var(--ink2);margin:0 0 16px}
+.flag{background:var(--flagbg);color:var(--flag);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin:0 0 16px;font-weight:600}
+article{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;margin:0 0 20px}
+article header p{margin:6px 0 0} .needs{color:var(--ink2);font-size:.9rem}
+.lt{display:inline-block;min-width:1.6em;text-align:center;border:1px solid var(--rule);border-radius:6px;margin-right:6px}
+.meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap} .inv{font-variant-numeric:tabular-nums;margin-right:8px}
+.sw{width:22px;height:22px;border-radius:4px;border:1px solid var(--rule);display:inline-block}
+.pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:14px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+figure{margin:0} img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{font-size:.8rem;color:var(--ink2);margin-top:2px}
+.q{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px}
+
+  /* ---- answer-UI token defaults --------------------------------------
+     Zero-specificity (:where) so ANY host declaration on :root / html
+     (specificity 0,1,0) overrides every value below. Self-sufficient on a
+     host palette that defines none of these. Light is declared on the bare
+     selector first; the dark blocks only REDEFINE, so no colour has its
+     sole definition inside a media query or [data-theme] rule. -------- */
+  :where(html){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  @media (prefers-color-scheme:dark){
+    :where(html:not([data-theme="light"])){
+      --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+      --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  }
+  :where(html[data-theme="dark"]){
+    --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+    --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  :where(html[data-theme="light"]){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de}
+
+  /* ---- answerable questions ---- */
+  .q{position:relative}
+  .q.answered{border-color:var(--ink-3)}
+  .q .opts li{cursor:pointer; padding-left:34px; position:relative;
+    transition:background .12s ease}
+  .q .opts li:hover{background:var(--rule-1, rgba(0,0,0,.03))}
+  .q .opts li::before{content:''; position:absolute; left:6px; top:13px;
+    width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:50%}
+  .q .opts li[aria-checked="true"]::before{border-color:var(--ink-1, #111);
+    background:var(--ink-1, #111); box-shadow:inset 0 0 0 3px var(--paper, #fff)}
+  .q .opts li[aria-checked="true"]{background:var(--rule-1, rgba(0,0,0,.05))}
+  .q .opts li:focus-visible{outline:2px solid var(--ink-2); outline-offset:-2px}
+  .q .ansbox{margin:14px 0 0; padding-top:12px; border-top:1px solid var(--rule-2)}
+  .q .ansbox .st{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+  .q .ansbox .st b{color:var(--ink-1, #111)}
+  .q .note-in{display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    font-family:inherit; font-size:14px; color:inherit; caret-color:currentColor;
+    background:transparent; border:1px solid var(--rule-2); border-radius:0;
+    padding:8px 10px; resize:vertical; min-height:2.4em}
+  .q .note-in:focus{outline:none; border-color:var(--ink-3)}
+  .qbar{border:1px solid var(--rule-2); padding:10px 14px; margin:20px 0;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    justify-content:space-between; position:sticky; top:0; z-index:5;
+    background:var(--paper, #fff)}
+  .qbar .prog{font-family:var(--mono); font-size:13px; color:var(--ink-2)}
+  .qbar .prog b{color:var(--ink-1, #111); font-size:15px}
+  .qbar .acts{display:flex; gap:9px; flex-wrap:wrap}
+  .qbar button{font-family:inherit; font-size:13px; padding:7px 14px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .qbar button:hover{background:var(--rule-1, rgba(0,0,0,.05))}
+  .qbar button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .qbar .mode{font-family:var(--mono); font-size:11.5px; color:var(--ink-3);
+    flex-basis:100%}
+  .expwrap{display:none; position:fixed; z-index:50; left:50%; top:50%;
+    transform:translate(-50%,-50%); width:min(720px, calc(100vw - 32px));
+    max-height:calc(100vh - 32px); box-sizing:border-box; overflow:auto;
+    padding:16px; background:var(--paper, #fff); color:var(--ink-1, #111);
+    border:1px solid var(--ink-3); box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .expwrap.on{display:block}
+  .expwrap .exphead{display:flex; justify-content:space-between; align-items:center;
+    gap:10px; margin:0 0 10px; font-weight:600}
+  .expwrap .exphead span{display:flex; gap:8px}
+  .expwrap button{font-family:inherit; font-size:13px; padding:7px 14px; min-height:44px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .expwrap button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .expwrap textarea{width:100%; box-sizing:border-box; min-height:190px; height:50vh;
+    font-family:var(--mono); font-size:12px; line-height:1.55; padding:12px;
+    border:1px solid var(--rule-2); background:transparent; color:inherit}
+  .expwrap .hint{font-size:13px; color:var(--ink-2); margin:8px 0 0}
+</style></head><body><main>
+<h1>Theme 2 "Golden hour": pick a direction</h1>
+<p class="sub">FLIER-2 "Flier Studio follow-ups" AC-16. Same 4 texts as theme 1; only palette, background, fonts and picture differ. Bailemos logo slot unchanged.</p>
+<p class="flag" id="critic-status">Awaiting design-critic. Do not pick yet.</p>
+<article data-option="horizon" data-inventory="40/40" data-aligned="pass" data-result="result.json">
+<header><h2><span class="lt">A</span> Horizon</h2><p class="meta"><span class="inv">Inventory 40/40</span> <span class="sw" style="background:#DCE5E7" title="background #DCE5E7"></span><span class="sw" style="background:#2F566F" title="title #2F566F"></span><span class="sw" style="background:#8A4325" title="accent #8A4325"></span><span class="sw" style="background:#1F2D36" title="ink #1F2D36"></span><span class="sw" style="background:#46606F" title="soft #46606F"></span><span class="sw" style="background:#C7D4D6" title="arch #C7D4D6"></span></p><p>Light sky gradient sampled from the photo, sea band under the couple, cut-out photo on the right. Fraunces / Allura / Jost.</p><p class="needs">poster-render: new palette <code>golden-horizon</code>, new font set <code>coastal</code>, new background <code>horizon</code></p></header>
+<div class="pairs"><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261031.jpg" width="540" height="960" alt="Theme 1, 31 Oct flier"><figcaption>Before · 31 Oct</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/horizon-workshop-20261031.jpg" width="540" height="960" alt="Option A Horizon, 31 Oct flier"><figcaption>After · 31 Oct</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261107.jpg" width="540" height="960" alt="Theme 1, 7 Nov flier"><figcaption>Before · 7 Nov</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/horizon-workshop-20261107.jpg" width="540" height="960" alt="Option A Horizon, 7 Nov flier"><figcaption>After · 7 Nov</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261129.jpg" width="540" height="960" alt="Theme 1, 29 Nov flier"><figcaption>Before · 29 Nov</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/horizon-workshop-20261129.jpg" width="540" height="960" alt="Option A Horizon, 29 Nov flier"><figcaption>After · 29 Nov</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-upcoming-workshops.jpg" width="540" height="960" alt="Theme 1, Upcoming flier"><figcaption>Before · Upcoming</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/horizon-upcoming-workshops.jpg" width="540" height="960" alt="Option A Horizon, Upcoming flier"><figcaption>After · Upcoming</figcaption></figure></div></div></article>
+<article data-option="bluehour" data-inventory="40/40" data-aligned="pass" data-result="result.json">
+<header><h2><span class="lt">B</span> Blue hour</h2><p class="meta"><span class="inv">Inventory 40/40</span> <span class="sw" style="background:#1C2830" title="background #1C2830"></span><span class="sw" style="background:#F2CBAA" title="title #F2CBAA"></span><span class="sw" style="background:#DF8F65" title="accent #DF8F65"></span><span class="sw" style="background:#F2EEE8" title="ink #F2EEE8"></span><span class="sw" style="background:#A3B4BF" title="soft #A3B4BF"></span><span class="sw" style="background:#3E6580" title="arch #3E6580"></span></p><p>Deep sea night ground, warm skin-light titles, cut-out couple in a sea-blue arch with prices either side. Bebas Neue / Great Vibes / Montserrat.</p><p class="needs">poster-render: new palette <code>golden-night</code> (fonts and background exist)</p></header>
+<div class="pairs"><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261031.jpg" width="540" height="960" alt="Theme 1, 31 Oct flier"><figcaption>Before · 31 Oct</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/bluehour-workshop-20261031.jpg" width="540" height="960" alt="Option B Blue hour, 31 Oct flier"><figcaption>After · 31 Oct</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261107.jpg" width="540" height="960" alt="Theme 1, 7 Nov flier"><figcaption>Before · 7 Nov</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/bluehour-workshop-20261107.jpg" width="540" height="960" alt="Option B Blue hour, 7 Nov flier"><figcaption>After · 7 Nov</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261129.jpg" width="540" height="960" alt="Theme 1, 29 Nov flier"><figcaption>Before · 29 Nov</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/bluehour-workshop-20261129.jpg" width="540" height="960" alt="Option B Blue hour, 29 Nov flier"><figcaption>After · 29 Nov</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-upcoming-workshops.jpg" width="540" height="960" alt="Theme 1, Upcoming flier"><figcaption>Before · Upcoming</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/bluehour-upcoming-workshops.jpg" width="540" height="960" alt="Option B Blue hour, Upcoming flier"><figcaption>After · Upcoming</figcaption></figure></div></div></article>
+<article data-option="seawindow" data-inventory="40/40" data-aligned="pass" data-result="result.json">
+<header><h2><span class="lt">C</span> Sea window</h2><p class="meta"><span class="inv">Inventory 40/40</span> <span class="sw" style="background:#F3EFE9" title="background #F3EFE9"></span><span class="sw" style="background:#3B6480" title="title #3B6480"></span><span class="sw" style="background:#8F4A29" title="accent #8F4A29"></span><span class="sw" style="background:#22313A" title="ink #22313A"></span><span class="sw" style="background:#4E5F6A" title="soft #4E5F6A"></span><span class="sw" style="background:#DCE5E7" title="arch #DCE5E7"></span></p><p>Limestone paper with the uncut sea photo as a framed print below the text. Playfair / Allura / Lato.</p><p class="needs">poster-render: new palette <code>golden-linen</code> (fonts and background exist)</p></header>
+<div class="pairs"><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261031.jpg" width="540" height="960" alt="Theme 1, 31 Oct flier"><figcaption>Before · 31 Oct</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/seawindow-workshop-20261031.jpg" width="540" height="960" alt="Option C Sea window, 31 Oct flier"><figcaption>After · 31 Oct</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261107.jpg" width="540" height="960" alt="Theme 1, 7 Nov flier"><figcaption>Before · 7 Nov</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/seawindow-workshop-20261107.jpg" width="540" height="960" alt="Option C Sea window, 7 Nov flier"><figcaption>After · 7 Nov</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-workshop-20261129.jpg" width="540" height="960" alt="Theme 1, 29 Nov flier"><figcaption>Before · 29 Nov</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/seawindow-workshop-20261129.jpg" width="540" height="960" alt="Option C Sea window, 29 Nov flier"><figcaption>After · 29 Nov</figcaption></figure></div><div class="pair"><figure data-visual="before"><img loading="lazy" src="frames/before-upcoming-workshops.jpg" width="540" height="960" alt="Theme 1, Upcoming flier"><figcaption>Before · Upcoming</figcaption></figure><figure data-visual="after"><img loading="lazy" src="frames/seawindow-upcoming-workshops.jpg" width="540" height="960" alt="Option C Sea window, Upcoming flier"><figcaption>After · Upcoming</figcaption></figure></div></div></article>
+
+<div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which direction becomes theme 2 "Golden hour" for all 4 fliers?</p>
+<ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Horizon: light sky, sea band, cut-out couple on the right</span></li>
+<li data-letter="B"><span class="lt">B</span><span>Blue hour: dark sea ground, couple in a sea-blue arch</span></li>
+<li data-letter="C"><span class="lt">C</span><span>Sea window: limestone paper, framed sea photo below</span></li>
+<li data-letter="D"><span class="lt">D</span><span>None: redraw (say what in the note)</span></li></ul>
+<p class="why">The pick becomes a palette (and for A a font set and background) in @dloizides/poster-render, then the 4 theme-2 PNGs (AC-17).</p></div>
+</main></body></html>
+
+<script>
+(function () {
+  'use strict';
+  // Contrast guard: a host page forced dark (or light) while the OS scheme differs left
+  // --ink-1 #111 on a dark background, so typed notes were invisible (2026-10-01).
+  (function () {
+    function lum(c) {
+      var m = (c || '').match(/[\d.]+/g); if (!m || m.length < 3) return null;
+      var v = m.slice(0, 3).map(function (x) { x = x / 255;
+        return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    }
+    var el = document.body, bg = null;
+    while (el && el.nodeType === 1) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && !/rgba\([^)]*,\s*0\)|transparent/.test(c)) { bg = c; break; }
+      el = el.parentElement;
+    }
+    var root = document.documentElement;
+    var probe = document.createElement('span');
+    probe.style.color = 'var(--ink-1, #111)'; document.body.appendChild(probe);
+    var lb = lum(bg || 'rgb(255,255,255)'), li = lum(getComputedStyle(probe).color);
+    probe.remove();
+    if (lb === null || li === null) return;
+    if ((Math.max(lb, li) + 0.05) / (Math.min(lb, li) + 0.05) >= 4.5) return;
+    var dark = lb < 0.2, set = dark
+      ? ['#141414', '#f0efec', '#a8a49c', '#6f6b64', 'rgba(255,255,255,.06)', '#333029']
+      : ['#ffffff', '#111111', '#555555', '#8a8a8a', 'rgba(0,0,0,.05)', '#e2e2de'];
+    ['--paper', '--ink-1', '--ink-2', '--ink-3', '--rule-1', '--rule-2'].forEach(
+      function (k, i) { root.style.setProperty(k, set[i]); });
+  })();
+  var DOCKEY = 'flier2-theme2';
+  var DOCTITLE = 'Golden hour options';
+  var LS = 'answers:' + DOCKEY;
+  var state = {};
+  var db = null;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(LS);
+      if (raw) state = JSON.parse(raw) || {};
+    } catch (e) { state = {}; }
+  }
+
+  function persistLocal() {
+    try { window.localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function persistDb(qid) {
+    if (!db) return;
+    var v = state[qid] || {};
+    db.doc('answers/' + qid).set({
+      question: v.question || '',
+      choice: v.choice || '',
+      choiceText: v.choiceText || '',
+      note: v.note || '',
+      doc: DOCKEY,
+      updatedAt: new Date().toISOString()
+    }).catch(function () { /* keep the local copy; export still works */ });
+  }
+
+  function save(qid) { persistLocal(); persistDb(qid); }
+
+  var blocks = [];
+
+  function render() {
+    var done = 0;
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      b.el.classList.toggle('answered', !!v.choice);
+      if (v.choice) done++;
+      b.opts.forEach(function (li) {
+        var on = li.getAttribute('data-letter') === v.choice;
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        li.setAttribute('tabindex', on || (!v.choice && li === b.opts[0]) ? '0' : '-1');
+      });
+      b.status.textContent = v.choice ? 'answered — ' : 'not answered yet';
+      if (v.choice) {
+        var bb = document.createElement('b');
+        bb.textContent = v.choice;
+        b.status.appendChild(bb);
+      }
+      if (b.note.value !== (v.note || '')) b.note.value = v.note || '';
+    });
+    if (bar) {
+      bar.prog.innerHTML = '<b>' + done + '</b> of ' + blocks.length + ' answered';
+    }
+  }
+
+  function choose(b, letter, text) {
+    var v = state[b.qid] || {};
+    if (v.choice === letter) { delete v.choice; delete v.choiceText; }
+    else { v.choice = letter; v.choiceText = text; }
+    v.question = b.question;
+    state[b.qid] = v;
+    save(b.qid);
+    render();
+  }
+
+  function buildExport() {
+    var out = ['# Answers \u2014 ' + DOCTITLE,
+               'recorded ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+               ''];
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      out.push('## ' + b.qid.toUpperCase() + ' \u2014 ' + b.question);
+      out.push(v.choice
+        ? '**Answer: ' + v.choice + '** \u2014 ' + (v.choiceText || '')
+        : '**Answer: (not answered)**');
+      if (v.note) out.push('Note: ' + v.note);
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
+  var bar = null;
+
+  function buildBar(firstQ) {
+    var el = document.createElement('div');
+    el.className = 'qbar';
+    el.innerHTML =
+      '<span class="prog"></span>' +
+      '<span class="acts">' +
+      '<button type="button" class="clr">Clear all</button>' +
+      '<button type="button" class="prim exp">Export answers</button>' +
+      '</span>' +
+      '<span class="mode"></span>';
+    var wrap = document.createElement('div');
+    wrap.className = 'expwrap';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-label', 'Exported answers');
+    wrap.innerHTML = '<div class="exphead">Your answers' +
+      '<span><button type="button" class="prim cpy">Copy</button>' +
+      '<button type="button" class="cls">Close</button></span></div>' +
+      '<textarea readonly aria-label="Answers for export"></textarea>' +
+      '<p class="hint">Press Copy, then paste the text into the conversation.</p>';
+    var section = firstQ.closest ? firstQ.closest('section') : null;
+    var anchor = section && section.parentNode ? section : firstQ;
+    anchor.parentNode.insertBefore(el, anchor);
+    document.body.appendChild(wrap);
+
+    bar = {
+      el: el,
+      prog: el.querySelector('.prog'),
+      mode: el.querySelector('.mode'),
+      exportBtn: el.querySelector('.exp'),
+      wrap: wrap,
+      ta: wrap.querySelector('textarea'),
+      hint: wrap.querySelector('.hint')
+    };
+
+    function closeExport() { wrap.classList.remove('on'); bar.exportBtn.focus(); }
+    wrap.querySelector('.cls').addEventListener('click', closeExport);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) closeExport();
+    });
+    wrap.querySelector('.cpy').addEventListener('click', function () {
+      bar.ta.focus();
+      bar.ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText)
+          navigator.clipboard.writeText(bar.ta.value).then(function () {
+            bar.hint.textContent = 'Copied. Paste it into the conversation.';
+          }, function () {});
+      } catch (e) {}
+      bar.hint.textContent = ok ? 'Copied. Paste it into the conversation.'
+        : 'The text is selected: press Ctrl+C (Cmd+C on a Mac), then paste it into the conversation.';
+    });
+
+    el.querySelector('.clr').addEventListener('click', function () {
+      blocks.forEach(function (b) {
+        state[b.qid] = { question: b.question, note: (state[b.qid] || {}).note || '' };
+        delete state[b.qid].choice;
+        save(b.qid);
+      });
+      render();
+    });
+
+    bar.exportBtn.addEventListener('click', function () {
+      var txt = buildExport();
+      bar.ta.value = txt;
+      bar.wrap.classList.add('on');
+      bar.hint.textContent = 'Press Copy, then paste the text into the conversation.';
+      bar.ta.focus();
+      bar.ta.select();
+    });
+  }
+
+  function init() {
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.q[data-qid]'));
+    if (!qs.length) return;
+
+    qs.forEach(function (el) {
+      var qid = el.getAttribute('data-qid');
+      var qn = el.querySelector('.qn');
+      var question = qn ? qn.textContent.replace(/\s+/g, ' ').replace(/^\s*Q\d+\s*/, '').trim() : qid;
+      var opts = Array.prototype.slice.call(el.querySelectorAll('.opts li[data-letter]'));
+      var group = el.querySelector('.opts');
+      if (group) group.setAttribute('role', 'radiogroup');
+
+      var box = document.createElement('div');
+      box.className = 'ansbox';
+      box.innerHTML = '<span class="st"></span>' +
+        '<textarea class="note-in" rows="2" placeholder="Optional \u2014 a caveat, a ' +
+        'condition, or why not the recommendation."></textarea>';
+      var oldAns = el.querySelector('.ans');
+      if (oldAns) oldAns.parentNode.replaceChild(box, oldAns);
+      else el.appendChild(box);
+
+      var b = {
+        el: el, qid: qid, question: question, opts: opts,
+        status: box.querySelector('.st'), note: box.querySelector('.note-in')
+      };
+
+      opts.forEach(function (li) {
+        li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
+        var span = li.querySelector('span:last-child');
+        var text = (span ? span.textContent : li.textContent)
+          .replace(/\s+/g, ' ').replace(/\s*recommended\s*$/i, '').trim();
+        li.addEventListener('click', function () {
+          choose(b, li.getAttribute('data-letter'), text);
+        });
+        li.addEventListener('keydown', function (ev) {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            choose(b, li.getAttribute('data-letter'), text);
+          }
+        });
+      });
+
+      b.note.addEventListener('input', function () {
+        var v = state[qid] || {};
+        v.note = b.note.value;
+        v.question = question;
+        state[qid] = v;
+        persistLocal();
+      });
+      b.note.addEventListener('blur', function () { persistDb(qid); });
+
+      blocks.push(b);
+    });
+
+    load();
+    buildBar(qs[0]);
+    render();
+
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('db').then(function (d) {
+        if (!d) { setMode('saved in this browser only'); return; }
+        db = d;
+        setMode('saved to this page \u2014 Claude can read these answers back');
+        d.collection('answers').get().then(function (snap) {
+          var touched = false;
+          snap.docs.forEach(function (doc) {
+            var data = doc.data() || {};
+            var cur = state[doc.id] || {};
+            if (!cur.choice && !cur.note && (data.choice || data.note)) {
+              state[doc.id] = {
+                question: data.question || cur.question || '',
+                choice: data.choice || '', choiceText: data.choiceText || '',
+                note: data.note || ''
+              };
+              touched = true;
+            }
+          });
+          if (touched) { persistLocal(); render(); }
+        }).catch(function () {});
+      }).catch(function () { setMode('saved in this browser only'); });
+    } else {
+      setMode('saved in this browser only');
+    }
+  }
+
+  function setMode(t) { if (bar) bar.mode.textContent = t; }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

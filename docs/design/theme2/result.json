@@ -1,0 +1,1390 @@
+{
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "pairMethod": "same-steps",
+ "note": "Written by render-options.mjs: every frame is one render() of the same preset doc; only the style fields differ. Item visible = every word of the block drawn by fillText inside the poster with no text box under the picture rect or off canvas (else the frame counts 0); picture/logo = RenderReport rect not null. Rows: posters have no form controls, so auto discovery finds no side-by-side rows.",
+ "options": {
+  "horizon": {
+   "inventory": "40/40",
+   "items": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo",
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo",
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo",
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo",
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo",
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo",
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "lost": [],
+   "added": [],
+   "formRowsMisaligned": []
+  },
+  "bluehour": {
+   "inventory": "40/40",
+   "items": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo",
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo",
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo",
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo",
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo",
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo",
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "lost": [],
+   "added": [],
+   "formRowsMisaligned": []
+  },
+  "seawindow": {
+   "inventory": "40/40",
+   "items": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo",
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo",
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo",
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo",
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo",
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo",
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "lost": [],
+   "added": [],
+   "formRowsMisaligned": []
+  }
+ },
+ "frames": [
+  {
+   "option": "horizon",
+   "shot": "workshop-20261031",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261031.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 1 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "workshop-20261031",
+   "side": "after",
+   "build": "theme 2 option horizon (mocked palette/fonts/background)",
+   "file": "frames/horizon-workshop-20261031.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 1 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "workshop-20261107",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261107.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 2 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ],
+    "after": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "workshop-20261107",
+   "side": "after",
+   "build": "theme 2 option horizon (mocked palette/fonts/background)",
+   "file": "frames/horizon-workshop-20261107.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 2 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ],
+    "after": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "workshop-20261129",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261129.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 3 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ],
+    "after": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "workshop-20261129",
+   "side": "after",
+   "build": "theme 2 option horizon (mocked palette/fonts/background)",
+   "file": "frames/horizon-workshop-20261129.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 3 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ],
+    "after": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "upcoming-workshops",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-upcoming-workshops.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 4 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "horizon",
+   "shot": "upcoming-workshops",
+   "side": "after",
+   "build": "theme 2 option horizon (mocked palette/fonts/background)",
+   "file": "frames/horizon-upcoming-workshops.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 4 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "workshop-20261031",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261031.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 1 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "workshop-20261031",
+   "side": "after",
+   "build": "theme 2 option bluehour (mocked palette/fonts/background)",
+   "file": "frames/bluehour-workshop-20261031.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 1 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "workshop-20261107",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261107.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 2 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ],
+    "after": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "workshop-20261107",
+   "side": "after",
+   "build": "theme 2 option bluehour (mocked palette/fonts/background)",
+   "file": "frames/bluehour-workshop-20261107.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 2 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ],
+    "after": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "workshop-20261129",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261129.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 3 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ],
+    "after": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "workshop-20261129",
+   "side": "after",
+   "build": "theme 2 option bluehour (mocked palette/fonts/background)",
+   "file": "frames/bluehour-workshop-20261129.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 3 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ],
+    "after": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "upcoming-workshops",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-upcoming-workshops.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 4 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "bluehour",
+   "shot": "upcoming-workshops",
+   "side": "after",
+   "build": "theme 2 option bluehour (mocked palette/fonts/background)",
+   "file": "frames/bluehour-upcoming-workshops.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 4 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "workshop-20261031",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261031.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 1 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "workshop-20261031",
+   "side": "after",
+   "build": "theme 2 option seawindow (mocked palette/fonts/background)",
+   "file": "frames/seawindow-workshop-20261031.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 1 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ],
+    "after": [
+     "workshop-20261031:title",
+     "workshop-20261031:titleBottom",
+     "workshop-20261031:script",
+     "workshop-20261031:venue",
+     "workshop-20261031:schedule",
+     "workshop-20261031:prices",
+     "workshop-20261031:includes",
+     "workshop-20261031:footer",
+     "workshop-20261031:picture",
+     "workshop-20261031:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "workshop-20261107",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261107.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 2 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ],
+    "after": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "workshop-20261107",
+   "side": "after",
+   "build": "theme 2 option seawindow (mocked palette/fonts/background)",
+   "file": "frames/seawindow-workshop-20261107.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 2 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ],
+    "after": [
+     "workshop-20261107:title",
+     "workshop-20261107:titleBottom",
+     "workshop-20261107:script",
+     "workshop-20261107:venue",
+     "workshop-20261107:schedule",
+     "workshop-20261107:prices",
+     "workshop-20261107:includes",
+     "workshop-20261107:footer",
+     "workshop-20261107:picture",
+     "workshop-20261107:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "workshop-20261129",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-workshop-20261129.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 3 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ],
+    "after": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "workshop-20261129",
+   "side": "after",
+   "build": "theme 2 option seawindow (mocked palette/fonts/background)",
+   "file": "frames/seawindow-workshop-20261129.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 3 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ],
+    "after": [
+     "workshop-20261129:title",
+     "workshop-20261129:titleBottom",
+     "workshop-20261129:script",
+     "workshop-20261129:venue",
+     "workshop-20261129:schedule",
+     "workshop-20261129:prices",
+     "workshop-20261129:includes",
+     "workshop-20261129:footer",
+     "workshop-20261129:picture",
+     "workshop-20261129:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "upcoming-workshops",
+   "side": "before",
+   "build": "theme 1 \"Kizomba classic\" (sand, classic, solid, dancers)",
+   "file": "frames/before-upcoming-workshops.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 4 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  },
+  {
+   "option": "seawindow",
+   "shot": "upcoming-workshops",
+   "side": "after",
+   "build": "theme 2 option seawindow (mocked palette/fonts/background)",
+   "file": "frames/seawindow-upcoming-workshops.jpg",
+   "pair": {
+    "route": "poster-render render() of the flier (Flier Studio preview and download path)",
+    "state": "flier 4 of 4, preset text, no edits",
+    "fixture": "kizombaPreset(): 31 Oct / 7 Nov / 29 Nov / Upcoming, footer \"Classes by Jimmy & Ismini\", levels Beginners / Intermediates (D4)",
+    "viewport": "story 1080x1920",
+    "scrollAnchor": "poster origin 0,0",
+    "crop": "full poster"
+   },
+   "textUnderPicture": 0,
+   "textOffCanvas": 0,
+   "visibleItems": {
+    "before": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ],
+    "after": [
+     "upcoming-workshops:title",
+     "upcoming-workshops:titleBottom",
+     "upcoming-workshops:script",
+     "upcoming-workshops:venue",
+     "upcoming-workshops:prices",
+     "upcoming-workshops:includes",
+     "upcoming-workshops:footer",
+     "upcoming-workshops:listItems",
+     "upcoming-workshops:picture",
+     "upcoming-workshops:logo"
+    ]
+   },
+   "formRows": {
+    "misaligned": []
+   }
+  }
+ ]
+}

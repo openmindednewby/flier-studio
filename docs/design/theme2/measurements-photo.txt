@@ -1,0 +1,36 @@
+size 935 1400 figure px % 34.8
+band y  0-  7% bg median #C0D4D8 n 93500
+band y  7- 14% bg median #C7D4D6 n 84716
+band y 14- 21% bg median #C5CFD0 n 78738
+band y 21- 28% bg median #BCC4C7 n 76801
+band y 28- 35% bg median #ACB6C0 n 57758
+band y 35- 42% bg median #97AAB9 n 50143
+band y 42- 50% bg median #507894 n 49019
+band y 50- 57% bg median #527B95 n 43392
+band y 57- 64% bg median #587F97 n 42132
+band y 64- 71% bg median #4C5E65 n 45322
+band y 71- 78% bg median #3D4B52 n 49626
+band y 78- 85% bg median #686D6A n 43858
+band y 85- 92% bg median #7D8789 n 67686
+band y 92-100% bg median #79878D n 70969
+whole-photo 10-colour median-cut (share%, hex):
+  15.5 #537993
+  11.9 #0B0E10
+  11.1 #59504F
+  10.7 #B4B6B9
+  10.7 #897C78
+  9.1 #8998A4
+  9.0 #BDC8CB
+  9.0 #C4D2D4
+  7.1 #C6D6D9
+  5.9 #BA9F91
+figure-only 8-colour:
+  19.6 #000003
+  15.8 #677F95
+  14.1 #C5805F
+  13.6 #B9B0AD
+  11.7 #A59C9C
+  9.2 #835446
+  8.7 #33363F
+  7.3 #04070D
+warm skin median #B76D50 warm p90 light #DF8F65

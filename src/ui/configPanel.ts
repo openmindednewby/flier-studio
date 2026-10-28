@@ -1,6 +1,5 @@
 import type { FlierDoc } from '@dloizides/poster-render';
 import { FM } from '../i18n/fm';
-import { kizombaPreset } from '../presets/kizomba';
 import type { ConfigStore } from '../store/configStore';
 import { button, downloadBlob, el, fileButton, labelled } from './dom';
 import { shareRow } from './shareControls';
@@ -9,6 +8,7 @@ export interface ConfigActions {
   current(): FlierDoc[];
   currentThemes(): string[];
   apply(docs: FlierDoc[], themes?: readonly string[] | null): void;
+  preset(): void;
   status(message: string): void;
 }
 
@@ -63,7 +63,7 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
       fileButton('config.import', 'config-import', 'application/json,.json', (f) => void importFile(f)),
     ]),
     shareRow(actions.current, actions.status, actions.currentThemes),
-    button('config.preset', 'config-preset', () => actions.apply(kizombaPreset())),
+    button('config.preset', 'config-preset', () => actions.preset()),
   );
   refresh();
 }

@@ -14,6 +14,8 @@ import { applyTheme, withDocs } from './form/themeScope';
 import { FM } from './i18n/fm';
 import { plural } from './i18n/plural';
 import { kizombaPreset } from './presets/kizomba';
+import { PresetChoice } from './presets/PresetChoice';
+import { asksFirst, firstShown, presetFliers, presetStatusKey, savesDraftFirst } from './presets/presetPick';
 import { importShared } from './share/importShared';
 import { decodeShare, shareFragmentOf } from './share/shareCodec';
 import { ConfigStore } from './store/configStore';
@@ -31,6 +33,7 @@ import { draftTime, draftsPanel, thumbOf } from './ui/draftsPanel';
 import { createMiniPreview } from './ui/miniPreview';
 import { focusInitial, renderForm } from './ui/formView';
 import { openImportDialog } from './ui/importDialog';
+import { openPresetDialog } from './ui/presetDialog';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
 import { PanelKey } from './ui/PanelKey';
@@ -184,8 +187,25 @@ function apply(docs: FlierDoc[], themes?: readonly string[] | null): void {
   select(0);
 }
 
+async function choosePreset(choice: PresetChoice): Promise<void> {
+  const before = state.fliers.length;
+  const key = presetStatusKey(choice, before);
+  if (key === null) return;
+  if (savesDraftFirst(choice, before) && !(await autosave.save(state.fliers, thumbOf(state.canvases[0])))) return;
+  const preset = kizombaPreset().map((d) => toThemed(d));
+  state.fliers = presetFliers(state.fliers, preset, choice);
+  select(firstShown(choice, before));
+  status.textContent = FM(key, String(preset.length));
+}
+
+function loadPreset(): void {
+  const choose = (choice: PresetChoice): void => void choosePreset(choice);
+  if (asksFirst(state.fliers.length)) openPresetDialog([state.fliers.length, kizombaPreset().length], choose);
+  else choose(PresetChoice.Replace);
+}
+
 function renderConfigs(): void {
-  renderConfigPanel(configBox, configs, { current: docsOf, currentThemes: () => state.fliers.map((f) => f.themeId), apply, status: (m) => { status.textContent = m; } });
+  renderConfigPanel(configBox, configs, { current: docsOf, currentThemes: () => state.fliers.map((f) => f.themeId), apply, preset: loadPreset, status: (m) => { status.textContent = m; } });
 }
 
 async function checkShare(): Promise<void> {

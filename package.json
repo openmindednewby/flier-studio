@@ -16,6 +16,7 @@
   "dependencies": {
     "@dloizides/background-removal": "^0.1.1",
     "@dloizides/design-tokens": "^1.17.0",
+    "@dloizides/game-input": "^1.12.1",
     "@dloizides/llm-run": "^0.2.0",
     "@dloizides/poster-render": "^0.4.0",
     "@dloizides/save-state": "^1.7.0",

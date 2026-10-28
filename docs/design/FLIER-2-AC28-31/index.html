@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flier Studio Sidebar</title>
+<style>
+:root { --bg: #ebe8e3; --card: #fbfaf8; --ink: #2b2622; --muted: #6b625b; --line: #8c8279; --mark: #4a423c; --warn-bg: #f6e3c8; --warn-ink: #5a3a12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1c1a17; --card: #25221e; --ink: #ece6dd; --muted: #b4aa9e; --line: #80766a; --mark: #e8dccb; --warn-bg: #4a3417; --warn-ink: #f6e3c8; } }
+:root[data-theme="dark"] { --bg: #1c1a17; --card: #25221e; --ink: #ece6dd; --muted: #b4aa9e; --line: #80766a; --mark: #e8dccb; --warn-bg: #4a3417; --warn-ink: #f6e3c8; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 Georgia, "Iowan Old Style", serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 96px; }
+h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+h2 { font-size: 21px; margin: 0 0 6px; }
+h3 { font: 600 13px/1.3 system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 18px 0 8px; }
+p, li { max-width: 72ch; }
+.withdrawn { background: var(--warn-bg); color: var(--warn-ink); border: 1px solid var(--line); padding: 10px 14px; font: 600 15px/1.4 system-ui, sans-serif; margin: 0 0 18px; }
+article { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 18px 0; }
+.meta { font: 13px/1.4 system-ui, sans-serif; color: var(--muted); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pair.phone { grid-template-columns: repeat(2, minmax(0, 300px)); }
+figure { margin: 0; }
+figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.scroll { max-height: 560px; overflow: auto; border: 1px solid var(--line); }
+.scroll img { border: 0; }
+figcaption { font: 600 12px/1.4 system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-top: 4px; }
+table { border-collapse: collapse; font: 14px/1.4 system-ui, sans-serif; width: 100%; }
+td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+.q { background: var(--card); border: 2px solid var(--mark); border-radius: 12px; padding: 18px; margin: 24px 0; }
+.qn { font-weight: 600; }
+.opts { padding-left: 0; list-style: none; }
+.lt { font-weight: 700; margin-right: 8px; }
+@media (max-width: 700px) { .pair, .pair.phone { grid-template-columns: 1fr; } }
+
+.solo{max-width:300px}.solo img{display:block;width:100%;border:1px solid var(--line)}
+.qpics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:8px 0}.qpics img{width:100%;height:auto;border:1px solid var(--line)}
+
+  /* ---- answer-UI token defaults --------------------------------------
+     Zero-specificity (:where) so ANY host declaration on :root / html
+     (specificity 0,1,0) overrides every value below. Self-sufficient on a
+     host palette that defines none of these. Light is declared on the bare
+     selector first; the dark blocks only REDEFINE, so no colour has its
+     sole definition inside a media query or [data-theme] rule. -------- */
+  :where(html){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  @media (prefers-color-scheme:dark){
+    :where(html:not([data-theme="light"])){
+      --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+      --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  }
+  :where(html[data-theme="dark"]){
+    --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+    --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  :where(html[data-theme="light"]){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de}
+
+  /* ---- answerable questions ---- */
+  .q{position:relative}
+  .q.answered{border-color:var(--ink-3)}
+  .q .opts li{cursor:pointer; padding-left:34px; position:relative;
+    transition:background .12s ease}
+  .q .opts li:hover{background:var(--rule-1, rgba(0,0,0,.03))}
+  .q .opts li::before{content:''; position:absolute; left:6px; top:13px;
+    width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:50%}
+  .q .opts li[aria-checked="true"]::before{border-color:var(--ink-1, #111);
+    background:var(--ink-1, #111); box-shadow:inset 0 0 0 3px var(--paper, #fff)}
+  .q .opts li[aria-checked="true"]{background:var(--rule-1, rgba(0,0,0,.05))}
+  .q .opts li:focus-visible{outline:2px solid var(--ink-2); outline-offset:-2px}
+  .q .ansbox{margin:14px 0 0; padding-top:12px; border-top:1px solid var(--rule-2)}
+  .q .ansbox .st{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+  .q .ansbox .st b{color:var(--ink-1, #111)}
+  .q .note-in{display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    font-family:inherit; font-size:14px; color:inherit; caret-color:currentColor;
+    background:transparent; border:1px solid var(--rule-2); border-radius:0;
+    padding:8px 10px; resize:vertical; min-height:2.4em}
+  .q .note-in:focus{outline:none; border-color:var(--ink-3)}
+  .qbar{border:1px solid var(--rule-2); padding:10px 14px; margin:20px 0;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    justify-content:space-between; position:sticky; top:0; z-index:5;
+    background:var(--paper, #fff)}
+  .qbar .prog{font-family:var(--mono); font-size:13px; color:var(--ink-2)}
+  .qbar .prog b{color:var(--ink-1, #111); font-size:15px}
+  .qbar .acts{display:flex; gap:9px; flex-wrap:wrap}
+  .qbar button{font-family:inherit; font-size:13px; padding:7px 14px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .qbar button:hover{background:var(--rule-1, rgba(0,0,0,.05))}
+  .qbar button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .qbar .mode{font-family:var(--mono); font-size:11.5px; color:var(--ink-3);
+    flex-basis:100%}
+  .expwrap{display:none; position:fixed; z-index:50; left:50%; top:50%;
+    transform:translate(-50%,-50%); width:min(720px, calc(100vw - 32px));
+    max-height:calc(100vh - 32px); box-sizing:border-box; overflow:auto;
+    padding:16px; background:var(--paper, #fff); color:var(--ink-1, #111);
+    border:1px solid var(--ink-3); box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .expwrap.on{display:block}
+  .expwrap .exphead{display:flex; justify-content:space-between; align-items:center;
+    gap:10px; margin:0 0 10px; font-weight:600}
+  .expwrap .exphead span{display:flex; gap:8px}
+  .expwrap button{font-family:inherit; font-size:13px; padding:7px 14px; min-height:44px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .expwrap button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .expwrap textarea{width:100%; box-sizing:border-box; min-height:190px; height:50vh;
+    font-family:var(--mono); font-size:12px; line-height:1.55; padding:12px;
+    border:1px solid var(--rule-2); background:transparent; color:inherit}
+  .expwrap .hint{font-size:13px; color:var(--ink-2); margin:8px 0 0}
+</style>
+</head>
+<body>
+<main>
+<p class="withdrawn">Critic pending &mdash; do not pick.</p>
+<h1>FLIER-2 "Flier Studio follow-ups": thin sidebar, tools on the left, fliers alone on the right (AC-28..31)</h1>
+<p class="meta">Live build ffd9a68 with each option applied by moving the real nodes (<code>mockups.ts</code>, <code>registry.ts</code>). Galaxy S5 360x640 and Desktop Chrome 1280x800, light and dark, clock frozen at 2026-10-28 15:00Z, the same steps for before and after (<code>capture.spec.ts</code>, <code>frames/*.json</code>, <code>result.json</code>). The new All fliers settings (Layout, Colours, Fonts for every flier, Custom layouts) are a target, not built yet.</p>
+<p>All three: Generate and Saved configs move into the left tools column; the right column holds only the fliers and stays pinned on desktop. Download all PNGs and "Generate with on-device AI" stay on the header row. All fliers becomes a settings list. Look of every flier: Theme, Layout, Colours, Fonts, Custom layouts, each saying what it changes, plus a line saying the on-device AI can set any of them. Shared text: the scope picker, then the three shared fields with their current values (Footer, Level names, Class price). A new setting joins the list as one more row, so adding one never re-lays the page.</p>
+<article data-option="A" data-inventory="91/91" data-aligned="pass" data-result="result.json">
+<h2>A &middot; Labelled sidebar, one scrolling column</h2>
+<p class="meta"><b>Inventory:</b> 91/91 &middot; aligned: pass &middot; text fit: pass &middot; every sidebar target 44 px or more &middot; no sideways scroll &middot; right column holds only the fliers: pass &middot; fliers beside the form while editing: pass &middot; sidebar 200 px open / 64 px icons &middot; 360 page 5670 px, first flier at y 4699 (before 4973 / 3064)</p>
+<p>A 200 px sidebar with an icon and a name for each section, fixed to the left edge; "Collapse to icons" at its foot shrinks it to 64 px with tooltips. One tools column scrolls: All fliers, Flier, Drafts, Generate, Saved configs. On a phone the sidebar becomes a sticky bar of six labelled links in two rows; its chevron folds it to one row of icons. All fliers is a stacked settings list: name, what it changes, then the control.</p>
+<p><b>Initial focus:</b> Theme in All fliers (<code>pick-theme</code>) at 1280 or wider; nothing at 360. The Title field sits at y 1330 here (below the 800 px first screen), and All fliers is the first decision in this column, so focus starts there.</p>
+<h3>First load</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-top.png" alt="Before at 1280 light: First load" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="A-1280-light-top.png" alt="Option A at 1280 light: First load" loading="lazy"><figcaption>After A, 1280 light</figcaption></figure></div><h3>All fliers: every setting says what it changes; Shared text lists its fields</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-allfliers.png" alt="Before at 1280 light: All fliers: every setting says what it changes; Shared text lists its fields" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="A-1280-light-allfliers.png" alt="Option A at 1280 light: All fliers: every setting says what it changes; Shared text lists its fields" loading="lazy"><figcaption>After A, 1280 light</figcaption></figure></div><h3>Editing a lower Text field: the fliers stay beside the form</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-editing.png" alt="Before at 1280 light: Editing a lower Text field: the fliers stay beside the form" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="A-1280-light-editing.png" alt="Option A at 1280 light: Editing a lower Text field: the fliers stay beside the form" loading="lazy"><figcaption>After A, 1280 light</figcaption></figure></div><h3>First load</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-top.png" alt="Before at 360 light: First load" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="A-360-light-top.png" alt="Option A at 360 light: First load" loading="lazy"><figcaption>After A, 360 light</figcaption></figure></div><h3>All fliers</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-allfliers.png" alt="Before at 360 light: All fliers" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="A-360-light-allfliers.png" alt="Option A at 360 light: All fliers" loading="lazy"><figcaption>After A, 360 light</figcaption></figure></div><h3>Editing a lower Text field: the live preview bar stays on screen</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-editing.png" alt="Before at 360 light: Editing a lower Text field: the live preview bar stays on screen" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="A-360-light-editing.png" alt="Option A at 360 light: Editing a lower Text field: the live preview bar stays on screen" loading="lazy"><figcaption>After A, 360 light</figcaption></figure></div><h3>Dark, first load</h3><div class="pair"><figure data-visual="before"><img src="before-1280-dark-top.png" alt="Before at 1280 dark: Dark, first load" loading="lazy"><figcaption>Before (live ffd9a68), 1280 dark</figcaption></figure><figure data-visual="after"><img src="A-1280-dark-top.png" alt="Option A at 1280 dark: Dark, first load" loading="lazy"><figcaption>After A, 1280 dark</figcaption></figure></div><h3>Dark, first load</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-dark-top.png" alt="Before at 360 dark: Dark, first load" loading="lazy"><figcaption>Before (live ffd9a68), 360 dark</figcaption></figure><figure data-visual="after"><img src="A-360-dark-top.png" alt="Option A at 360 dark: Dark, first load" loading="lazy"><figcaption>After A, 360 dark</figcaption></figure></div>
+<h3>After only: sidebar collapsed</h3>
+<div class="pair"><figure><img src="A-1280-light-rail.png" alt="Option A at 1280 with the sidebar collapsed" loading="lazy"><figcaption>A, 1280, sidebar collapsed</figcaption></figure>
+<figure class="solo"><img src="A-360-light-rail.png" alt="Option A at 360 with the bar collapsed" loading="lazy"><figcaption>A, 360, bar collapsed</figcaption></figure></div>
+</article><article data-option="B" data-inventory="91/91" data-aligned="pass" data-result="result.json">
+<h2>B &middot; Sidebar switches the panel</h2>
+<p class="meta"><b>Inventory:</b> 91/91 &middot; aligned: pass &middot; text fit: pass &middot; every sidebar target 44 px or more &middot; no sideways scroll &middot; right column holds only the fliers: pass &middot; fliers beside the form while editing: pass &middot; sidebar 88 px open / 64 px icons &middot; 360 page 3329 px, first flier at y 2358 (before 4973 / 3064)</p>
+<p>The Canva and Adobe Express pattern: an 88 px sidebar of icons with short names; each one swaps the tools column to that one section, so the column is never longer than the section you are in. Flier is open on load. It collapses to 64 px, icons only. On a phone the six icons sit in a sticky bar with names under them, and the chevron folds the names away. All fliers is a two-column settings list: name and what it changes on the left, the control on the right (stacked under 480 px).</p>
+<p><b>Initial focus:</b> Title field (<code>field-title</code>) at 1280 or wider, unchanged: the Flier panel is open on load and Title sits at y 263. Nothing at 360 (a focused field would open the keyboard over the fliers).</p>
+<h3>First load</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-top.png" alt="Before at 1280 light: First load" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="B-1280-light-top.png" alt="Option B at 1280 light: First load" loading="lazy"><figcaption>After B, 1280 light</figcaption></figure></div><h3>All fliers: every setting says what it changes; Shared text lists its fields</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-allfliers.png" alt="Before at 1280 light: All fliers: every setting says what it changes; Shared text lists its fields" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="B-1280-light-allfliers.png" alt="Option B at 1280 light: All fliers: every setting says what it changes; Shared text lists its fields" loading="lazy"><figcaption>After B, 1280 light</figcaption></figure></div><h3>Editing a lower Text field: the fliers stay beside the form</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-editing.png" alt="Before at 1280 light: Editing a lower Text field: the fliers stay beside the form" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="B-1280-light-editing.png" alt="Option B at 1280 light: Editing a lower Text field: the fliers stay beside the form" loading="lazy"><figcaption>After B, 1280 light</figcaption></figure></div><h3>First load</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-top.png" alt="Before at 360 light: First load" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="B-360-light-top.png" alt="Option B at 360 light: First load" loading="lazy"><figcaption>After B, 360 light</figcaption></figure></div><h3>All fliers</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-allfliers.png" alt="Before at 360 light: All fliers" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="B-360-light-allfliers.png" alt="Option B at 360 light: All fliers" loading="lazy"><figcaption>After B, 360 light</figcaption></figure></div><h3>Editing a lower Text field: the live preview bar stays on screen</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-editing.png" alt="Before at 360 light: Editing a lower Text field: the live preview bar stays on screen" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="B-360-light-editing.png" alt="Option B at 360 light: Editing a lower Text field: the live preview bar stays on screen" loading="lazy"><figcaption>After B, 360 light</figcaption></figure></div><h3>Dark, first load</h3><div class="pair"><figure data-visual="before"><img src="before-1280-dark-top.png" alt="Before at 1280 dark: Dark, first load" loading="lazy"><figcaption>Before (live ffd9a68), 1280 dark</figcaption></figure><figure data-visual="after"><img src="B-1280-dark-top.png" alt="Option B at 1280 dark: Dark, first load" loading="lazy"><figcaption>After B, 1280 dark</figcaption></figure></div><h3>Dark, first load</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-dark-top.png" alt="Before at 360 dark: Dark, first load" loading="lazy"><figcaption>Before (live ffd9a68), 360 dark</figcaption></figure><figure data-visual="after"><img src="B-360-dark-top.png" alt="Option B at 360 dark: Dark, first load" loading="lazy"><figcaption>After B, 360 dark</figcaption></figure></div>
+<h3>After only: sidebar collapsed</h3>
+<div class="pair"><figure><img src="B-1280-light-rail.png" alt="Option B at 1280 with the sidebar collapsed" loading="lazy"><figcaption>B, 1280, sidebar collapsed</figcaption></figure>
+<figure class="solo"><img src="B-360-light-rail.png" alt="Option B at 360 with the bar collapsed" loading="lazy"><figcaption>B, 360, bar collapsed</figcaption></figure></div>
+</article><article data-option="C" data-inventory="91/91" data-aligned="pass" data-result="result.json">
+<h2>C &middot; Icon sidebar, labels on demand</h2>
+<p class="meta"><b>Inventory:</b> 91/91 &middot; aligned: pass &middot; text fit: pass &middot; every sidebar target 44 px or more &middot; no sideways scroll &middot; right column holds only the fliers: pass &middot; fliers beside the form while editing: pass &middot; sidebar 216 px open / 64 px icons &middot; 360 page 5624 px, first flier at y 4653 (before 4973 / 3064)</p>
+<p>A 64 px icon-only sidebar is the resting state (tooltips name each icon); the chevron at its foot opens a 216 px labelled panel over the page. One tools column scrolls, as in A. On a phone one sticky "Sections" bar opens the list of six links. All fliers is the same two-column settings list as B.</p>
+<p><b>Initial focus:</b> Theme in All fliers (<code>pick-theme</code>) at 1280 or wider; nothing at 360. Title sits at y 1248, below the first screen, so focus starts on the first All fliers setting.</p>
+<h3>First load</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-top.png" alt="Before at 1280 light: First load" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="C-1280-light-top.png" alt="Option C at 1280 light: First load" loading="lazy"><figcaption>After C, 1280 light</figcaption></figure></div><h3>All fliers: every setting says what it changes; Shared text lists its fields</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-allfliers.png" alt="Before at 1280 light: All fliers: every setting says what it changes; Shared text lists its fields" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="C-1280-light-allfliers.png" alt="Option C at 1280 light: All fliers: every setting says what it changes; Shared text lists its fields" loading="lazy"><figcaption>After C, 1280 light</figcaption></figure></div><h3>Editing a lower Text field: the fliers stay beside the form</h3><div class="pair"><figure data-visual="before"><img src="before-1280-light-editing.png" alt="Before at 1280 light: Editing a lower Text field: the fliers stay beside the form" loading="lazy"><figcaption>Before (live ffd9a68), 1280 light</figcaption></figure><figure data-visual="after"><img src="C-1280-light-editing.png" alt="Option C at 1280 light: Editing a lower Text field: the fliers stay beside the form" loading="lazy"><figcaption>After C, 1280 light</figcaption></figure></div><h3>First load</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-top.png" alt="Before at 360 light: First load" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="C-360-light-top.png" alt="Option C at 360 light: First load" loading="lazy"><figcaption>After C, 360 light</figcaption></figure></div><h3>All fliers</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-allfliers.png" alt="Before at 360 light: All fliers" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="C-360-light-allfliers.png" alt="Option C at 360 light: All fliers" loading="lazy"><figcaption>After C, 360 light</figcaption></figure></div><h3>Editing a lower Text field: the live preview bar stays on screen</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-light-editing.png" alt="Before at 360 light: Editing a lower Text field: the live preview bar stays on screen" loading="lazy"><figcaption>Before (live ffd9a68), 360 light</figcaption></figure><figure data-visual="after"><img src="C-360-light-editing.png" alt="Option C at 360 light: Editing a lower Text field: the live preview bar stays on screen" loading="lazy"><figcaption>After C, 360 light</figcaption></figure></div><h3>Dark, first load</h3><div class="pair"><figure data-visual="before"><img src="before-1280-dark-top.png" alt="Before at 1280 dark: Dark, first load" loading="lazy"><figcaption>Before (live ffd9a68), 1280 dark</figcaption></figure><figure data-visual="after"><img src="C-1280-dark-top.png" alt="Option C at 1280 dark: Dark, first load" loading="lazy"><figcaption>After C, 1280 dark</figcaption></figure></div><h3>Dark, first load</h3><div class="pair phone"><figure data-visual="before"><img src="before-360-dark-top.png" alt="Before at 360 dark: Dark, first load" loading="lazy"><figcaption>Before (live ffd9a68), 360 dark</figcaption></figure><figure data-visual="after"><img src="C-360-dark-top.png" alt="Option C at 360 dark: Dark, first load" loading="lazy"><figcaption>After C, 360 dark</figcaption></figure></div>
+<h3>After only: sidebar opened</h3>
+<div class="pair"><figure><img src="C-1280-light-rail.png" alt="Option C at 1280 with the sidebar opened" loading="lazy"><figcaption>C, 1280, sidebar opened</figcaption></figure>
+<figure class="solo"><img src="C-360-light-rail.png" alt="Option C at 360 with the bar opened" loading="lazy"><figcaption>C, 360, bar opened</figcaption></figure></div>
+</article>
+<h2>Information inventory (role Visitor, 91 rows)</h2>
+<p class="meta">Rows 1-76 from the AC-24..27 round, re-sighted on live ffd9a68, then 15 items new since ffd9a68 (contents links, fold toggles, AI entry, Generate and Saved configs cards). Same fate in A, B and C; counted visible-in-frame over every anchored shot (result.json).</p>
+<table><tr><th>#</th><th>Item</th><th>Source</th><th>A / B / C</th></tr><tr><td>1</td><td>Flier Studio mark + wordmark, home link brand</td><td>src/ui/brandHeader.ts:10</td><td>kept</td></tr><tr><td>2</td><td>Lead line lead</td><td>src/main.ts:155</td><td>state, kept</td></tr><tr><td>3</td><td>Status line (saved, loaded, copied, imported) status</td><td>src/main.ts:42</td><td>state, kept</td></tr><tr><td>4</td><td>Prompt: describe the flier prompt-text</td><td>src/ui/promptPanel.ts:17</td><td>kept</td></tr><tr><td>5</td><td>Generate prompt-generate</td><td>src/ui/promptPanel.ts:34</td><td>kept</td></tr><tr><td>6</td><td>Prompt progress / outcome prompt-status</td><td>src/ui/promptPanel.ts:18</td><td>state, kept</td></tr><tr><td>7</td><td>Flier card + "Editing flier x of y" flier-form</td><td>src/ui/formView.ts:102</td><td>kept</td></tr><tr><td>8</td><td>Theme row container theme-row</td><td>src/ui/themeControls.ts:26</td><td>kept</td></tr><tr><td>9</td><td>Theme pick-theme</td><td>src/ui/themeControls.ts:21</td><td>kept</td></tr><tr><td>10</td><td>Theme applies to (this / all) pick-theme-scope</td><td>src/ui/themeControls.ts:23</td><td>dropped D11</td></tr><tr><td>11</td><td>Shared text edits apply to (this / all) pick-scope</td><td>src/ui/formView.ts:89</td><td>kept</td></tr><tr><td>12</td><td>Picker: layout pick-layout</td><td>src/ui/formView.ts:62</td><td>kept</td></tr><tr><td>13</td><td>Picker: format pick-format</td><td>src/ui/formView.ts:62</td><td>kept</td></tr><tr><td>14</td><td>Picker: palette pick-palette</td><td>src/ui/formView.ts:62</td><td>kept</td></tr><tr><td>15</td><td>Picker: fonts pick-fonts</td><td>src/ui/formView.ts:62</td><td>kept</td></tr><tr><td>16</td><td>Picker: background pick-background</td><td>src/ui/formView.ts:62</td><td>kept</td></tr><tr><td>17</td><td>Upload picture upload-picture</td><td>src/ui/formView.ts:96</td><td>kept</td></tr><tr><td>18</td><td>Upload logo upload-logo</td><td>src/ui/formView.ts:98</td><td>kept</td></tr><tr><td>19</td><td>Remove picture background (disabled with no picture) remove-background</td><td>src/ui/formView.ts:67</td><td>kept</td></tr><tr><td>20</td><td>Picture alignment pick-anchor</td><td>src/ui/formView.ts:75</td><td>kept</td></tr><tr><td>21</td><td>Picture size slider pick-scale</td><td>src/ui/formView.ts:76</td><td>kept</td></tr><tr><td>22</td><td>Picture size % readout pick-scale-value</td><td>src/ui/formView.ts:78</td><td>kept</td></tr><tr><td>23</td><td>Text: title field-title</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>24</td><td>Text: titleBottom field-titleBottom</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>25</td><td>Text: script field-script</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>26</td><td>Text: includesHeading field-includesHeading</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>27</td><td>Text: footer field-footer</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>28</td><td>Text: venue field-venue</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>29</td><td>Text: schedule field-schedule</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>30</td><td>Text: prices field-prices</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>31</td><td>Text: includesItems field-includesItems</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>32</td><td>Text: items field-items</td><td>src/ui/formView.ts:38</td><td>kept</td></tr><tr><td>33</td><td>Add flier (copy of the selected one) add-flier</td><td>src/ui/formView.ts:106</td><td>kept</td></tr><tr><td>34</td><td>Remove flier (the selected one) remove-flier</td><td>src/ui/formView.ts:106</td><td>kept</td></tr><tr><td>35</td><td>Saved set name config-name</td><td>src/ui/configPanel.ts:22</td><td>kept</td></tr><tr><td>36</td><td>Save set config-save</td><td>src/ui/configPanel.ts:56</td><td>kept</td></tr><tr><td>37</td><td>Saved sets list config-pick</td><td>src/ui/configPanel.ts:23</td><td>kept</td></tr><tr><td>38</td><td>Saved set: load config-load</td><td>src/ui/configPanel.ts:61</td><td>kept</td></tr><tr><td>39</td><td>Saved set: rename config-rename</td><td>src/ui/configPanel.ts:61</td><td>kept</td></tr><tr><td>40</td><td>Saved set: delete config-delete</td><td>src/ui/configPanel.ts:62</td><td>kept</td></tr><tr><td>41</td><td>Saved set: export config-export</td><td>src/ui/configPanel.ts:62</td><td>kept</td></tr><tr><td>42</td><td>Saved set: import config-import</td><td>src/ui/configPanel.ts:63</td><td>kept</td></tr><tr><td>43</td><td>Share link field share-url</td><td>src/ui/shareControls.ts:12</td><td>kept</td></tr><tr><td>44</td><td>Make share link config-share</td><td>src/ui/shareControls.ts:22</td><td>kept</td></tr><tr><td>45</td><td>Load Kizomba preset config-preset</td><td>src/ui/configPanel.ts:66</td><td>kept</td></tr><tr><td>46</td><td>Previews section + heading previews</td><td>src/main.ts:151</td><td>kept</td></tr><tr><td>47</td><td>Download all PNGs download-all</td><td>src/main.ts:151</td><td>kept</td></tr><tr><td>48</td><td>Preview grid preview-grid</td><td>src/main.ts:44</td><td>kept</td></tr><tr><td>49</td><td>Flier canvas (aria-label = title) preview-n</td><td>src/ui/previews.ts:43</td><td>kept</td></tr><tr><td>50</td><td>Selected flier crop marks selected</td><td>src/ui/previews.ts:43</td><td>state, kept</td></tr><tr><td>51</td><td>Edit flier n (selects it) edit-n</td><td>src/ui/previews.ts:46</td><td>kept</td></tr><tr><td>52</td><td>Download PNG of one flier download-n</td><td>src/ui/previews.ts:47</td><td>kept</td></tr><tr><td>53</td><td>List hint state (too many rows) list-hint</td><td>src/ui/previews.ts:23</td><td>state, kept</td></tr><tr><td>54</td><td>Flier render error invalid</td><td>src/ui/previews.ts:24</td><td>state, kept</td></tr><tr><td>55</td><td>Render pending (debounce 150 ms) render-pending</td><td>src/main.ts:54</td><td>state, kept</td></tr><tr><td>56</td><td>Phone bar: live thumbnail mini-preview</td><td>src/ui/miniPreview.ts:65</td><td>kept</td></tr><tr><td>57</td><td>Phone bar: open full size mini-open</td><td>src/ui/miniPreview.ts:58</td><td>kept</td></tr><tr><td>58</td><td>Phone bar: "Flier x of y" mini-position</td><td>src/ui/miniPreview.ts:59</td><td>kept</td></tr><tr><td>59</td><td>Phone bar: See all n mini-see-all</td><td>src/ui/miniPreview.ts:60</td><td>kept</td></tr><tr><td>60</td><td>Full-size sheet + Close mini-sheet</td><td>src/ui/miniPreview.ts:43</td><td>state, kept</td></tr><tr><td>61</td><td>Share-link import dialog (import, dismiss, error, dropped notice) import-dialog</td><td>src/ui/importDialog.ts:33</td><td>state, kept</td></tr><tr><td>62</td><td>Background-removal dialog (keep, erase, move, zoom, brush, use, cancel) cutout-dialog</td><td>src/ui/cutoutDialog.ts:88</td><td>state, kept</td></tr><tr><td>63</td><td>Dark theme (prefers-color-scheme) dark</td><td>src/main.ts:40</td><td>state, kept</td></tr><tr><td>64</td><td>live ff3b43d item all-fliers</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>65</td><td>live ff3b43d item all-fliers-row</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>66</td><td>live ff3b43d item all-fliers-toggle</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>67</td><td>live ff3b43d item draft-restore-1</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>68</td><td>live ff3b43d item draft-star-1</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>69</td><td>live ff3b43d item drafts-all</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>70</td><td>live ff3b43d item drafts-favourites</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>71</td><td>live ff3b43d item drafts-list</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>72</td><td>live ff3b43d item drafts-panel</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>73</td><td>live ff3b43d item drafts-panel-toggle</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>74</td><td>live ff3b43d item select-hint</td><td>re-sighted live ff3b43d</td><td>kept</td></tr><tr><td>75</td><td>Previews stay beside the form while a lower field is edited (1280: preview-1 in view; 360: mini-preview in view)</td><td>src/ui/styles.css:147 (sticky), src/ui/miniPreview.ts:65</td><td>kept</td></tr><tr><td>76</td><td>Generate from prompt heading + on-device AI wording</td><td>src/ui/promptPanel.ts:31, en.json prompt.heading</td><td>kept</td></tr><tr><td>77</td><td>live ffd9a68 item ai-entry</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>78</td><td>live ffd9a68 item ai-note</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>79</td><td>live ffd9a68 item flier-form-toggle</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>80</td><td>live ffd9a68 item generate</td><td>re-sighted live ffd9a68</td><td>moved to the left tools column</td></tr><tr><td>81</td><td>live ffd9a68 item group-toggle-layout</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>82</td><td>live ffd9a68 item group-toggle-pictures</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>83</td><td>live ffd9a68 item group-toggle-text</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>84</td><td>live ffd9a68 item nav-ai</td><td>re-sighted live ffd9a68</td><td>moved to the left tools column</td></tr><tr><td>85</td><td>live ffd9a68 item nav-all</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>86</td><td>live ffd9a68 item nav-configs</td><td>re-sighted live ffd9a68</td><td>moved to the left tools column</td></tr><tr><td>87</td><td>live ffd9a68 item nav-drafts</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>88</td><td>live ffd9a68 item nav-form</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>89</td><td>live ffd9a68 item nav-previews</td><td>re-sighted live ffd9a68</td><td>kept</td></tr><tr><td>90</td><td>live ffd9a68 item saved-configs</td><td>re-sighted live ffd9a68</td><td>moved to the left tools column</td></tr><tr><td>91</td><td>live ffd9a68 item section-nav</td><td>re-sighted live ffd9a68</td><td>kept</td></tr></table>
+<div class="qpics"><img src="A-1280-light-top.png" alt="Option A at 1280" loading="lazy"><img src="B-1280-light-top.png" alt="Option B at 1280" loading="lazy"><img src="C-1280-light-top.png" alt="Option C at 1280" loading="lazy"></div>
+<div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which sidebar and tools layout?</p>
+<ul class="opts">
+<li data-letter="A"><span class="lt">A</span><span>Labelled sidebar, one scrolling column</span></li>
+<li data-letter="B"><span class="lt">B</span><span>Sidebar switches the panel</span></li>
+<li data-letter="C"><span class="lt">C</span><span>Icon sidebar, labels on demand</span></li>
+</ul></div>
+</main>
+</body>
+</html>
+
+<script>
+(function () {
+  'use strict';
+  // Contrast guard: a host page forced dark (or light) while the OS scheme differs left
+  // --ink-1 #111 on a dark background, so typed notes were invisible (2026-10-01).
+  (function () {
+    function lum(c) {
+      var m = (c || '').match(/[\d.]+/g); if (!m || m.length < 3) return null;
+      var v = m.slice(0, 3).map(function (x) { x = x / 255;
+        return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    }
+    var el = document.body, bg = null;
+    while (el && el.nodeType === 1) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && !/rgba\([^)]*,\s*0\)|transparent/.test(c)) { bg = c; break; }
+      el = el.parentElement;
+    }
+    var root = document.documentElement;
+    var probe = document.createElement('span');
+    probe.style.color = 'var(--ink-1, #111)'; document.body.appendChild(probe);
+    var lb = lum(bg || 'rgb(255,255,255)'), li = lum(getComputedStyle(probe).color);
+    probe.remove();
+    if (lb === null || li === null) return;
+    if ((Math.max(lb, li) + 0.05) / (Math.min(lb, li) + 0.05) >= 4.5) return;
+    var dark = lb < 0.2, set = dark
+      ? ['#141414', '#f0efec', '#a8a49c', '#6f6b64', 'rgba(255,255,255,.06)', '#333029']
+      : ['#ffffff', '#111111', '#555555', '#8a8a8a', 'rgba(0,0,0,.05)', '#e2e2de'];
+    ['--paper', '--ink-1', '--ink-2', '--ink-3', '--rule-1', '--rule-2'].forEach(
+      function (k, i) { root.style.setProperty(k, set[i]); });
+  })();
+  var DOCKEY = 'flier2-ac28-31';
+  var DOCTITLE = 'Flier Studio Sidebar';
+  var LS = 'answers:' + DOCKEY;
+  var state = {};
+  var db = null;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(LS);
+      if (raw) state = JSON.parse(raw) || {};
+    } catch (e) { state = {}; }
+  }
+
+  function persistLocal() {
+    try { window.localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function persistDb(qid) {
+    if (!db) return;
+    var v = state[qid] || {};
+    db.doc('answers/' + qid).set({
+      question: v.question || '',
+      choice: v.choice || '',
+      choiceText: v.choiceText || '',
+      note: v.note || '',
+      doc: DOCKEY,
+      updatedAt: new Date().toISOString()
+    }).catch(function () { /* keep the local copy; export still works */ });
+  }
+
+  function save(qid) { persistLocal(); persistDb(qid); }
+
+  var blocks = [];
+
+  function render() {
+    var done = 0;
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      b.el.classList.toggle('answered', !!v.choice);
+      if (v.choice) done++;
+      b.opts.forEach(function (li) {
+        var on = li.getAttribute('data-letter') === v.choice;
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        li.setAttribute('tabindex', on || (!v.choice && li === b.opts[0]) ? '0' : '-1');
+      });
+      b.status.textContent = v.choice ? 'answered — ' : 'not answered yet';
+      if (v.choice) {
+        var bb = document.createElement('b');
+        bb.textContent = v.choice;
+        b.status.appendChild(bb);
+      }
+      if (b.note.value !== (v.note || '')) b.note.value = v.note || '';
+    });
+    if (bar) {
+      bar.prog.innerHTML = '<b>' + done + '</b> of ' + blocks.length + ' answered';
+    }
+  }
+
+  function choose(b, letter, text) {
+    var v = state[b.qid] || {};
+    if (v.choice === letter) { delete v.choice; delete v.choiceText; }
+    else { v.choice = letter; v.choiceText = text; }
+    v.question = b.question;
+    state[b.qid] = v;
+    save(b.qid);
+    render();
+  }
+
+  function buildExport() {
+    var out = ['# Answers \u2014 ' + DOCTITLE,
+               'recorded ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+               ''];
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      out.push('## ' + b.qid.toUpperCase() + ' \u2014 ' + b.question);
+      out.push(v.choice
+        ? '**Answer: ' + v.choice + '** \u2014 ' + (v.choiceText || '')
+        : '**Answer: (not answered)**');
+      if (v.note) out.push('Note: ' + v.note);
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
+  var bar = null;
+
+  function buildBar(firstQ) {
+    var el = document.createElement('div');
+    el.className = 'qbar';
+    el.innerHTML =
+      '<span class="prog"></span>' +
+      '<span class="acts">' +
+      '<button type="button" class="clr">Clear all</button>' +
+      '<button type="button" class="prim exp">Export answers</button>' +
+      '</span>' +
+      '<span class="mode"></span>';
+    var wrap = document.createElement('div');
+    wrap.className = 'expwrap';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-label', 'Exported answers');
+    wrap.innerHTML = '<div class="exphead">Your answers' +
+      '<span><button type="button" class="prim cpy">Copy</button>' +
+      '<button type="button" class="cls">Close</button></span></div>' +
+      '<textarea readonly aria-label="Answers for export"></textarea>' +
+      '<p class="hint">Press Copy, then paste the text into the conversation.</p>';
+    var section = firstQ.closest ? firstQ.closest('section') : null;
+    var anchor = section && section.parentNode ? section : firstQ;
+    anchor.parentNode.insertBefore(el, anchor);
+    document.body.appendChild(wrap);
+
+    bar = {
+      el: el,
+      prog: el.querySelector('.prog'),
+      mode: el.querySelector('.mode'),
+      exportBtn: el.querySelector('.exp'),
+      wrap: wrap,
+      ta: wrap.querySelector('textarea'),
+      hint: wrap.querySelector('.hint')
+    };
+
+    function closeExport() { wrap.classList.remove('on'); bar.exportBtn.focus(); }
+    wrap.querySelector('.cls').addEventListener('click', closeExport);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) closeExport();
+    });
+    wrap.querySelector('.cpy').addEventListener('click', function () {
+      bar.ta.focus();
+      bar.ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText)
+          navigator.clipboard.writeText(bar.ta.value).then(function () {
+            bar.hint.textContent = 'Copied. Paste it into the conversation.';
+          }, function () {});
+      } catch (e) {}
+      bar.hint.textContent = ok ? 'Copied. Paste it into the conversation.'
+        : 'The text is selected: press Ctrl+C (Cmd+C on a Mac), then paste it into the conversation.';
+    });
+
+    el.querySelector('.clr').addEventListener('click', function () {
+      blocks.forEach(function (b) {
+        state[b.qid] = { question: b.question, note: (state[b.qid] || {}).note || '' };
+        delete state[b.qid].choice;
+        save(b.qid);
+      });
+      render();
+    });
+
+    bar.exportBtn.addEventListener('click', function () {
+      var txt = buildExport();
+      bar.ta.value = txt;
+      bar.wrap.classList.add('on');
+      bar.hint.textContent = 'Press Copy, then paste the text into the conversation.';
+      bar.ta.focus();
+      bar.ta.select();
+    });
+  }
+
+  function init() {
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.q[data-qid]'));
+    if (!qs.length) return;
+
+    qs.forEach(function (el) {
+      var qid = el.getAttribute('data-qid');
+      var qn = el.querySelector('.qn');
+      var question = qn ? qn.textContent.replace(/\s+/g, ' ').replace(/^\s*Q\d+\s*/, '').trim() : qid;
+      var opts = Array.prototype.slice.call(el.querySelectorAll('.opts li[data-letter]'));
+      var group = el.querySelector('.opts');
+      if (group) group.setAttribute('role', 'radiogroup');
+
+      var box = document.createElement('div');
+      box.className = 'ansbox';
+      box.innerHTML = '<span class="st"></span>' +
+        '<textarea class="note-in" rows="2" placeholder="Optional \u2014 a caveat, a ' +
+        'condition, or why not the recommendation."></textarea>';
+      var oldAns = el.querySelector('.ans');
+      if (oldAns) oldAns.parentNode.replaceChild(box, oldAns);
+      else el.appendChild(box);
+
+      var b = {
+        el: el, qid: qid, question: question, opts: opts,
+        status: box.querySelector('.st'), note: box.querySelector('.note-in')
+      };
+
+      opts.forEach(function (li) {
+        li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
+        var span = li.querySelector('span:last-child');
+        var text = (span ? span.textContent : li.textContent)
+          .replace(/\s+/g, ' ').replace(/\s*recommended\s*$/i, '').trim();
+        li.addEventListener('click', function () {
+          choose(b, li.getAttribute('data-letter'), text);
+        });
+        li.addEventListener('keydown', function (ev) {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            choose(b, li.getAttribute('data-letter'), text);
+          }
+        });
+      });
+
+      b.note.addEventListener('input', function () {
+        var v = state[qid] || {};
+        v.note = b.note.value;
+        v.question = question;
+        state[qid] = v;
+        persistLocal();
+      });
+      b.note.addEventListener('blur', function () { persistDb(qid); });
+
+      blocks.push(b);
+    });
+
+    load();
+    buildBar(qs[0]);
+    render();
+
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('db').then(function (d) {
+        if (!d) { setMode('saved in this browser only'); return; }
+        db = d;
+        setMode('saved to this page \u2014 Claude can read these answers back');
+        d.collection('answers').get().then(function (snap) {
+          var touched = false;
+          snap.docs.forEach(function (doc) {
+            var data = doc.data() || {};
+            var cur = state[doc.id] || {};
+            if (!cur.choice && !cur.note && (data.choice || data.note)) {
+              state[doc.id] = {
+                question: data.question || cur.question || '',
+                choice: data.choice || '', choiceText: data.choiceText || '',
+                note: data.note || ''
+              };
+              touched = true;
+            }
+          });
+          if (touched) { persistLocal(); render(); }
+        }).catch(function () {});
+      }).catch(function () { setMode('saved in this browser only'); });
+    } else {
+      setMode('saved in this browser only');
+    }
+  }
+
+  function setMode(t) { if (bar) bar.mode.textContent = t; }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

@@ -1,0 +1,3007 @@
+{
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "pairMethod": "same-steps",
+ "beforeBuild": "ffd9a68",
+ "before360": {
+  "flier1Top": 3064,
+  "pageHeight": 4973
+ },
+ "inventory": [
+  {
+   "n": 1,
+   "item": "Flier Studio mark + wordmark, home link `brand`",
+   "id": "brand",
+   "source": "src/ui/brandHeader.ts:10",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 2,
+   "item": "Lead line `lead`",
+   "id": "lead",
+   "source": "src/main.ts:155",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 3,
+   "item": "Status line (saved, loaded, copied, imported) `status`",
+   "id": "status",
+   "source": "src/main.ts:42",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 4,
+   "item": "Prompt: describe the flier `prompt-text`",
+   "id": "prompt-text",
+   "source": "src/ui/promptPanel.ts:17",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 5,
+   "item": "Generate `prompt-generate`",
+   "id": "prompt-generate",
+   "source": "src/ui/promptPanel.ts:34",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 6,
+   "item": "Prompt progress / outcome `prompt-status`",
+   "id": "prompt-status",
+   "source": "src/ui/promptPanel.ts:18",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 7,
+   "item": "Flier card + \"Editing flier x of y\" `flier-form`",
+   "id": "flier-form",
+   "source": "src/ui/formView.ts:102",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 8,
+   "item": "Theme row container `theme-row`",
+   "id": "theme-row",
+   "source": "src/ui/themeControls.ts:26",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 9,
+   "item": "Theme `pick-theme`",
+   "id": "pick-theme",
+   "source": "src/ui/themeControls.ts:21",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 10,
+   "item": "Theme applies to (this / all) `pick-theme-scope`",
+   "id": "pick-theme-scope",
+   "source": "src/ui/themeControls.ts:23",
+   "state": false,
+   "kind": "absent-live"
+  },
+  {
+   "n": 11,
+   "item": "Shared text edits apply to (this / all) `pick-scope`",
+   "id": "pick-scope",
+   "source": "src/ui/formView.ts:89",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 12,
+   "item": "Picker: layout `pick-layout`",
+   "id": "pick-layout",
+   "source": "src/ui/formView.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 13,
+   "item": "Picker: format `pick-format`",
+   "id": "pick-format",
+   "source": "src/ui/formView.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 14,
+   "item": "Picker: palette `pick-palette`",
+   "id": "pick-palette",
+   "source": "src/ui/formView.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 15,
+   "item": "Picker: fonts `pick-fonts`",
+   "id": "pick-fonts",
+   "source": "src/ui/formView.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 16,
+   "item": "Picker: background `pick-background`",
+   "id": "pick-background",
+   "source": "src/ui/formView.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 17,
+   "item": "Upload picture `upload-picture`",
+   "id": "upload-picture",
+   "source": "src/ui/formView.ts:96",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 18,
+   "item": "Upload logo `upload-logo`",
+   "id": "upload-logo",
+   "source": "src/ui/formView.ts:98",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 19,
+   "item": "Remove picture background (disabled with no picture) `remove-background`",
+   "id": "remove-background",
+   "source": "src/ui/formView.ts:67",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 20,
+   "item": "Picture alignment `pick-anchor`",
+   "id": "pick-anchor",
+   "source": "src/ui/formView.ts:75",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 21,
+   "item": "Picture size slider `pick-scale`",
+   "id": "pick-scale",
+   "source": "src/ui/formView.ts:76",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 22,
+   "item": "Picture size % readout `pick-scale-value`",
+   "id": "pick-scale-value",
+   "source": "src/ui/formView.ts:78",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 23,
+   "item": "Text: title `field-title`",
+   "id": "field-title",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 24,
+   "item": "Text: titleBottom `field-titleBottom`",
+   "id": "field-titleBottom",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 25,
+   "item": "Text: script `field-script`",
+   "id": "field-script",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 26,
+   "item": "Text: includesHeading `field-includesHeading`",
+   "id": "field-includesHeading",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 27,
+   "item": "Text: footer `field-footer`",
+   "id": "field-footer",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 28,
+   "item": "Text: venue `field-venue`",
+   "id": "field-venue",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 29,
+   "item": "Text: schedule `field-schedule`",
+   "id": "field-schedule",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 30,
+   "item": "Text: prices `field-prices`",
+   "id": "field-prices",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 31,
+   "item": "Text: includesItems `field-includesItems`",
+   "id": "field-includesItems",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 32,
+   "item": "Text: items `field-items`",
+   "id": "field-items",
+   "source": "src/ui/formView.ts:38",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 33,
+   "item": "Add flier (copy of the selected one) `add-flier`",
+   "id": "add-flier",
+   "source": "src/ui/formView.ts:106",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 34,
+   "item": "Remove flier (the selected one) `remove-flier`",
+   "id": "remove-flier",
+   "source": "src/ui/formView.ts:106",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 35,
+   "item": "Saved set name `config-name`",
+   "id": "config-name",
+   "source": "src/ui/configPanel.ts:22",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 36,
+   "item": "Save set `config-save`",
+   "id": "config-save",
+   "source": "src/ui/configPanel.ts:56",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 37,
+   "item": "Saved sets list `config-pick`",
+   "id": "config-pick",
+   "source": "src/ui/configPanel.ts:23",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 38,
+   "item": "Saved set: load `config-load`",
+   "id": "config-load",
+   "source": "src/ui/configPanel.ts:61",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 39,
+   "item": "Saved set: rename `config-rename`",
+   "id": "config-rename",
+   "source": "src/ui/configPanel.ts:61",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 40,
+   "item": "Saved set: delete `config-delete`",
+   "id": "config-delete",
+   "source": "src/ui/configPanel.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 41,
+   "item": "Saved set: export `config-export`",
+   "id": "config-export",
+   "source": "src/ui/configPanel.ts:62",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 42,
+   "item": "Saved set: import `config-import`",
+   "id": "config-import",
+   "source": "src/ui/configPanel.ts:63",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 43,
+   "item": "Share link field `share-url`",
+   "id": "share-url",
+   "source": "src/ui/shareControls.ts:12",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 44,
+   "item": "Make share link `config-share`",
+   "id": "config-share",
+   "source": "src/ui/shareControls.ts:22",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 45,
+   "item": "Load Kizomba preset `config-preset`",
+   "id": "config-preset",
+   "source": "src/ui/configPanel.ts:66",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 46,
+   "item": "Previews section + heading `previews`",
+   "id": "previews",
+   "source": "src/main.ts:151",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 47,
+   "item": "Download all PNGs `download-all`",
+   "id": "download-all",
+   "source": "src/main.ts:151",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 48,
+   "item": "Preview grid `preview-grid`",
+   "id": "preview-grid",
+   "source": "src/main.ts:44",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 49,
+   "item": "Flier canvas (aria-label = title) `preview-n`",
+   "id": "preview-1",
+   "source": "src/ui/previews.ts:43",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 50,
+   "item": "Selected flier crop marks `selected`",
+   "id": "selected",
+   "source": "src/ui/previews.ts:43",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 51,
+   "item": "Edit flier n (selects it) `edit-n`",
+   "id": "edit-1",
+   "source": "src/ui/previews.ts:46",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 52,
+   "item": "Download PNG of one flier `download-n`",
+   "id": "download-1",
+   "source": "src/ui/previews.ts:47",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 53,
+   "item": "List hint state (too many rows) `list-hint`",
+   "id": "list-hint",
+   "source": "src/ui/previews.ts:23",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 54,
+   "item": "Flier render error `invalid`",
+   "id": "invalid",
+   "source": "src/ui/previews.ts:24",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 55,
+   "item": "Render pending (debounce 150 ms) `render-pending`",
+   "id": "render-pending",
+   "source": "src/main.ts:54",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 56,
+   "item": "Phone bar: live thumbnail `mini-preview`",
+   "id": "mini-preview",
+   "source": "src/ui/miniPreview.ts:65",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 57,
+   "item": "Phone bar: open full size `mini-open`",
+   "id": "mini-open",
+   "source": "src/ui/miniPreview.ts:58",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 58,
+   "item": "Phone bar: \"Flier x of y\" `mini-position`",
+   "id": "mini-position",
+   "source": "src/ui/miniPreview.ts:59",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 59,
+   "item": "Phone bar: See all n `mini-see-all`",
+   "id": "mini-see-all",
+   "source": "src/ui/miniPreview.ts:60",
+   "state": false,
+   "kind": "probe"
+  },
+  {
+   "n": 60,
+   "item": "Full-size sheet + Close `mini-sheet`",
+   "id": "mini-sheet",
+   "source": "src/ui/miniPreview.ts:43",
+   "state": false,
+   "kind": "absent-live"
+  },
+  {
+   "n": 61,
+   "item": "Share-link import dialog (import, dismiss, error, dropped notice) `import-dialog`",
+   "id": "import-dialog",
+   "source": "src/ui/importDialog.ts:33",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 62,
+   "item": "Background-removal dialog (keep, erase, move, zoom, brush, use, cancel) `cutout-dialog`",
+   "id": "cutout-dialog",
+   "source": "src/ui/cutoutDialog.ts:88",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 63,
+   "item": "Dark theme (prefers-color-scheme) `dark`",
+   "id": "dark",
+   "source": "src/main.ts:40",
+   "state": true,
+   "kind": "state"
+  },
+  {
+   "n": 64,
+   "item": "live ff3b43d item `all-fliers`",
+   "id": "all-fliers",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 65,
+   "item": "live ff3b43d item `all-fliers-row`",
+   "id": "all-fliers-row",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 66,
+   "item": "live ff3b43d item `all-fliers-toggle`",
+   "id": "all-fliers-toggle",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 67,
+   "item": "live ff3b43d item `draft-restore-1`",
+   "id": "draft-restore-1",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 68,
+   "item": "live ff3b43d item `draft-star-1`",
+   "id": "draft-star-1",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 69,
+   "item": "live ff3b43d item `drafts-all`",
+   "id": "drafts-all",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 70,
+   "item": "live ff3b43d item `drafts-favourites`",
+   "id": "drafts-favourites",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 71,
+   "item": "live ff3b43d item `drafts-list`",
+   "id": "drafts-list",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 72,
+   "item": "live ff3b43d item `drafts-panel`",
+   "id": "drafts-panel",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 73,
+   "item": "live ff3b43d item `drafts-panel-toggle`",
+   "id": "drafts-panel-toggle",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 74,
+   "item": "live ff3b43d item `select-hint`",
+   "id": "select-hint",
+   "source": "re-sighted live ff3b43d",
+   "kind": "probe"
+  },
+  {
+   "n": 75,
+   "item": "Previews stay beside the form while a lower field is edited (1280: preview-1 in view; 360: mini-preview in view)",
+   "id": "",
+   "source": "src/ui/styles.css:147 (sticky), src/ui/miniPreview.ts:65",
+   "kind": "previewBeside"
+  },
+  {
+   "n": 76,
+   "item": "Generate from prompt heading + on-device AI wording",
+   "id": "",
+   "source": "src/ui/promptPanel.ts:31, en.json prompt.heading",
+   "kind": "aiTitle"
+  },
+  {
+   "n": 77,
+   "item": "live ffd9a68 item `ai-entry`",
+   "id": "ai-entry",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 78,
+   "item": "live ffd9a68 item `ai-note`",
+   "id": "ai-note",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 79,
+   "item": "live ffd9a68 item `flier-form-toggle`",
+   "id": "flier-form-toggle",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 80,
+   "item": "live ffd9a68 item `generate`",
+   "id": "generate",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 81,
+   "item": "live ffd9a68 item `group-toggle-layout`",
+   "id": "group-toggle-layout",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 82,
+   "item": "live ffd9a68 item `group-toggle-pictures`",
+   "id": "group-toggle-pictures",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 83,
+   "item": "live ffd9a68 item `group-toggle-text`",
+   "id": "group-toggle-text",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 84,
+   "item": "live ffd9a68 item `nav-ai`",
+   "id": "nav-ai",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 85,
+   "item": "live ffd9a68 item `nav-all`",
+   "id": "nav-all",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 86,
+   "item": "live ffd9a68 item `nav-configs`",
+   "id": "nav-configs",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 87,
+   "item": "live ffd9a68 item `nav-drafts`",
+   "id": "nav-drafts",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 88,
+   "item": "live ffd9a68 item `nav-form`",
+   "id": "nav-form",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 89,
+   "item": "live ffd9a68 item `nav-previews`",
+   "id": "nav-previews",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 90,
+   "item": "live ffd9a68 item `saved-configs`",
+   "id": "saved-configs",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  },
+  {
+   "n": 91,
+   "item": "live ffd9a68 item `section-nav`",
+   "id": "section-nav",
+   "source": "re-sighted live ffd9a68",
+   "kind": "probe"
+  }
+ ],
+ "options": {
+  "A": {
+   "inventory": "91/91",
+   "lost": [],
+   "previewBesideWhileEditing": true,
+   "aiNote": true,
+   "rightOnlyFliers": true,
+   "downloadAllOnHeaderRow": true,
+   "railCollapsedWidth1280": 64,
+   "railOpenWidth1280": 200,
+   "misaligned": [],
+   "textFit": [],
+   "hscroll": false,
+   "under44": [],
+   "focusedOnLoad": {
+    "A-1280-dark-top.png": "field-title",
+    "A-1280-light-top.png": "field-title",
+    "A-360-dark-top.png": "BODY",
+    "A-360-light-top.png": "BODY"
+   },
+   "flier1Top360": 4699,
+   "pageHeight360": 5670,
+   "items": {
+    "note": "pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames",
+    "before": [
+     "brand"
+    ],
+    "after": [
+     "brand"
+    ]
+   }
+  },
+  "B": {
+   "inventory": "91/91",
+   "lost": [],
+   "previewBesideWhileEditing": true,
+   "aiNote": true,
+   "rightOnlyFliers": true,
+   "downloadAllOnHeaderRow": true,
+   "railCollapsedWidth1280": 64,
+   "railOpenWidth1280": 88,
+   "misaligned": [],
+   "textFit": [],
+   "hscroll": false,
+   "under44": [],
+   "focusedOnLoad": {
+    "B-1280-dark-top.png": "field-title",
+    "B-1280-light-top.png": "field-title",
+    "B-360-dark-top.png": "BODY",
+    "B-360-light-top.png": "BODY"
+   },
+   "flier1Top360": 2358,
+   "pageHeight360": 3329,
+   "items": {
+    "note": "pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames",
+    "before": [
+     "brand"
+    ],
+    "after": [
+     "brand"
+    ]
+   }
+  },
+  "C": {
+   "inventory": "91/91",
+   "lost": [],
+   "previewBesideWhileEditing": true,
+   "aiNote": true,
+   "rightOnlyFliers": true,
+   "downloadAllOnHeaderRow": true,
+   "railCollapsedWidth1280": 64,
+   "railOpenWidth1280": 216,
+   "misaligned": [],
+   "textFit": [],
+   "hscroll": false,
+   "under44": [],
+   "focusedOnLoad": {
+    "C-1280-dark-top.png": "field-title",
+    "C-1280-light-top.png": "field-title",
+    "C-360-dark-top.png": "BODY",
+    "C-360-light-top.png": "BODY"
+   },
+   "flier1Top360": 4653,
+   "pageHeight360": 5624,
+   "items": {
+    "note": "pair-content check narrowed to the header mark: AC-28 moves Generate and Saved configs between columns by design; inventory is counted visible-in-frame over all frames",
+    "before": [
+     "brand"
+    ],
+    "after": [
+     "brand"
+    ]
+   }
+  }
+ },
+ "frames": [
+  {
+   "option": "A",
+   "shot": "1280-dark-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-dark-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-1280-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-allfliers",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "pick-background",
+     "pick-fonts",
+     "pick-format",
+     "pick-layout",
+     "pick-palette",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-allfliers",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-1280-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-ai-line",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-editing",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-note",
+     "download-4",
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "edit-4",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "field-schedule",
+     "flier-form",
+     "generate",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "prompt-generate",
+     "prompt-text",
+     "remove-flier",
+     "saved-configs",
+     "select-hint"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-editing",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-1280-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-4",
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "edit-4",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "field-schedule",
+     "flier-form",
+     "generate",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "remove-flier",
+     "section-nav",
+     "select-hint"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-1280-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-dark-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-dark-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-360-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-allfliers",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "pick-scope",
+     "pick-theme",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-allfliers",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-360-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-editing",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-grid",
+     "previews",
+     "remove-flier"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-editing",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-360-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "flier-form",
+     "generate",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "remove-flier",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup A",
+   "file": "A-360-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-dark-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-dark-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-1280-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "group-toggle-pictures",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-background",
+     "pick-fonts",
+     "pick-format",
+     "pick-layout",
+     "pick-palette",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "upload-logo",
+     "upload-picture"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-allfliers",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "pick-background",
+     "pick-fonts",
+     "pick-format",
+     "pick-layout",
+     "pick-palette",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-allfliers",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-1280-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-ai-line",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "shared-fields",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-editing",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-note",
+     "download-4",
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "edit-4",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "field-schedule",
+     "flier-form",
+     "generate",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "prompt-generate",
+     "prompt-text",
+     "remove-flier",
+     "saved-configs",
+     "select-hint"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-editing",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-1280-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-4",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "edit-4",
+     "field-footer",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "field-schedule",
+     "field-venue",
+     "flier-form",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "remove-flier",
+     "section-nav",
+     "select-hint"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-1280-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "group-toggle-pictures",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-background",
+     "pick-fonts",
+     "pick-format",
+     "pick-layout",
+     "pick-palette",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "upload-logo",
+     "upload-picture"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-dark-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-dark-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-360-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "brand",
+     "download-all",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-layout",
+     "rail-toggle",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-allfliers",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "pick-scope",
+     "pick-theme",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-allfliers",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-360-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-editing",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-grid",
+     "previews",
+     "remove-flier"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-editing",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-360-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "remove-flier",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup B",
+   "file": "B-360-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "brand",
+     "download-all",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-layout",
+     "rail-toggle",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-dark-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-dark-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-1280-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-ai-line",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-allfliers",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "pick-background",
+     "pick-fonts",
+     "pick-format",
+     "pick-layout",
+     "pick-palette",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-allfliers",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-1280-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-ai-line",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "shared-fields",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-editing",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-note",
+     "download-4",
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "edit-4",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "field-schedule",
+     "flier-form",
+     "generate",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "prompt-generate",
+     "prompt-text",
+     "remove-flier",
+     "saved-configs",
+     "select-hint"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-editing",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-1280-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-4",
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "edit-4",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "field-schedule",
+     "flier-form",
+     "generate",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "remove-flier",
+     "section-nav",
+     "select-hint"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-1280-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-scope",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-1280-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-ai-line",
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "brand",
+     "download-1",
+     "download-2",
+     "download-3",
+     "download-all",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-dark-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-dark-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-360-dark-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-allfliers",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "field-title",
+     "flier-form",
+     "flier-form-toggle",
+     "group-toggle-layout",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "pick-scope",
+     "pick-theme",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-allfliers",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-360-light-allfliers.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-custom-layouts",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "all-fonts",
+     "all-layout",
+     "all-palette",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-editing",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "flier-form",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "preview-1",
+     "preview-2",
+     "preview-grid",
+     "previews",
+     "remove-flier"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-editing",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-360-light-editing.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; editing",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "field-items scrollIntoView block center",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "draft-restore-1",
+     "draft-star-1",
+     "drafts-all",
+     "drafts-favourites",
+     "drafts-list",
+     "drafts-panel",
+     "drafts-panel-toggle",
+     "field-includesItems",
+     "field-items",
+     "field-prices",
+     "flier-form",
+     "generate",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "rail-toggle",
+     "remove-flier",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-top",
+   "side": "before",
+   "build": "ffd9a68",
+   "file": "before-360-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "pick-theme",
+     "section-nav",
+     "theme-row"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-top",
+   "side": "after",
+   "build": "ffd9a68 + mockup C",
+   "file": "C-360-light-top.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, every card open; top",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "window.scrollTo(0, 0)",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "ai-entry",
+     "all-fliers",
+     "all-fliers-row",
+     "all-fliers-toggle",
+     "brand",
+     "download-all",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "pick-theme",
+     "rail-toggle",
+     "section-nav",
+     "theme-row"
+    ]
+   }
+  }
+ ]
+}

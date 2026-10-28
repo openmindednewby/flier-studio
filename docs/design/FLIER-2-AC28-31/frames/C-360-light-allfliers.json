@@ -1,0 +1,51 @@
+{
+ "option": "C",
+ "side": "after",
+ "shot": "allfliers",
+ "build": "ffd9a68 + mockup C",
+ "file": "C-360-light-allfliers.png",
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, every card open; allfliers",
+  "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+  "viewport": "360x640",
+  "colorScheme": "light",
+  "scrollAnchor": "window.scrollTo(all-fliers top - 16)",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "BODY",
+ "inViewport": [
+  "all-custom-layouts",
+  "all-fliers",
+  "all-fliers-row",
+  "all-fliers-toggle",
+  "all-fonts",
+  "all-layout",
+  "all-palette",
+  "mini-open",
+  "mini-position",
+  "mini-preview",
+  "mini-see-all",
+  "pick-theme",
+  "rail-toggle",
+  "section-nav",
+  "theme-row"
+ ],
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "previewBeside": false,
+ "dlOnHeader": true,
+ "rightOnlyFliers": true,
+ "rightKids": [
+  "preview-grid",
+  "select-hint"
+ ],
+ "railWidth": 360,
+ "railCollapsed": true,
+ "draftsInView": false,
+ "hscroll": false,
+ "flier1Top": 4653,
+ "titleTop": 1555,
+ "pageHeight": 5624
+}

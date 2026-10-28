@@ -1,0 +1,53 @@
+{
+ "option": "before",
+ "side": "before",
+ "shot": "scope",
+ "build": "ffd9a68",
+ "file": "before-360-light-scope.png",
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, every card open; scope",
+  "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+  "viewport": "360x640",
+  "colorScheme": "light",
+  "scrollAnchor": "pick-scope scrollIntoView block center",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "BODY",
+ "inViewport": [
+  "add-flier",
+  "all-fliers",
+  "all-fliers-row",
+  "all-fliers-toggle",
+  "field-title",
+  "flier-form",
+  "flier-form-toggle",
+  "group-toggle-layout",
+  "mini-open",
+  "mini-position",
+  "mini-preview",
+  "mini-see-all",
+  "pick-scope",
+  "pick-theme",
+  "theme-row"
+ ],
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "previewBeside": false,
+ "dlOnHeader": true,
+ "rightOnlyFliers": false,
+ "rightKids": [
+  "preview-grid",
+  "select-hint",
+  "generate",
+  "saved-configs"
+ ],
+ "railWidth": 328,
+ "railCollapsed": false,
+ "draftsInView": false,
+ "hscroll": false,
+ "flier1Top": 3064,
+ "titleTop": 905,
+ "pageHeight": 4973
+}

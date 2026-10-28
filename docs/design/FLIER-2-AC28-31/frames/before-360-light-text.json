@@ -1,0 +1,50 @@
+{
+ "option": "before",
+ "side": "before",
+ "shot": "text",
+ "build": "ffd9a68",
+ "file": "before-360-light-text.png",
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, every card open; text",
+  "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+  "viewport": "360x640",
+  "colorScheme": "light",
+  "scrollAnchor": "field-venue scrollIntoView block center",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "BODY",
+ "inViewport": [
+  "field-footer",
+  "field-includesHeading",
+  "field-includesItems",
+  "field-prices",
+  "field-schedule",
+  "field-script",
+  "field-venue",
+  "flier-form",
+  "mini-open",
+  "mini-position",
+  "mini-preview",
+  "mini-see-all"
+ ],
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "previewBeside": false,
+ "dlOnHeader": true,
+ "rightOnlyFliers": false,
+ "rightKids": [
+  "preview-grid",
+  "select-hint",
+  "generate",
+  "saved-configs"
+ ],
+ "railWidth": 328,
+ "railCollapsed": false,
+ "draftsInView": false,
+ "hscroll": false,
+ "flier1Top": 3064,
+ "titleTop": 905,
+ "pageHeight": 4973
+}

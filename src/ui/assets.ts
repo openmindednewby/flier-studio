@@ -33,6 +33,14 @@ export class AssetBook {
     return id;
   }
 
+  public async sourceOf(id: string): Promise<Blob | ImageBitmap | undefined> {
+    const stored = KIZOMBA_ASSET_URLS[id] === undefined ? await this.store.get(id) : undefined;
+    if (stored !== undefined) return stored;
+    await this.ensure(id);
+    const image = this.images.get(id);
+    return image === undefined ? undefined : createImageBitmap(image);
+  }
+
   private async ensure(id: string): Promise<void> {
     if (this.images.has(id)) return;
     const bundled = KIZOMBA_ASSET_URLS[id];

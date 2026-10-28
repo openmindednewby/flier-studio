@@ -1,5 +1,6 @@
 import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/design-tokens';
 import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
+import { cutPicture, cutoutFile, lazy } from './cutout/cutoutFlow';
 import { EditScope } from './form/EditScope';
 import { nextDocs } from './form/sharedFields';
 import { applyTheme, withDocs } from './form/themeScope';
@@ -62,6 +63,7 @@ function showForm(): void {
   renderForm(formBox, docs[state.selected], [state.selected + 1, docs.length], {
     change: (doc) => { const reshaped = doc.format !== docs[state.selected].format; state.fliers = withDocs(state.fliers, nextDocs(state.scope, docsOf(), state.selected, doc)); if (reshaped) showForm(); refreshPreviews(); },
     upload: (kind, file) => void upload(kind, file),
+    removeBackground: () => void removeBackground(),
     scope: () => state.scope,
     setScope: (scope) => { state.scope = scope; },
     theme: () => state.fliers[state.selected].themeId,
@@ -82,6 +84,14 @@ async function upload(kind: UploadKind, file: File): Promise<void> {
   state.fliers = withDocs(state.fliers, docs);
   showForm();
   refreshPreviews();
+}
+
+const remover = lazy(async () => (await import('@dloizides/background-removal')).createBackgroundRemover(__BG_REMOVAL_URLS__));
+
+async function removeBackground(): Promise<void> {
+  const { openCutoutDialog } = await import('./ui/cutoutDialog');
+  const imageId = docsOf()[state.selected].picture?.imageId;
+  openCutoutDialog({ cut: () => cutPicture(imageId, { sourceOf: (id) => assets.sourceOf(id), remover }), use: (png) => void upload(UploadKind.Picture, cutoutFile(png)) });
 }
 
 function select(index: number): void {

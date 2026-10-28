@@ -13,6 +13,7 @@ import { UploadKind } from './UploadKind';
 export interface FormActions extends ThemeActions {
   change(doc: FlierDoc): void;
   upload(kind: UploadKind, file: File): void;
+  removeBackground(): void;
   add(): void;
   remove(): void;
   scope(): EditScope;
@@ -62,6 +63,12 @@ function picker(p: DocPicker, doc: FlierDoc): HTMLSelectElement {
   return select(layoutsFor(doc.format).map((e) => e.id), doc.layout, `pick-${p}`, (id) => FM(`layouts.${id}`));
 }
 
+function cutoutButton(doc: FlierDoc, actions: FormActions): HTMLButtonElement {
+  const node = button('form.removeBackground', 'remove-background', () => actions.removeBackground());
+  node.disabled = doc.picture === undefined;
+  return node;
+}
+
 /** The flier form; every control reads and writes the FlierDoc of the selected flier. */
 export function renderForm(container: HTMLElement, doc: FlierDoc, position: [number, number], actions: FormActions): void {
   const pickers = Object.fromEntries(PICKERS.map((p) => [p, picker(p, doc)])) as Record<DocPicker, HTMLSelectElement>;
@@ -87,6 +94,7 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     anchor: labelled('form.anchor', anchor),
     scale: labelledValue('form.scale', scale, scaleValue),
     picture: fileButton('form.picture', 'upload-picture', 'image/*', (f) => actions.upload(UploadKind.Picture, f)),
+    cutout: cutoutButton(doc, actions),
     logo: fileButton('form.logo', 'upload-logo', 'image/*', (f) => actions.upload(UploadKind.Logo, f)),
   };
   container.replaceChildren(

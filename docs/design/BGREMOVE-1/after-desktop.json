@@ -1,0 +1,24 @@
+{
+  "pairMethod": "same-steps",
+  "frames": [
+    {
+      "name": "after-desktop",
+      "pair": {
+        "route": "/",
+        "state": "first load, flier 1 of 4, no edits",
+        "fixture": "kizomba preset",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "anchor": "#form-group-pictures",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 315.96875
+        }
+      }
+    }
+  ]
+}

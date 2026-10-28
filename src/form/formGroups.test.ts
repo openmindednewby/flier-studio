@@ -4,7 +4,7 @@ import { FORM_GROUPS, groupedControls } from './formGroups';
 
 describe('groupedControls', () => {
   it('across the three groups, keeps every form control exactly once', () => {
-    const inventory = ['layout', 'format', 'palette', 'fonts', 'background', 'picture', 'logo', 'anchor', 'scale',
+    const inventory = ['layout', 'format', 'palette', 'fonts', 'background', 'picture', 'logo', 'cutout', 'anchor', 'scale',
       'title', 'titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'];
 
     const controls = groupedControls();

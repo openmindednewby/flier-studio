@@ -67,3 +67,57 @@ There is no taste ledger at `apps/flier-studio/docs/design/taste-ledger.md`, so 
 - `vf/views-greyscale-cvd-squint.jpg` may predate the final frames (layouts differ slightly). I did not re-run greyscale or CVD on the final frames.
 - The contrast probe is a pixel-colour heuristic. Gradient-sky lines were not checked glyph by glyph, and print colour (CMYK) was not checked.
 - Pick-page markup (`data-inventory`, `data-aligned`) was not opened.
+
+---
+
+# Round 2: option A "Horizon" as built, minus the sea band (2026-10-28)
+
+The owner picked A without the sea band. I judged the 4 built PNGs in `KizombaWarrior/docs/event fliers/events/JimmyAndIsminiWorkshops/fliers/*-golden-hour.png` (1080x1920). The theme-1 PNGs beside them are the before frames.
+
+## Verdict: ESCALATE (A, second taste REDO). No hard fail. Mean 3.9, lowest #5 = 3
+
+This is A's second round below the bar on a taste/craft criterion (#5), so under the two-round rule it goes to the owner rather than a third loop. The one remaining defect is small and concrete (fix 1 below). The designer should apply it before the owner sees the fliers.
+
+## Hard fails (checked first)
+
+| Check | Result | How measured |
+|---|---|---|
+| Lost text item | none, 4/4 fliers | Each golden-hour flier checked by eye against its theme-1 before: title, date/"Kizomba" script, WORKSHOP(S), logo, venue, each level + time, 5€ per hour, party pass price(s), "Party pass includes" + 3 items, "Classes by Jimmy & Ismini". Every one is present. |
+| Text over the picture | none | Workshop text column ends at x≈385 and the cut-out starts at x≈470. On Upcoming the column ends at x≈490 and the shirt edge is at x≈545. |
+| Text contrast < 4.5:1 | none | Glyph core (p0.5 darkest) vs ground (p90) per text block. 31 Oct: title 5.11, date 4.81, venue 9.76, level 9.97, time 5.15, per hour 5.25, includes 5.29, list 10.40, classes 4.90. Upcoming: date 5.09, schedule 10.35, party pass 5.31, 5€ per hour 10.41, list 10.48, classes 4.93. |
+| Form rows | n/a | Posters have no form controls. |
+
+## Round 1 fixes for A
+
+| r1 fix | Status | Evidence |
+|---|---|---|
+| 1 Remove the painted sea band | done | The ground is now one sky-to-sand gradient, and nothing crosses the legs. The light geometry no longer disagrees. |
+| 2 Clean matte, no wall remnant between legs/fingers | **partly done** | The jeans and shirt edges are clean, with no white fringe, and the gap between the legs is clean ground. The **fingertips of his left hand** (the hand resting at the crotch, full frame x≈700-820, y≈1660-1700, the same on all 4 fliers) are still wrong: a stair-step matte cuts the tips flat, there are light specks between the fingers, and an ochre wall remnant sits beside the index fingertip (x≈716, y≈1682). |
+| 3 Keep "Classes by" ≥ 4.5:1 | done | 4.90 / 4.93. |
+
+## Scores (1-5)
+
+| # | Criterion | A r2 |
+|---|---|---|
+| 1 | Focal point / purpose | 4: the title, then the couple; it reads as a workshop at once |
+| 2 | Portability | 3: a cut-out on a gradient is a common template; the sky colours come from the photo |
+| 3 | Hierarchy, type, spacing | 4: the schedule steps cleanly. There is a dead gap of ≈150 px between WORKSHOP and the venue rule (y≈430-575) |
+| 4 | Visual language | 4: one warm low light, and the ground now agrees with it |
+| 5 | Owner's taste | 3: the owner "spots physical errors in mockups" (`user_design_taste.md`). The clipped, specked fingertips are such an error on an otherwise clean cut-out |
+| 6 | AI-default tells | 4: none |
+| 7 | Text fits | 4: no overflow or clipping on any of the 4 fliers |
+| 8 | Inventory true | 5: every item kept |
+| | **Mean** | **3.9** |
+
+## Top fixes (every item kept)
+
+1. Re-matte his left hand's fingertips: restore the full fingertip shapes from the source photo, delete the ochre wall pixels and the light specks between the fingers, then erode 1-2 px and feather 1 px on that edge only.
+2. Close the dead gap under WORKSHOP: move the venue block up ≈80 px, or give that height to the date script.
+3. Upcoming: the date scripts ("Sat 31 Oct" ...) are the thinnest strokes on the page. Increase them ≈15% so they read at phone-story size.
+
+## NOT COVERED
+
+- Story 1080x1920 only. Square, A4/print and the in-app preview at 360x640 and 1280x800 were not seen.
+- No greyscale/CVD pass was run on the built PNGs, and print CMYK was not checked.
+- `result.json` `pair` records for the built golden-hour PNGs were not read. Pair parity was judged by eye only: same size, same text and same layout slots as theme 1.
+- Contrast comes from a pixel-percentile probe, not a per-glyph measurement.

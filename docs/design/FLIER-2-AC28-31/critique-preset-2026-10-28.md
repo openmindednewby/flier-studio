@@ -48,6 +48,16 @@ The count is shown, but only in the body: "You have 4 fliers on screen. Add puts
 2. **360 button row:** below 400 px stack the three buttons full width in the order Add, Replace, Cancel (each 44 px), so Cancel is no longer the widest target; keep the one-row layout at 1280. Dialog grows about 52 px and still fits 640 (about 330 px tall).
 3. **Body copy to 3 lines at 360:** "You have {{n}} fliers. Add keeps them and puts the {{m}} samples after them. Replace swaps all {{n}} for the samples; Drafts keeps a copy first."
 
+## Round-2 copy
+
+`config.presetBody`, final English (p1 = the `presetFliers` plural, e.g. "4 fliers"; p2 = samples; p3 = fliers on screen):
+
+"Add keeps your {{p1}} and puts the {{p2}} samples after them. Replace swaps all {{p3}}; Drafts keeps a copy."
+
+Measured in Chromium at the dialog's text width at 360 (331.2 px dialog - 2 x 16 px padding - 2 x 1 px border = 297 px), 16px/1.5: 3 lines with system-ui, Roboto/Arial and Verdana, at 4/4 and at 12/12 fliers. The fix #3 string above measures 4 lines in all three, so it is replaced by this one.
+
+Dark `--error`: `@dloizides/design-tokens` 1.18.0 sets `FLIER_TOKENS.dark.dangerText` `#e8826f` (5.47:1 on `#2c2824`) and maps it to `--error` in the dark block; light stays `#b3261e`.
+
 ## NOT COVERED
 
 - The open animation (`dialog-enter`, 8 px rise) judged from stills only.

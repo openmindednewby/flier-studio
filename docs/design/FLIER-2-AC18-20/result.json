@@ -1,6 +1,6 @@
 {
  "countMethod": "visible data-testid, whole frame",
- "rowsMethod": "auto (1px bottom/top)",
+ "rowsMethod": "auto: every side-by-side control pair in a .row, top and height within 1px; the capture run fails on a miss",
  "pairMethod": "same-steps",
  "before": [
   "add-flier",
@@ -70,12 +70,15 @@
     "all-fliers",
     "draft-restore-n",
     "draft-star-n",
+    "drafts-all",
     "drafts-favourites",
     "drafts-list",
     "drafts-panel",
     "select-hint"
    ],
    "formRowsMisaligned": [],
+   "enlargeFit": [],
+   "textFit": [],
    "pairs": [
     {
      "after": "A-dblclick-1280.png",
@@ -124,6 +127,8 @@
     "select-hint"
    ],
    "formRowsMisaligned": [],
+   "enlargeFit": [],
+   "textFit": [],
    "pairs": [
     {
      "after": "B-dblclick-1280.png",
@@ -170,6 +175,8 @@
     "theme-chip-kizomba-classic"
    ],
    "formRowsMisaligned": [],
+   "enlargeFit": [],
+   "textFit": [],
    "pairs": [
     {
      "after": "C-dblclick-1280.png",
@@ -227,6 +234,7 @@
     "download-n",
     "draft-restore-n",
     "draft-star-n",
+    "drafts-all",
     "drafts-favourites",
     "drafts-list",
     "drafts-panel",
@@ -267,8 +275,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "A",
@@ -302,6 +313,7 @@
     "download-n",
     "draft-restore-n",
     "draft-star-n",
+    "drafts-all",
     "drafts-favourites",
     "drafts-list",
     "drafts-panel",
@@ -346,8 +358,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "A",
@@ -381,6 +396,7 @@
     "download-n",
     "draft-restore-n",
     "draft-star-n",
+    "drafts-all",
     "drafts-favourites",
     "drafts-list",
     "drafts-panel",
@@ -419,8 +435,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "A",
@@ -454,6 +473,7 @@
     "download-n",
     "draft-restore-n",
     "draft-star-n",
+    "drafts-all",
     "drafts-favourites",
     "drafts-list",
     "drafts-panel",
@@ -496,8 +516,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "B",
@@ -575,8 +598,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "B",
@@ -658,8 +684,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "B",
@@ -732,8 +761,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "B",
@@ -810,8 +842,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "C",
@@ -889,8 +924,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "C",
@@ -972,8 +1010,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "C",
@@ -1048,8 +1089,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "C",
@@ -1128,8 +1172,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "before",
@@ -1196,8 +1243,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "before",
@@ -1268,8 +1318,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "before",
@@ -1336,8 +1389,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   },
   {
    "option": "before",
@@ -1408,8 +1464,11 @@
     "upload-picture"
    ],
    "formRows": {
+    "method": "side-by-side pairs: top and height within 1px",
     "misaligned": []
-   }
+   },
+   "enlargeFit": [],
+   "textFit": []
   }
  ]
 }

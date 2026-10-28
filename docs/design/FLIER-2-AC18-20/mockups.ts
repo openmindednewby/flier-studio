@@ -25,14 +25,20 @@ export function mockup(side: string): void {
     .mk-drafts { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
     .mk-drafts li { display: grid; grid-template-columns: auto 1fr auto auto; gap: 8px; align-items: center; }
     .mk-drafts canvas { border: 1px solid var(--border); display: block; }
-    .mk-strip { display: flex; gap: var(--gap); overflow-x: auto; padding-bottom: 4px; }
-    .mk-strip li { grid-template-columns: auto; justify-items: start; min-width: 96px; }
+    .mk-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: var(--gap); }
+    .mk-strip li { grid-template-columns: auto; justify-items: start; min-width: 0; }
+    .mk-strip li > * { max-width: 100%; }
+    .mk-strip button { width: 100%; }
+    .row.mk-pair { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .row.mk-pair > * { width: 100%; }
+    @media (max-width: 400px) { .row.mk-pair { grid-template-columns: 1fr; } }
     .mk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .mk-chips button { width: auto; flex: 0 0 auto; }
     .mk-chips [aria-pressed="true"] { outline: 2px solid currentColor; outline-offset: 1px; }
     .mk-bar { position: sticky; top: 0; z-index: 2; }
     .mk-big { max-width: min(92vw, 720px); }
     .mk-big canvas { display: block; max-width: 100%; max-height: calc(100dvh - 300px); width: auto; height: auto; margin: 0 auto; }
+    .mini-sheet.mk-sheet-c canvas { max-height: calc(100dvh - 220px); }
   ` }));
 
   const label = (id: string): HTMLElement => q(id).closest('label') as HTMLElement;
@@ -51,34 +57,30 @@ export function mockup(side: string): void {
   const grid = q('preview-grid');
   grid.after(hint);
 
+  const draftsCard = (list: HTMLElement): HTMLElement => mk('section', { class: 'card', 'data-testid': 'drafts-panel' }, [
+    mk('h2', { text: 'Drafts on this device' }),
+    mk('div', { class: 'mk-chips', role: 'group', 'aria-label': 'Show drafts' }, [Object.assign(btn('All (12)', 'drafts-all'), { ariaPressed: 'true' }), Object.assign(btn('Favourites (1)', 'drafts-favourites'), { ariaPressed: 'false' })]),
+    list,
+  ]);
   if (side === 'A') {
     const card = mk('section', { class: 'card', 'data-testid': 'all-fliers' }, [
       mk('h2', { text: 'All fliers' }),
       mk('p', { class: 'muted', text: `Theme and these settings change all ${String(count)} fliers.` }),
       mk('div', { class: 'row' }, [themeLabel, scopeLabel]),
       mk('div', { class: 'row' }, [q('add-flier')]),
-      mk('details', { open: '', 'data-testid': 'drafts-panel' }, [
-        mk('summary', { text: 'Drafts on this device (12)' }),
-        mk('div', { class: 'mk-chips' }, [Object.assign(btn('Favourites only (1)', 'drafts-favourites'), { ariaPressed: 'false' })]),
-        draftRows(''),
-      ]),
     ]);
     previews.querySelector('.row.head')?.after(card);
+    hint.after(draftsCard(draftRows('')));
   }
   if (side === 'B') {
     const card = mk('section', { class: 'card', 'data-testid': 'all-fliers' }, [
       mk('h2', { text: `All ${String(count)} fliers` }),
       mk('div', { class: 'row' }, [themeLabel, scopeLabel]),
-      mk('div', { class: 'row' }, [q('add-flier'), q('download-all')]),
+      mk('div', { class: 'row mk-pair' }, [q('add-flier'), q('download-all')]),
       q('config-share').closest('.row') as HTMLElement,
     ]);
     q('flier-form').before(card);
-    const config = q('config-name').closest('section') as HTMLElement;
-    config.querySelector('h2')?.after(mk('div', { 'data-testid': 'drafts-panel' }, [
-      mk('h3', { text: 'Drafts on this device' }),
-      mk('div', { class: 'row', role: 'group', 'aria-label': 'Show' }, [Object.assign(btn('All drafts (12)', 'drafts-all'), { ariaPressed: 'true' }), Object.assign(btn('Favourites (1)', 'drafts-favourites'), { ariaPressed: 'false' })]),
-      draftRows(''),
-    ]));
+    (q('config-name').closest('section') as HTMLElement).after(draftsCard(draftRows('')));
   }
   if (side === 'C') {
     const pick = q<HTMLSelectElement>('pick-theme');
@@ -88,14 +90,10 @@ export function mockup(side: string): void {
     const bar = mk('section', { class: 'card mk-bar', 'data-testid': 'all-fliers' }, [
       mk('h2', { text: `All ${String(count)} fliers · theme` }), chips,
       mk('div', { class: 'row' }, [scopeLabel]),
-      mk('div', { class: 'row' }, [q('add-flier'), q('download-all')]),
+      mk('div', { class: 'row mk-pair' }, [q('add-flier'), q('download-all')]),
     ]);
     previews.querySelector('.row.head')?.after(bar);
-    hint.after(mk('section', { class: 'card', 'data-testid': 'drafts-panel' }, [
-      mk('h2', { text: 'Drafts on this device' }),
-      mk('div', { class: 'mk-chips' }, [Object.assign(btn('All (12)', 'drafts-all'), { ariaPressed: 'true' }), Object.assign(btn('Favourites (1)', 'drafts-favourites'), { ariaPressed: 'false' })]),
-      draftRows('mk-strip'),
-    ]));
+    hint.after(draftsCard(draftRows('mk-strip')));
   }
 
   const enlarge = (fig: HTMLElement): void => {
@@ -120,6 +118,7 @@ export function mockup(side: string): void {
     full.width = src.width; full.height = src.height;
     full.getContext('2d')?.drawImage(src, 0, 0);
     sheet.setAttribute('aria-label', `Flier ${n}, full size`);
+    if (side === 'C') sheet.classList.add('mk-sheet-c');
     if (side === 'C') q('mini-close').before(mk('div', { class: 'row' }, [mk('span', { class: 'muted', text: `Flier ${n} of ${String(count)} · Esc closes` }), btn(`Download flier ${n}`, 'enlarge-download')]));
     document.body.append(sheet);
     sheet.showModal();

@@ -112,14 +112,14 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 </head>
 <body>
 <main>
-<p class="withdrawn" role="note">Withdrawn — do not pick. design-critic 2026-10-28: A REDO (fliers pushed below the desktop fold), B and C REDO (hard fail: "Add flier / Download all PNGs" row misaligned at 360; C also clips the drafts strip and the enlarged flier). Redrawn options will replace this page. Score sheet: critique-2026-10-28.md.</p>
+<p class="withdrawn" role="note">Critic pending — do not pick. Round 2 (2026-10-28) applies every fix from critique-2026-10-28.md; design-critic has not judged it yet.</p>
 <h1>Where the settings for all fliers live</h1>
-<p class="meta">FLIER-2 "Flier Studio follow-ups", AC-18 select on click · AC-19 "All fliers" section · AC-20 double-click enlarge · AC-21..23 drafts and favourites (D11, D12). Before = live https://fliers.dloizides.com at 98ca2bc; after = the same build with the option drawn in by moving its real controls (mockup, `mockups.ts`). Same route, steps, fixture (Kizomba preset, 4 fliers, fresh storage), viewport and anchor on both sides (`result.json`, pairMethod same-steps). Inventory: 63 items for the one role, Visitor (task folder `FLIER-2-AC18-20-inventory.md`); "Theme applies to" is dropped by D11 in every option.</p>
+<p class="meta">FLIER-2 "Flier Studio follow-ups", AC-18 select on click · AC-19 "All fliers" section · AC-20 double-click enlarge · AC-21..23 drafts and favourites (D11, D12). Before = live https://fliers.dloizides.com at 98ca2bc; after = the same build with the option drawn in by moving its real controls (mockup, `mockups.ts`). Same route, steps, fixture (Kizomba preset, 4 fliers, fresh storage), viewport and anchor on both sides (`result.json`, pairMethod same-steps). Inventory: 52/52 first-load items for the one role, Visitor, measured in `result.json` (63 rows in `FLIER-2-AC18-20-inventory.md`: 11 are state-only and not on any first-load frame; "Theme applies to" is dropped by D11 in every option). Round 2 probes, run on every frame and failing the capture run on a miss: side-by-side form controls share top edge and height within 1px; the enlarged flier and its buttons sit inside 360x640 and 1280x800 with no scrolling; no text leaves its card.</p>
 
-<article data-option="A" data-inventory="63/63" data-aligned="pass" data-result="result.json">
+<article data-option="A" data-inventory="52/52" data-aligned="pass" data-result="result.json">
 <h2>A. "All fliers" card on top of the previews</h2>
-<p>Theme and "Shared text edits apply to" sit side by side in one card above the fliers they change, with Add flier and the Drafts list under them. Click a flier to edit it; double-click opens the full-size sheet the phone bar already uses.</p>
-<p class="meta"><strong>Inventory:</strong> 63/63 (4 moved into the card, 1 dropped D11) · form rows aligned: pass (0 rows off by more than 1px) · Drafts: open disclosure in the card, Favourites only toggle, Restore + Star per draft.</p>
+<p>Theme and "Shared text edits apply to" sit side by side in one short card above the fliers they change, with Add flier under them; the first flier starts at y = 485 at 1280 (round 1: 767). Drafts get their own card under the previews with an All (12) / Favourites (1) filter. Click a flier to edit it; double-click opens the full-size sheet the phone bar already uses.</p>
+<p class="meta"><strong>Inventory:</strong> 52/52 (4 moved into the card, 1 dropped D11) · form rows aligned: pass (top + height, 0 pairs off by more than 1px) · enlarge fits 360x640 and 1280x800 · Drafts: own card under the previews, All / Favourites chips, Restore + Star per draft.</p>
 <h3>First load, 1280x800, full page</h3>
 <div class="pair"><figure data-visual="before"><div class="scroll"><img src="before-load-1280.png" alt="Before at 1280: Theme and Theme applies to at the top of the Flier card"></div><figcaption>Before</figcaption></figure><figure data-visual="after"><div class="scroll"><img src="A-load-1280.png" alt="After A at 1280: All fliers card above the preview grid with Theme, scope, Add flier and Drafts"></div><figcaption>After</figcaption></figure></div>
 <h3>First load, 360x640, full page</h3>
@@ -130,10 +130,10 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 <table><tr><th>Screen</th><th>Focused on open (FOCUS-1)</th><th>Why</th></tr><tr><td>Studio</td><td>Title field at ≥1024, none on phone (today)</td><td>The title is the first thing to change; no keyboard pop on phone</td></tr><tr><td>Enlarge sheet</td><td>Close</td><td>Looking is the job; Close (or Esc) returns focus to the flier</td></tr></table>
 </article>
 
-<article data-option="B" data-inventory="63/63" data-aligned="pass" data-result="result.json">
+<article data-option="B" data-inventory="52/52" data-aligned="pass" data-result="result.json">
 <h2>B. "All n fliers" card first in the controls column</h2>
-<p>Everything that acts on the whole set gathers in one card above the Flier form: Theme, the shared-edits scope, Add flier, Download all and the share link. Drafts join the saved sets card. Double-click opens a larger dialog that steps through the set.</p>
-<p class="meta"><strong>Inventory:</strong> 63/63 (6 moved into the card, 1 dropped D11) · form rows aligned: pass · Drafts: in "Saved sets", All drafts / Favourites switch.</p>
+<p>Everything that acts on the whole set gathers in one card above the Flier form: Theme, the shared-edits scope, Add flier, Download all and the share link. Below 400px wide, Add flier and Download all PNGs stack full width; wider, they share one row at one height. Drafts get their own card under Saved configs. Double-click opens a larger dialog that steps through the set.</p>
+<p class="meta"><strong>Inventory:</strong> 52/52 (6 moved into the card, 1 dropped D11) · form rows aligned: pass (top + height) · enlarge fits both viewports · Drafts: own card, All / Favourites chips.</p>
 <h3>First load, 1280x800, full page</h3>
 <div class="pair"><figure data-visual="before"><div class="scroll"><img src="before-load-1280.png" alt="Before at 1280"></div><figcaption>Before</figcaption></figure><figure data-visual="after"><div class="scroll"><img src="B-load-1280.png" alt="After B at 1280: All 4 fliers card between Prompt and Flier"></div><figcaption>After</figcaption></figure></div>
 <h3>First load, 360x640, full page</h3>
@@ -144,10 +144,10 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 <table><tr><th>Screen</th><th>Focused on open (FOCUS-1)</th><th>Why</th></tr><tr><td>Studio</td><td>Title field at ≥1024, none on phone (today)</td><td>Unchanged</td></tr><tr><td>Enlarge dialog</td><td>Next flier</td><td>The dialog is for checking the set; Esc returns focus to the flier</td></tr></table>
 </article>
 
-<article data-option="C" data-inventory="63/63" data-aligned="pass" data-result="result.json">
+<article data-option="C" data-inventory="52/52" data-aligned="pass" data-result="result.json">
 <h2>C. Sticky set bar with one chip per theme</h2>
-<p>A bar pinned to the top of the previews while they scroll: one chip per theme, so a switch is one tap and its effect is in view, plus the scope, Add flier and Download all. Drafts run as a thumbnail strip under the fliers. Double-click opens the full-size sheet with the flier number and a Download.</p>
-<p class="meta"><strong>Inventory:</strong> 63/63 (Theme select becomes chips, 4 moved into the bar, 1 dropped D11) · form rows aligned: pass · Drafts: strip below the previews, All / Favourites chips.</p>
+<p>A bar pinned to the top of the previews while they scroll: one chip per theme, so a switch is one tap and its effect is in view, plus the scope, Add flier and Download all. Add flier and Download all PNGs stack below 400px wide. Drafts sit as thumbnail tiles under the fliers, wrapping to two per row on a phone so no tile is cut. Double-click opens the full-size sheet with the flier number and a Download, sized so the whole flier and its buttons fit 360x640 and 1280x800.</p>
+<p class="meta"><strong>Inventory:</strong> 52/52 (Theme select becomes chips, 4 moved into the bar, 1 dropped D11) · form rows aligned: pass (top + height) · enlarge fits both viewports · Drafts: wrapping tiles below the previews, All / Favourites chips.</p>
 <h3>First load, 1280x800, full page</h3>
 <div class="pair"><figure data-visual="before"><div class="scroll"><img src="before-load-1280.png" alt="Before at 1280"></div><figcaption>Before</figcaption></figure><figure data-visual="after"><div class="scroll"><img src="C-load-1280.png" alt="After C at 1280: set bar with theme chips above the grid, Drafts strip below"></div><figcaption>After</figcaption></figure></div>
 <h3>First load, 360x640, full page</h3>
@@ -160,11 +160,11 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 
 <div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which layout should Flier Studio build for the "All fliers" settings, drafts and enlarge view?</p>
 <ul class="opts">
-<li data-letter="A"><span class="lt">A</span><span>"All fliers" card on top of the previews, drafts inside it, the existing full-size sheet</span></li>
-<li data-letter="B"><span class="lt">B</span><span>"All n fliers" card first in the controls, drafts in Saved sets, a stepping dialog</span></li>
+<li data-letter="A"><span class="lt">A</span><span>"All fliers" card on top of the previews, drafts in their own card under the fliers, the existing full-size sheet</span></li>
+<li data-letter="B"><span class="lt">B</span><span>"All n fliers" card first in the controls, drafts in their own card, a stepping dialog</span></li>
 <li data-letter="C"><span class="lt">C</span><span>Sticky set bar with theme chips, drafts strip under the fliers, full-size sheet with Download</span></li>
 </ul>
-<p class="why">All three keep 63/63 items and select a flier on click. They differ in where the whole-set settings sit relative to the fliers they change.</p></div>
+<p class="why">All three keep 52/52 first-load items and select a flier on click. They differ in where the whole-set settings sit relative to the fliers they change.</p></div>
 </main>
 </body>
 </html>

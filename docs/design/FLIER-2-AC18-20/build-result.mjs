@@ -20,10 +20,12 @@ for (const option of ['A', 'B', 'C']) {
     lost, moved, droppedByDecision: before.filter((id) => !after.includes(id) && id in DECIDED_DROPS).map((id) => `${id}: ${DECIDED_DROPS[id]}`),
     added: after.filter((id) => !before.includes(id) && NEW_ITEMS.test(id)),
     formRowsMisaligned: mine.flatMap((f) => f.formRows.misaligned.map((row) => `${f.shot}: ${row.join(' | ')}`)),
+    enlargeFit: mine.flatMap((f) => (f.enlargeFit ?? []).map((m) => `${f.shot}: ${m}`)),
+    textFit: mine.flatMap((f) => (f.textFit ?? []).map((m) => `${f.shot}: ${m}`)),
     pairs: mine.map((f) => ({ after: f.file, before: `before-${f.shot}.png`, same: JSON.stringify(f.pair) === JSON.stringify(frames.find((b) => b.option === 'before' && b.shot === f.shot)?.pair) })),
   };
 }
-const result = { countMethod: 'visible data-testid, whole frame', rowsMethod: 'auto (1px bottom/top)', pairMethod: 'same-steps', before, options, frames };
+const result = { countMethod: 'visible data-testid, whole frame', rowsMethod: 'auto: every side-by-side control pair in a .row, top and height within 1px; the capture run fails on a miss', pairMethod: 'same-steps', before, options, frames };
 writeFileSync(join(HERE, 'result.json'), `${JSON.stringify(result, null, 1)}\n`);
 console.log(`before ${before.length}:`, before.join(' '));
-for (const [k, o] of Object.entries(options)) console.log(k, o.inventory, 'lost', o.lost.join(',') || '-', '| dropped', o.droppedByDecision.length, '| misaligned', o.formRowsMisaligned.join(' ; ') || 0, '| pairs same', o.pairs.every((p) => p.same));
+for (const [k, o] of Object.entries(options)) console.log(k, o.inventory, 'lost', o.lost.join(',') || '-', '| dropped', o.droppedByDecision.length, '| misaligned', o.formRowsMisaligned.join(' ; ') || 0, '| fit', o.enlargeFit.join(' ; ') || 0, '| text', o.textFit.join(' ; ') || 0, '| pairs same', o.pairs.every((p) => p.same));

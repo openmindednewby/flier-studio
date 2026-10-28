@@ -75,6 +75,9 @@
   "upload-picture"
  ],
  "formRows": {
+  "method": "side-by-side pairs: top and height within 1px",
   "misaligned": []
- }
+ },
+ "enlargeFit": [],
+ "textFit": []
 }

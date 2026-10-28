@@ -1,13 +1,16 @@
-import { createRequire } from 'node:module';
+import { FLIER_TOKENS } from '@dloizides/design-tokens';
 import type { Plugin } from 'vite';
 
 export const THEME_COLOR_SLOT = '<!-- theme-color -->';
 
-const pwaConfig = createRequire(import.meta.url)('../pwa-sw.config.cjs') as { manifest: { themeColor: string } };
+const SCHEMES = [
+  ['light', FLIER_TOKENS.light.background],
+  ['dark', FLIER_TOKENS.dark.background],
+] as const;
 
-/** The theme-color meta tag, read from the manifest theme colour so the page and the installed app match. */
+/** One theme-color meta tag per colour scheme, taken from the light and dark token backgrounds. */
 export function themeColorTags(): string {
-  return `<meta name="theme-color" content="${pwaConfig.manifest.themeColor}" />`;
+  return SCHEMES.map(([scheme, colour]) => `<meta name="theme-color" media="(prefers-color-scheme: ${scheme})" content="${colour}" />`).join('\n    ');
 }
 
 export function withThemeColor(html: string): string {

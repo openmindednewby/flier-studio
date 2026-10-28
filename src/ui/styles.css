@@ -51,7 +51,7 @@ label > span:first-child { font-size: 0.85rem; font-weight: 500; color: var(--te
 .label-head { display: flex; justify-content: space-between; gap: 8px; }
 .label-head output { color: var(--text); font-variant-numeric: tabular-nums; }
 .group { display: grid; gap: 12px; margin-top: 12px; min-width: 0; }
-.group > h3 { margin: 0; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
+.group > h3 { margin: 0; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 6px; }
 
 button, select, input, textarea, .file {
   min-height: var(--hit);

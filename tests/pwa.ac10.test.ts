@@ -62,11 +62,15 @@ describe('index.html', () => {
     expect(found).toHaveLength(3);
   });
 
-  it('with the PWA wiring, sets one page theme colour equal to the manifest theme_color', () => {
+  it('with the PWA wiring, sets a light and a dark page theme colour from the tokens by colour scheme', () => {
+    const expected = [
+      ['(prefers-color-scheme: light)', FLIER_TOKENS.light.background],
+      ['(prefers-color-scheme: dark)', FLIER_TOKENS.dark.background],
+    ];
     const html = withThemeColor(read('index.html'));
 
-    const colours = [...html.matchAll(/name="theme-color" content="([^"]+)"/g)].map((m) => m[1]);
+    const tags = [...html.matchAll(/name="theme-color" media="([^"]+)" content="([^"]+)"/g)].map((m) => [m[1], m[2]]);
 
-    expect(colours).toEqual([buildManifest(config.manifest).theme_color]);
+    expect(tags).toEqual(expected);
   });
 });

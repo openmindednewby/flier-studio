@@ -1,0 +1,43 @@
+desktop START resources: sw-register.js,script.js,index-J8qBir9W.js,index-DM0A5EEF.css,dancers.png,logo.png,oswald-latin-wght.woff2,sacramento-latin-400.woff2,fredoka-latin-wght.woff2
+desktop initial AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop LAYOUT story/picture-right=Picture right -> {"c":"1080x1920","disp":"223x394","hint":null,"err":null}
+desktop LAYOUT story/picture-left=Picture left -> {"c":"1080x1920","disp":"223x394","hint":null,"err":null}
+desktop LAYOUT story/arch=Arch -> {"c":"1080x1920","disp":"223x394","hint":null,"err":null}
+desktop LAYOUT story/picture-bottom=Picture bottom -> {"c":"1080x1920","disp":"223x394","hint":null,"err":null}
+desktop LAYOUT story/list=Upcoming list -> {"c":null,"disp":null,"hint":"This list flier has no rows yet. Add them in the form under List rows","err":null}
+desktop format=story AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop LAYOUT post/picture-right=Picture right -> {"c":"1080x1350","disp":"223x278","hint":null,"err":null}
+desktop LAYOUT post/picture-left=Picture left -> {"c":"1080x1350","disp":"223x278","hint":null,"err":null}
+desktop LAYOUT post/arch=Arch -> {"c":"1080x1350","disp":"223x278","hint":null,"err":null}
+desktop LAYOUT post/picture-bottom=Picture bottom -> {"c":"1080x1350","disp":"223x278","hint":null,"err":null}
+desktop LAYOUT post/list=Upcoming list -> {"c":null,"disp":null,"hint":"This list flier has no rows yet. Add them in the form under List rows","err":null}
+desktop format=post AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop LAYOUT square/picture-right=Picture right -> {"c":"1080x1080","disp":"223x223","hint":null,"err":null}
+desktop LAYOUT square/picture-left=Picture left -> {"c":"1080x1080","disp":"223x223","hint":null,"err":null}
+desktop LAYOUT square/arch=Arch -> {"c":"1080x1080","disp":"223x223","hint":null,"err":null}
+desktop LAYOUT square/picture-bottom=Picture bottom -> {"c":"1080x1080","disp":"223x223","hint":null,"err":null}
+desktop LAYOUT square/list=Upcoming list -> {"c":null,"disp":null,"hint":"This list flier has no rows yet. Add them in the form under List rows","err":null}
+desktop format=square AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop LAYOUT phone/phone-clock-safe=Phone, clock clear -> {"c":"1170x2532","disp":"223x480","hint":null,"err":null}
+desktop LAYOUT phone/phone-arch=Phone arch -> {"c":"1170x2532","disp":"223x480","hint":null,"err":null}
+desktop format=phone AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop LAYOUT desktop/desktop-safe=Desktop, icons clear -> {"c":"2560x1440","disp":"223x126","hint":null,"err":null}
+desktop LAYOUT desktop/desktop-arch=Desktop arch -> {"c":"2560x1440","disp":"223x126","hint":null,"err":null}
+desktop format=desktop AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop distinct layouts: 9 [picture-right,picture-left,arch,picture-bottom,list,phone-clock-safe,phone-arch,desktop-safe,desktop-arch]
+desktop preset AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":79}
+desktop DOWNLOAD single flier-1-story.png 1080x1920 sig=PNG
+desktop DOWNLOAD-ALL figures=4 downloads=4 [flier-1-story.png,flier-2-story.png,flier-3-story.png,flier-4-story.png]
+desktop SAVE Saved qa-one |  options=qa-one
+desktop RENAME Renamed to qa-two |  options=qa-two
+desktop LOAD Loaded qa-two |  title=KIZOMBA
+desktop RELOAD title=AUTOSAVED hash before-upload=1918513875 uploaded=1997563557 after-reload=1997563557 kept=true options=qa-two
+desktop DELETE Deleted qa-two |  options=
+desktop PROMPT status="This browser has no WebGPU, so a keyword match picked the flier instead of the model" title=SALSA
+desktop prompt AUDIT {"sw":1280,"vw":1280,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[40,1240],"maxCpl":144}
+desktop TAB pick-layout+ring > pick-format+ring > pick-palette+ring > pick-fonts+ring > pick-background+ring > upload-picture+ring
+desktop UNNAMED ["pick-scale"]
+desktop PWA manifest name=Flier Studio display=standalone start=/ icons=/icons/icon-192.png:200,/icons/icon-512.png:200,/icons/maskable-192.png:200,/icons/maskable-512.png:200 head={"link":"/manifest.json","theme":"#ffffff","apple":true} swScope=http://localhost:4189/
+desktop OFFLINE reload formVisible=true canvases=1 title=SALSA
+desktop EXT-aborted: https://analytics.dloizides.com/script.js
+desktop CONSOLE: reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || warning:No available adapters. || reqfail:http://localhost:4189/sw-register.js || error:Failed to load resource: net::ERR_INTERNET_DISCONNECTED

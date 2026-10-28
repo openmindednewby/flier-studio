@@ -1,0 +1,39 @@
+desktop START resources: script.js,index-DuRgUlRb.js,index-COQfSMZ3.css,dancers.png,logo.png,oswald-latin-wght.woff2,sacramento-latin-400.woff2,fredoka-latin-wght.woff2 | llm chunk at start: false
+desktop initial AUDIT {"sw":1280,"vw":1280,"small":[],"clipped":[],"spill":[],"main":[40,1200],"form":[72,420],"prev":[516,162,692],"leadCplApprox":78}
+desktop LAYOUT story/picture-right=Picture right (E-A) -> {"c":"1080x1920","disp":"223x394"}
+desktop LAYOUT story/picture-left=Picture left (E-B) -> {"c":"1080x1920","disp":"223x394"}
+desktop LAYOUT story/arch=Arch (E-C) -> {"c":"1080x1920","disp":"223x394"}
+desktop LAYOUT story/picture-bottom=Picture bottom -> {"c":"1080x1920","disp":"223x394"}
+desktop LAYOUT story/list=Upcoming list -> {"err":"Not drawn: items: layout \"list\" needs at least one item","c":null,"disp":null}
+desktop LAYOUT post/picture-right=Picture right (E-A) -> {"c":"1080x1350","disp":"223x278"}
+desktop LAYOUT post/picture-left=Picture left (E-B) -> {"c":"1080x1350","disp":"223x278"}
+desktop LAYOUT post/arch=Arch (E-C) -> {"c":"1080x1350","disp":"223x278"}
+desktop LAYOUT post/picture-bottom=Picture bottom -> {"c":"1080x1350","disp":"223x278"}
+desktop LAYOUT post/list=Upcoming list -> {"err":"Not drawn: items: layout \"list\" needs at least one item","c":null,"disp":null}
+desktop LAYOUT square/picture-right=Picture right (E-A) -> {"c":"1080x1080","disp":"223x223"}
+desktop LAYOUT square/picture-left=Picture left (E-B) -> {"c":"1080x1080","disp":"223x223"}
+desktop LAYOUT square/arch=Arch (E-C) -> {"c":"1080x1080","disp":"223x223"}
+desktop LAYOUT square/picture-bottom=Picture bottom -> {"c":"1080x1080","disp":"223x223"}
+desktop LAYOUT square/list=Upcoming list -> {"err":"Not drawn: items: layout \"list\" needs at least one item","c":null,"disp":null}
+desktop LAYOUT phone/phone-clock-safe=Phone, clock clear (P-A) -> {"c":"1170x2532","disp":"223x480"}
+desktop LAYOUT phone/phone-arch=Phone arch (P-B) -> {"c":"1170x2532","disp":"223x480"}
+desktop LAYOUT desktop/desktop-safe=Desktop, icons clear (D-A) -> {"c":"2560x1440","disp":"223x126"}
+desktop LAYOUT desktop/desktop-arch=Desktop arch (D-B) -> {"c":"2560x1440","disp":"223x126"}
+desktop distinct layouts: 9 [picture-right,picture-left,arch,picture-bottom,list,phone-clock-safe,phone-arch,desktop-safe,desktop-arch]
+desktop DOWNLOAD single flier-1-desktop.png 2560x1440 sig=PNG
+desktop DOWNLOAD-ALL figures=0 downloads=4 [flier-1-story.png,flier-2-story.png,flier-3-story.png,flier-4-story.png]
+desktop preset AUDIT {"sw":1280,"vw":1280,"small":[],"clipped":[],"spill":[],"main":[40,1200],"form":[72,420],"prev":[516,16,692],"leadCplApprox":78}
+desktop SAVE status=load the PNGs. Everything stays in your browser.Saved qa-one options=qa-one
+desktop RENAME status=the PNGs. Everything stays in your browser.Renamed to qa-two options=qa-two
+desktop LOAD status=oad the PNGs. Everything stays in your browser.Loaded qa-two title=KIZOMBA
+desktop UPLOAD status=oad the PNGs. Everything stays in your browser.Loaded qa-two idb=flier-studio-images
+desktop RELOAD options=qa-two title=KIZOMBA idb=flier-studio-images figures=0
+desktop RELOAD+LOAD status=oad the PNGs. Everything stays in your browser.Loaded qa-two title=KIZOMBA
+desktop DELETE status=ad the PNGs. Everything stays in your browser.Deleted qa-two options=
+desktop DELETE+RELOAD options=
+desktop PROMPT status=The model could not load: LlmRunError: E_NETWORK: cannot reach https://huggingface.co: TypeError: Failed to fetch | gpu=true | new resources=index-C5vtczbx.js,SmolLM2-360M-Instruct-GGUF?blobs=true | title=KIZOMBA
+desktop prompt AUDIT {"sw":1280,"vw":1280,"small":[],"clipped":[],"spill":[],"main":[40,1200],"form":[72,420],"prev":[516,162,692],"leadCplApprox":78}
+desktop EXT-blocked: https://analytics.dloizides.com/script.js https://analytics.dloizides.com/script.js https://analytics.dloizides.com/script.js https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF?blobs=true
+desktop CONSOLE: reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || warning:[llm-run] This page is not cross-origin isolated, so CPU mode runs single-threaded (several times slower). Serve the page with "Cross-Origin-Opener-Po || warning:No available adapters. || reqfail:https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF?blobs=true || error:Failed to load resource: net::ERR_FAILED
+desktop UPLOAD-HASH default=-314118960 uploaded=-320235706 reload=-314118960 reload+load=-320235706
+desktop SELECT-FIT pick-format:"story" text=31 avail=143 | pick-layout:"Picture right (E-A)" text=113 avail=143 | pick-palette:"sand" text=30 avail=143 | pick-fonts:"classic" text=40 avail=143 | pick-background:"solid" text=30 avail=340 | pick-anchor:"bottom" text=48 avail=143 | config-pick:"qa-img" text=46 avail=340

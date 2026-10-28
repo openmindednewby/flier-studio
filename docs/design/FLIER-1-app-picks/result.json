@@ -1,0 +1,2001 @@
+{
+ "task": "FLIER-1 \"Flier Studio\" app picks",
+ "pairMethod": "same-steps",
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "build": "dist/ of apps/flier-studio main",
+ "options": {
+  "P-A": {
+   "inventory": "45/45",
+   "inventorySweep": [
+    {
+     "viewport": "mobile",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/P-A-mobile-edit-part1.png",
+      "parts/P-A-mobile-edit-part2.png",
+      "parts/P-A-mobile-edit-part3.png",
+      "parts/P-A-mobile-edit-part4.png",
+      "parts/P-A-mobile-edit-part5.png",
+      "parts/P-A-mobile-edit-part6.png",
+      "parts/P-A-mobile-edit-part7.png"
+     ]
+    },
+    {
+     "viewport": "desktop",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/P-A-desktop-edit-part1.png",
+      "parts/P-A-desktop-edit-part2.png",
+      "parts/P-A-desktop-edit-part3.png",
+      "parts/P-A-desktop-edit-part4.png"
+     ]
+    }
+   ],
+   "aligned": "pass",
+   "moved": "none",
+   "items": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "select:Fonts#1",
+     "select:Background#1",
+     "input:INPUT#1",
+     "input:INPUT#2",
+     "select:Picture alignment#1",
+     "input:Picture size100%#1",
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1",
+     "textarea:Prices (amount | label, one per line)#1",
+     "textarea:Includes (one per line)#1",
+     "textarea:List rows (date | price | label = time ;#1",
+     "button:Add flier#1",
+     "button:Remove this flier#1",
+     "input:Config name#1",
+     "button:Save#1",
+     "select:Saved config#1",
+     "button:Load#1",
+     "button:Rename#1",
+     "button:Delete#1",
+     "button:Export file#1",
+     "input:INPUT#3",
+     "button:Load Kizomba preset#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1",
+     "button:Edit flier 4#1",
+     "button:Download PNG#4"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "select:Fonts#1",
+     "select:Background#1",
+     "input:INPUT#1",
+     "input:INPUT#2",
+     "select:Picture alignment#1",
+     "input:Picture size100%#1",
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1",
+     "textarea:Prices (amount | label, one per line)#1",
+     "textarea:Includes (one per line)#1",
+     "textarea:List rows (date | price | label = time ;#1",
+     "button:Add flier#1",
+     "button:Remove this flier#1",
+     "input:Config name#1",
+     "button:Save#1",
+     "select:Saved config#1",
+     "button:Load#1",
+     "button:Rename#1",
+     "button:Delete#1",
+     "button:Export file#1",
+     "input:INPUT#3",
+     "button:Load Kizomba preset#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1",
+     "button:Edit flier 4#1",
+     "button:Download PNG#4"
+    ]
+   }
+  },
+  "P-B": {
+   "inventory": "45/45",
+   "inventorySweep": [
+    {
+     "viewport": "mobile",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/P-B-mobile-edit-part1.png",
+      "parts/P-B-mobile-edit-part2.png",
+      "parts/P-B-mobile-edit-part3.png",
+      "parts/P-B-mobile-edit-part4.png",
+      "parts/P-B-mobile-edit-part5.png",
+      "parts/P-B-mobile-edit-part6.png",
+      "parts/P-B-mobile-edit-part7.png"
+     ]
+    },
+    {
+     "viewport": "desktop",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/P-B-desktop-edit-part1.png",
+      "parts/P-B-desktop-edit-part2.png",
+      "parts/P-B-desktop-edit-part3.png",
+      "parts/P-B-desktop-edit-part4.png"
+     ]
+    }
+   ],
+   "aligned": "pass",
+   "moved": "none",
+   "items": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "select:Fonts#1",
+     "select:Background#1",
+     "input:INPUT#1",
+     "input:INPUT#2",
+     "select:Picture alignment#1",
+     "input:Picture size100%#1",
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1",
+     "textarea:Prices (amount | label, one per line)#1",
+     "textarea:Includes (one per line)#1",
+     "textarea:List rows (date | price | label = time ;#1",
+     "button:Add flier#1",
+     "button:Remove this flier#1",
+     "input:Config name#1",
+     "button:Save#1",
+     "select:Saved config#1",
+     "button:Load#1",
+     "button:Rename#1",
+     "button:Delete#1",
+     "button:Export file#1",
+     "input:INPUT#3",
+     "button:Load Kizomba preset#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1",
+     "button:Edit flier 4#1",
+     "button:Download PNG#4"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "select:Fonts#1",
+     "select:Background#1",
+     "input:INPUT#1",
+     "input:INPUT#2",
+     "select:Picture alignment#1",
+     "input:Picture size100%#1",
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1",
+     "textarea:Prices (amount | label, one per line)#1",
+     "textarea:Includes (one per line)#1",
+     "textarea:List rows (date | price | label = time ;#1",
+     "button:Add flier#1",
+     "button:Remove this flier#1",
+     "input:Config name#1",
+     "button:Save#1",
+     "select:Saved config#1",
+     "button:Load#1",
+     "button:Rename#1",
+     "button:Delete#1",
+     "button:Export file#1",
+     "input:INPUT#3",
+     "button:Load Kizomba preset#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1",
+     "button:Edit flier 4#1",
+     "button:Download PNG#4"
+    ]
+   }
+  },
+  "P-C": {
+   "inventory": "45/45",
+   "inventorySweep": [
+    {
+     "viewport": "mobile",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/P-C-mobile-edit-part1.png",
+      "parts/P-C-mobile-edit-part2.png",
+      "parts/P-C-mobile-edit-part3.png",
+      "parts/P-C-mobile-edit-part4.png",
+      "parts/P-C-mobile-edit-part5.png",
+      "parts/P-C-mobile-edit-part6.png",
+      "parts/P-C-mobile-edit-part7.png"
+     ]
+    },
+    {
+     "viewport": "desktop",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/P-C-desktop-edit-part1.png",
+      "parts/P-C-desktop-edit-part2.png",
+      "parts/P-C-desktop-edit-part3.png",
+      "parts/P-C-desktop-edit-part4.png"
+     ]
+    }
+   ],
+   "aligned": "pass",
+   "moved": "none",
+   "items": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "select:Fonts#1",
+     "select:Background#1",
+     "input:INPUT#1",
+     "input:INPUT#2",
+     "select:Picture alignment#1",
+     "input:Picture size100%#1",
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1",
+     "textarea:Prices (amount | label, one per line)#1",
+     "textarea:Includes (one per line)#1",
+     "textarea:List rows (date | price | label = time ;#1",
+     "button:Add flier#1",
+     "button:Remove this flier#1",
+     "input:Config name#1",
+     "button:Save#1",
+     "select:Saved config#1",
+     "button:Load#1",
+     "button:Rename#1",
+     "button:Delete#1",
+     "button:Export file#1",
+     "input:INPUT#3",
+     "button:Load Kizomba preset#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1",
+     "button:Edit flier 4#1",
+     "button:Download PNG#4"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "select:Fonts#1",
+     "select:Background#1",
+     "input:INPUT#1",
+     "input:INPUT#2",
+     "select:Picture alignment#1",
+     "input:Picture size100%#1",
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1",
+     "textarea:Prices (amount | label, one per line)#1",
+     "textarea:Includes (one per line)#1",
+     "textarea:List rows (date | price | label = time ;#1",
+     "button:Add flier#1",
+     "button:Remove this flier#1",
+     "input:Config name#1",
+     "button:Save#1",
+     "select:Saved config#1",
+     "button:Load#1",
+     "button:Rename#1",
+     "button:Delete#1",
+     "button:Export file#1",
+     "input:INPUT#3",
+     "button:Load Kizomba preset#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1",
+     "button:Edit flier 4#1",
+     "button:Download PNG#4"
+    ]
+   }
+  },
+  "L-A": {
+   "inventory": "45/45",
+   "inventorySweep": [
+    {
+     "viewport": "mobile",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 21,
+     "rowsOff": [],
+     "parts": [
+      "parts/L-A-mobile-edit-part1.png",
+      "parts/L-A-mobile-edit-part2.png",
+      "parts/L-A-mobile-edit-part3.png",
+      "parts/L-A-mobile-edit-part4.png",
+      "parts/L-A-mobile-edit-part5.png",
+      "parts/L-A-mobile-edit-part6.png",
+      "parts/L-A-mobile-edit-part7.png",
+      "parts/L-A-mobile-edit-part8.png",
+      "parts/L-A-mobile-edit-part9.png"
+     ]
+    },
+    {
+     "viewport": "desktop",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/L-A-desktop-edit-part1.png",
+      "parts/L-A-desktop-edit-part2.png",
+      "parts/L-A-desktop-edit-part3.png",
+      "parts/L-A-desktop-edit-part4.png"
+     ]
+    }
+   ],
+   "aligned": "pass",
+   "moved": "none removed; on phones the fixed bar covers the bottom 88 px of the screen, so the rows there scroll up to be seen",
+   "items": {
+    "before": [],
+    "after": []
+   }
+  },
+  "L-B": {
+   "inventory": "45/45",
+   "inventorySweep": [
+    {
+     "viewport": "mobile",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 33,
+     "rowsOff": [],
+     "parts": [
+      "parts/L-B-mobile-edit-part1.png",
+      "parts/L-B-mobile-edit-part2.png",
+      "parts/L-B-mobile-edit-part3.png",
+      "parts/L-B-mobile-edit-part4.png",
+      "parts/L-B-mobile-edit-part5.png",
+      "parts/L-B-mobile-edit-part6.png",
+      "parts/L-B-mobile-preview-part1.png",
+      "parts/L-B-mobile-preview-part2.png"
+     ]
+    },
+    {
+     "viewport": "desktop",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 48,
+     "rowsOff": [],
+     "parts": [
+      "parts/L-B-desktop-edit-part1.png",
+      "parts/L-B-desktop-edit-part2.png",
+      "parts/L-B-desktop-edit-part3.png",
+      "parts/L-B-desktop-edit-part4.png",
+      "parts/L-B-desktop-preview-part1.png",
+      "parts/L-B-desktop-preview-part2.png",
+      "parts/L-B-desktop-preview-part3.png",
+      "parts/L-B-desktop-preview-part4.png"
+     ]
+    }
+   ],
+   "aligned": "pass",
+   "moved": "all: phones show one tab at a time (Edit = form + configs + prompt; Preview = 4 cards, Edit/Download, Download all)",
+   "items": {
+    "before": [],
+    "after": []
+   }
+  },
+  "L-C": {
+   "inventory": "45/45",
+   "inventorySweep": [
+    {
+     "viewport": "mobile",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 27,
+     "rowsOff": [],
+     "parts": [
+      "parts/L-C-mobile-edit-part1.png",
+      "parts/L-C-mobile-edit-part2.png",
+      "parts/L-C-mobile-edit-part3.png",
+      "parts/L-C-mobile-edit-part4.png",
+      "parts/L-C-mobile-edit-part5.png",
+      "parts/L-C-mobile-edit-part6.png"
+     ]
+    },
+    {
+     "viewport": "desktop",
+     "beforeSeen": 45,
+     "afterSeen": 45,
+     "notSeenAfter": [],
+     "rowsChecked": 24,
+     "rowsOff": [],
+     "parts": [
+      "parts/L-C-desktop-edit-part1.png",
+      "parts/L-C-desktop-edit-part2.png",
+      "parts/L-C-desktop-edit-part3.png",
+      "parts/L-C-desktop-edit-part4.png"
+     ]
+    }
+   ],
+   "aligned": "pass",
+   "moved": "all at 360: previews move above the form",
+   "items": {
+    "before": [],
+    "after": []
+   }
+  }
+ },
+ "frames": [
+  {
+   "option": "P-A",
+   "shot": "1280-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "P-A",
+   "shot": "1280-top",
+   "side": "after",
+   "build": "a959cc8 dist + option P-A injected (CSS/DOM, app source untouched)",
+   "file": "P-A-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "P-A",
+   "shot": "360-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "P-A",
+   "shot": "360-top",
+   "side": "after",
+   "build": "a959cc8 dist + option P-A injected (CSS/DOM, app source untouched)",
+   "file": "P-A-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "P-B",
+   "shot": "1280-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "P-B",
+   "shot": "1280-top",
+   "side": "after",
+   "build": "a959cc8 dist + option P-B injected (CSS/DOM, app source untouched)",
+   "file": "P-B-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "P-B",
+   "shot": "360-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "P-B",
+   "shot": "360-top",
+   "side": "after",
+   "build": "a959cc8 dist + option P-B injected (CSS/DOM, app source untouched)",
+   "file": "P-B-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "1280-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "1280-top",
+   "side": "after",
+   "build": "a959cc8 dist + option L-A injected (CSS/DOM, app source untouched)",
+   "file": "L-A-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "360-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "360-top",
+   "side": "after",
+   "build": "a959cc8 dist + option L-A injected (CSS/DOM, app source untouched)",
+   "file": "L-A-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "360-text",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-text.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "field-title",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ],
+    "after": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "360-text",
+   "side": "after",
+   "build": "a959cc8 dist + option L-A injected (CSS/DOM, app source untouched)",
+   "file": "L-A-360-text.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "field-title",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ],
+    "after": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "360-previews",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-previews.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "previews",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-A",
+   "shot": "360-previews",
+   "side": "after",
+   "build": "a959cc8 dist + option L-A injected (CSS/DOM, app source untouched)",
+   "file": "L-A-360-previews.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "previews",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "1280-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "1280-top",
+   "side": "after",
+   "build": "a959cc8 dist + option L-C injected (CSS/DOM, app source untouched)",
+   "file": "L-C-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "360-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "360-top",
+   "side": "after",
+   "build": "a959cc8 dist + option L-C injected (CSS/DOM, app source untouched)",
+   "file": "L-C-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "360-text",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-text.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "field-title",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ],
+    "after": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "360-text",
+   "side": "after",
+   "build": "a959cc8 dist + option L-C injected (CSS/DOM, app source untouched)",
+   "file": "L-C-360-text.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "field-title",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ],
+    "after": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "360-previews",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-previews.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "previews",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "textarea:Describe the flier#1"
+    ]
+   }
+  },
+  {
+   "option": "L-C",
+   "shot": "360-previews",
+   "side": "after",
+   "build": "a959cc8 dist + option L-C injected (CSS/DOM, app source untouched)",
+   "file": "L-C-360-previews.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "previews",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "textarea:Describe the flier#1"
+    ]
+   }
+  },
+  {
+   "option": "P-C",
+   "shot": "1280-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "P-C",
+   "shot": "1280-top",
+   "side": "after",
+   "build": "a959cc8 dist + option P-C injected (CSS/DOM, app source untouched)",
+   "file": "P-C-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "P-C",
+   "shot": "360-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "P-C",
+   "shot": "360-top",
+   "side": "after",
+   "build": "a959cc8 dist + option P-C injected (CSS/DOM, app source untouched)",
+   "file": "P-C-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "1280-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "1280-top",
+   "side": "after",
+   "build": "a959cc8 dist + option L-B injected (CSS/DOM, app source untouched)",
+   "file": "L-B-1280-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "1280x800",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1",
+     "select:Format#1",
+     "select:Colours#1",
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "button:Edit flier 3#1",
+     "button:Download PNG#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "360-top",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "360-top",
+   "side": "after",
+   "build": "a959cc8 dist + option L-B injected (CSS/DOM, app source untouched)",
+   "file": "L-B-360-top.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "page-top",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1",
+     "select:Layout#1"
+    ],
+    "after": [
+     "textarea:Describe the flier#1",
+     "button:Generate#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "360-text",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-text.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "field-title",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ],
+    "after": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "360-text",
+   "side": "after",
+   "build": "a959cc8 dist + option L-B injected (CSS/DOM, app source untouched)",
+   "file": "L-B-360-text.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "field-title",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ],
+    "after": [
+     "input:Title#1",
+     "input:Second title#1",
+     "input:Script line (date)#1",
+     "input:Includes heading#1",
+     "input:Footer#1",
+     "textarea:Venue (one line each)#1",
+     "textarea:Schedule (label | time, one per line)#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "360-previews",
+   "side": "before",
+   "build": "a959cc8 dist (live build)",
+   "file": "before-360-previews.png",
+   "anchorTopPx": 0,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "previews",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  },
+  {
+   "option": "L-B",
+   "shot": "360-previews",
+   "side": "after",
+   "build": "a959cc8 dist + option L-B injected (CSS/DOM, app source untouched)",
+   "file": "L-B-360-previews.png",
+   "anchorTopPx": 64,
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, no edits",
+    "fixture": "kizomba preset: 31 Oct / 7 Nov / 29 Nov / Upcoming",
+    "viewport": "360x640",
+    "scrollAnchor": "previews",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ],
+    "after": [
+     "button:Download all PNGs#1",
+     "canvas:KIZOMBA#1",
+     "button:Edit flier 1#1",
+     "button:Download PNG#1",
+     "canvas:KIZOMBA#2",
+     "button:Edit flier 2#1",
+     "button:Download PNG#2",
+     "canvas:KIZOMBA#3",
+     "canvas:UPCOMING#1"
+    ]
+   }
+  }
+ ]
+}

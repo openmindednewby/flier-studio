@@ -2,7 +2,7 @@
  "option": "app",
  "shot": "360-form-top",
  "side": "after",
- "build": "a959cc8-wave3p",
+ "build": "da8d368+pr0.2.7",
  "file": "app-after-360-form-top.png",
  "anchorTopPx": 0,
  "pair": {

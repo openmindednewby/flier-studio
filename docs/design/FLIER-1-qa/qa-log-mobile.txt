@@ -1,0 +1,39 @@
+mobile START resources: script.js,index-COQfSMZ3.css,index-DuRgUlRb.js,dancers.png,logo.png,oswald-latin-wght.woff2,sacramento-latin-400.woff2,fredoka-latin-wght.woff2 | llm chunk at start: false
+mobile initial AUDIT {"sw":360,"vw":360,"small":[],"clipped":[],"spill":[],"main":[0,360],"form":[16,328],"prev":[16,2530,328],"leadCplApprox":41}
+mobile LAYOUT story/picture-right=Picture right (E-A) -> {"c":"1080x1920","disp":"158x279"}
+mobile LAYOUT story/picture-left=Picture left (E-B) -> {"c":"1080x1920","disp":"158x279"}
+mobile LAYOUT story/arch=Arch (E-C) -> {"c":"1080x1920","disp":"158x279"}
+mobile LAYOUT story/picture-bottom=Picture bottom -> {"c":"1080x1920","disp":"158x279"}
+mobile LAYOUT story/list=Upcoming list -> {"err":"Not drawn: items: layout \"list\" needs at least one item","c":null,"disp":null}
+mobile LAYOUT post/picture-right=Picture right (E-A) -> {"c":"1080x1350","disp":"158x197"}
+mobile LAYOUT post/picture-left=Picture left (E-B) -> {"c":"1080x1350","disp":"158x197"}
+mobile LAYOUT post/arch=Arch (E-C) -> {"c":"1080x1350","disp":"158x197"}
+mobile LAYOUT post/picture-bottom=Picture bottom -> {"c":"1080x1350","disp":"158x197"}
+mobile LAYOUT post/list=Upcoming list -> {"err":"Not drawn: items: layout \"list\" needs at least one item","c":null,"disp":null}
+mobile LAYOUT square/picture-right=Picture right (E-A) -> {"c":"1080x1080","disp":"158x158"}
+mobile LAYOUT square/picture-left=Picture left (E-B) -> {"c":"1080x1080","disp":"158x158"}
+mobile LAYOUT square/arch=Arch (E-C) -> {"c":"1080x1080","disp":"158x158"}
+mobile LAYOUT square/picture-bottom=Picture bottom -> {"c":"1080x1080","disp":"158x158"}
+mobile LAYOUT square/list=Upcoming list -> {"err":"Not drawn: items: layout \"list\" needs at least one item","c":null,"disp":null}
+mobile LAYOUT phone/phone-clock-safe=Phone, clock clear (P-A) -> {"c":"1170x2532","disp":"158x340"}
+mobile LAYOUT phone/phone-arch=Phone arch (P-B) -> {"c":"1170x2532","disp":"158x340"}
+mobile LAYOUT desktop/desktop-safe=Desktop, icons clear (D-A) -> {"c":"2560x1440","disp":"158x90"}
+mobile LAYOUT desktop/desktop-arch=Desktop arch (D-B) -> {"c":"2560x1440","disp":"158x90"}
+mobile distinct layouts: 9 [picture-right,picture-left,arch,picture-bottom,list,phone-clock-safe,phone-arch,desktop-safe,desktop-arch]
+mobile DOWNLOAD single flier-1-desktop.png 2560x1440 sig=PNG
+mobile DOWNLOAD-ALL figures=0 downloads=4 [flier-1-story.png,flier-2-story.png,flier-3-story.png,flier-4-story.png]
+mobile preset AUDIT {"sw":360,"vw":360,"small":[],"clipped":[],"spill":[],"main":[0,360],"form":[16,328],"prev":[16,92,328],"leadCplApprox":41}
+mobile SAVE status=load the PNGs. Everything stays in your browser.Saved qa-one options=qa-one
+mobile RENAME status=the PNGs. Everything stays in your browser.Renamed to qa-two options=qa-two
+mobile LOAD status=oad the PNGs. Everything stays in your browser.Loaded qa-two title=KIZOMBA
+mobile UPLOAD status=oad the PNGs. Everything stays in your browser.Loaded qa-two idb=flier-studio-images
+mobile RELOAD options=qa-two title=KIZOMBA idb=flier-studio-images figures=0
+mobile RELOAD+LOAD status=oad the PNGs. Everything stays in your browser.Loaded qa-two title=KIZOMBA
+mobile DELETE status=ad the PNGs. Everything stays in your browser.Deleted qa-two options=
+mobile DELETE+RELOAD options=
+mobile PROMPT status=The model could not load: LlmRunError: E_NETWORK: cannot reach https://huggingface.co: TypeError: Failed to fetch | gpu=true | new resources=index-C5vtczbx.js,SmolLM2-360M-Instruct-GGUF?blobs=true | title=KIZOMBA
+mobile prompt AUDIT {"sw":360,"vw":360,"small":[],"clipped":[],"spill":[],"main":[0,360],"form":[16,328],"prev":[16,2626,328],"leadCplApprox":41}
+mobile EXT-blocked: https://analytics.dloizides.com/script.js https://analytics.dloizides.com/script.js https://analytics.dloizides.com/script.js https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF?blobs=true
+mobile CONSOLE: reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || warning:[llm-run] This page is not cross-origin isolated, so CPU mode runs single-threaded (several times slower). Serve the page with "Cross-Origin-Opener-Po || warning:No available adapters. || reqfail:https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-360M-Instruct-GGUF?blobs=true || error:Failed to load resource: net::ERR_FAILED
+mobile UPLOAD-HASH default=-314118960 uploaded=-320235706 reload=-314118960 reload+load=-320235706
+mobile SELECT-FIT pick-format:"story" text=31 avail=97 | pick-layout:"Picture right (E-A)" text=113 avail=97 | pick-palette:"sand" text=30 avail=97 | pick-fonts:"classic" text=40 avail=97 | pick-background:"solid" text=30 avail=248 | pick-anchor:"bottom" text=48 avail=97 | config-pick:"qa-img" text=46 avail=248

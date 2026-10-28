@@ -132,7 +132,10 @@ figcaption.row > * { flex: 1 1 100%; }
 .drafts li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 8px; align-items: center; }
 .drafts img { display: block; width: 36px; height: auto; border: 1px solid var(--border); }
 .drafts button { width: auto; }
-.draft-when { display: grid; min-width: 0; overflow-wrap: anywhere; font-size: 0.85rem; line-height: 1.3; }
+.draft-when { display: grid; min-width: 0; font-size: 0.85rem; line-height: 1.3; }
+.draft-stamp { display: flex; flex-wrap: wrap; column-gap: 0.4em; }
+.draft-stamp > span { white-space: nowrap; }
+.drafts button.draft-star { min-width: 5.75em; justify-content: center; }
 
 @media (max-width: 479px) {
   .row.stack-narrow > * { flex-basis: 100%; }

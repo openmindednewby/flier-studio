@@ -6,7 +6,7 @@ const FLIERS = 4;
 const themeIds = (page: Page): Promise<string[]> =>
   page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { themeId: string }[]).map((f) => f.themeId));
 
-const flier = (page: Page, n: number): Locator => page.getByTestId(`preview-${String(n)}`).getByRole('option');
+const flier = (page: Page, n: number): Locator => page.getByTestId(`preview-${String(n)}`).getByRole('button', { name: new RegExp(`^Flier ${String(n)}:`) });
 
 const overflowing = (page: Page, testId: string): Promise<string[]> =>
   page.getByTestId(testId).evaluate((card) =>
@@ -18,12 +18,12 @@ test.describe('flier set (AC-18, AC-19, AC-20, D13)', () => {
     await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');
   });
 
-  test('clicking a flier selects it with crop marks and aria-selected', async ({ page }) => {
+  test('clicking a flier selects it with crop marks and aria-pressed', async ({ page }) => {
     await flier(page, 2).click();
 
     await expect(page.getByTestId('preview-2')).toHaveClass(/selected/);
-    await expect(flier(page, 2)).toHaveAttribute('aria-selected', 'true');
-    await expect(flier(page, 1)).toHaveAttribute('aria-selected', 'false');
+    await expect(flier(page, 2)).toHaveAttribute('aria-pressed', 'true');
+    await expect(flier(page, 1)).toHaveAttribute('aria-pressed', 'false');
     await expect(page.getByTestId('flier-form')).toContainText(`Editing flier 2 of ${String(FLIERS)}`);
     await expect(page.getByTestId('mini-sheet')).toBeHidden();
   });
@@ -31,12 +31,12 @@ test.describe('flier set (AC-18, AC-19, AC-20, D13)', () => {
   test('Enter and Space on a focused flier select it', async ({ page }) => {
     await flier(page, 3).focus();
     await page.keyboard.press('Enter');
-    await expect(flier(page, 3)).toHaveAttribute('aria-selected', 'true');
+    await expect(flier(page, 3)).toHaveAttribute('aria-pressed', 'true');
     await flier(page, 4).focus();
 
     await page.keyboard.press(' ');
 
-    await expect(flier(page, 4)).toHaveAttribute('aria-selected', 'true');
+    await expect(flier(page, 4)).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByTestId('flier-form')).toContainText(`Editing flier 4 of ${String(FLIERS)}`);
   });
 
@@ -75,7 +75,7 @@ test.describe('flier set (AC-18, AC-19, AC-20, D13)', () => {
     expect(box.y).toBeGreaterThanOrEqual(0);
     expect(box.x + box.width).toBeLessThanOrEqual(view.width);
     expect(box.y + box.height).toBeLessThanOrEqual(view.height);
-    await expect(flier(page, 2)).toHaveAttribute('aria-selected', 'true');
+    await expect(flier(page, 2)).toHaveAttribute('aria-pressed', 'true');
     await page.keyboard.press('Escape');
     await expect(sheet).toBeHidden();
     await expect(flier(page, 2)).toBeFocused();

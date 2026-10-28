@@ -18,6 +18,8 @@ export interface DraftsPanel {
 }
 
 export const draftTime = (draft: Draft): string => new Date(draft.at).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' });
+const draftDate = (draft: Draft): string => new Date(draft.at).toLocaleDateString([], { dateStyle: 'short' });
+const draftClock = (draft: Draft): string => new Date(draft.at).toLocaleTimeString([], { timeStyle: 'short' });
 
 /** A small JPEG of the first flier for the drafts list; empty when nothing is drawn yet. */
 export function thumbOf(source: HTMLCanvasElement | undefined): string {
@@ -34,11 +36,12 @@ function row(draft: Draft, n: number, actions: DraftsActions): HTMLLIElement {
   const restore = textButton(FM('drafts.restore'), `draft-restore-${String(n)}`, () => actions.restore(draft));
   restore.setAttribute('aria-label', FM('drafts.restoreAt', when));
   const star = textButton(FM(draft.starred ? 'drafts.starred' : 'drafts.star'), `draft-star-${String(n)}`, () => actions.star(draft, !draft.starred));
-  star.setAttribute('aria-label', FM('drafts.starAt', when));
+  star.setAttribute('aria-label', FM(draft.starred ? 'drafts.starredAt' : 'drafts.starAt', when));
   star.setAttribute('aria-pressed', String(draft.starred));
+  star.classList.add('draft-star');
   return el('li', {}, [
     el('img', { src: draft.thumb, alt: FM('drafts.thumb', when), width: String(THUMB_WIDTH) }),
-    el('span', { class: 'draft-when' }, [el('strong', { text: when }), el('span', { class: 'muted', text: FM('drafts.count', String(draft.fliers.length)) })]),
+    el('span', { class: 'draft-when' }, [el('strong', { class: 'draft-stamp' }, [el('span', { text: draftDate(draft) }), el('span', { text: draftClock(draft) })]), el('span', { class: 'muted', text: FM('drafts.count', String(draft.fliers.length)) })]),
     restore,
     star,
   ]);

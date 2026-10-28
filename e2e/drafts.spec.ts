@@ -68,3 +68,30 @@ test('when storage is full the change is kept and the page says the draft was no
   await page.reload();
   await expect(page.getByTestId('field-title')).toHaveValue(TITLE);
 });
+
+test('without IndexedDB the app still renders and edits the fliers, with no drafts', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'indexedDB', { value: null, configurable: true });
+  });
+  await page.goto('/');
+  await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');
+
+  await page.getByTestId('field-title').fill(TITLE);
+
+  await expect(page.getByTestId('field-title')).toHaveValue(TITLE);
+  await expect(page.getByTestId('drafts-empty')).toBeVisible();
+});
+
+test('when a star cannot be saved the page says so', async ({ page }) => {
+  await page.addInitScript(() => {
+    IDBObjectStore.prototype.put = function broken(): IDBRequest {
+      throw new DOMException('broken', 'InvalidStateError');
+    };
+  });
+  await page.goto('/');
+  await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(1);
+
+  await page.getByTestId('draft-star-1').click();
+
+  await expect(page.getByTestId('status')).toContainText('The star could not be saved');
+});

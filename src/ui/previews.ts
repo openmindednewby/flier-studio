@@ -44,11 +44,11 @@ function selectable(trim: HTMLElement, i: number, view: PreviewView): HTMLElemen
   return trim;
 }
 
-/** Marks flier `index` selected (crop marks + aria-selected) without redrawing. */
+/** Marks flier `index` selected (crop marks + aria-pressed) without redrawing. */
 export function markSelected(container: HTMLElement, index: number): void {
   container.querySelectorAll('figure').forEach((figure, i) => {
     figure.classList.toggle('selected', i === index);
-    figure.querySelector('[role="option"]')?.setAttribute('aria-selected', String(i === index));
+    figure.querySelector('.trim')?.setAttribute('aria-pressed', String(i === index));
   });
 }
 
@@ -69,8 +69,8 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     canvas.setAttribute('aria-label', doc.blocks.title);
     const error = draw(doc, assets, canvas);
     const n = String(i + 1);
-    const trim = el('div', { class: 'trim', role: 'option', tabindex: '0', 'aria-selected': String(i === selected), 'aria-label': FM('previews.flier', n, doc.blocks.title) }, [canvas]);
-    return el('figure', { class: i === selected ? 'selected' : '', role: 'none', 'data-testid': `preview-${n}` }, [
+    const trim = el('div', { class: 'trim', role: 'button', tabindex: '0', 'aria-pressed': String(i === selected), 'aria-label': FM('previews.flier', n, doc.blocks.title) }, [canvas]);
+    return el('figure', { class: i === selected ? 'selected' : '', 'data-testid': `preview-${n}` }, [
       error === null ? selectable(trim, i, view) : problem(doc, error),
       el('figcaption', { class: 'row' }, [
         textButton(FM('previews.edit', n), `edit-${n}`, () => select(i)),

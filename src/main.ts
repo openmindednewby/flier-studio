@@ -45,7 +45,7 @@ if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.document
 
 const status = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite', 'data-testid': 'status' });
 const formBox = el('section', { class: 'card', 'data-testid': 'flier-form' });
-const previewGrid = el('div', { class: 'preview-grid', role: 'listbox', 'aria-label': FM('previews.grid'), 'data-testid': 'preview-grid' });
+const previewGrid = el('div', { class: 'preview-grid', role: 'group', 'aria-label': FM('previews.grid'), 'data-testid': 'preview-grid' });
 const configBox = el('section', { class: 'card' });
 const promptBox = el('section', { class: 'card' });
 const mini = createMiniPreview({ seeAll: () => previewGrid.closest('section')?.scrollIntoView({ block: 'start' }) });
@@ -57,7 +57,7 @@ const allFliers = allFliersCard({
   add: () => { state.fliers.push(cloneFlier(state.fliers[state.selected])); select(state.fliers.length - 1); },
 });
 const draftStore = new DraftStore();
-const drafts = draftsPanel({ restore: (draft) => restore(draft), star: (draft, on) => void draftStore.star(draft.id, on).then(showDrafts) });
+const drafts = draftsPanel({ restore: (draft) => restore(draft), star: (draft, on) => void draftStore.star(draft.id, on).then(showDrafts, (e: unknown) => { status.textContent = FM('drafts.starFailed', String(e)); }) });
 const autosave = new DraftAutosave(draftStore, {
   saved: () => showDrafts(),
   full: () => { status.textContent = FM('drafts.full'); },

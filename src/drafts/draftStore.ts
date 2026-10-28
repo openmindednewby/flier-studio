@@ -29,7 +29,8 @@ function committed(tx: IDBTransaction): Promise<void> {
   });
 }
 
-function open(factory: IDBFactory): Promise<IDBDatabase> {
+function open(factory: IDBFactory | null): Promise<IDBDatabase> {
+  if (factory === null) return Promise.reject(new Error(DB));
   const request = factory.open(DB, VERSION);
   request.onupgradeneeded = (): void => {
     request.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
@@ -41,8 +42,9 @@ function open(factory: IDBFactory): Promise<IDBDatabase> {
 export class DraftStore {
   private readonly db: Promise<IDBDatabase>;
 
-  public constructor(factory: IDBFactory = indexedDB) {
-    this.db = open(factory);
+  public constructor(factory: IDBFactory | null = globalThis.indexedDB ?? null) {
+    this.db = Promise.resolve().then(() => open(factory));
+    this.db.catch(() => undefined);
   }
 
   public async list(): Promise<Draft[]> {
@@ -54,11 +56,7 @@ export class DraftStore {
     const tx = await this.tx('readwrite');
     tx.objectStore(STORE).add({ ...draft, starred: false });
     await committed(tx);
-    const gone = prunable(await this.list());
-    if (gone.length === 0) return;
-    const pruning = await this.tx('readwrite');
-    for (const id of gone) pruning.objectStore(STORE).delete(id);
-    await committed(pruning);
+    await this.prune().catch(() => undefined);
   }
 
   public async star(id: number, starred: boolean): Promise<void> {
@@ -69,6 +67,14 @@ export class DraftStore {
       if (request.result !== undefined) store.put({ ...request.result, starred });
     };
     await committed(tx);
+  }
+
+  private async prune(): Promise<void> {
+    const gone = prunable(await this.list());
+    if (gone.length === 0) return;
+    const pruning = await this.tx('readwrite');
+    for (const id of gone) pruning.objectStore(STORE).delete(id);
+    await committed(pruning);
   }
 
   private async tx(mode: IDBTransactionMode): Promise<IDBTransaction> {

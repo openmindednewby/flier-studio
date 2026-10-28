@@ -2,7 +2,7 @@ import { IDBFactory } from 'fake-indexeddb';
 import { describe, expect, it, vi } from 'vitest';
 import { kizombaPreset } from '../presets/kizomba';
 import { toThemed } from '../theme/flierTheme';
-import { prunable } from './draftRetention';
+import { KEEP_UNSTARRED, prunable } from './draftRetention';
 import { DraftAutosave } from './draftAutosave';
 import { DraftStore, type NewDraft } from './draftStore';
 
@@ -38,17 +38,48 @@ describe('DraftStore', () => {
     expect(drafts.map((d) => d.at)).toEqual([3, 2, 1]);
   });
 
-  it('with 52 unstarred drafts after a starred one, keeps the starred one and the newest 50', async () => {
+  it('with 2 more unstarred drafts than the cap after a starred one, keeps the starred one and the newest cap', async () => {
+    const keep = KEEP_UNSTARRED;
+    const newestAt = keep + 3;
     const store = new DraftStore(new IDBFactory());
     await store.add(draftAt(1));
     await store.star((await store.list())[0].id, true);
-    for (let at = 2; at <= 53; at++) await store.add(draftAt(at));
+    for (let at = 2; at <= newestAt; at++) await store.add(draftAt(at));
 
     const drafts = await store.list();
 
-    expect(drafts).toHaveLength(51);
+    expect(drafts).toHaveLength(keep + 1);
     expect(drafts.filter((d) => d.starred).map((d) => d.at)).toEqual([1]);
-    expect(Math.min(...drafts.filter((d) => !d.starred).map((d) => d.at))).toBe(4);
+    expect(Math.min(...drafts.filter((d) => !d.starred).map((d) => d.at))).toBe(newestAt - keep + 1);
+  });
+
+  it('with no IndexedDB on the device, constructs and every call rejects', async () => {
+    const store = new DraftStore(null);
+
+    const listing = store.list();
+
+    await expect(listing).rejects.toThrow();
+    await expect(store.add(draftAt(1))).rejects.toThrow();
+    await expect(store.star(1, true)).rejects.toThrow();
+  });
+
+  it('with an IndexedDB open that throws, constructs and list rejects', async () => {
+    const factory = new IDBFactory();
+    vi.spyOn(factory, 'open').mockImplementation(() => { throw new DOMException('blocked', 'SecurityError'); });
+    const store = new DraftStore(factory);
+
+    const listing = store.list();
+
+    await expect(listing).rejects.toThrow('blocked');
+  });
+
+  it('with pruning failing after a save, resolves the add and keeps the draft', async () => {
+    const store = new DraftStore(new IDBFactory());
+    vi.spyOn(store as unknown as { prune: () => Promise<void> }, 'prune').mockRejectedValue(new Error('prune'));
+
+    await store.add(draftAt(7));
+
+    expect((await store.list()).map((d) => d.at)).toEqual([7]);
   });
 });
 

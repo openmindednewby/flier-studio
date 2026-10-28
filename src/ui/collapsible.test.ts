@@ -1,5 +1,7 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { foldableCard, isOpen, localFoldStore, type FoldStore } from './collapsible';
+
+Element.prototype.scrollIntoView = vi.fn();
 
 const memory = (seed: Record<string, string> = {}): FoldStore & { data: Record<string, string | undefined> } => {
   const data: Record<string, string | undefined> = { ...seed };
@@ -51,5 +53,18 @@ describe('localFoldStore', () => {
     Object.assign(Storage.prototype, { setItem, getItem });
     expect(wrote).toBe(false);
     expect(read).toBeNull();
+  });
+});
+
+describe('foldableCard toggle', () => {
+  it('with the toggle clicked, scrolls it into view by the nearest edge', () => {
+    const card = foldableCard('drafts-panel', 'Drafts', [document.createElement('p')], memory());
+    const toggle = card.querySelector('button') as HTMLButtonElement;
+    const scroll = vi.fn();
+    toggle.scrollIntoView = scroll;
+
+    toggle.click();
+
+    expect(scroll).toHaveBeenCalledWith({ block: 'nearest' });
   });
 });

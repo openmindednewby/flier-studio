@@ -45,6 +45,7 @@ export function foldableCard(id: string, title: string, body: HTMLElement[], sto
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     set(open);
     store.write(PREFIX + id, open ? 'open' : 'closed');
+    toggle.scrollIntoView({ block: 'nearest' });
   });
   return el('section', { class: 'card', 'data-testid': id }, [el('h2', { class: 'fold-head' }, [toggle]), content]);
 }

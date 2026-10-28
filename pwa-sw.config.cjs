@@ -6,6 +6,7 @@ module.exports = {
     staticCacheName: 'flier-studio-static-v1',
     publicApiPathMatchers: [],
     staticOnly: true,
+    serveRegistrationOffline: true,
     staticExtensions: ['.js', '.css', '.png', '.jpg', '.jpeg', '.svg', '.woff2', '.ico'],
   },
   manifest: {

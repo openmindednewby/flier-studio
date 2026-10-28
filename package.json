@@ -16,7 +16,7 @@
   "dependencies": {
     "@dloizides/design-tokens": "^1.15.0",
     "@dloizides/llm-run": "^0.2.0",
-    "@dloizides/poster-render": "^0.2.5",
+    "@dloizides/poster-render": "^0.2.6",
     "@dloizides/save-state": "^1.7.0",
     "@mlc-ai/web-llm": "^0.2.86",
     "@wllama/wllama": "^3.6.1"
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@dloizides/e2e-helpers": "^1.1.0",
     "@dloizides/frontend-devtools": "^2.2.0",
-    "@dloizides/pwa-sw": "^1.6.0",
+    "@dloizides/pwa-sw": "^1.7.0",
     "@eslint/js": "^9.39.5",
     "@playwright/test": "^1.48.0",
     "@types/node": "^22.20.5",

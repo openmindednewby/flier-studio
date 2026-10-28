@@ -1,0 +1,69 @@
+{
+  "pairMethod": "same-steps",
+  "frames": [
+    {
+      "option": "A",
+      "shot": "pictures-mobile",
+      "side": "before",
+      "build": "f36c2e5",
+      "file": "before-mobile.png",
+      "anchorTop": -0.265625,
+      "pair": {
+        "route": "/",
+        "state": "first load, flier 1 of 4, no edits",
+        "fixture": "kizomba preset",
+        "viewport": "360x640",
+        "scrollAnchor": "form-group-pictures",
+        "crop": "viewport"
+      }
+    },
+    {
+      "option": "A",
+      "shot": "pictures-mobile",
+      "side": "after",
+      "build": "47e5b98+couple-recut",
+      "file": "after-mobile.png",
+      "anchorTop": -0.265625,
+      "pair": {
+        "route": "/",
+        "state": "first load, flier 1 of 4, no edits",
+        "fixture": "kizomba preset",
+        "viewport": "360x640",
+        "scrollAnchor": "form-group-pictures",
+        "crop": "viewport"
+      }
+    },
+    {
+      "option": "A",
+      "shot": "pictures-desktop",
+      "side": "before",
+      "build": "f36c2e5",
+      "file": "before-desktop.png",
+      "anchorTop": 0.34375,
+      "pair": {
+        "route": "/",
+        "state": "first load, flier 1 of 4, no edits",
+        "fixture": "kizomba preset",
+        "viewport": "1280x800",
+        "scrollAnchor": "form-group-pictures",
+        "crop": "viewport"
+      }
+    },
+    {
+      "option": "A",
+      "shot": "pictures-desktop",
+      "side": "after",
+      "build": "47e5b98+couple-recut",
+      "file": "after-desktop.png",
+      "anchorTop": 0.34375,
+      "pair": {
+        "route": "/",
+        "state": "first load, flier 1 of 4, no edits",
+        "fixture": "kizomba preset",
+        "viewport": "1280x800",
+        "scrollAnchor": "form-group-pictures",
+        "crop": "viewport"
+      }
+    }
+  ]
+}

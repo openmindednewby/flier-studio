@@ -1,24 +1,16 @@
 {
-  "pairMethod": "same-steps",
-  "frames": [
-    {
-      "name": "after-mobile",
-      "pair": {
-        "route": "/",
-        "state": "first load, flier 1 of 4, no edits",
-        "fixture": "kizomba preset",
-        "viewport": {
-          "width": 360,
-          "height": 640
-        },
-        "anchor": "#form-group-pictures",
-        "crop": {
-          "x": 0,
-          "y": 0,
-          "width": 360,
-          "height": 315.96875
-        }
-      }
-    }
-  ]
+  "option": "A",
+  "shot": "pictures-mobile",
+  "side": "after",
+  "build": "47e5b98+couple-recut",
+  "file": "after-mobile.png",
+  "anchorTop": -0.265625,
+  "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4, no edits",
+    "fixture": "kizomba preset",
+    "viewport": "360x640",
+    "scrollAnchor": "form-group-pictures",
+    "crop": "viewport"
+  }
 }

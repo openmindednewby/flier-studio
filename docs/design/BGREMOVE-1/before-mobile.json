@@ -1,24 +1,16 @@
 {
-  "pairMethod": "same-steps",
-  "frames": [
-    {
-      "name": "before-mobile",
-      "pair": {
-        "route": "/",
-        "state": "first load, flier 1 of 4, no edits",
-        "fixture": "kizomba preset",
-        "viewport": {
-          "width": 360,
-          "height": 640
-        },
-        "anchor": "#form-group-pictures",
-        "crop": {
-          "x": 0,
-          "y": 0,
-          "width": 360,
-          "height": 259.96875
-        }
-      }
-    }
-  ]
+  "option": "A",
+  "shot": "pictures-mobile",
+  "side": "before",
+  "build": "f36c2e5",
+  "file": "before-mobile.png",
+  "anchorTop": -0.265625,
+  "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4, no edits",
+    "fixture": "kizomba preset",
+    "viewport": "360x640",
+    "scrollAnchor": "form-group-pictures",
+    "crop": "viewport"
+  }
 }

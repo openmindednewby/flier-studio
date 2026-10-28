@@ -1,24 +1,16 @@
 {
-  "pairMethod": "same-steps",
-  "frames": [
-    {
-      "name": "after-desktop",
-      "pair": {
-        "route": "/",
-        "state": "first load, flier 1 of 4, no edits",
-        "fixture": "kizomba preset",
-        "viewport": {
-          "width": 1280,
-          "height": 800
-        },
-        "anchor": "#form-group-pictures",
-        "crop": {
-          "x": 0,
-          "y": 0,
-          "width": 1280,
-          "height": 315.96875
-        }
-      }
-    }
-  ]
+  "option": "A",
+  "shot": "pictures-desktop",
+  "side": "after",
+  "build": "47e5b98+couple-recut",
+  "file": "after-desktop.png",
+  "anchorTop": 0.34375,
+  "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4, no edits",
+    "fixture": "kizomba preset",
+    "viewport": "1280x800",
+    "scrollAnchor": "form-group-pictures",
+    "crop": "viewport"
+  }
 }

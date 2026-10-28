@@ -1,7 +1,8 @@
 import { createGamepadPoller, createMenuNav, MENU_DEFAULT_ATTR, type PadLike } from '@dloizides/game-input';
 import { FM } from '../i18n/fm';
+import { plural } from '../i18n/plural';
 import { PresetChoice } from '../presets/PresetChoice';
-import { button, el } from './dom';
+import { button, el, textButton } from './dom';
 
 const TITLE_ID = 'preset-title';
 
@@ -29,8 +30,8 @@ export function openPresetDialog(counts: [mine: number, samples: number], choose
   add.setAttribute(MENU_DEFAULT_ATTR, '');
   dialog.append(
     el('h2', { id: TITLE_ID, 'data-testid': 'preset-title', text: FM('config.presetTitle') }),
-    el('p', { class: 'muted', text: FM('config.presetBody', String(counts[0]), String(counts[1])) }),
-    el('div', { class: 'row' }, [add, button('config.presetReplace', 'preset-replace', pick(PresetChoice.Replace)), button('config.presetCancel', 'preset-cancel', pick(PresetChoice.Cancel))]),
+    el('p', { class: 'muted', 'data-testid': 'preset-body', text: FM('config.presetBody', plural('config.presetFliers', counts[0]), String(counts[1]), String(counts[0])) }),
+    el('div', { class: 'row preset-actions' }, [add, textButton(plural('config.presetReplaceAll', counts[0]), 'preset-replace', pick(PresetChoice.Replace), 'destructive-text'), button('config.presetCancel', 'preset-cancel', pick(PresetChoice.Cancel))]),
   );
   const stopNav = startNav();
   dialog.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !e.isTrusted) dialog.close(); });

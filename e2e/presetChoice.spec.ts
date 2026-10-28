@@ -9,6 +9,10 @@ const DPAD_RIGHT = 15;
 const EAST = 1;
 const FIRST_ROW = 1;
 const DRAFTS_ADDED_BY_REPLACE = 1;
+const NARROW = { width: 360, height: 640 };
+const MIN_CONTRAST = 4.5;
+const MAX_BODY_LINES = 3;
+const ACTIONS = ['preset-add', 'preset-replace', 'preset-cancel'];
 
 const titles = (page: Page): Promise<string[]> =>
   page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { content: object }[]).map((f) => JSON.stringify(f.content)));
@@ -30,6 +34,18 @@ const draftsNewestFirst = (page: Page): Promise<string[]> =>
 
 const nextFrames = (page: Page): Promise<void> =>
   page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+
+const replaceContrast = (page: Page): Promise<number> =>
+  page.getByTestId('preset-replace').evaluate((node) => {
+    const rgb = (c: string): number[] => (c.match(/[\d.]+/g) ?? []).slice(0, 3).map(Number);
+    const lum = (c: string): number => {
+      const [r, g, b] = rgb(c).map((v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; });
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    const style = getComputedStyle(node);
+    const [hi, lo] = [lum(style.color), lum(style.backgroundColor)].sort((a, b) => b - a);
+    return (hi + 0.05) / (lo + 0.05);
+  });
 
 async function openPreset(page: Page): Promise<void> {
   await page.goto('/');
@@ -67,6 +83,56 @@ test.describe('AC-35 the Kizomba preset asks first when fliers exist', () => {
       expect(b?.width ?? 0, id).toBeGreaterThanOrEqual(HIT);
     }
     expect(await overflowing(page)).toEqual([]);
+  });
+
+  test('Replace names how many fliers it swaps and its text is the error colour on the neutral fill', async ({ page }) => {
+    await openPreset(page);
+    const onScreen = (await titles(page)).length;
+    const replace = page.getByTestId('preset-replace');
+
+    const colours = await replace.evaluate((node) => {
+      const own = getComputedStyle(node);
+      const root = getComputedStyle(document.documentElement);
+      const probe = document.createElement('i');
+      probe.style.color = root.getPropertyValue('--error');
+      probe.style.backgroundColor = root.getPropertyValue('--surface-elevated');
+      document.body.append(probe);
+      const want = getComputedStyle(probe);
+      const out = { text: own.color, fill: own.backgroundColor, error: want.color, neutral: want.backgroundColor };
+      probe.remove();
+      return out;
+    });
+
+    await expect(replace).toHaveText(onScreen === 1 ? `Replace ${String(onScreen)}` : `Replace all ${String(onScreen)}`);
+    await expect(replace.locator('svg, img')).toHaveCount(0);
+    expect(colours.text).toBe(colours.error);
+    expect(colours.fill).toBe(colours.neutral);
+  });
+
+  for (const colorScheme of ['light', 'dark'] as const) {
+    test(`in ${colorScheme} mode the Replace label reaches 4.5:1 contrast`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme });
+      await openPreset(page);
+
+      const ratio = await replaceContrast(page);
+
+      expect(ratio).toBeGreaterThanOrEqual(MIN_CONTRAST);
+    });
+  }
+
+  test('at 360 px the buttons stack at full width and the body is at most 3 lines', async ({ page }) => {
+    await page.setViewportSize(NARROW);
+    await openPreset(page);
+
+    const boxes = await Promise.all(ACTIONS.map(async (id) => page.getByTestId(id).boundingBox()));
+    const row = await page.getByTestId('preset-add').evaluate((node) => node.parentElement?.getBoundingClientRect().width ?? 0);
+    const lines = await page.getByTestId('preset-body').evaluate((node) => Math.round(node.getBoundingClientRect().height / parseFloat(getComputedStyle(node).lineHeight)));
+
+    for (const [i, b] of boxes.entries()) {
+      expect(Math.abs((b?.width ?? 0) - row), ACTIONS[i]).toBeLessThanOrEqual(TOLERANCE_PX);
+      if (i > 0) expect(b?.y ?? 0, ACTIONS[i]).toBeGreaterThan((boxes[i - 1]?.y ?? 0) + (boxes[i - 1]?.height ?? 0) - TOLERANCE_PX);
+    }
+    expect(lines).toBeLessThanOrEqual(MAX_BODY_LINES);
   });
 
   test('Cancel closes the dialog and changes nothing', async ({ page }) => {

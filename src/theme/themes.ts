@@ -12,6 +12,8 @@ export interface FlierTheme {
 
 const EVENT_DOC = 0;
 const LIST_DOC = 3;
+const GOLDEN_HEADER_GAP = 64;
+const GOLDEN_DATE_SCALE = 1.15;
 
 function classicStyle(content: FlierContent): FlierStyle {
   const { style } = splitDoc(kizombaWorkshopDocs[content.items === undefined ? EVENT_DOC : LIST_DOC]);
@@ -31,6 +33,7 @@ function goldenStyle(content: FlierContent): FlierStyle {
     fonts: FontSetId.Coastal,
     background: BackgroundStyle.Horizon,
     picture: { imageId: 'couple', anchor: PictureAnchor.Bottom, scale: 1 },
+    tuning: content.items === undefined ? { headerGap: GOLDEN_HEADER_GAP } : { itemDateScale: GOLDEN_DATE_SCALE },
   };
 }
 

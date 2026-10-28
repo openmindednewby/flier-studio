@@ -1,7 +1,7 @@
 import type { FlierDoc } from '@dloizides/poster-render';
 import { ThemeId } from './ThemeId';
 
-export const STYLE_KEYS = ['layout', 'palette', 'fonts', 'background', 'picture', 'logo'] as const;
+export const STYLE_KEYS = ['layout', 'palette', 'fonts', 'background', 'picture', 'logo', 'tuning'] as const;
 type StyleKey = (typeof STYLE_KEYS)[number];
 
 export type FlierStyle = Pick<FlierDoc, StyleKey>;

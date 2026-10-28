@@ -1,0 +1,325 @@
+{
+ "ai": {
+  "p": {
+   "x": 33,
+   "y": 246.4,
+   "w": 294,
+   "h": 43.2
+  },
+  "a": {
+   "x": 33,
+   "y": 268,
+   "w": 192,
+   "h": 20
+  },
+  "rects": [
+   {
+    "y": 268,
+    "h": 20,
+    "w": 192
+   }
+  ],
+  "lineHeight": "21.6px",
+  "prev": {
+   "x": 33,
+   "y": 169.7,
+   "w": 294,
+   "h": 64.7
+  },
+  "next": {
+   "x": 33,
+   "y": 309.6,
+   "w": 294,
+   "h": 19.2
+  },
+  "gapAbove": 12,
+  "gapBelow": 20,
+  "hit": [
+   "a",
+   "a",
+   "a",
+   "a"
+  ],
+  "hscroll": false
+ },
+ "marks": [
+  {
+   "n": "1",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 180,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": -4,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 11
+   },
+   "coverPct": 0,
+   "trimLeft": 16,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "2",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 180,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 11
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "3",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 575,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": -4,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 11
+   },
+   "coverPct": 0,
+   "trimLeft": 16,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "4",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 585,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 12
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "5",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 622,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 12
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "6",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 660,
+    "w": 57,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 12
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  }
+ ],
+ "marksUnticked": [
+  {
+   "n": "1",
+   "inside": false,
+   "off": true,
+   "mark": {
+    "x": 20,
+    "y": 180,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": -4,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 11
+   },
+   "coverPct": 0,
+   "trimLeft": 16,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "2",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 180,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 11
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "3",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 20,
+    "y": 575,
+    "w": 54,
+    "h": 11
+   },
+   "badge": {
+    "x": -4,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 11
+   },
+   "coverPct": 0,
+   "trimLeft": 16,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "4",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 585,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 12
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "5",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 622,
+    "w": 59,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 12
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  },
+  {
+   "n": "6",
+   "inside": false,
+   "off": false,
+   "mark": {
+    "x": 190,
+    "y": 660,
+    "w": 57,
+    "h": 12
+   },
+   "badge": {
+    "x": 166,
+    "w": 22,
+    "h": 22
+   },
+   "overlapPx": {
+    "x": 0,
+    "y": 12
+   },
+   "coverPct": 0,
+   "trimLeft": 186,
+   "badgeOffScreen": true
+  }
+ ]
+}

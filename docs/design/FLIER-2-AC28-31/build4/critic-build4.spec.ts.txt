@@ -1,0 +1,63 @@
+import { test, type Page } from '@playwright/test';
+import { writeFileSync } from 'node:fs';
+const W = process.env.WHICH ?? 'after';
+const HERE = 'C:/desktopContents/projects/SaaS/apps/flier-studio/docs/design/FLIER-2-AC28-31/build4';
+const MEAS = 'C:/Users/loizi/AppData/Local/Temp/claude/C--desktopContents-projects-SaaS/3e7e03ef-ba91-4fde-9b26-b216b5463f57/scratchpad/critic-b4';
+const VPS = [{ w: 360, h: 640, mobile: true }, { w: 1280, h: 800, mobile: false }];
+const SCHEMES = ['light', 'dark'] as const;
+
+async function aiMeasure(page: Page) {
+  return page.evaluate(() => {
+    const p = document.querySelector('[data-testid="all-ai-line"]') as HTMLElement; const a = p.querySelector('a')!;
+    const r = (e: Element) => { const b = e.getBoundingClientRect(); return { x: Math.round(b.left), y: Math.round(b.top * 10) / 10, w: Math.round(b.width), h: Math.round(b.height * 10) / 10 }; };
+    const rects = [...a.getClientRects()].map((b) => ({ y: Math.round(b.top), h: Math.round(b.height), w: Math.round(b.width) }));
+    const prev = p.previousElementSibling, next = p.nextElementSibling;
+    const ab = a.getBoundingClientRect(); const cx = ab.left + Math.min(ab.width / 2, 20);
+    const hit = [ab.top + 2, ab.top + 8, ab.bottom - 8, ab.bottom - 2].map((y) => { const e = document.elementFromPoint(cx, y); return e === a || a.contains(e!) ? 'a' : `${e?.tagName}.${(e as HTMLElement)?.className}`; });
+    return { p: r(p), a: r(a), rects, lineHeight: getComputedStyle(p).lineHeight, prev: prev ? r(prev) : null, next: next ? r(next) : null, gapAbove: prev ? Math.round(p.getBoundingClientRect().top - prev.getBoundingClientRect().bottom) : null, gapBelow: next ? Math.round(next.getBoundingClientRect().top - p.getBoundingClientRect().bottom) : null, hit, hscroll: document.documentElement.scrollWidth > innerWidth };
+  });
+}
+async function markMeasure(page: Page) {
+  return page.evaluate(() => [...document.querySelectorAll('.replace-mark')].map((m) => {
+    const r = m.getBoundingClientRect(); const b = m.querySelector('b')!.getBoundingClientRect(); const t = m.closest('.trim')?.getBoundingClientRect();
+    const ox = Math.max(0, Math.min(r.right, b.right) - Math.max(r.left, b.left)); const oy = Math.max(0, Math.min(r.bottom, b.bottom) - Math.max(r.top, b.top));
+    return { n: m.textContent, inside: m.classList.contains('badge-inside'), off: m.classList.contains('off'), mark: { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) }, badge: { x: Math.round(b.left), w: Math.round(b.width), h: Math.round(b.height) }, overlapPx: { x: Math.round(ox), y: Math.round(oy) }, coverPct: Math.round((ox * oy) / (r.width * r.height) * 100), trimLeft: t ? Math.round(t.left) : null, badgeOffScreen: b.left < 0 || (t ? b.left < t.left - 0.5 : false) };
+  }));
+}
+
+for (const vp of VPS) for (const scheme of SCHEMES) test(`${vp.w}-${scheme}`, async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, isMobile: vp.mobile, hasTouch: vp.mobile, deviceScaleFactor: 1, colorScheme: scheme });
+  const page = await ctx.newPage();
+  const out: Record<string, unknown> = {};
+  const shot = async (name: string) => { await page.waitForTimeout(300); await page.screenshot({ path: `${HERE}/${W}-${vp.w}-${scheme}-${name}.png` }); };
+  await page.goto('/');
+  await page.locator('[data-testid="preview-grid"][data-render="done"]').waitFor();
+  await page.waitForTimeout(1500);
+  const seeded = await page.evaluate(() => { const k = 'flier-studio:fliers'; const v = localStorage.getItem(k); if (!v || !v.includes('Beginners')) return false; localStorage.setItem(k, v.split('Beginners').join('Level 1')); return true; });
+  if (!seeded) throw new Error('fixture: no stored fliers with Beginners');
+  await page.reload();
+  await page.locator('[data-testid="preview-grid"][data-render="done"]').waitFor();
+  await page.getByTestId('nav-all').click();
+  await page.evaluate(() => document.querySelector('[data-testid="all-ai-line"]')?.scrollIntoView({ block: 'center' }));
+  await shot('ai-line');
+  out.ai = await aiMeasure(page);
+  const a = await page.locator('[data-testid="all-ai-line"] a').boundingBox();
+  if (a) await page.screenshot({ path: `${HERE}/${W}-${vp.w}-${scheme}-ai-zoom.png`, clip: { x: 0, y: Math.max(0, a.y - 70), width: vp.w, height: 180 } });
+  await page.getByTestId('replace-with').fill('Beginners');
+  await page.getByTestId('replace-find').fill('Level 1');
+  await page.getByTestId('replace-tick-1').waitFor();
+  const toGrid = () => page.evaluate(() => { const n = document.querySelector('[data-testid="preview-grid"]'); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); });
+  if (vp.mobile) { const see = page.getByTestId('mini-see-marks'); await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); if (await see.isVisible()) await see.click(); else await toGrid(); } else await toGrid();
+  await shot('replace-marks');
+  out.marks = await markMeasure(page);
+  const m = await page.locator('.replace-mark').first().boundingBox();
+  if (m) await page.screenshot({ path: `${HERE}/${W}-${vp.w}-${scheme}-mark-zoom.png`, clip: { x: 0, y: Math.max(0, m.y - 30), width: Math.min(vp.w, 360), height: 140 } });
+  await page.getByTestId('replace-tick-1').uncheck();
+  if (vp.mobile) { const see = page.getByTestId('mini-see-marks'); await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); if (await see.isVisible()) await see.click(); else await toGrid(); } else await toGrid();
+  await shot('replace-unticked-marks');
+  out.marksUnticked = await markMeasure(page);
+  const m2 = await page.locator('.replace-mark').first().boundingBox();
+  if (m2) await page.screenshot({ path: `${HERE}/${W}-${vp.w}-${scheme}-mark-unticked-zoom.png`, clip: { x: 0, y: Math.max(0, m2.y - 30), width: Math.min(vp.w, 360), height: 140 } });
+  writeFileSync(`${MEAS}/measure-${W}-${vp.w}-${scheme}.json`, JSON.stringify(out, null, 1));
+  await ctx.close();
+});

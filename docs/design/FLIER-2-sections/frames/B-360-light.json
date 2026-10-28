@@ -1,0 +1,35 @@
+{
+ "option": "B",
+ "side": "after",
+ "build": "00f0f12 + mockup B",
+ "file": "B-360-light.png",
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, All fliers card open",
+  "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+  "viewport": "360x640",
+  "colorScheme": "light",
+  "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "BODY",
+ "present": [
+  "all-fliers",
+  "all-fliers-toggle",
+  "all-fliers-row",
+  "add-flier",
+  "download-all",
+  "sec-theme-toggle",
+  "sec-scope-toggle"
+ ],
+ "note": "Theme and these settings change all 4 fliers.",
+ "labels": {
+  "theme": "ThemeKizomba classicGolden hour",
+  "scope": "Shared text edits apply toThis flier onlyAll fliers (footer, level names, class price)"
+ },
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "cardHeight": 385,
+ "flier1Top": 3375
+}

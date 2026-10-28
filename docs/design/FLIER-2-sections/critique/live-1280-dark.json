@@ -1,0 +1,33 @@
+{
+ "page": "1280x2953",
+ "allFliers": "x516 y236 w692 h264",
+ "flier1": "x516 y516 w223 h498",
+ "form": "x72 y468 w420 h1907",
+ "prompt": "x89 y269 w386 h90",
+ "drafts": "x516 y1588 w692 h210",
+ "downloadAll": "x1043 y176 w165 h44",
+ "mini": "x0 y0 w0 h0",
+ "parts": [
+  "H2 \"All fliers\" y253 w658 h46",
+  "BUTTON#all-fliers-toggle \"All fliers\" y253 w658 h46",
+  "P \"Theme and these settings change all 4 fliers.\" y314 w658 h24",
+  "LABEL#theme-row \"ThemeKizomba classicGolden hour\" y354 w325 h72",
+  "SELECT#pick-theme \"Kizomba classicGolden hour\" y383 w325 h44",
+  "LABEL \"Shared text edits apply toThis flier onlyAll fliers (footer,\" y354 w325 h72",
+  "SELECT#pick-scope \"This flier onlyAll fliers (footer, level names, class price)\" y383 w325 h44",
+  "BUTTON#add-flier \"Add flier\" y439 w658 h44"
+ ],
+ "h": [
+  "H1 \"\" y24",
+  "H2 \"Generate from prompt\" y193",
+  "H2 \"Flier\" y485",
+  "H3 \"Layout\" y588",
+  "H3 \"Pictures\" y885",
+  "H3 \"Text\" y1209",
+  "H2 \"Saved configs\" y2408",
+  "H2 \"All fliers\" y253",
+  "H2 \"Drafts on this device\" y1605"
+ ],
+ "font": "system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+ "bg": "rgb(28, 26, 23)"
+}

@@ -1,0 +1,36 @@
+{
+ "option": "A",
+ "side": "after",
+ "build": "00f0f12 + mockup A",
+ "file": "A-1280-light.png",
+ "pair": {
+  "route": "/",
+  "state": "first load, flier 1 of 4 selected, All fliers card open",
+  "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+  "viewport": "1280x800",
+  "colorScheme": "light",
+  "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "field-title",
+ "present": [
+  "all-fliers",
+  "all-fliers-toggle",
+  "theme-row",
+  "pick-theme",
+  "pick-scope",
+  "all-fliers-row",
+  "add-flier",
+  "download-all"
+ ],
+ "note": "Theme and these settings change all 4 fliers.",
+ "labels": {
+  "theme": "ThemeKizomba classicGolden hour",
+  "scope": "Shared text edits apply toThis flier onlyAll fliers (footer, level names, class price)"
+ },
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "cardHeight": 208,
+ "flier1Top": 400
+}

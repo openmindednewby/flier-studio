@@ -1,0 +1,19 @@
+{
+ "option": "B",
+ "side": "after",
+ "build": "00f0f12 + mockup B",
+ "file": "B-1280-dark-drafts.png",
+ "pair": {
+  "route": "/",
+  "state": "first load, then the PAGE scrolled to the Drafts card (no inner scroll)",
+  "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+  "viewport": "1280x800",
+  "colorScheme": "dark",
+  "scrollAnchor": "window.scrollTo(drafts-panel top - 16)",
+  "crop": "viewport"
+ },
+ "draftsReachedByPageScroll": {
+  "seen": true,
+  "top": 566
+ }
+}

@@ -1,0 +1,760 @@
+{
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "pairMethod": "same-steps",
+ "beforeIds": [
+  "add-flier",
+  "all-fliers",
+  "all-fliers-row",
+  "all-fliers-toggle",
+  "download-all",
+  "pick-scope",
+  "pick-theme",
+  "theme-row"
+ ],
+ "options": {
+  "A": {
+   "inventory": "13/13",
+   "lost": [],
+   "movedTo": [],
+   "nonTestidItems": [
+    "fold hint (aria-description)",
+    "note \"Theme and these settings change all n fliers.\"",
+    "label \"Shared text edits apply to\"",
+    "folded state",
+    "Drafts reachable at desktop"
+   ],
+   "misaligned": [],
+   "textFit": [],
+   "draftsReachedByPageScrollAt1280": true
+  },
+  "B": {
+   "inventory": "13/13",
+   "lost": [],
+   "movedTo": [
+    "theme-row -> one tap behind sec-theme-toggle",
+    "pick-theme -> one tap behind sec-theme-toggle",
+    "pick-scope -> one tap behind sec-scope-toggle"
+   ],
+   "nonTestidItems": [
+    "fold hint (aria-description)",
+    "note \"Theme and these settings change all n fliers.\"",
+    "label \"Shared text edits apply to\"",
+    "folded state",
+    "Drafts reachable at desktop"
+   ],
+   "misaligned": [],
+   "textFit": [],
+   "draftsReachedByPageScrollAt1280": true
+  },
+  "C": {
+   "inventory": "13/13",
+   "lost": [],
+   "movedTo": [],
+   "nonTestidItems": [
+    "fold hint (aria-description)",
+    "note \"Theme and these settings change all n fliers.\"",
+    "label \"Shared text edits apply to\"",
+    "folded state",
+    "Drafts reachable at desktop"
+   ],
+   "misaligned": [],
+   "textFit": [],
+   "draftsReachedByPageScrollAt1280": true
+  }
+ },
+ "frames": [
+  {
+   "option": "A",
+   "shot": "1280-dark",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-1280-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-dark",
+   "side": "after",
+   "build": "00f0f12 + mockup A",
+   "file": "A-1280-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-1280-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light",
+   "side": "after",
+   "build": "00f0f12 + mockup A",
+   "file": "A-1280-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-dark",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-360-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-dark",
+   "side": "after",
+   "build": "00f0f12 + mockup A",
+   "file": "A-360-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-360-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light",
+   "side": "after",
+   "build": "00f0f12 + mockup A",
+   "file": "A-360-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-dark",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-1280-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-dark",
+   "side": "after",
+   "build": "00f0f12 + mockup B",
+   "file": "B-1280-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "all-fliers-row",
+     "add-flier",
+     "download-all",
+     "sec-theme-toggle",
+     "sec-scope-toggle"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-1280-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light",
+   "side": "after",
+   "build": "00f0f12 + mockup B",
+   "file": "B-1280-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "all-fliers-row",
+     "add-flier",
+     "download-all",
+     "sec-theme-toggle",
+     "sec-scope-toggle"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-dark",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-360-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-dark",
+   "side": "after",
+   "build": "00f0f12 + mockup B",
+   "file": "B-360-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "all-fliers-row",
+     "add-flier",
+     "download-all",
+     "sec-theme-toggle",
+     "sec-scope-toggle"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-360-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light",
+   "side": "after",
+   "build": "00f0f12 + mockup B",
+   "file": "B-360-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "all-fliers-row",
+     "add-flier",
+     "download-all",
+     "sec-theme-toggle",
+     "sec-scope-toggle"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-dark",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-1280-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-dark",
+   "side": "after",
+   "build": "00f0f12 + mockup C",
+   "file": "C-1280-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-1280-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light",
+   "side": "after",
+   "build": "00f0f12 + mockup C",
+   "file": "C-1280-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-dark",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-360-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-dark",
+   "side": "after",
+   "build": "00f0f12 + mockup C",
+   "file": "C-360-dark.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "dark",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light",
+   "side": "before",
+   "build": "00f0f12",
+   "file": "before-360-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light",
+   "side": "after",
+   "build": "00f0f12 + mockup C",
+   "file": "C-360-light.png",
+   "pair": {
+    "route": "/",
+    "state": "first load, flier 1 of 4 selected, All fliers card open",
+    "fixture": "kizomba preset, 4 fliers, fresh browser storage, clock frozen 2026-10-28 15:00Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "higher of download-all and all-fliers, scrollIntoView block start",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "theme-row",
+     "pick-theme",
+     "pick-scope",
+     "all-fliers-row",
+     "add-flier",
+     "download-all"
+    ]
+   }
+  }
+ ]
+}

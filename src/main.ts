@@ -2,13 +2,16 @@ import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/desig
 import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
 import { EditScope } from './form/EditScope';
 import { nextDocs } from './form/sharedFields';
+import { applyTheme, withDocs } from './form/themeScope';
 import { FM } from './i18n/fm';
 import { kizombaPreset } from './presets/kizomba';
 import { importShared } from './share/importShared';
 import { decodeShare, shareFragmentOf } from './share/shareCodec';
 import { ConfigStore } from './store/configStore';
 import { ImageStore } from './store/imageStore';
-import { WorkingDocStore } from './store/workingDocStore';
+import { FlierStore } from './store/flierStore';
+import { cloneFlier, toDoc, toThemed } from './theme/flierTheme';
+import { themeById } from './theme/themes';
 import { AssetBook } from './ui/assets';
 import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
@@ -24,8 +27,9 @@ const RENDER_DELAY_MS = 150;
 const DOWNLOAD_GAP_MS = 300;
 const DESKTOP_MIN = 1024;
 
-const working = new WorkingDocStore();
-const state = { docs: working.load() ?? kizombaPreset(), selected: 0, scope: EditScope.This, canvases: [] as HTMLCanvasElement[] };
+const working = new FlierStore();
+const state = { fliers: working.load() ?? kizombaPreset().map((d) => toThemed(d)), selected: 0, scope: EditScope.This, themeScope: EditScope.This, canvases: [] as HTMLCanvasElement[] };
+const docsOf = (): FlierDoc[] => state.fliers.map(toDoc);
 const assets = new AssetBook(new ImageStore());
 const configs = new ConfigStore();
 
@@ -41,31 +45,39 @@ const mini = createMiniPreview({ seeAll: () => previewGrid.closest('section')?.s
 
 let timer: number | undefined;
 function refreshPreviews(): void {
-  working.save(state.docs);
+  working.save(state.fliers);
+  const docs = docsOf();
   window.clearTimeout(timer);
   timer = window.setTimeout(async () => {
-    const book = await assets.forDocs(state.docs);
-    state.canvases = await renderPreviews(previewGrid, state.docs, book, { selected: state.selected, select });
-    mini.update(state.canvases[state.selected], state.selected, state.docs.length);
+    const book = await assets.forDocs(docs);
+    state.canvases = await renderPreviews(previewGrid, docs, book, { selected: state.selected, select });
+    mini.update(state.canvases[state.selected], state.selected, docs.length);
   }, RENDER_DELAY_MS);
 }
 
 function showForm(): void {
-  renderForm(formBox, state.docs[state.selected], [state.selected + 1, state.docs.length], {
-    change: (doc) => { const reshaped = doc.format !== state.docs[state.selected].format; state.docs = nextDocs(state.scope, state.docs, state.selected, doc); if (reshaped) showForm(); refreshPreviews(); },
+  const docs = docsOf();
+  renderForm(formBox, docs[state.selected], [state.selected + 1, docs.length], {
+    change: (doc) => { const reshaped = doc.format !== docs[state.selected].format; state.fliers = withDocs(state.fliers, nextDocs(state.scope, docsOf(), state.selected, doc)); if (reshaped) showForm(); refreshPreviews(); },
     upload: (kind, file) => void upload(kind, file),
     scope: () => state.scope,
     setScope: (scope) => { state.scope = scope; },
-    add: () => { state.docs.push(JSON.parse(JSON.stringify(state.docs[state.selected])) as FlierDoc); select(state.docs.length - 1); },
-    remove: () => { if (state.docs.length > 1) { state.docs.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
+    theme: () => state.fliers[state.selected].themeId,
+    setTheme: (id) => setTheme(id),
+    themeScope: () => state.themeScope,
+    setThemeScope: (scope) => { state.themeScope = scope; },
+    add: () => { state.fliers.push(cloneFlier(state.fliers[state.selected])); select(state.fliers.length - 1); },
+    remove: () => { if (state.fliers.length > 1) { state.fliers.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
   });
 }
 
 async function upload(kind: UploadKind, file: File): Promise<void> {
   const id = await assets.upload(file, kind);
-  const doc = state.docs[state.selected];
+  const docs = docsOf();
+  const doc = docs[state.selected];
   if (kind === UploadKind.Logo) doc.logo = { imageId: id };
   else doc.picture = { anchor: doc.picture?.anchor ?? PictureAnchor.Bottom, scale: doc.picture?.scale ?? 1, imageId: id };
+  state.fliers = withDocs(state.fliers, docs);
   showForm();
   refreshPreviews();
 }
@@ -76,13 +88,21 @@ function select(index: number): void {
   refreshPreviews();
 }
 
+function setTheme(id: string): void {
+  const theme = themeById(id);
+  if (theme === undefined) return;
+  state.fliers = applyTheme(state.themeScope, state.fliers, state.selected, theme);
+  showForm();
+  refreshPreviews();
+}
+
 function apply(docs: FlierDoc[]): void {
-  state.docs = docs;
+  state.fliers = docs.map((d) => toThemed(d));
   select(0);
 }
 
 function renderConfigs(): void {
-  renderConfigPanel(configBox, configs, { current: () => state.docs, apply, status: (m) => { status.textContent = m; } });
+  renderConfigPanel(configBox, configs, { current: docsOf, apply, status: (m) => { status.textContent = m; } });
 }
 
 async function checkShare(): Promise<void> {
@@ -95,8 +115,9 @@ async function checkShare(): Promise<void> {
 }
 
 async function downloadAll(): Promise<void> {
+  const docs = docsOf();
   for (const [i, canvas] of state.canvases.entries()) {
-    await downloadCanvas(canvas, state.docs[i], i);
+    await downloadCanvas(canvas, docs[i], i);
     await new Promise((r) => setTimeout(r, DOWNLOAD_GAP_MS));
   }
 }

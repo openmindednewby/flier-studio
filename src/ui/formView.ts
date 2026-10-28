@@ -7,9 +7,10 @@ import { scalePercent } from '../form/pictureScale';
 import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
 import { button, el, fileButton, labelled } from './dom';
+import { themeRow, type ThemeActions } from './themeControls';
 import { UploadKind } from './UploadKind';
 
-export interface FormActions {
+export interface FormActions extends ThemeActions {
   change(doc: FlierDoc): void;
   upload(kind: UploadKind, file: File): void;
   add(): void;
@@ -91,6 +92,7 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   container.replaceChildren(
     el('h2', { text: FM('form.heading') }),
     el('p', { class: 'muted', text: FM('form.editing', String(position[0]), String(position[1])) }),
+    themeRow(actions),
     el('div', { class: 'row' }, [labelled('form.scope', scope)]),
     ...groups(controls),
     el('div', { class: 'row actions' }, [button('form.add', 'add-flier', actions.add), button('form.remove', 'remove-flier', actions.remove)]),

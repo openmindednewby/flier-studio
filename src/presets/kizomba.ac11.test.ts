@@ -5,20 +5,20 @@ import { WorkingDocStore } from '../store/workingDocStore';
 import { cloneDocs, kizombaPreset } from './kizomba';
 
 describe('kizombaPreset', () => {
-  it('with every event flier, names the levels Beginners and Intermediate', () => {
+  it('with every event flier, names the levels Beginners and Intermediates', () => {
     const docs = kizombaPreset();
 
     const labels = docs.slice(0, 3).map((d) => d.blocks.schedule?.map((r) => r.label));
 
-    expect(labels).toEqual([['Beginners', 'Intermediate'], ['Beginners', 'Intermediate'], ['Beginners', 'Intermediate']]);
+    expect(labels).toEqual([['Beginners', 'Intermediates'], ['Beginners', 'Intermediates'], ['Beginners', 'Intermediates']]);
   });
 
-  it('with the list flier, names the levels Beginners and Intermediate on every row', () => {
+  it('with the list flier, names the levels Beginners and Intermediates on every row', () => {
     const list = kizombaPreset()[3];
 
     const labels = list.items?.map((i) => i.schedule.map((r) => r.label));
 
-    expect(labels).toEqual([['Beginners', 'Intermediate'], ['Beginners', 'Intermediate'], ['Beginners', 'Intermediate']]);
+    expect(labels).toEqual([['Beginners', 'Intermediates'], ['Beginners', 'Intermediates'], ['Beginners', 'Intermediates']]);
   });
 
   it('with all 4 fliers, shows the footer "Classes by Jimmy & Ismini"', () => {

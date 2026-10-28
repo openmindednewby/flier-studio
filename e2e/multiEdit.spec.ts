@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 const HIT = 44;
 
 const footers = (page: Page): Promise<(string | undefined)[]> =>
-  page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:working') ?? '[]') as { blocks: { footer?: string } }[]).map((d) => d.blocks.footer));
+  page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { content: { blocks: { footer?: string } } }[]).map((f) => f.content.blocks.footer));
 
 test.describe('multi edit scope (AC-10)', () => {
   test.beforeEach(async ({ page }) => {
@@ -24,12 +24,12 @@ test.describe('multi edit scope (AC-10)', () => {
     await expect.poll(() => footers(page)).toEqual(['Only flier one', 'Hosted by Bailemos', 'Hosted by Bailemos', 'Hosted by Bailemos']);
   });
 
-  test('the preset shows Beginners, Intermediate and the new footer (AC-11)', async ({ page }) => {
+  test('the preset shows Beginners, Intermediates and the new footer (AC-11)', async ({ page }) => {
     const schedule = page.getByTestId('field-schedule');
 
     await page.getByTestId('edit-1').click();
 
-    await expect(schedule).toHaveValue(/Beginners \| .*\nIntermediate \| /);
+    await expect(schedule).toHaveValue(/Beginners \| .*\nIntermediates \| /);
     await expect(page.getByTestId('field-footer')).toHaveValue('Classes by Jimmy & Ismini');
   });
 });

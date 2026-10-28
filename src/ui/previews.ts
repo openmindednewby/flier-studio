@@ -1,7 +1,7 @@
 import { FlierDocError, exportPng, render, type FlierDoc, type PosterAssets, type PosterCanvas } from '@dloizides/poster-render';
 import { listHint } from '../form/listHint';
 import { FM } from '../i18n/fm';
-import { button, downloadBlob, el } from './dom';
+import { button, downloadBlob, el, textButton } from './dom';
 import { fontsReady, type FontLoader } from './fonts';
 
 export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
@@ -24,8 +24,15 @@ function problem(doc: FlierDoc, error: string): HTMLParagraphElement {
   return el('p', { class: 'error', role: 'alert', text: FM('form.invalid', error) });
 }
 
+export interface PreviewView {
+  selected: number;
+  select: (i: number) => void;
+  fonts?: FontLoader;
+}
+
 /** One live canvas per flier with edit and PNG download; returns the canvases in doc order. */
-export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, selected: number, select: (i: number) => void, fonts: FontLoader = document.fonts): Promise<HTMLCanvasElement[]> {
+export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, view: PreviewView): Promise<HTMLCanvasElement[]> {
+  const { selected, select, fonts = document.fonts } = view;
   await fontsReady(fonts);
   const canvases = docs.map(() => el('canvas', { role: 'img' }));
   const figures = docs.map((doc, i) => {
@@ -36,12 +43,11 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     return el('figure', { class: i === selected ? 'selected' : '', 'data-testid': `preview-${n}` }, [
       error === null ? canvas : problem(doc, error),
       el('figcaption', { class: 'row' }, [
-        button('previews.edit', `edit-${n}`, () => select(i)),
+        textButton(FM('previews.edit', n), `edit-${n}`, () => select(i)),
         button('previews.download', `download-${n}`, () => void downloadCanvas(canvas, doc, i)),
       ]),
     ]);
   });
-  figures.forEach((f, i) => f.querySelector('button')?.replaceChildren(FM('previews.edit', String(i + 1))));
   container.replaceChildren(...figures);
   return canvases;
 }

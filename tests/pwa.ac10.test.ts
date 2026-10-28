@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { KATALOGOS_TOKENS } from '@dloizides/design-tokens';
 import { buildManifest, generateServiceWorker } from '@dloizides/pwa-sw';
 import { describe, expect, it } from 'vitest';
+import { withThemeColor } from '../scripts/themeColor';
 
 const root = join(__dirname, '..');
 const read = (p: string): string => readFileSync(join(root, p), 'utf8');
@@ -54,11 +55,12 @@ describe('nginx.conf', () => {
 
 describe('index.html', () => {
   it('with the PWA wiring, links the generated manifest and loads the registration snippet', () => {
-    const html = read('index.html');
+    const html = withThemeColor(read('index.html'));
 
     const found = ['rel="manifest" href="/manifest.json"', 'src="/sw-register.js"', 'name="theme-color"'].filter((s) => html.includes(s));
 
     expect(found).toHaveLength(3);
-    expect(html).toContain('name="theme-color" content="' + KATALOGOS_TOKENS.dark.background + '"');
+    expect(html).toContain('name="theme-color" content="' + KATALOGOS_TOKENS.dark.background + '" media="(prefers-color-scheme: dark)"');
+    expect(html).toContain('name="theme-color" content="' + KATALOGOS_TOKENS.light.background + '" media="(prefers-color-scheme: light)"');
   });
 });

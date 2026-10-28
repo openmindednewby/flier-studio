@@ -77,8 +77,8 @@ describe('createGenerator', () => {
   });
 
   it('with the chat call failing, falls back to the keyword preset instead of throwing', async () => {
-    const chat = vi.fn(async () => { throw new Error('device lost'); });
-    const d: GenerateDeps = { hasWebGpu: async () => true, loadLlm: async () => ({ run: async () => ({ chat }) }) };
+    const chat = Object.assign(vi.fn(async () => { throw new Error('device lost'); }), { completions: { create: vi.fn() } });
+    const d: GenerateDeps = { hasWebGpu: async () => true, loadLlm: async () => ({ run: async () => ({ chat, unload: vi.fn() }) }) };
 
     const outcome = await createGenerator(d).generate('desktop wallpaper');
 

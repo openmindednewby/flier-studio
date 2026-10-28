@@ -10,7 +10,7 @@ function sources(dir: string): string[] {
   });
 }
 
-const STATIC_IMPORT = new RegExp("^import [^(]*['\"]@dloizides/llm-run['\"]", 'm');
+const STATIC_IMPORT = new RegExp("^import (?!type )[^(]*['\"]@dloizides/llm-run['\"]", 'm');
 
 describe('llm-run import', () => {
   it('with every app source file, is only ever a dynamic import so the model loads on click only', () => {

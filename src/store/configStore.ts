@@ -1,5 +1,6 @@
 import { validateFlierDoc, type FlierDoc } from '@dloizides/poster-render';
 import { SlotStore, defaultKeyValueStore, readJson, writeJson, type KeyValueStore } from '@dloizides/save-state';
+import { FM } from '../i18n/fm';
 import { cloneDocs } from '../presets/kizomba';
 
 const INDEX_KEY = 'flier-studio:configs';
@@ -30,12 +31,12 @@ function readImport(json: string): SavedConfig | string {
   try {
     parsed = JSON.parse(json);
   } catch {
-    return 'file: not valid JSON';
+    return FM('errors.configNotJson');
   }
   const raw = parsed as Partial<SavedConfig> | null;
   const hasShape = raw !== null && typeof raw === 'object' && typeof raw.name === 'string' && Array.isArray(raw.docs);
   if (!hasShape || raw.version !== VERSION || raw.docs === undefined || raw.docs.length === 0) {
-    return 'file: not a Flier Studio config';
+    return FM('errors.configNotFlier');
   }
   const errors = raw.docs.flatMap((doc, i) => {
     const result = validateFlierDoc(doc);

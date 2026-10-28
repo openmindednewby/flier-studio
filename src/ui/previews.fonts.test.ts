@@ -12,7 +12,7 @@ describe('renderPreviews', () => {
     const loader: FontLoader = { load: () => gate };
     const container = document.createElement('div');
 
-    const drawn = renderPreviews(container, kizombaWorkshopDocs, {}, 0, () => undefined, loader);
+    const drawn = renderPreviews(container, kizombaWorkshopDocs, {}, { selected: 0, select: () => undefined, fonts: loader });
     await Promise.resolve();
     const callsBeforeFonts = vi.mocked(render).mock.calls.length;
     release();

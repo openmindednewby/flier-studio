@@ -14,7 +14,10 @@ export function el<K extends keyof HTMLElementTagNameMap>(tag: K, props: Props =
 }
 
 export function button(labelKey: string, testId: string, onClick: () => void, extraClass = ''): HTMLButtonElement {
-  const label = FM(labelKey);
+  return textButton(FM(labelKey), testId, onClick, extraClass);
+}
+
+export function textButton(label: string, testId: string, onClick: () => void, extraClass = ''): HTMLButtonElement {
   const node = el('button', { type: 'button', class: extraClass, 'data-testid': testId, 'aria-description': FM('hint.button', label), text: label });
   node.addEventListener('click', onClick);
   return node;

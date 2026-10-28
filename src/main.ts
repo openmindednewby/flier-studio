@@ -1,5 +1,5 @@
 import { DEFAULT_CSS_VAR_NAMES, KATALOGOS_TOKENS, toCssVars } from '@dloizides/design-tokens';
-import type { FlierDoc } from '@dloizides/poster-render';
+import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
 import { FM } from './i18n/fm';
 import { kizombaPreset } from './presets/kizomba';
 import { ConfigStore } from './store/configStore';
@@ -38,7 +38,7 @@ function refreshPreviews(): void {
   window.clearTimeout(timer);
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(state.docs);
-    state.canvases = await renderPreviews(previewGrid, state.docs, book, state.selected, select);
+    state.canvases = await renderPreviews(previewGrid, state.docs, book, { selected: state.selected, select });
   }, RENDER_DELAY_MS);
 }
 
@@ -55,7 +55,7 @@ async function upload(kind: UploadKind, file: File): Promise<void> {
   const id = await assets.upload(file, kind);
   const doc = state.docs[state.selected];
   if (kind === UploadKind.Logo) doc.logo = { imageId: id };
-  else doc.picture = { anchor: doc.picture?.anchor ?? ('bottom' as never), scale: doc.picture?.scale ?? 1, imageId: id };
+  else doc.picture = { anchor: doc.picture?.anchor ?? PictureAnchor.Bottom, scale: doc.picture?.scale ?? 1, imageId: id };
   showForm();
   refreshPreviews();
 }

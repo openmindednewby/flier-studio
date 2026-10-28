@@ -1,3 +1,4 @@
+import type { LlmClient, ProgressEvent, run } from '@dloizides/llm-run';
 import { flierDocSchema, kizombaWorkshopDocs, type FlierDoc } from '@dloizides/poster-render';
 import { GenerateSource } from './GenerateSource';
 import { parseLlmDoc } from './parseLlmDoc';
@@ -9,18 +10,14 @@ const MODEL_MB = 400;
 export const MODEL_ID = 'HuggingFaceTB/SmolLM2-360M-Instruct-GGUF';
 export const MAX_MODEL_BYTES = MODEL_MB * MB;
 
-interface ChatClient {
-  chat: (text: string) => Promise<string>;
-}
-
 interface LlmModule {
-  run(model: string, opts: { maxModelBytes: number; onProgress?: (e: unknown) => void }): Promise<ChatClient>;
+  run: typeof run;
 }
 
 export interface GenerateDeps {
   hasWebGpu(): Promise<boolean>;
   loadLlm(): Promise<LlmModule>;
-  onProgress?: (e: unknown) => void;
+  onProgress?: (e: ProgressEvent) => void;
 }
 
 export interface GenerateOutcome {
@@ -42,8 +39,8 @@ export function buildPrompt(prompt: string): string {
 
 /** Prompt-to-flier generator; the model module is imported on the first generate() only. */
 export function createGenerator(deps: GenerateDeps): { generate(prompt: string): Promise<GenerateOutcome> } {
-  let client: Promise<ChatClient> | null = null;
-  const connect = async (): Promise<ChatClient> => {
+  let client: Promise<LlmClient> | null = null;
+  const connect = async (): Promise<LlmClient> => {
     const llm = await deps.loadLlm();
     return llm.run(MODEL_ID, { maxModelBytes: MAX_MODEL_BYTES, onProgress: deps.onProgress });
   };
@@ -65,10 +62,10 @@ export function createGenerator(deps: GenerateDeps): { generate(prompt: string):
   };
 }
 
-export function browserDeps(onProgress?: (e: unknown) => void): GenerateDeps {
+export function browserDeps(onProgress?: (e: ProgressEvent) => void): GenerateDeps {
   return {
     hasWebGpu: async () => hasWebGpuAdapter(typeof navigator === 'undefined' ? undefined : (navigator as never)),
-    loadLlm: async () => (await import('@dloizides/llm-run')) as unknown as LlmModule,
+    loadLlm: async () => import('@dloizides/llm-run'),
     onProgress,
   };
 }

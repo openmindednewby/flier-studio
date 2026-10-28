@@ -10,6 +10,11 @@ export interface ConfigActions {
   status(message: string): void;
 }
 
+function exportConfig(store: ConfigStore, name: string): void {
+  const json = store.exportJson(name);
+  if (json !== null) downloadBlob(new Blob([json], { type: 'application/json' }), `${name}.flier.json`);
+}
+
 /** Save, load, rename, delete, import and export named configs, plus the built-in Kizomba preset. */
 export function renderConfigPanel(container: HTMLElement, store: ConfigStore, actions: ConfigActions): void {
   const name = el('input', { type: 'text', 'data-testid': 'config-name' });
@@ -39,10 +44,6 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
     refresh();
     actions.status(FM('config.deleted', gone));
   };
-  const exportFile = (): void => {
-    const json = store.exportJson(saved.value);
-    if (json !== null) downloadBlob(new Blob([json], { type: 'application/json' }), `${saved.value}.flier.json`);
-  };
   const importFile = async (file: File): Promise<void> => {
     const result = store.importJson(await file.text());
     if (result.ok) { refresh(result.name); actions.status(FM('config.imported', result.name)); }
@@ -56,7 +57,7 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
     el('div', { class: 'row' }, [labelled('config.pick', saved)]),
     el('div', { class: 'row' }, [
       button('config.load', 'config-load', load), button('config.rename', 'config-rename', rename),
-      button('config.delete', 'config-delete', remove), button('config.export', 'config-export', exportFile),
+      button('config.delete', 'config-delete', remove), button('config.export', 'config-export', () => exportConfig(store, saved.value)),
       fileButton('config.import', 'config-import', 'application/json,.json', (f) => void importFile(f)),
     ]),
     button('config.preset', 'config-preset', () => actions.apply(kizombaPreset())),

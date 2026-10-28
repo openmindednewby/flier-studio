@@ -1,0 +1,21 @@
+
+> flier-studio@0.1.0 build
+> tsc --noEmit && vite build && pwa-sw-gen ./pwa-sw.config.cjs ./dist
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+<script src="/sw-register.js"> in "/index.html" can't be bundled without type="module" attribute
+transforming...
+[32m✓[39m 47 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                                 [39m[1m[2m  1.85 kB[22m[1m[22m[2m │ gzip:   0.77 kB[22m
+[2mdist/[22m[35massets/index-TlAH1e-m.css                  [39m[1m[2m  4.39 kB[22m[1m[22m[2m │ gzip:   1.55 kB[22m
+[2mdist/[22m[36massets/measurePage-R8cMzGjl.js             [39m[1m[2m  1.59 kB[22m[1m[22m[2m │ gzip:   0.89 kB[22m
+[2mdist/[22m[36massets/wllamaAdapter-QNWSCYE6-KFEBFuPD.js  [39m[1m[2m  1.84 kB[22m[1m[22m[2m │ gzip:   1.04 kB[22m
+[2mdist/[22m[36massets/index-CSrjLJDX.js                   [39m[1m[2m 34.48 kB[22m[1m[22m[2m │ gzip:  13.95 kB[22m
+[2mdist/[22m[36massets/index-CzldfDlz.js                   [39m[1m[2m 57.16 kB[22m[1m[22m[2m │ gzip:  21.19 kB[22m
+[2mdist/[22m[36massets/index-CxfAcrba.js                   [39m[1m[2m319.38 kB[22m[1m[22m[2m │ gzip: 142.01 kB[22m
+[32m✓ built in 440ms[39m
+pwa-sw-gen: wrote C:\desktopContents\projects\SaaS\apps\flier-studio\dist\service-worker.js (build mvrn1kai)
+pwa-sw-gen: wrote C:\desktopContents\projects\SaaS\apps\flier-studio\dist\sw-register.js
+pwa-sw-gen: wrote C:\desktopContents\projects\SaaS\apps\flier-studio\dist\manifest.json

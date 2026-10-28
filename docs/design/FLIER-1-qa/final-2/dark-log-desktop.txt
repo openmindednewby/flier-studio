@@ -1,0 +1,1 @@
+{"theme":"dark","meta":["=#1c1a17"],"bodyBg":"rgb(28, 26, 23)","color":"rgb(244, 239, 232)","sw":1280,"errs":[]}

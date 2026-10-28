@@ -1,0 +1,51 @@
+mobile START resources: sw-register.js,script.js,index-TlAH1e-m.css,index-CzldfDlz.js,dancers.png,logo.png,oswald-latin-wght.woff2,sacramento-latin-400.woff2,fredoka-latin-wght.woff2
+mobile initial AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile INK {"vars":{"bg":"#f5f4f2","surface":"#fbfaf8","text":"#2f2925","accent":"#e9b47f","border":"#8c8279"},"bodyBg":"rgb(245, 244, 242)","bodyColor":"rgb(47, 41, 37)","textContrast":13,"mutedContrast":5.2,"btn":["rgb(74, 66, 60)","rgb(255, 255, 255)",9.8],"theme":"#1c1a17","scaleName":"label-form-scale"}
+mobile MINI visible=true
+mobile MINI geo {"bar":"0,551 360x89","open":"16,560 56x72","seeAll":"259,574 85x44","thumb":"78x140 css 39pxx70px","pos":"Flier 1 of 4","seeTxt":"See all 4","openName":"Open flier 1 full size","textFit":[]}
+mobile MINI thumb live: before=18050 afterLayoutChange=15634 changed=true
+mobile SHEET {"open":true,"name":"Flier 1 full size","canvas":"1080x1920 disp 281x500 top=42 bottom=542","close":"281x44 bottom=598","focus":"mini-close","ring":false,"vh":640}
+mobile SHEET after Esc open=false focus=mini-open
+mobile SEEALL {"scrollY":2841,"previewsTop":0,"focus":"mini-see-all"}
+mobile BOTTOM {"barTop":551,"last":"download-4","lastBottom":520,"coveredNow":[],"sw":360}
+mobile LAYOUT story/picture-right=Picture right -> {"c":"1080x1920","disp":"158x279","hint":null,"err":null}
+mobile LAYOUT story/picture-left=Picture left -> {"c":"1080x1920","disp":"158x279","hint":null,"err":null}
+mobile LAYOUT story/arch=Arch -> {"c":"1080x1920","disp":"158x279","hint":null,"err":null}
+mobile LAYOUT story/picture-bottom=Picture bottom -> {"c":"1080x1920","disp":"158x279","hint":null,"err":null}
+mobile LAYOUT story/list=Upcoming list -> {"c":null,"disp":null,"hint":"This list flier has no rows yet. Add them in the form under List rows","err":null}
+mobile format=story AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile LAYOUT post/picture-right=Picture right -> {"c":"1080x1350","disp":"158x197","hint":null,"err":null}
+mobile LAYOUT post/picture-left=Picture left -> {"c":"1080x1350","disp":"158x197","hint":null,"err":null}
+mobile LAYOUT post/arch=Arch -> {"c":"1080x1350","disp":"158x197","hint":null,"err":null}
+mobile LAYOUT post/picture-bottom=Picture bottom -> {"c":"1080x1350","disp":"158x197","hint":null,"err":null}
+mobile LAYOUT post/list=Upcoming list -> {"c":null,"disp":null,"hint":"This list flier has no rows yet. Add them in the form under List rows","err":null}
+mobile format=post AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile LAYOUT square/picture-right=Picture right -> {"c":"1080x1080","disp":"158x158","hint":null,"err":null}
+mobile LAYOUT square/picture-left=Picture left -> {"c":"1080x1080","disp":"158x158","hint":null,"err":null}
+mobile LAYOUT square/arch=Arch -> {"c":"1080x1080","disp":"158x158","hint":null,"err":null}
+mobile LAYOUT square/picture-bottom=Picture bottom -> {"c":"1080x1080","disp":"158x158","hint":null,"err":null}
+mobile LAYOUT square/list=Upcoming list -> {"c":null,"disp":null,"hint":"This list flier has no rows yet. Add them in the form under List rows","err":null}
+mobile format=square AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile LAYOUT phone/phone-clock-safe=Phone, clock clear -> {"c":"1170x2532","disp":"158x340","hint":null,"err":null}
+mobile LAYOUT phone/phone-arch=Phone arch -> {"c":"1170x2532","disp":"158x340","hint":null,"err":null}
+mobile format=phone AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile LAYOUT desktop/desktop-safe=Desktop, icons clear -> {"c":"2560x1440","disp":"158x90","hint":null,"err":null}
+mobile LAYOUT desktop/desktop-arch=Desktop arch -> {"c":"2560x1440","disp":"158x90","hint":null,"err":null}
+mobile format=desktop AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile distinct layouts: 9 [picture-right,picture-left,arch,picture-bottom,list,phone-clock-safe,phone-arch,desktop-safe,desktop-arch]
+mobile preset AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile DOWNLOAD single flier-1-story.png 1080x1920 sig=PNG
+mobile DOWNLOAD-ALL figures=4 downloads=4 [flier-1-story.png,flier-2-story.png,flier-3-story.png,flier-4-story.png]
+mobile SAVE Saved qa-one |  options=qa-one
+mobile RENAME Renamed to qa-two |  options=qa-two
+mobile LOAD Loaded qa-two |  title=KIZOMBA
+mobile RELOAD title=AUTOSAVED hash before-upload=879290020 uploaded=-1528131990 after-reload=-1528131990 kept=true options=qa-two
+mobile DELETE Deleted qa-two |  options=
+mobile PROMPT status="This browser has no WebGPU, so a keyword match picked the flier instead of the model" title=SALSA
+mobile prompt AUDIT {"sw":360,"vw":360,"small":[],"spill":[],"selFit":[],"groups":["Generate from prompt","Flier","Layout","Pictures","Text","Saved configs","Previews"],"main":[0,360],"maxCpl":42}
+mobile TAB pick-layout+ring > pick-format+ring > pick-palette+ring > pick-fonts+ring > pick-background+ring > upload-picture+ring
+mobile UNNAMED ["pick-scale"]
+mobile PWA manifest name=Flier Studio display=standalone start=/ icons=/icons/icon-192.png:200,/icons/icon-512.png:200,/icons/maskable-192.png:200,/icons/maskable-512.png:200 head={"link":"/manifest.json","theme":"#1c1a17","apple":true} swScope=http://localhost:4190/
+mobile OFFLINE reload formVisible=true canvases=3 title=SALSA
+mobile EXT-aborted: https://analytics.dloizides.com/script.js
+mobile CONSOLE: reqfail:https://analytics.dloizides.com/script.js || error:Failed to load resource: net::ERR_FAILED || warning:No available adapters.

@@ -97,3 +97,44 @@ figcaption.row > * { flex: 1 1 100%; }
   .previews { position: sticky; top: 16px; }
   .preview-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 }
+
+:root { --mini-bar: 104px; }
+
+body { padding-bottom: calc(var(--mini-bar) + env(safe-area-inset-bottom)); }
+
+.mini-preview {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--border);
+}
+.mini-preview > button { width: auto; flex: 0 0 auto; }
+.mini-preview > .mini-thumb { width: 56px; height: 72px; padding: 0; border-radius: 4px; background: var(--surface); }
+.mini-thumb canvas { display: block; }
+.mini-text { flex: 1 1 auto; min-width: 0; display: grid; font-size: 0.85rem; line-height: 1.3; }
+.mini-text .muted { margin: 0; }
+
+.mini-sheet {
+  border: 0;
+  border-radius: var(--radius);
+  padding: var(--gap);
+  background: var(--surface);
+  color: var(--text);
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 32px);
+}
+.mini-sheet[open] { display: grid; gap: 12px; justify-items: center; }
+.mini-sheet::backdrop { background: color-mix(in srgb, var(--text) 60%, transparent); }
+.mini-sheet canvas { display: block; max-width: 100%; max-height: calc(100dvh - 140px); width: auto; height: auto; border-radius: 8px; }
+
+@media (min-width: 768px) {
+  body { padding-bottom: 0; }
+  .mini-preview { display: none; }
+}

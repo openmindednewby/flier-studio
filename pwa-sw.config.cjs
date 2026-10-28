@@ -1,4 +1,4 @@
-const { KATALOGOS_TOKENS } = require('@dloizides/design-tokens');
+const { FLIER_TOKENS } = require('@dloizides/design-tokens');
 
 module.exports = {
   serviceWorker: {
@@ -13,8 +13,8 @@ module.exports = {
     name: 'Flier Studio',
     shortName: 'Fliers',
     description: 'Make event fliers and phone or desktop wallpapers in your browser. Pick a layout, fill the form, download PNGs.',
-    themeColor: KATALOGOS_TOKENS.dark.background,
-    backgroundColor: KATALOGOS_TOKENS.dark.background,
+    themeColor: FLIER_TOKENS.dark.background,
+    backgroundColor: FLIER_TOKENS.dark.background,
     startUrl: '/',
     scope: '/',
     display: 'standalone',

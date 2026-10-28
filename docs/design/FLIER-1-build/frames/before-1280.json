@@ -2,7 +2,7 @@
  "option": "app",
  "shot": "1280",
  "side": "before",
- "build": "1fde6fa",
+ "build": "be49506",
  "file": "app-before-1280.png",
  "anchorTopPx": 0,
  "pair": {
@@ -15,10 +15,7 @@
  },
  "visibleItems": {
   "before": [
-   "field-includesHeading",
-   "field-script",
    "field-title",
-   "field-titleBottom",
    "pick-anchor",
    "pick-background",
    "pick-fonts",
@@ -26,14 +23,12 @@
    "pick-layout",
    "pick-palette",
    "pick-scale",
+   "pick-scale-value",
    "upload-logo",
    "upload-picture"
   ],
   "after": [
-   "field-includesHeading",
-   "field-script",
    "field-title",
-   "field-titleBottom",
    "pick-anchor",
    "pick-background",
    "pick-fonts",
@@ -41,6 +36,7 @@
    "pick-layout",
    "pick-palette",
    "pick-scale",
+   "pick-scale-value",
    "upload-logo",
    "upload-picture"
   ]
@@ -54,10 +50,6 @@
    [
     "pick-fonts",
     "pick-background"
-   ],
-   [
-    "pick-anchor",
-    "pick-scale"
    ],
    [
     "upload-picture",

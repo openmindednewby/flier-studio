@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
-import { KATALOGOS_TOKENS } from '@dloizides/design-tokens';
+import { FLIER_TOKENS } from '@dloizides/design-tokens';
 import { buildManifest, generateServiceWorker } from '@dloizides/pwa-sw';
 import { describe, expect, it } from 'vitest';
 import { withThemeColor } from '../scripts/themeColor';
@@ -13,7 +13,7 @@ const LLM_EXTENSIONS = ['.bin', '.gguf', '.wasm', '.json', '.safetensors', '.onn
 
 describe('buildManifest', () => {
   it('with the app config, names the app and takes its theme colour from the tokens', () => {
-    const expected = { name: 'Flier Studio', short_name: 'Fliers', theme_color: KATALOGOS_TOKENS.dark.background, display: 'standalone', start_url: '/' };
+    const expected = { name: 'Flier Studio', short_name: 'Fliers', theme_color: FLIER_TOKENS.dark.background, display: 'standalone', start_url: '/' };
 
     const manifest = buildManifest(config.manifest);
 

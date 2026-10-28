@@ -2,7 +2,7 @@
  "option": "app",
  "shot": "1280-full",
  "side": "before",
- "build": "1fde6fa",
+ "build": "be49506",
  "file": "app-before-1280-full.png",
  "anchorTopPx": 0,
  "pair": {
@@ -33,6 +33,7 @@
    "pick-layout",
    "pick-palette",
    "pick-scale",
+   "pick-scale-value",
    "remove-flier",
    "upload-logo",
    "upload-picture"
@@ -56,6 +57,7 @@
    "pick-layout",
    "pick-palette",
    "pick-scale",
+   "pick-scale-value",
    "remove-flier",
    "upload-logo",
    "upload-picture"
@@ -70,10 +72,6 @@
    [
     "pick-fonts",
     "pick-background"
-   ],
-   [
-    "pick-anchor",
-    "pick-scale"
    ],
    [
     "upload-picture",

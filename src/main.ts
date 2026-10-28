@@ -1,4 +1,4 @@
-import { DEFAULT_CSS_VAR_NAMES, KATALOGOS_TOKENS, toCssVars } from '@dloizides/design-tokens';
+import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/design-tokens';
 import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
 import { FM } from './i18n/fm';
 import { kizombaPreset } from './presets/kizomba';
@@ -8,6 +8,7 @@ import { WorkingDocStore } from './store/workingDocStore';
 import { AssetBook } from './ui/assets';
 import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
+import { createMiniPreview } from './ui/miniPreview';
 import { focusTitle, renderForm } from './ui/formView';
 import { downloadCanvas, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
@@ -23,7 +24,7 @@ const state = { docs: working.load() ?? kizombaPreset(), selected: 0, canvases: 
 const assets = new AssetBook(new ImageStore());
 const configs = new ConfigStore();
 
-document.head.append(el('style', { text: toCssVars(KATALOGOS_TOKENS, DEFAULT_CSS_VAR_NAMES) }));
+document.head.append(el('style', { text: toCssVars(FLIER_TOKENS, DEFAULT_CSS_VAR_NAMES) }));
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
 
 const status = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite', 'data-testid': 'status' });
@@ -31,6 +32,7 @@ const formBox = el('section', { class: 'card', 'data-testid': 'flier-form' });
 const previewGrid = el('div', { class: 'preview-grid' });
 const configBox = el('section', { class: 'card' });
 const promptBox = el('section', { class: 'card' });
+const mini = createMiniPreview({ seeAll: () => previewGrid.closest('section')?.scrollIntoView({ block: 'start' }) });
 
 let timer: number | undefined;
 function refreshPreviews(): void {
@@ -39,6 +41,7 @@ function refreshPreviews(): void {
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(state.docs);
     state.canvases = await renderPreviews(previewGrid, state.docs, book, { selected: state.selected, select });
+    mini.update(state.canvases[state.selected], state.selected, state.docs.length);
   }, RENDER_DELAY_MS);
 }
 
@@ -94,6 +97,7 @@ async function start(): Promise<void> {
   app.replaceChildren(
     el('header', {}, [el('h1', { text: FM('app.title') }), el('p', { class: 'lead', text: FM('app.lead') }), status]),
     el('main', {}, [el('div', { class: 'controls' }, [promptBox, formBox, configBox]), previews]),
+    mini.bar,
   );
   renderPromptPanel(promptBox, (doc) => apply([doc]));
   renderConfigPanel(configBox, configs, { current: () => state.docs, apply, status: (m) => { status.textContent = m; } });

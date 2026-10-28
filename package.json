@@ -14,7 +14,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@dloizides/design-tokens": "^1.15.0",
+    "@dloizides/design-tokens": "^1.16.0",
     "@dloizides/llm-run": "^0.2.0",
     "@dloizides/poster-render": "^0.2.7",
     "@dloizides/save-state": "^1.7.0",

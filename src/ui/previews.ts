@@ -41,7 +41,7 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     const error = draw(doc, assets, canvas);
     const n = String(i + 1);
     return el('figure', { class: i === selected ? 'selected' : '', 'data-testid': `preview-${n}` }, [
-      error === null ? canvas : problem(doc, error),
+      error === null ? el('div', { class: 'trim' }, [canvas]) : problem(doc, error),
       el('figcaption', { class: 'row' }, [
         textButton(FM('previews.edit', n), `edit-${n}`, () => select(i)),
         button('previews.download', `download-${n}`, () => void downloadCanvas(canvas, doc, i)),

@@ -100,3 +100,16 @@ Page 1 draws the 360 form screen and the previews screen to the proposed rules (
 | 2026-10-28 | all | first draft from the audit | |
 | 2026-10-28 | refs, mood, R1, R3 (accent), R6, R11 | approved on page 1 (D3) | see decision log |
 | 2026-10-28 | R11 | 3 mark + wordmark candidates drawn (A Trim, B Crop F, C Register); all pass greyscale/squint/CVD ΔL* 80.7-81.4 on the 512 icon, 16 px ink cover 25.0 / 26.6 / 38.3% | |
+
+## Applied in the app (2026-10-28)
+
+| Rule | Where | State |
+|---|---|---|
+| R7/R8 dark fill + focus ring = brandFill | `src/theme/brandVars.ts`, `src/ui/styles.css` | done |
+| R2/R8 one backdrop (background 72%) | `styles.css` `.mini-sheet::backdrop`, `.import-dialog::backdrop` | done |
+| R6 selection = crop marks, ring = focus only | `styles.css` `figure.selected .trim::after`, `src/ui/previews.ts` | done |
+| R3 accent only on action (heading underline removed) | `styles.css` `.group > h3` | done |
+| R10 motion table from DEFAULT_MOTION | `brandVars.ts` vars; press + dialog enter | partial: dialog leave, re-render cross-fade open |
+| R11 marks on favicon, PWA icons, OG card, header | `index.html`, `public/`, `src/ui/brandHeader.ts` | done |
+
+Captures: `docs/design/FLIER-2-rules/`.

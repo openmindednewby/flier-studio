@@ -1,0 +1,221 @@
+{
+  "task": "FLIER-2 \"Flier Studio follow-ups\" D3+D8 + LOGO-1 \"A logo pipeline that makes beautiful, animatable marks\" wiring",
+  "pairMethod": "same-steps",
+  "steps": [
+    "goto /",
+    "wait preview-grid[data-render=done]",
+    "wait 900 ms (logo intro)",
+    "frame top: scroll 0",
+    "frame previews: scrollIntoView preview-1 block start, focus download-all (focusVisible)"
+  ],
+  "frames": [
+    {
+      "build": "before",
+      "file": "before-360x640-light-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "light"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "before",
+      "file": "before-360x640-light-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "light"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-light-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "light"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-light-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "light"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "before",
+      "file": "before-360x640-dark-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "dark"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "before",
+      "file": "before-360x640-dark-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "dark"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-dark-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "dark"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-dark-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "dark"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "before",
+      "file": "before-1280x800-light-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "light"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "before",
+      "file": "before-1280x800-light-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "light"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "after",
+      "file": "after-1280x800-light-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "light"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "after",
+      "file": "after-1280x800-light-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "light"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "before",
+      "file": "before-1280x800-dark-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "dark"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "before",
+      "file": "before-1280x800-dark-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "dark"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "after",
+      "file": "after-1280x800-dark-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "dark"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "after",
+      "file": "after-1280x800-dark-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "dark"
+      },
+      "scrollWidth": 1280
+    }
+  ]
+}

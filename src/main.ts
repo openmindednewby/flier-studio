@@ -12,8 +12,10 @@ import { ConfigStore } from './store/configStore';
 import { ImageStore } from './store/imageStore';
 import { FlierStore } from './store/flierStore';
 import { cloneFlier, toDoc, toThemed } from './theme/flierTheme';
+import { brandCssVars } from './theme/brandVars';
 import { themeById } from './theme/themes';
 import { AssetBook } from './ui/assets';
+import { brandHeading } from './ui/brandHeader';
 import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
 import { createMiniPreview } from './ui/miniPreview';
@@ -34,7 +36,7 @@ const docsOf = (): FlierDoc[] => state.fliers.map(toDoc);
 const assets = new AssetBook(new ImageStore());
 const configs = new ConfigStore();
 
-document.head.append(el('style', { text: toCssVars(FLIER_TOKENS, DEFAULT_CSS_VAR_NAMES) }));
+document.head.append(el('style', { text: `${toCssVars(FLIER_TOKENS, DEFAULT_CSS_VAR_NAMES)}\n${brandCssVars()}` }));
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
 
 const status = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite', 'data-testid': 'status' });
@@ -150,7 +152,7 @@ async function start(): Promise<void> {
     previewGrid,
   ]);
   app.replaceChildren(
-    el('header', {}, [el('h1', { text: FM('app.title') }), el('p', { class: 'lead', text: FM('app.lead') }), status]),
+    el('header', {}, [brandHeading(document.documentElement.dataset.theme === 'dark'), el('p', { class: 'lead', text: FM('app.lead') }), status]),
     el('main', {}, [el('div', { class: 'controls' }, [promptBox, formBox, configBox]), previews]),
     mini.bar,
   );

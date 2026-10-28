@@ -106,11 +106,19 @@ def surfaces(kind):
 
 
 CUR = None
+OPTS = {}
+ITEMS = {
+    'form': ['title', 'lead', 'prompt-heading', 'describe-label', 'prompt-textarea', 'generate', 'flier-heading', 'editing-count', 'mini-thumb', 'mini-label', 'see-all'],
+    'previews': ['previews-heading', 'download-all', 'flier-frames', 'edit-buttons', 'download-buttons', 'selected-state'],
+    'marks': ['tab-icon', 'home-icon', 'share-card', 'landing-card'],
+}
+SCREEN = {'form': ('/', 'form top, light, first load', 'title'), 'previews': ('/', 'previews, light, flier 1 selected', 'previews-heading'), 'marks': ('owned brand surfaces', 'as served', 'none')}
 
 
-def opt(oid, inv, after_svg, cap, before=None):
+def opt(oid, inv, after_svg, cap, before=None, screen='form'):
+    n = len(ITEMS[screen]); inv = f'{n}/{n}'; OPTS[oid] = screen
     before = before or f'<img src="{CUR}" alt="Flier Studio today, 360 px">'
-    return (f'<div class="opt" data-option="{oid}" data-inventory="{inv}" data-aligned="pass">'
+    return (f'<div class="opt" data-option="{oid}" data-inventory="{inv}" data-aligned="pass" data-result="result.json">'
             f'<figure data-visual="before"><span class="tag">Today</span>{before}</figure>'
             f'<figure data-visual="after"><span class="tag">{cap}</span>{after_svg}</figure></div>')
 
@@ -143,7 +151,7 @@ def main():
     dont = preview_screen(dict(base, sel='ring', rt=4, label='Today: selected flier and focused button share one ring'))
     do = preview_screen(dict(calm, sel='crop', rt=0, label='Rule: square paper fliers, crop-mark selection, ring only for focus'))
     sections.append(('R6 shapes: cards round 12, controls round 8, fliers square paper; selection = crop marks, the ring means focus only. Approve?',
-                     opt('R6', '6/6', do, 'Do: fliers square, selected by crop marks', before=dont), [('A', 'Approve')]))
+                     opt('R6', '6/6', do, 'Do: fliers square, selected by crop marks', before=dont, screen='previews'), [('A', 'Approve')]))
     # 4 value steps
     dont = form_screen(dict(base, label='Today: page and card 2 L* apart'))
     do = form_screen(dict(calm, label='Rule: page 8 L* below the card'))
@@ -159,11 +167,21 @@ def main():
         ('brand-favicon-logo.png', 'Tab icon today: Bailemos logo'), ('brand-icon-512.png', 'Home-screen icon today: Bailemos logo'),
         ('brand-og-dancers.png', 'Share card today: Kizomba preset dancers'), ('brand-landing-card.png', 'dloizides.com card today: a Kizomba flier')])
     sections.append(('R11 marks: one Flier Studio mark on all four owned surfaces; customer art never stands in for the brand. Approve? (The mark itself is drawn on page 2.)',
-                     opt('R11', '4/4', surfaces('do'), 'Do: one mark slot, generic sample fliers', before=f'<div class="mks">{cur_marks}</div>'), [('A', 'Approve')]))
+                     opt('R11', '4/4', surfaces('do'), 'Do: one mark slot, generic sample fliers', before=f'<div class="mks">{cur_marks}</div>', screen='marks'), [('A', 'Approve')]))
     html = HEAD
     for i, (qtext, pics, options) in enumerate(sections, 1):
         html += f'<section class="blk"><div class="pics">{pics}</div>{block(f"q{i}", f"Q{i}", qtext, options)}</section>'
     html += '<p class="foot">Values, audit figures and sources: <code>apps/flier-studio/docs/visual-language.md</code></p></main>'
+    import json
+    frames, options = [], {}
+    for oid, sc in OPTS.items():
+        route, state, anchor = SCREEN[sc]; items = ITEMS[sc]
+        options[oid] = {'inventory': f'{len(items)}/{len(items)}', 'items': {'before': items, 'after': items}}
+        pair = {'route': route, 'state': state, 'fixture': 'Kizomba preset, 4 fliers (default)', 'viewport': '360x640' if sc != 'marks' else 'native asset sizes', 'scrollAnchor': anchor, 'crop': 'first screen' if sc != 'marks' else 'whole asset'}
+        for side, build in (('before', 'live flier-studio 95d91d2 capture'), ('after', 'schematic mockup of the proposed rule')):
+            frames.append({'option': oid, 'shot': sc, 'side': side, 'build': build, 'pair': pair, 'visibleItems': {'before': items, 'after': items}})
+    res = {'task': 'FLIER-2 "Flier Studio follow-ups" VISUAL-1 page 1', 'pairMethod': 'same-steps', 'countMethod': 'visible-in-frame', 'rowsMethod': 'none: no side-by-side form rows in any frame (single-column 360 mockups and asset files); not tool-discovered', 'note': 'after frames are schematic mockups of the same route, state and crop; rule approval page, no redesign', 'options': options, 'frames': frames}
+    io.open(os.path.join(HERE, 'result.json'), 'w', encoding='utf-8').write(json.dumps(res, indent=1))
     io.open(os.path.join(HERE, 'index.html'), 'wb').write(html.encode('utf-8'))
     print('ok', len(html))
 

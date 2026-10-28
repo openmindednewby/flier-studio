@@ -1,0 +1,104 @@
+{
+ "mark": "c2a",
+ "name": "Peel",
+ "tokens": "design-tokens DEFAULT_MOTION (fast 140, base 200, slow 300 ms)",
+ "intro": [
+  {
+   "layer": "sheet",
+   "keyframes": [
+    {
+     "transform": "translate(-5px, 5px) rotate(-4deg)",
+     "opacity": 0,
+     "offset": 0
+    },
+    {
+     "opacity": 1,
+     "offset": 0.4
+    },
+    {
+     "transform": "translate(0px, 0px) rotate(0deg)",
+     "opacity": 1,
+     "offset": 1
+    }
+   ],
+   "duration": "slow",
+   "easing": "decelerate",
+   "delay": 0
+  },
+  {
+   "layer": "corner",
+   "keyframes": [
+    {
+     "transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)",
+     "opacity": 1
+    },
+    {
+     "transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)",
+     "opacity": 1
+    }
+   ],
+   "duration": "fast",
+   "easing": "standard",
+   "delay": 140
+  },
+  {
+   "layer": "curl",
+   "keyframes": [
+    {
+     "transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)",
+     "offset": 0
+    },
+    {
+     "transform": "rotate(59.00deg) scaleY(1.08) rotate(-59.00deg)",
+     "offset": 0.7
+    },
+    {
+     "transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)",
+     "offset": 1
+    }
+   ],
+   "duration": "slow",
+   "easing": "decelerate",
+   "delay": 280
+  }
+ ],
+ "introEndsMs": 580,
+ "micro": [
+  {
+   "layer": "curl",
+   "keyframes": [
+    {
+     "transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"
+    },
+    {
+     "transform": "rotate(59.00deg) scaleY(0.72) rotate(-59.00deg)"
+    },
+    {
+     "transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"
+    }
+   ],
+   "duration": 280,
+   "easing": "standard",
+   "delay": 0
+  },
+  {
+   "layer": "sheet",
+   "keyframes": [
+    {
+     "transform": "translate(0px, 0px)"
+    },
+    {
+     "transform": "translate(1px, -1.5px)"
+    },
+    {
+     "transform": "translate(0px, 0px)"
+    }
+   ],
+   "duration": 280,
+   "easing": "standard",
+   "delay": 0
+  }
+ ],
+ "microTrigger": "hover, focus, success",
+ "reducedMotion": "no animation; the static mark (corner open) is shown"
+}

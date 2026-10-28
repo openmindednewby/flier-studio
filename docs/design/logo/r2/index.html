@@ -1,0 +1,645 @@
+<title>Flier Studio Mark Round 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Jost:wght@400;500&display=swap">
+<style>
+:root{--paper:#ebe8e3;--sheet:#fbfaf8;--ink:#2f2925;--ink-2:#6f655c;--rule:#8c8279;--hold:#e9b47f;--mark:#4a423c;
+  --display:"Fraunces",Georgia,serif;--body:"Jost",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1c1a17;--sheet:#25221e;--ink:#f4efe8;--ink-2:#a59a8c;--rule:#80766a;--mark:#e8dccb;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#1c1a17;--sheet:#25221e;--ink:#f4efe8;--ink-2:#a59a8c;--rule:#80766a;--mark:#e8dccb;color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+main{max-width:1080px;margin:0 auto;display:grid;gap:32px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:2rem} h2{font-size:1.35rem} h3{font-size:1.15rem;display:flex;gap:10px;align-items:center}
+.hold{border:2px solid var(--hold);background:var(--sheet);padding:14px 16px;font-weight:500;margin:0}
+.blk{background:var(--sheet);border:1px solid var(--rule);padding:20px;display:grid;gap:20px;min-width:0}
+.opt{display:grid;gap:12px;min-width:0;border-top:1px solid var(--rule);padding-top:16px}
+.lt{font-family:var(--body);font-size:.8rem;letter-spacing:.08em;border:1px solid var(--ink);padding:0 7px}
+.cap,.nums,figcaption,.motion span,summary,label{color:var(--ink-2);font-size:.9rem;margin:0}
+.nums{font-variant-numeric:tabular-nums}
+figure{margin:0;display:grid;gap:10px;min-width:0;align-content:start}
+.surf{display:grid;gap:8px;min-width:0} .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.px{image-rendering:pixelated} .home{border-radius:50%}
+.hdr{max-width:100%;height:auto;border:1px solid var(--rule)}
+.crop{overflow:hidden;max-width:100%;border:1px solid var(--rule)} .crop img{max-width:none;display:block;width:1280px;height:64px}
+.og{width:100%;max-width:600px;height:auto;border:1px solid var(--rule)}
+.motion{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end} .motion>div{display:grid;gap:6px;justify-items:start}
+.motion .px{width:64px;height:64px}
+.stage{width:144px;height:144px;color:var(--mark);--mark-bg:var(--sheet);background:var(--sheet);border:1px dashed var(--rule)}
+.stage svg{width:144px;height:144px;display:block;overflow:visible}
+.stage svg:focus-visible,.act:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.act{font:inherit;font-size:.85rem;background:transparent;color:var(--ink);border:1px solid var(--rule);padding:8px 12px;min-height:44px;cursor:pointer}
+.sheet{width:100%;height:auto;max-width:640px;border:1px solid var(--rule);background:#fff;display:block;margin-top:8px}
+.lin{display:block;margin-top:8px;width:min(100%,432px);height:auto;background:#fff}
+.rm{display:flex;gap:10px;align-items:center;min-height:44px} .rm input{width:22px;height:22px}
+@media (min-width:900px){.opt{grid-template-columns:1fr 1fr;column-gap:24px} .opt h3,.opt .cap{grid-column:1/-1}}
+
+  /* ---- answer-UI token defaults --------------------------------------
+     Zero-specificity (:where) so ANY host declaration on :root / html
+     (specificity 0,1,0) overrides every value below. Self-sufficient on a
+     host palette that defines none of these. Light is declared on the bare
+     selector first; the dark blocks only REDEFINE, so no colour has its
+     sole definition inside a media query or [data-theme] rule. -------- */
+  :where(html){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  @media (prefers-color-scheme:dark){
+    :where(html:not([data-theme="light"])){
+      --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+      --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  }
+  :where(html[data-theme="dark"]){
+    --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+    --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  :where(html[data-theme="light"]){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de}
+
+  /* ---- answerable questions ---- */
+  .q{position:relative}
+  .q.answered{border-color:var(--ink-3)}
+  .q .opts li{cursor:pointer; padding-left:34px; position:relative;
+    transition:background .12s ease}
+  .q .opts li:hover{background:var(--rule-1, rgba(0,0,0,.03))}
+  .q .opts li::before{content:''; position:absolute; left:6px; top:13px;
+    width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:50%}
+  .q .opts li[aria-checked="true"]::before{border-color:var(--ink-1, #111);
+    background:var(--ink-1, #111); box-shadow:inset 0 0 0 3px var(--paper, #fff)}
+  .q .opts li[aria-checked="true"]{background:var(--rule-1, rgba(0,0,0,.05))}
+  .q .opts li:focus-visible{outline:2px solid var(--ink-2); outline-offset:-2px}
+  .q .ansbox{margin:14px 0 0; padding-top:12px; border-top:1px solid var(--rule-2)}
+  .q .ansbox .st{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+  .q .ansbox .st b{color:var(--ink-1, #111)}
+  .q .note-in{display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    font-family:inherit; font-size:14px; color:inherit; caret-color:currentColor;
+    background:transparent; border:1px solid var(--rule-2); border-radius:0;
+    padding:8px 10px; resize:vertical; min-height:2.4em}
+  .q .note-in:focus{outline:none; border-color:var(--ink-3)}
+  .qbar{border:1px solid var(--rule-2); padding:10px 14px; margin:20px 0;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    justify-content:space-between; position:sticky; top:0; z-index:5;
+    background:var(--paper, #fff)}
+  .qbar .prog{font-family:var(--mono); font-size:13px; color:var(--ink-2)}
+  .qbar .prog b{color:var(--ink-1, #111); font-size:15px}
+  .qbar .acts{display:flex; gap:9px; flex-wrap:wrap}
+  .qbar button{font-family:inherit; font-size:13px; padding:7px 14px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .qbar button:hover{background:var(--rule-1, rgba(0,0,0,.05))}
+  .qbar button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .qbar .mode{font-family:var(--mono); font-size:11.5px; color:var(--ink-3);
+    flex-basis:100%}
+  .expwrap{display:none; position:fixed; z-index:50; left:50%; top:50%;
+    transform:translate(-50%,-50%); width:min(720px, calc(100vw - 32px));
+    max-height:calc(100vh - 32px); box-sizing:border-box; overflow:auto;
+    padding:16px; background:var(--paper, #fff); color:var(--ink-1, #111);
+    border:1px solid var(--ink-3); box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .expwrap.on{display:block}
+  .expwrap .exphead{display:flex; justify-content:space-between; align-items:center;
+    gap:10px; margin:0 0 10px; font-weight:600}
+  .expwrap .exphead span{display:flex; gap:8px}
+  .expwrap button{font-family:inherit; font-size:13px; padding:7px 14px; min-height:44px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .expwrap button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .expwrap textarea{width:100%; box-sizing:border-box; min-height:190px; height:50vh;
+    font-family:var(--mono); font-size:12px; line-height:1.55; padding:12px;
+    border:1px solid var(--rule-2); background:transparent; color:inherit}
+  .expwrap .hint{font-size:13px; color:var(--ink-2); margin:8px 0 0}
+</style>
+<main>
+<header style="display:grid;gap:10px"><h1>Flier Studio mark, round 2</h1>
+<p class="hold" role="status">Do not pick yet. Three redraws of C "In flight" (owner decision D2). design-critic scores them next (LOGO-1 stage LP7); this page stays held until one passes. If none passes, the kill rule applies: a human identity designer gets the brief.</p>
+<label class="rm"><input type="checkbox" id="rm"> Preview with reduced motion (shows the still, plays nothing)</label></header>
+
+<section class="blk"><h2>Which C variant should Flier Studio use?</h2>
+<div style="display:grid;gap:20px"><div class="opt" data-option="MARK-C2a" data-inventory="5/5" data-aligned="pass">
+  <h3><span class="lt">A</span> C2a Peel</h3>
+  <p class="cap">The corner is turned back over the face of the sheet, its edge rolled: a flier just pulled off the press.</p>
+  <figure data-visual="before"><figcaption>Round 1 C "In flight" (critic REDO: corner read as a broken-off wedge, intro only faded)</figcaption>
+    <div class="motion"><div><img src="r1/motion/r3-intro.svg" width="144" height="144" alt="Round 1 In flight intro" class="r1i"><button type="button" class="act r1r">Replay round 1 intro</button></div>
+    <div><img class="px" src="r1/stress/r3-16-light.png" width="64" height="64" alt="Round 1 In flight 16 px"><span>16 px, 4x</span></div></div>
+    <div class="surf">
+  <div class="row"><img class="px" src="r1/surf/r3-tab.png" width="220" height="40" alt="Round 1 In flight browser tab, favicon at 16 px"><img class="home" src="r1/surf/r3-home.png" width="64" height="64" alt="Round 1 In flight home-screen icon"></div>
+  <img class="hdr" src="r1/surf/r3-header360.png" width="360" height="56" alt="Round 1 In flight app header at 360">
+  <div class="crop"><img src="r1/surf/r3-header1280.png" width="1280" height="64" alt="Round 1 In flight app header at 1280"></div>
+  <img class="og" src="r1/surf/r3-og.png" width="1200" height="630" alt="Round 1 In flight share card 1200x630">
+</div>
+  </figure>
+  <figure data-visual="after"><figcaption>Peel: plays live (hover or focus the mark for the micro)</figcaption>
+    <div class="motion">
+      <div><div class="stage" data-key="c2a"><svg tabindex="0" role="img" aria-label="Peel mark, animated" data-logo="c2a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="192" height="192"><g data-motion-layer="sheet" style="transform-origin:12.81px 50.21px"><path d="M23.83 6.00 L12.81 50.21 L44.07 58.00 L50.79 31.04 L37.84 9.49 Z" fill="currentColor"/><g data-motion-layer="corner" style="transform-origin:45.33px 19.66px;opacity:0"><path d="M55.09 13.79 L41.08 10.30 L51.60 27.80 Z" fill="currentColor"/></g><g data-motion-layer="curl" style="transform-origin:45.33px 19.66px"><path d="M39.46 9.90 L51.19 29.42 L49.00 28.86 L47.02 28.34 L45.25 27.83 L43.68 27.34 L42.30 26.85 L41.10 26.37 L40.06 25.88 L39.19 25.37 L38.47 24.85 L37.89 24.30 L37.45 23.72 L37.12 23.09 L36.91 22.42 L36.81 21.69 L36.80 20.91 L36.88 20.05 L37.03 19.12 L37.25 18.10 L37.53 17.00 L37.86 15.80 L38.22 14.50 L38.62 13.08 L39.03 11.55 Z" fill="currentColor" stroke="var(--mark-bg)" stroke-width="4.72" paint-order="stroke"/></g></g></svg></div>
+        <span class="btns"><button type="button" class="act" data-play="intro" data-key="c2a">Replay intro</button><button type="button" class="act" data-play="micro" data-key="c2a">Play micro</button></span></div>
+      <div><img src="png/refined/c2a.png" width="144" height="144" alt="Peel reduced-motion still"><span>Reduced-motion still</span></div>
+      <div><img class="px" src="png/stress/c2a-16-light.png" width="64" height="64" alt="Peel 16 px light"><img class="px" src="png/stress/c2a-16-dark.png" width="64" height="64" alt="Peel 16 px dark"><span>16 px, 4x</span></div>
+    </div>
+    <div class="surf">
+  <div class="row"><img class="px" src="png/surf/c2a-tab.png" width="220" height="40" alt="Peel browser tab, favicon at 16 px"><img class="home" src="png/surf/c2a-home.png" width="64" height="64" alt="Peel home-screen icon"></div>
+  <img class="hdr" src="png/surf/c2a-header360.png" width="360" height="56" alt="Peel app header at 360">
+  <div class="crop"><img src="png/surf/c2a-header1280.png" width="1280" height="64" alt="Peel app header at 1280"></div>
+  <img class="og" src="png/surf/c2a-og.png" width="1200" height="630" alt="Peel share card 1200x630">
+</div>
+    <p class="nums">Intro 580 ms · micro 280 ms · ink at 16 px 30% · icon span 45%, 0 px outside the maskable circle · corner 41% of the sheet height · 0 live-text elements</p>
+    <details><summary>Construction, lineup, stock check</summary>
+      <img class="sheet" src="png/construction-c2a.png" alt="Peel construction grid">
+      <img class="px lin" src="png/stress/c2a-lineup32.png" alt="Peel at 32 px beside four competitor stand-ins">
+      <img class="px lin" src="png/stress/c2a-stock24.png" alt="Peel at 24 px beside three stock icons"></details>
+  </figure>
+</div><div class="opt" data-option="MARK-C2b" data-inventory="5/5" data-aligned="pass">
+  <h3><span class="lt">B</span> C2b Lift</h3>
+  <p class="cap">The corner lifts off the page and curls back into the air: the sheet is on its way somewhere.</p>
+  <figure data-visual="before"><figcaption>Round 1 C "In flight" (critic REDO: corner read as a broken-off wedge, intro only faded)</figcaption>
+    <div class="motion"><div><img src="r1/motion/r3-intro.svg" width="144" height="144" alt="Round 1 In flight intro" class="r1i"><button type="button" class="act r1r">Replay round 1 intro</button></div>
+    <div><img class="px" src="r1/stress/r3-16-light.png" width="64" height="64" alt="Round 1 In flight 16 px"><span>16 px, 4x</span></div></div>
+    <div class="surf">
+  <div class="row"><img class="px" src="r1/surf/r3-tab.png" width="220" height="40" alt="Round 1 In flight browser tab, favicon at 16 px"><img class="home" src="r1/surf/r3-home.png" width="64" height="64" alt="Round 1 In flight home-screen icon"></div>
+  <img class="hdr" src="r1/surf/r3-header360.png" width="360" height="56" alt="Round 1 In flight app header at 360">
+  <div class="crop"><img src="r1/surf/r3-header1280.png" width="1280" height="64" alt="Round 1 In flight app header at 1280"></div>
+  <img class="og" src="r1/surf/r3-og.png" width="1200" height="630" alt="Round 1 In flight share card 1200x630">
+</div>
+  </figure>
+  <figure data-visual="after"><figcaption>Lift: plays live (hover or focus the mark for the micro)</figcaption>
+    <div class="motion">
+      <div><div class="stage" data-key="c2b"><svg tabindex="0" role="img" aria-label="Lift mark, animated" data-logo="c2b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="192" height="192"><g data-motion-layer="sheet" style="transform-origin:10.69px 50.22px"><path d="M21.70 6.08 L10.69 50.22 L41.91 58.00 L48.62 31.08 L35.69 9.57 Z" fill="currentColor"/><g data-motion-layer="corner" style="transform-origin:43.16px 19.72px;opacity:0"><path d="M52.91 13.86 L38.92 10.37 L49.42 27.85 Z" fill="currentColor"/></g><g data-motion-layer="curl" style="transform-origin:43.16px 19.72px"><path d="M49.94 27.85 L50.38 26.90 L50.81 25.89 L51.22 24.81 L51.60 23.68 L51.95 22.51 L52.27 21.30 L52.56 20.07 L52.80 18.84 L53.00 17.60 L53.16 16.37 L53.26 15.16 L53.31 13.98 L53.29 12.84 L53.22 11.75 L53.07 10.72 L52.86 9.77 L52.57 8.90 L52.20 8.12 L51.75 7.44 L51.21 6.88 L50.59 6.44 L49.86 6.14 L49.28 6.05 L48.71 6.01 L48.16 6.00 L47.63 6.03 L47.11 6.09 L46.60 6.18 L46.10 6.30 L45.60 6.44 L45.12 6.60 L44.63 6.79 L44.15 6.99 L43.67 7.21 L43.19 7.43 L42.71 7.67 L42.22 7.91 L41.72 8.16 L41.22 8.41 L40.70 8.66 L40.18 8.90 L39.64 9.14 L39.08 9.37 L38.51 9.58 L38.46 9.60 L49.70 28.30 Z" fill="currentColor"/></g></g></svg></div>
+        <span class="btns"><button type="button" class="act" data-play="intro" data-key="c2b">Replay intro</button><button type="button" class="act" data-play="micro" data-key="c2b">Play micro</button></span></div>
+      <div><img src="png/refined/c2b.png" width="144" height="144" alt="Lift reduced-motion still"><span>Reduced-motion still</span></div>
+      <div><img class="px" src="png/stress/c2b-16-light.png" width="64" height="64" alt="Lift 16 px light"><img class="px" src="png/stress/c2b-16-dark.png" width="64" height="64" alt="Lift 16 px dark"><span>16 px, 4x</span></div>
+    </div>
+    <div class="surf">
+  <div class="row"><img class="px" src="png/surf/c2b-tab.png" width="220" height="40" alt="Lift browser tab, favicon at 16 px"><img class="home" src="png/surf/c2b-home.png" width="64" height="64" alt="Lift home-screen icon"></div>
+  <img class="hdr" src="png/surf/c2b-header360.png" width="360" height="56" alt="Lift app header at 360">
+  <div class="crop"><img src="png/surf/c2b-header1280.png" width="1280" height="64" alt="Lift app header at 1280"></div>
+  <img class="og" src="png/surf/c2b-og.png" width="1200" height="630" alt="Lift share card 1200x630">
+</div>
+    <p class="nums">Intro 580 ms · micro 280 ms · ink at 16 px 36% · icon span 48%, 0 px outside the maskable circle · corner 41% of the sheet height · 0 live-text elements</p>
+    <details><summary>Construction, lineup, stock check</summary>
+      <img class="sheet" src="png/construction-c2b.png" alt="Lift construction grid">
+      <img class="px lin" src="png/stress/c2b-lineup32.png" alt="Lift at 32 px beside four competitor stand-ins">
+      <img class="px lin" src="png/stress/c2b-stock24.png" alt="Lift at 24 px beside three stock icons"></details>
+  </figure>
+</div><div class="opt" data-option="MARK-C2c" data-inventory="5/5" data-aligned="pass">
+  <h3><span class="lt">C</span> C2c Pair</h3>
+  <p class="cap">Lift with a second sheet of the set fanned out behind it: one form, a set of fliers.</p>
+  <figure data-visual="before"><figcaption>Round 1 C "In flight" (critic REDO: corner read as a broken-off wedge, intro only faded)</figcaption>
+    <div class="motion"><div><img src="r1/motion/r3-intro.svg" width="144" height="144" alt="Round 1 In flight intro" class="r1i"><button type="button" class="act r1r">Replay round 1 intro</button></div>
+    <div><img class="px" src="r1/stress/r3-16-light.png" width="64" height="64" alt="Round 1 In flight 16 px"><span>16 px, 4x</span></div></div>
+    <div class="surf">
+  <div class="row"><img class="px" src="r1/surf/r3-tab.png" width="220" height="40" alt="Round 1 In flight browser tab, favicon at 16 px"><img class="home" src="r1/surf/r3-home.png" width="64" height="64" alt="Round 1 In flight home-screen icon"></div>
+  <img class="hdr" src="r1/surf/r3-header360.png" width="360" height="56" alt="Round 1 In flight app header at 360">
+  <div class="crop"><img src="r1/surf/r3-header1280.png" width="1280" height="64" alt="Round 1 In flight app header at 1280"></div>
+  <img class="og" src="r1/surf/r3-og.png" width="1200" height="630" alt="Round 1 In flight share card 1200x630">
+</div>
+  </figure>
+  <figure data-visual="after"><figcaption>Pair: plays live (hover or focus the mark for the micro)</figcaption>
+    <div class="motion">
+      <div><div class="stage" data-key="c2c"><svg tabindex="0" role="img" aria-label="Pair mark, animated" data-logo="c2c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="192" height="192"><g data-motion-layer="back" style="transform-origin:11.77px 50.22px"><path d="M9.62 9.33 L38.53 7.82 L40.68 48.70 L11.77 50.22 Z" fill="currentColor"/></g><g data-motion-layer="sheet" style="transform-origin:11.77px 50.22px"><path d="M22.77 6.08 L11.77 50.22 L42.98 58.00 L49.69 31.08 L36.76 9.57 Z" fill="currentColor" stroke="var(--mark-bg)" stroke-width="4.72" paint-order="stroke"/><g data-motion-layer="corner" style="transform-origin:44.23px 19.72px;opacity:0"><path d="M53.98 13.86 L40.00 10.37 L50.50 27.85 Z" fill="currentColor"/></g><g data-motion-layer="curl" style="transform-origin:44.23px 19.72px"><path d="M51.01 27.85 L51.46 26.90 L51.88 25.89 L52.29 24.81 L52.67 23.68 L53.02 22.51 L53.34 21.30 L53.63 20.07 L53.87 18.84 L54.07 17.60 L54.23 16.37 L54.33 15.16 L54.38 13.98 L54.36 12.84 L54.29 11.75 L54.14 10.72 L53.93 9.77 L53.64 8.90 L53.27 8.12 L52.82 7.44 L52.29 6.88 L51.66 6.44 L50.94 6.14 L50.35 6.05 L49.78 6.01 L49.23 6.00 L48.70 6.03 L48.18 6.09 L47.67 6.18 L47.17 6.30 L46.67 6.44 L46.19 6.60 L45.70 6.79 L45.22 6.99 L44.74 7.21 L44.26 7.43 L43.78 7.67 L43.29 7.91 L42.79 8.16 L42.29 8.41 L41.78 8.66 L41.25 8.90 L40.71 9.14 L40.15 9.37 L39.58 9.58 L39.53 9.60 L50.77 28.30 Z" fill="currentColor"/></g></g></svg></div>
+        <span class="btns"><button type="button" class="act" data-play="intro" data-key="c2c">Replay intro</button><button type="button" class="act" data-play="micro" data-key="c2c">Play micro</button></span></div>
+      <div><img src="png/refined/c2c.png" width="144" height="144" alt="Pair reduced-motion still"><span>Reduced-motion still</span></div>
+      <div><img class="px" src="png/stress/c2c-16-light.png" width="64" height="64" alt="Pair 16 px light"><img class="px" src="png/stress/c2c-16-dark.png" width="64" height="64" alt="Pair 16 px dark"><span>16 px, 4x</span></div>
+    </div>
+    <div class="surf">
+  <div class="row"><img class="px" src="png/surf/c2c-tab.png" width="220" height="40" alt="Pair browser tab, favicon at 16 px"><img class="home" src="png/surf/c2c-home.png" width="64" height="64" alt="Pair home-screen icon"></div>
+  <img class="hdr" src="png/surf/c2c-header360.png" width="360" height="56" alt="Pair app header at 360">
+  <div class="crop"><img src="png/surf/c2c-header1280.png" width="1280" height="64" alt="Pair app header at 1280"></div>
+  <img class="og" src="png/surf/c2c-og.png" width="1200" height="630" alt="Pair share card 1200x630">
+</div>
+    <p class="nums">Intro 580 ms · micro 280 ms · ink at 16 px 38% · icon span 50%, 0 px outside the maskable circle · corner 41% of the sheet height · 0 live-text elements</p>
+    <details><summary>Construction, lineup, stock check</summary>
+      <img class="sheet" src="png/construction-c2c.png" alt="Pair construction grid">
+      <img class="px lin" src="png/stress/c2c-lineup32.png" alt="Pair at 32 px beside four competitor stand-ins">
+      <img class="px lin" src="png/stress/c2c-stock24.png" alt="Pair at 24 px beside three stock icons"></details>
+  </figure>
+</div></div>
+<div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which variant becomes the Flier Studio mark (tab icon, home-screen icon, app header, share card, dloizides.com card)?</p>
+<ul class="opts"><li data-letter="A"><span class="lt">A</span><span>C2a Peel</span></li><li data-letter="B"><span class="lt">B</span><span>C2b Lift</span></li><li data-letter="C"><span class="lt">C</span><span>C2c Pair</span></li><li data-letter="X"><span class="lt">X</span><span>None: apply the kill rule and brief a human identity designer</span></li></ul>
+<p class="why">Round 1: all three marks REDO (LP7, 2026-10-28); C was the only idea not borrowed.</p></div>
+</section>
+</main>
+<script type="module">
+/* @dloizides/ui-motion@1.3.0 dist/logo/index.mjs, inlined; its one import (design-tokens DEFAULT_MOTION) inlined below */
+const DEFAULT_MOTION = {"durations": {"instant": 0, "fast": 140, "base": 200, "slow": 300}, "easings": {"standard": {"css": "cubic-bezier(0.2,0,0,1)", "bezier": [0.2, 0, 0, 1]}, "decelerate": {"css": "cubic-bezier(0,0,0,1)", "bezier": [0, 0, 0, 1]}, "accelerate": {"css": "cubic-bezier(0.3,0,1,1)", "bezier": [0.3, 0, 1, 1]}}};
+
+// src/logo/constants.ts
+var MOTION_LAYER_ATTRIBUTE = "data-motion-layer";
+var REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+var DEFAULT_LOGO_EASING = "standard";
+
+// src/logo/utils/layers.ts
+var FRAME_META_KEYS = /* @__PURE__ */ new Set(["offset", "easing", "composite"]);
+function findLayers(root, layer) {
+  const selector = `[${MOTION_LAYER_ATTRIBUTE}=${JSON.stringify(layer)}]`;
+  const nodes = Array.from(root.querySelectorAll(selector));
+  if (root.matches(selector)) nodes.unshift(root);
+  return nodes.filter((node) => "style" in node);
+}
+function applyFinalFrame(element, keyframes) {
+  const last = keyframes[keyframes.length - 1];
+  if (last === void 0) return;
+  const style = element.style;
+  Object.entries(last).filter(([key, value]) => !FRAME_META_KEYS.has(key) && value !== null && value !== void 0).forEach(([key, value]) => {
+    style[key] = String(value);
+  });
+}
+function supportsWebAnimations(element) {
+  return typeof element.animate === "function";
+}
+function prefersReducedMotion() {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+function resolveDuration(duration) {
+  if (typeof duration === "number") return duration;
+  const ms = DEFAULT_MOTION.durations[duration];
+  if (ms === void 0) throw new Error(`Unknown motion duration token: ${String(duration)}`);
+  return ms;
+}
+function resolveEasing(easing) {
+  const name = easing ?? DEFAULT_LOGO_EASING;
+  const token = DEFAULT_MOTION.easings[name];
+  if (token === void 0) throw new Error(`Unknown motion easing token: ${String(name)}`);
+  return token.css;
+}
+
+// src/logo/utils/playLogo.ts
+var ignoreCancel = () => void 0;
+function playLogo(svg, timeline, options = {}) {
+  const still = options.reducedMotion ?? prefersReducedMotion();
+  const animations = [];
+  timeline.forEach((beat) => {
+    findLayers(svg, beat.layer).forEach((element) => {
+      if (still || !supportsWebAnimations(element)) {
+        applyFinalFrame(element, beat.keyframes);
+        return;
+      }
+      animations.push(
+        element.animate(beat.keyframes, {
+          duration: resolveDuration(beat.duration),
+          easing: resolveEasing(beat.easing),
+          delay: beat.delay ?? 0,
+          fill: "both",
+          iterations: options.iterations ?? 1
+        })
+      );
+    });
+  });
+  const finished = Promise.all(animations.map((animation) => animation.finished.catch(ignoreCancel))).then(ignoreCancel);
+  return { finished, cancel: () => animations.forEach((animation) => animation.cancel()) };
+}
+
+// src/logo/MicroTrigger.ts
+var MicroTrigger = /* @__PURE__ */ ((MicroTrigger2) => {
+  MicroTrigger2["Hover"] = "hover";
+  MicroTrigger2["Focus"] = "focus";
+  MicroTrigger2["Loading"] = "loading";
+  return MicroTrigger2;
+})(MicroTrigger || {});
+
+// src/logo/utils/bindMicro.ts
+var START_EVENT = {
+  ["hover" /* Hover */]: "pointerenter",
+  ["focus" /* Focus */]: "focusin"
+};
+var STOP_EVENT = {
+  ["hover" /* Hover */]: "pointerleave",
+  ["focus" /* Focus */]: "focusout"
+};
+var noop = () => void 0;
+function bindMicro(svg, timeline, trigger, options = {}) {
+  if (options.reducedMotion ?? prefersReducedMotion()) return noop;
+  let playback;
+  const stop = () => {
+    playback?.cancel();
+    playback = void 0;
+  };
+  if (trigger === "loading" /* Loading */) {
+    playback = playLogo(svg, timeline, { reducedMotion: false, iterations: Infinity });
+    return stop;
+  }
+  const start = () => {
+    stop();
+    playback = playLogo(svg, timeline, { reducedMotion: false });
+  };
+  const startEvent = START_EVENT[trigger] ?? "";
+  const stopEvent = STOP_EVENT[trigger] ?? "";
+  svg.addEventListener(startEvent, start);
+  svg.addEventListener(stopEvent, stop);
+  return () => {
+    svg.removeEventListener(startEvent, start);
+    svg.removeEventListener(stopEvent, stop);
+    stop();
+  };
+}
+
+const __logo = { MOTION_LAYER_ATTRIBUTE, MicroTrigger, bindMicro, playLogo, resolveDuration, resolveEasing };
+//# sourceMappingURL=index.mjs.map
+//# sourceMappingURL=index.mjs.map
+var TIMELINES = {"c2a": {"intro": [{"layer": "sheet", "keyframes": [{"transform": "translate(-5px, 5px) rotate(-4deg)", "opacity": 0, "offset": 0}, {"opacity": 1, "offset": 0.4}, {"transform": "translate(0px, 0px) rotate(0deg)", "opacity": 1, "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 0}, {"layer": "corner", "keyframes": [{"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)", "opacity": 1}, {"transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)", "opacity": 1}], "duration": "fast", "easing": "standard", "delay": 140}, {"layer": "curl", "keyframes": [{"transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)", "offset": 0}, {"transform": "rotate(59.00deg) scaleY(1.08) rotate(-59.00deg)", "offset": 0.7}, {"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)", "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 280}], "micro": [{"layer": "curl", "keyframes": [{"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"}, {"transform": "rotate(59.00deg) scaleY(0.72) rotate(-59.00deg)"}, {"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"}], "duration": 280, "easing": "standard", "delay": 0}, {"layer": "sheet", "keyframes": [{"transform": "translate(0px, 0px)"}, {"transform": "translate(1px, -1.5px)"}, {"transform": "translate(0px, 0px)"}], "duration": 280, "easing": "standard", "delay": 0}]}, "c2b": {"intro": [{"layer": "sheet", "keyframes": [{"transform": "translate(-5px, 5px) rotate(-4deg)", "opacity": 0, "offset": 0}, {"opacity": 1, "offset": 0.4}, {"transform": "translate(0px, 0px) rotate(0deg)", "opacity": 1, "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 0}, {"layer": "corner", "keyframes": [{"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)", "opacity": 1}, {"transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)", "opacity": 1}], "duration": "fast", "easing": "standard", "delay": 140}, {"layer": "curl", "keyframes": [{"transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)", "offset": 0}, {"transform": "rotate(59.00deg) scaleY(1.08) rotate(-59.00deg)", "offset": 0.7}, {"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)", "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 280}], "micro": [{"layer": "curl", "keyframes": [{"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"}, {"transform": "rotate(59.00deg) scaleY(0.72) rotate(-59.00deg)"}, {"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"}], "duration": 280, "easing": "standard", "delay": 0}, {"layer": "sheet", "keyframes": [{"transform": "translate(0px, 0px)"}, {"transform": "translate(1px, -1.5px)"}, {"transform": "translate(0px, 0px)"}], "duration": 280, "easing": "standard", "delay": 0}]}, "c2c": {"intro": [{"layer": "sheet", "keyframes": [{"transform": "translate(-5px, 5px) rotate(-4deg)", "opacity": 0, "offset": 0}, {"opacity": 1, "offset": 0.4}, {"transform": "translate(0px, 0px) rotate(0deg)", "opacity": 1, "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 0}, {"layer": "back", "keyframes": [{"transform": "rotate(17deg)", "opacity": 0, "offset": 0}, {"opacity": 1, "offset": 0.15}, {"transform": "rotate(0deg)", "opacity": 1, "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 140}, {"layer": "corner", "keyframes": [{"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)", "opacity": 1}, {"transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)", "opacity": 1}], "duration": "fast", "easing": "standard", "delay": 140}, {"layer": "curl", "keyframes": [{"transform": "rotate(59.00deg) scaleY(0) rotate(-59.00deg)", "offset": 0}, {"transform": "rotate(59.00deg) scaleY(1.08) rotate(-59.00deg)", "offset": 0.7}, {"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)", "offset": 1}], "duration": "slow", "easing": "decelerate", "delay": 280}], "micro": [{"layer": "curl", "keyframes": [{"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"}, {"transform": "rotate(59.00deg) scaleY(0.72) rotate(-59.00deg)"}, {"transform": "rotate(59.00deg) scaleY(1) rotate(-59.00deg)"}], "duration": 280, "easing": "standard", "delay": 0}, {"layer": "sheet", "keyframes": [{"transform": "translate(0px, 0px)"}, {"transform": "translate(1px, -1.5px)"}, {"transform": "translate(0px, 0px)"}], "duration": 280, "easing": "standard", "delay": 0}, {"layer": "back", "keyframes": [{"transform": "rotate(0deg)"}, {"transform": "rotate(-4deg)"}, {"transform": "rotate(0deg)"}], "duration": 280, "easing": "standard", "delay": 0}]}};
+var rm = document.getElementById('rm');
+function reduced() { return rm.checked || window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+function svgOf(k) { return document.querySelector('svg[data-logo="' + k + '"]'); }
+var live = {}, unbind = [];
+function play(k, kind) { if (live[k]) live[k].cancel(); live[k] = playLogo(svgOf(k), TIMELINES[k][kind], { reducedMotion: reduced() }); }
+function bindAll() {
+  unbind.forEach(function (u) { u(); }); unbind = [];
+  Object.keys(TIMELINES).forEach(function (k) {
+    ['hover', 'focus'].forEach(function (t) { unbind.push(bindMicro(svgOf(k), TIMELINES[k].micro, t, { reducedMotion: reduced() })); });
+  });
+}
+document.querySelectorAll('[data-play]').forEach(function (b) { b.addEventListener('click', function () { play(b.dataset.key, b.dataset.play); }); });
+rm.addEventListener('change', function () { Object.keys(live).forEach(function (k) { live[k].cancel(); }); bindAll(); });
+bindAll();
+var ob = new IntersectionObserver(function (es) {
+  es.forEach(function (e) { if (e.isIntersecting) { play(e.target.dataset.key, 'intro'); ob.unobserve(e.target); } });
+}, { threshold: 0.6 });
+document.querySelectorAll('.stage').forEach(function (s) { ob.observe(s); });
+document.querySelectorAll('.r1r').forEach(function (b) {
+  b.addEventListener('click', function () { var img = b.parentElement.querySelector('img'); img.src = img.src.split('?')[0] + '?t=' + Date.now(); });
+});
+</script>
+
+<script>
+(function () {
+  'use strict';
+  // Contrast guard: a host page forced dark (or light) while the OS scheme differs left
+  // --ink-1 #111 on a dark background, so typed notes were invisible (2026-10-01).
+  (function () {
+    function lum(c) {
+      var m = (c || '').match(/[\d.]+/g); if (!m || m.length < 3) return null;
+      var v = m.slice(0, 3).map(function (x) { x = x / 255;
+        return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    }
+    var el = document.body, bg = null;
+    while (el && el.nodeType === 1) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && !/rgba\([^)]*,\s*0\)|transparent/.test(c)) { bg = c; break; }
+      el = el.parentElement;
+    }
+    var root = document.documentElement;
+    var probe = document.createElement('span');
+    probe.style.color = 'var(--ink-1, #111)'; document.body.appendChild(probe);
+    var lb = lum(bg || 'rgb(255,255,255)'), li = lum(getComputedStyle(probe).color);
+    probe.remove();
+    if (lb === null || li === null) return;
+    if ((Math.max(lb, li) + 0.05) / (Math.min(lb, li) + 0.05) >= 4.5) return;
+    var dark = lb < 0.2, set = dark
+      ? ['#141414', '#f0efec', '#a8a49c', '#6f6b64', 'rgba(255,255,255,.06)', '#333029']
+      : ['#ffffff', '#111111', '#555555', '#8a8a8a', 'rgba(0,0,0,.05)', '#e2e2de'];
+    ['--paper', '--ink-1', '--ink-2', '--ink-3', '--rule-1', '--rule-2'].forEach(
+      function (k, i) { root.style.setProperty(k, set[i]); });
+  })();
+  var DOCKEY = 'flier-logo-r2';
+  var DOCTITLE = 'Flier Studio Mark Round 2';
+  var LS = 'answers:' + DOCKEY;
+  var state = {};
+  var db = null;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(LS);
+      if (raw) state = JSON.parse(raw) || {};
+    } catch (e) { state = {}; }
+  }
+
+  function persistLocal() {
+    try { window.localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function persistDb(qid) {
+    if (!db) return;
+    var v = state[qid] || {};
+    db.doc('answers/' + qid).set({
+      question: v.question || '',
+      choice: v.choice || '',
+      choiceText: v.choiceText || '',
+      note: v.note || '',
+      doc: DOCKEY,
+      updatedAt: new Date().toISOString()
+    }).catch(function () { /* keep the local copy; export still works */ });
+  }
+
+  function save(qid) { persistLocal(); persistDb(qid); }
+
+  var blocks = [];
+
+  function render() {
+    var done = 0;
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      b.el.classList.toggle('answered', !!v.choice);
+      if (v.choice) done++;
+      b.opts.forEach(function (li) {
+        var on = li.getAttribute('data-letter') === v.choice;
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        li.setAttribute('tabindex', on || (!v.choice && li === b.opts[0]) ? '0' : '-1');
+      });
+      b.status.textContent = v.choice ? 'answered — ' : 'not answered yet';
+      if (v.choice) {
+        var bb = document.createElement('b');
+        bb.textContent = v.choice;
+        b.status.appendChild(bb);
+      }
+      if (b.note.value !== (v.note || '')) b.note.value = v.note || '';
+    });
+    if (bar) {
+      bar.prog.innerHTML = '<b>' + done + '</b> of ' + blocks.length + ' answered';
+    }
+  }
+
+  function choose(b, letter, text) {
+    var v = state[b.qid] || {};
+    if (v.choice === letter) { delete v.choice; delete v.choiceText; }
+    else { v.choice = letter; v.choiceText = text; }
+    v.question = b.question;
+    state[b.qid] = v;
+    save(b.qid);
+    render();
+  }
+
+  function buildExport() {
+    var out = ['# Answers \u2014 ' + DOCTITLE,
+               'recorded ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+               ''];
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      out.push('## ' + b.qid.toUpperCase() + ' \u2014 ' + b.question);
+      out.push(v.choice
+        ? '**Answer: ' + v.choice + '** \u2014 ' + (v.choiceText || '')
+        : '**Answer: (not answered)**');
+      if (v.note) out.push('Note: ' + v.note);
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
+  var bar = null;
+
+  function buildBar(firstQ) {
+    var el = document.createElement('div');
+    el.className = 'qbar';
+    el.innerHTML =
+      '<span class="prog"></span>' +
+      '<span class="acts">' +
+      '<button type="button" class="clr">Clear all</button>' +
+      '<button type="button" class="prim exp">Export answers</button>' +
+      '</span>' +
+      '<span class="mode"></span>';
+    var wrap = document.createElement('div');
+    wrap.className = 'expwrap';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-label', 'Exported answers');
+    wrap.innerHTML = '<div class="exphead">Your answers' +
+      '<span><button type="button" class="prim cpy">Copy</button>' +
+      '<button type="button" class="cls">Close</button></span></div>' +
+      '<textarea readonly aria-label="Answers for export"></textarea>' +
+      '<p class="hint">Press Copy, then paste the text into the conversation.</p>';
+    var section = firstQ.closest ? firstQ.closest('section') : null;
+    var anchor = section && section.parentNode ? section : firstQ;
+    anchor.parentNode.insertBefore(el, anchor);
+    document.body.appendChild(wrap);
+
+    bar = {
+      el: el,
+      prog: el.querySelector('.prog'),
+      mode: el.querySelector('.mode'),
+      exportBtn: el.querySelector('.exp'),
+      wrap: wrap,
+      ta: wrap.querySelector('textarea'),
+      hint: wrap.querySelector('.hint')
+    };
+
+    function closeExport() { wrap.classList.remove('on'); bar.exportBtn.focus(); }
+    wrap.querySelector('.cls').addEventListener('click', closeExport);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) closeExport();
+    });
+    wrap.querySelector('.cpy').addEventListener('click', function () {
+      bar.ta.focus();
+      bar.ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText)
+          navigator.clipboard.writeText(bar.ta.value).then(function () {
+            bar.hint.textContent = 'Copied. Paste it into the conversation.';
+          }, function () {});
+      } catch (e) {}
+      bar.hint.textContent = ok ? 'Copied. Paste it into the conversation.'
+        : 'The text is selected: press Ctrl+C (Cmd+C on a Mac), then paste it into the conversation.';
+    });
+
+    el.querySelector('.clr').addEventListener('click', function () {
+      blocks.forEach(function (b) {
+        state[b.qid] = { question: b.question, note: (state[b.qid] || {}).note || '' };
+        delete state[b.qid].choice;
+        save(b.qid);
+      });
+      render();
+    });
+
+    bar.exportBtn.addEventListener('click', function () {
+      var txt = buildExport();
+      bar.ta.value = txt;
+      bar.wrap.classList.add('on');
+      bar.hint.textContent = 'Press Copy, then paste the text into the conversation.';
+      bar.ta.focus();
+      bar.ta.select();
+    });
+  }
+
+  function init() {
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.q[data-qid]'));
+    if (!qs.length) return;
+
+    qs.forEach(function (el) {
+      var qid = el.getAttribute('data-qid');
+      var qn = el.querySelector('.qn');
+      var question = qn ? qn.textContent.replace(/\s+/g, ' ').replace(/^\s*Q\d+\s*/, '').trim() : qid;
+      var opts = Array.prototype.slice.call(el.querySelectorAll('.opts li[data-letter]'));
+      var group = el.querySelector('.opts');
+      if (group) group.setAttribute('role', 'radiogroup');
+
+      var box = document.createElement('div');
+      box.className = 'ansbox';
+      box.innerHTML = '<span class="st"></span>' +
+        '<textarea class="note-in" rows="2" placeholder="Optional \u2014 a caveat, a ' +
+        'condition, or why not the recommendation."></textarea>';
+      var oldAns = el.querySelector('.ans');
+      if (oldAns) oldAns.parentNode.replaceChild(box, oldAns);
+      else el.appendChild(box);
+
+      var b = {
+        el: el, qid: qid, question: question, opts: opts,
+        status: box.querySelector('.st'), note: box.querySelector('.note-in')
+      };
+
+      opts.forEach(function (li) {
+        li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
+        var span = li.querySelector('span:last-child');
+        var text = (span ? span.textContent : li.textContent)
+          .replace(/\s+/g, ' ').replace(/\s*recommended\s*$/i, '').trim();
+        li.addEventListener('click', function () {
+          choose(b, li.getAttribute('data-letter'), text);
+        });
+        li.addEventListener('keydown', function (ev) {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            choose(b, li.getAttribute('data-letter'), text);
+          }
+        });
+      });
+
+      b.note.addEventListener('input', function () {
+        var v = state[qid] || {};
+        v.note = b.note.value;
+        v.question = question;
+        state[qid] = v;
+        persistLocal();
+      });
+      b.note.addEventListener('blur', function () { persistDb(qid); });
+
+      blocks.push(b);
+    });
+
+    load();
+    buildBar(qs[0]);
+    render();
+
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('db').then(function (d) {
+        if (!d) { setMode('saved in this browser only'); return; }
+        db = d;
+        setMode('saved to this page \u2014 Claude can read these answers back');
+        d.collection('answers').get().then(function (snap) {
+          var touched = false;
+          snap.docs.forEach(function (doc) {
+            var data = doc.data() || {};
+            var cur = state[doc.id] || {};
+            if (!cur.choice && !cur.note && (data.choice || data.note)) {
+              state[doc.id] = {
+                question: data.question || cur.question || '',
+                choice: data.choice || '', choiceText: data.choiceText || '',
+                note: data.note || ''
+              };
+              touched = true;
+            }
+          });
+          if (touched) { persistLocal(); render(); }
+        }).catch(function () {});
+      }).catch(function () { setMode('saved in this browser only'); });
+    } else {
+      setMode('saved in this browser only');
+    }
+  }
+
+  function setMode(t) { if (bar) bar.mode.textContent = t; }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

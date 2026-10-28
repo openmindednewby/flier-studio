@@ -1,0 +1,380 @@
+[
+{
+"svg": "refined/c2a.svg",
+"png": "refined/c2a.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "refined/c2a-16.svg",
+"png": "refined/c2a-16.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "construction-c2a.svg",
+"png": "construction-c2a.png",
+"w": 640,
+"h": 400
+},
+{
+"svg": "stress/c2a-16-light.svg",
+"png": "stress/c2a-16-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2a-16-dark.svg",
+"png": "stress/c2a-16-dark.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2a-32-light.svg",
+"png": "stress/c2a-32-light.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/c2a-32-dark.svg",
+"png": "stress/c2a-32-dark.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/c2a-16-full-light.svg",
+"png": "stress/c2a-16-full-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2a-onecolour.svg",
+"png": "stress/c2a-onecolour.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/c2a-reversed.svg",
+"png": "stress/c2a-reversed.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/c2a-lineup32.svg",
+"png": "stress/c2a-lineup32.png",
+"w": 288,
+"h": 64
+},
+{
+"svg": "stress/c2a-stock24.svg",
+"png": "stress/c2a-stock24.png",
+"w": 184,
+"h": 40
+},
+{
+"svg": "surf/c2a-tab.svg",
+"png": "surf/c2a-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/c2a-icon512.svg",
+"png": "surf/c2a-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/c2a-icon512-safe.svg",
+"png": "surf/c2a-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/c2a-home.svg",
+"png": "surf/c2a-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/c2a-header360.svg",
+"png": "surf/c2a-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/c2a-header1280.svg",
+"png": "surf/c2a-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/c2a-og.svg",
+"png": "surf/c2a-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "refined/c2a-lockup-h.svg",
+"png": "refined/c2a-lockup-h.png",
+"w": 300,
+"h": 66
+},
+{
+"svg": "refined/c2a-lockup-v.svg",
+"png": "refined/c2a-lockup-v.png",
+"w": 153,
+"h": 104
+},
+{
+"svg": "refined/c2b.svg",
+"png": "refined/c2b.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "refined/c2b-16.svg",
+"png": "refined/c2b-16.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "construction-c2b.svg",
+"png": "construction-c2b.png",
+"w": 640,
+"h": 400
+},
+{
+"svg": "stress/c2b-16-light.svg",
+"png": "stress/c2b-16-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2b-16-dark.svg",
+"png": "stress/c2b-16-dark.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2b-32-light.svg",
+"png": "stress/c2b-32-light.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/c2b-32-dark.svg",
+"png": "stress/c2b-32-dark.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/c2b-16-full-light.svg",
+"png": "stress/c2b-16-full-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2b-onecolour.svg",
+"png": "stress/c2b-onecolour.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/c2b-reversed.svg",
+"png": "stress/c2b-reversed.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/c2b-lineup32.svg",
+"png": "stress/c2b-lineup32.png",
+"w": 288,
+"h": 64
+},
+{
+"svg": "stress/c2b-stock24.svg",
+"png": "stress/c2b-stock24.png",
+"w": 184,
+"h": 40
+},
+{
+"svg": "surf/c2b-tab.svg",
+"png": "surf/c2b-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/c2b-icon512.svg",
+"png": "surf/c2b-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/c2b-icon512-safe.svg",
+"png": "surf/c2b-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/c2b-home.svg",
+"png": "surf/c2b-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/c2b-header360.svg",
+"png": "surf/c2b-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/c2b-header1280.svg",
+"png": "surf/c2b-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/c2b-og.svg",
+"png": "surf/c2b-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "refined/c2b-lockup-h.svg",
+"png": "refined/c2b-lockup-h.png",
+"w": 305,
+"h": 66
+},
+{
+"svg": "refined/c2b-lockup-v.svg",
+"png": "refined/c2b-lockup-v.png",
+"w": 153,
+"h": 104
+},
+{
+"svg": "refined/c2c.svg",
+"png": "refined/c2c.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "refined/c2c-16.svg",
+"png": "refined/c2c-16.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "construction-c2c.svg",
+"png": "construction-c2c.png",
+"w": 640,
+"h": 400
+},
+{
+"svg": "stress/c2c-16-light.svg",
+"png": "stress/c2c-16-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2c-16-dark.svg",
+"png": "stress/c2c-16-dark.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2c-32-light.svg",
+"png": "stress/c2c-32-light.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/c2c-32-dark.svg",
+"png": "stress/c2c-32-dark.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/c2c-16-full-light.svg",
+"png": "stress/c2c-16-full-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/c2c-onecolour.svg",
+"png": "stress/c2c-onecolour.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/c2c-reversed.svg",
+"png": "stress/c2c-reversed.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/c2c-lineup32.svg",
+"png": "stress/c2c-lineup32.png",
+"w": 288,
+"h": 64
+},
+{
+"svg": "stress/c2c-stock24.svg",
+"png": "stress/c2c-stock24.png",
+"w": 184,
+"h": 40
+},
+{
+"svg": "surf/c2c-tab.svg",
+"png": "surf/c2c-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/c2c-icon512.svg",
+"png": "surf/c2c-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/c2c-icon512-safe.svg",
+"png": "surf/c2c-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/c2c-home.svg",
+"png": "surf/c2c-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/c2c-header360.svg",
+"png": "surf/c2c-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/c2c-header1280.svg",
+"png": "surf/c2c-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/c2c-og.svg",
+"png": "surf/c2c-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "refined/c2c-lockup-h.svg",
+"png": "refined/c2c-lockup-h.png",
+"w": 308,
+"h": 66
+},
+{
+"svg": "refined/c2c-lockup-v.svg",
+"png": "refined/c2c-lockup-v.png",
+"w": 153,
+"h": 104
+}
+]

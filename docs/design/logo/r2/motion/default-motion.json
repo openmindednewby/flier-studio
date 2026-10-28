@@ -1,0 +1,1 @@
+{"durations":{"instant":0,"fast":140,"base":200,"slow":300},"easings":{"standard":{"css":"cubic-bezier(0.2,0,0,1)","bezier":[0.2,0,0,1]},"decelerate":{"css":"cubic-bezier(0,0,0,1)","bezier":[0,0,0,1]},"accelerate":{"css":"cubic-bezier(0.3,0,1,1)","bezier":[0.3,0,1,1]}}}

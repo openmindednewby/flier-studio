@@ -19,7 +19,8 @@ export interface Copy {
   to: string;
 }
 
-const RUNTIME_FILE = /^ort-wasm-simd-threaded(\.jsep|\.asyncify)?\.(wasm|mjs)$/;
+const RUNTIME_FILE = /^ort-wasm-simd-threaded\.jsep\.(wasm|mjs)$/;
+const BUNDLED_ORT_WASM = /^assets\/ort-wasm-[^/]*\.wasm$/;
 const MODEL = 'modnet.onnx';
 
 /** Same-origin URLs of the model and onnxruntime files; the version in the path makes them cacheable forever. */
@@ -27,11 +28,16 @@ export function bgRemovalUrls(pkgVersion: string, ortVersion: string): BgRemoval
   return { modelUrl: `/bg-removal/${pkgVersion}/${MODEL}`, runtimeBaseUrl: `/bg-removal/ort/${ortVersion}/` };
 }
 
-/** Files copied into the build: the model plus the wasm runtime variants onnxruntime may pick. */
+/** Files copied into the build: the model plus the jsep runtime the worker loads. */
 export function bgRemovalCopies(source: BgRemovalSource, ortListing: readonly string[]): Copy[] {
   const urls = bgRemovalUrls(source.pkgVersion, source.ortVersion);
   const runtime = ortListing.filter((f) => RUNTIME_FILE.test(f)).map((f) => ({ from: join(source.ortDir, f), to: `${urls.runtimeBaseUrl.slice(1)}${f}` }));
   return [{ from: join(source.pkgDir, 'models', MODEL), to: urls.modelUrl.slice(1) }, ...runtime];
+}
+
+/** True for the onnxruntime wasm Vite copies into assets/; the worker loads the runtime from runtimeBaseUrl instead. */
+export function isBundledOrtWasm(fileName: string): boolean {
+  return BUNDLED_ORT_WASM.test(fileName);
 }
 
 const versionOf = (dir: string): string => (JSON.parse(readFileSync(join(dir, 'package.json'), 'utf8')) as { version: string }).version;
@@ -52,6 +58,12 @@ export function bgRemovalAssetsPlugin(root: string): Plugin {
     name: 'bg-removal-assets',
     config: () => ({ define: { __BG_REMOVAL_URLS__: JSON.stringify(bgRemovalUrls(source.pkgVersion, source.ortVersion)) } }),
     configResolved: (config) => { outDir = config.build.outDir; },
+    generateBundle: {
+      order: 'post',
+      handler: (_options, bundle) => {
+        for (const fileName of Object.keys(bundle).filter(isBundledOrtWasm)) delete bundle[fileName];
+      },
+    },
     configureServer: (server) => {
       server.middlewares.use((req, res, next) => {
         const file = byUrl.get(req.url ?? '');

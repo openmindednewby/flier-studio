@@ -172,3 +172,43 @@ test.describe('AC-34 Replace applies only the ticked matches after saving a draf
     await expect(page.getByTestId('status')).not.toContainText('Replaced');
   });
 });
+
+const OVERLAP_SLACK = 0.5;
+const CENTRE_SLACK = 1;
+
+interface Box { l: number; r: number; t: number; b: number }
+interface Placed { n: string; mark: Box; badge: Box }
+
+async function placedBadges(page: Page): Promise<Placed[]> {
+  await search(page, 'Intermediates', 'Improvers');
+  await expect(page.locator('[data-testid="preview-1"] .replace-mark').first()).toBeVisible();
+  return page.locator('.replace-mark').evaluateAll((marks) => marks.map((m) => {
+    const badge = m.querySelector('b') ?? m;
+    const box = (e: Element): { l: number; r: number; t: number; b: number } => {
+      const r = e.getBoundingClientRect();
+      return { l: r.left, r: r.right, t: r.top, b: r.bottom };
+    };
+    return { n: badge.textContent ?? '', mark: box(m), badge: box(badge) };
+  }));
+}
+
+test('no Replace badge covers the mark it numbers', async ({ page }) => {
+  await open(page);
+
+  const placed = await placedBadges(page);
+
+  const covering = placed.filter(({ mark, badge }) => badge.l < mark.r - OVERLAP_SLACK && badge.r > mark.l + OVERLAP_SLACK && badge.t < mark.b - OVERLAP_SLACK && badge.b > mark.t + OVERLAP_SLACK);
+  expect(placed.length).toBeGreaterThan(0);
+  expect(covering.map((p) => `${p.n}: badge ${JSON.stringify(p.badge)} on mark ${JSON.stringify(p.mark)}`)).toEqual([]);
+});
+
+test('at 1280 every Replace badge keeps its place left of its mark, centred on its line', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'the gutter position is the desktop layout');
+  await open(page);
+
+  const placed = await placedBadges(page);
+
+  const moved = placed.filter(({ mark, badge }) => badge.r > mark.l || Math.abs((badge.t + badge.b) / 2 - (mark.t + mark.b) / 2) > CENTRE_SLACK);
+  expect(placed.length).toBeGreaterThan(0);
+  expect(moved.map((p) => `${p.n}: badge ${JSON.stringify(p.badge)}, mark ${JSON.stringify(p.mark)}`)).toEqual([]);
+});

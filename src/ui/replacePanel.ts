@@ -19,6 +19,7 @@ export interface ReplacePanel {
 export const MARKS_EVENT = 'flier:replace-marks';
 const MARK_PAD = 3;
 const BADGE_ROOM = 30;
+const BADGE_HEADROOM = 24;
 
 const keyOf = (m: ReplaceMatch): string => `${String(m.flier)}:${m.field}:${String(m.at)}`;
 const px = (n: number): string => `${String(Math.round(n))}px`;
@@ -32,12 +33,19 @@ function markAt(line: LineBox, canvas: HTMLCanvasElement, on: boolean, n: number
   const scale = canvas.width > 0 ? canvas.clientWidth / canvas.width : 0;
   const left = canvas.offsetLeft + line.x * scale - MARK_PAD;
   const mark = el('span', { class: on ? 'replace-mark' : 'replace-mark off' }, [el('b', { text: String(n) })]);
-  mark.classList.toggle('badge-inside', left < BADGE_ROOM);
   Object.assign(mark.style, {
     left: px(left), top: px(canvas.offsetTop + line.y * scale - MARK_PAD),
     width: px(line.width * scale + 2 * MARK_PAD), height: px(line.height * scale + 2 * MARK_PAD),
   });
   return mark;
+}
+
+function placeBadge(mark: HTMLElement, trim: HTMLElement): void {
+  const box = mark.getBoundingClientRect();
+  if (box.width === 0) return;
+  const clipped = box.left < BADGE_ROOM;
+  mark.classList.toggle('badge-inside', clipped);
+  mark.classList.toggle('badge-below', clipped && box.top - trim.getBoundingClientRect().top < BADGE_HEADROOM);
 }
 
 /** Draws a numbered mark on each match it can place and announces how many it drew. */
@@ -53,7 +61,9 @@ export function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], t
     const run = canvas === null ? undefined : runFor(textRunsOf(canvas), find.toLowerCase(), k);
     if (trim === null || canvas === null || run === undefined) return;
     const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true' }));
-    box.append(markAt(lineBox(run), canvas, ticked(m), i + 1));
+    const mark = markAt(lineBox(run), canvas, ticked(m), i + 1);
+    box.append(mark);
+    placeBadge(mark, trim);
     drawn += 1;
   });
   document.dispatchEvent(new CustomEvent<number>(MARKS_EVENT, { detail: drawn }));

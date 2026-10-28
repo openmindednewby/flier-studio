@@ -5,6 +5,7 @@ import { FORM_GROUPS } from '../form/formGroups';
 import { scalePercent } from '../form/pictureScale';
 import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
+import { foldToggle } from './collapsible';
 import { button, el, fileButton, labelled } from './dom';
 import { UploadKind } from './UploadKind';
 
@@ -46,10 +47,9 @@ function labelledValue(labelKey: string, control: HTMLInputElement, value: HTMLO
 function groups(controls: Record<string, HTMLElement>): HTMLElement[] {
   return FORM_GROUPS.map(({ group, rows }) => {
     const id = `form-group-${group}`;
-    return el('div', { class: 'group', role: 'group', 'aria-labelledby': id }, [
-      el('h3', { id, text: FM(`form.groups.${group}`) }),
-      ...rows.map((row) => el('div', { class: 'row' }, row.map((key) => controls[key]))),
-    ]);
+    const body = el('div', { class: 'fold-body' }, rows.map((row) => el('div', { class: 'row' }, row.map((key) => controls[key]))));
+    const toggle = foldToggle(body, { id: `group-${group}`, title: FM(`form.groups.${group}`), testId: `group-toggle-${group}`, className: 'group-toggle' });
+    return el('div', { class: 'group', role: 'group', 'aria-labelledby': id }, [el('h3', { id }, [toggle]), body]);
   });
 }
 
@@ -90,12 +90,12 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     cutout: cutoutButton(doc, actions),
     logo: fileButton('form.logo', 'upload-logo', 'image/*', (f) => actions.upload(UploadKind.Logo, f)),
   };
-  container.replaceChildren(
-    el('h2', { text: FM('form.heading') }),
+  const body = el('div', { class: 'fold-body' }, [
     el('p', { class: 'muted', text: FM('form.editing', String(position[0]), String(position[1])) }),
     ...groups(controls),
     el('div', { class: 'row actions' }, [button('form.remove', 'remove-flier', actions.remove)]),
-  );
+  ]);
+  container.replaceChildren(el('h2', { class: 'fold-head' }, [foldToggle(body, { id: 'flier-form', title: FM('form.heading') })]), body);
 }
 
 export function focusTitle(container: HTMLElement): void {

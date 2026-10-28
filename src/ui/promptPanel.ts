@@ -29,7 +29,8 @@ export function renderPromptPanel(container: HTMLElement, apply: (doc: FlierDoc)
     }
   };
   container.replaceChildren(
-    el('h2', { text: FM('prompt.heading') }),
+    el('h2', {}, [FM('prompt.heading'), ' ', el('span', { class: 'badge', text: FM('prompt.badge') })]),
+    el('p', { class: 'muted', 'data-testid': 'ai-note', text: FM('prompt.note') }),
     labelled('prompt.label', prompt),
     button('prompt.generate', 'prompt-generate', () => void generate()),
     status,

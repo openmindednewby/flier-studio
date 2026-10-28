@@ -28,6 +28,7 @@ import { focusTitle, renderForm } from './ui/formView';
 import { openImportDialog } from './ui/importDialog';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
+import { aiEntry, sectionNav } from './ui/sectionNav';
 import { UploadKind } from './ui/UploadKind';
 import './ui/styles.css';
 
@@ -45,10 +46,10 @@ document.head.append(el('style', { text: `${toCssVars(FLIER_TOKENS, DEFAULT_CSS_
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
 
 const status = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite', 'data-testid': 'status' });
-const formBox = el('section', { class: 'card', 'data-testid': 'flier-form' });
-const previewGrid = el('div', { class: 'preview-grid', role: 'group', 'aria-label': FM('previews.grid'), 'data-testid': 'preview-grid' });
-const configBox = el('section', { class: 'card' });
-const promptBox = el('section', { class: 'card' });
+const formBox = el('section', { class: 'card', id: 'flier-form', 'data-testid': 'flier-form' });
+const previewGrid = el('div', { class: 'preview-grid', id: 'preview-grid', role: 'group', 'aria-label': FM('previews.grid'), 'data-testid': 'preview-grid' });
+const configBox = el('section', { class: 'card', id: 'saved-configs', 'data-testid': 'saved-configs' });
+const promptBox = el('section', { class: 'card', id: 'generate', 'data-testid': 'generate' });
 const mini = createMiniPreview({ seeAll: () => previewGrid.closest('section')?.scrollIntoView({ block: 'start' }) });
 const allFliers = allFliersCard({
   theme: () => state.fliers[state.selected].themeId,
@@ -185,15 +186,15 @@ async function start(): Promise<void> {
     return;
   }
   const previews = el('section', { class: 'previews', 'data-testid': 'previews' }, [
-    el('div', { class: 'row head' }, [button('previews.downloadAll', 'download-all', () => void downloadAll(), 'primary')]),
-    allFliers.card,
     previewGrid,
     el('p', { class: 'muted', 'data-testid': 'select-hint', text: FM('previews.hint') }),
-    drafts.card,
+    promptBox,
+    configBox,
   ]);
+  const topRow = el('div', { class: 'top-row' }, [brandHeading(document.documentElement.dataset.theme === 'dark'), button('previews.downloadAll', 'download-all', () => void downloadAll(), 'primary')]);
   app.replaceChildren(
-    el('header', {}, [brandHeading(document.documentElement.dataset.theme === 'dark'), el('p', { class: 'lead', text: FM('app.lead') }), status]),
-    el('main', {}, [el('div', { class: 'controls' }, [promptBox, formBox, configBox]), previews]),
+    el('header', {}, [topRow, el('p', { class: 'lead', text: FM('app.lead') }), aiEntry(), status]),
+    el('main', {}, [el('div', { class: 'controls' }, [sectionNav(), allFliers.card, formBox, drafts.card]), previews]),
     mini.bar,
     mini.sheet,
   );

@@ -31,11 +31,19 @@ export function isOpen(store: FoldStore, id: string): boolean {
   return store.read(PREFIX + id) !== 'closed';
 }
 
-/** A card whose heading is a 44 px toggle that folds its body and remembers the choice for this viewer. */
-export function foldableCard(id: string, title: string, body: HTMLElement[], store: FoldStore = localFoldStore): HTMLElement {
-  const bodyId = `${id}-body`;
-  const content = el('div', { class: 'fold-body', id: bodyId }, body);
-  const toggle = el('button', { type: 'button', class: 'fold-toggle', 'data-testid': `${id}-toggle`, 'aria-controls': bodyId, 'aria-description': FM('hint.fold', title), text: title });
+export interface FoldOptions {
+  id: string;
+  title: string;
+  testId?: string;
+  className?: string;
+  store?: FoldStore;
+}
+
+/** A 44 px toggle that folds the content and remembers the choice for this viewer. */
+export function foldToggle(content: HTMLElement, options: FoldOptions): HTMLButtonElement {
+  const { id, title, store = localFoldStore } = options;
+  content.id = `${id}-body`;
+  const toggle = el('button', { type: 'button', class: options.className ?? 'fold-toggle', 'data-testid': options.testId ?? `${id}-toggle`, 'aria-controls': content.id, 'aria-description': FM('hint.fold', title), text: title });
   const set = (open: boolean): void => {
     toggle.setAttribute('aria-expanded', String(open));
     content.hidden = !open;
@@ -47,5 +55,12 @@ export function foldableCard(id: string, title: string, body: HTMLElement[], sto
     store.write(PREFIX + id, open ? 'open' : 'closed');
     toggle.scrollIntoView({ block: 'nearest' });
   });
-  return el('section', { class: 'card', 'data-testid': id }, [el('h2', { class: 'fold-head' }, [toggle]), content]);
+  return toggle;
+}
+
+/** A card whose heading is a 44 px toggle that folds its body and remembers the choice for this viewer. */
+export function foldableCard(id: string, title: string, body: HTMLElement[], store: FoldStore = localFoldStore): HTMLElement {
+  const content = el('div', { class: 'fold-body' }, body);
+  const toggle = foldToggle(content, { id, title, store });
+  return el('section', { class: 'card', id, 'data-testid': id }, [el('h2', { class: 'fold-head' }, [toggle]), content]);
 }

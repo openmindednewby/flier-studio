@@ -33,3 +33,43 @@ screen in the same state" as captured, so it is not scored.
 - The a11y label carrying the full date (`28/10/2026 17:00`) is not visible on pixels; needs a DOM/a11y read.
 - Older-year drafts (should still show the year) and favourites/empty states were not in this pair.
 - Dark mode not in this pair. Alignment judged by eye, not a pixel script.
+
+---
+
+# Round 2: 2026-10-28 (recapture at 9888b9e)
+
+Captures: the same four files, recaptured with a frozen clock (2026-10-28T16:58 Asia/Nicosia, en-GB).
+
+## Verdict: PASS (mean 4.3, lowest #2 = 3)
+
+## Hard fails (checked first)
+
+| Check | Result | Evidence |
+|---|---|---|
+| 1. Lost item (NOLOSS-GATE-1) | pass (9/9 visible per viewport) | Both rows keep thumbnail, date, time, "4 fliers", Restore and Star. The filter chips All (2) and Favourites (0), the title and the collapse chevron are kept too. In the current year only the year is hidden; the brief keeps it in the a11y label (not visible on pixels). |
+| 2. Misaligned row (FORM-ALIGN-1) | pass | 360: Restore and Star share top edge ~y424/~y634 and one height in both frames. 1280: they share top edge ~y141/~y212. Judged by eye; no pixel script was run. |
+| 3. Pair parity (PAIR-PARITY-1) | **pass** | `result.json` frames 16/18 (360x640) and 17/19 (1280x800) have identical `pair` records: route `/`, "drafts panel expanded, All filter, 2 drafts", fixture "kizomba preset, fresh storage, clock fixed 16:58, title edit 'Text fit check'", anchor `drafts-panel`, crop `element drafts-panel`. On the pixels: same rows, same thumbnails, same time 16:58, same crop size. Only the date text differs: `28/10/2026` before, `28/10` after. |
+| TEXT-FIT-1 | before FAIL, after pass | Before 360: "28/10/2026" runs under the left border of Restore. After 360: "28/10" fits its column with ~100px clear before Restore. 1280: both fit. |
+
+## Scores (after frames)
+
+| # | Criterion | Score | Evidence |
+|---|---|---|---|
+| 1 | Focal point / purpose | 4 | Date + time bold, the first thing read in each row; "Restore" is the clear action. |
+| 2 | Portability | 3 | Generic list row; the flier thumbnails are the only product-specific element. That is fine for a utility panel. |
+| 3 | Hierarchy, type, spacing | 4 | Bold date/time over a muted count. The 360 text column now has space on both sides. |
+| 4 | Visual language | 4 | Warm paper surface, one outline-button language; no new colour. |
+| 5 | Taste ledger | 4 | Calm and unadorned; it repeats nothing the ledger rejected. |
+| 6 | AI-default tells | 5 | None. |
+| 7 | 360 + 1280, text fits | 5 | Both viewports were designed; the overflow is gone at 360. |
+| 8 | Inventory true on picture | 5 | 9/9 kept; nothing moved. |
+
+## Top fixes (optional, not blocking)
+
+1. 360: put the date and time on one line ("28/10 16:58") if they fit in the ~110px column. The row would then read like the desktop one.
+
+## NOT COVERED
+
+- The a11y label still carrying the full date was not read from the DOM.
+- Older-year drafts (they should show the year, and might overflow again at 360) were not captured.
+- Dark mode was not in this pair. Alignment was judged by eye, with no pixel-row script.

@@ -18,7 +18,13 @@ export interface DraftsPanel {
 }
 
 export const draftTime = (draft: Draft): string => new Date(draft.at).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' });
-const draftDate = (draft: Draft): string => new Date(draft.at).toLocaleDateString([], { dateStyle: 'short' });
+const DAY_MONTH: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'numeric' };
+
+/** The short date of a draft, without the year when it was saved this year. */
+export function draftDay(at: number, now: number = Date.now()): string {
+  const sameYear = new Date(at).getFullYear() === new Date(now).getFullYear();
+  return new Date(at).toLocaleDateString([], sameYear ? DAY_MONTH : { dateStyle: 'short' });
+}
 const draftClock = (draft: Draft): string => new Date(draft.at).toLocaleTimeString([], { timeStyle: 'short' });
 
 /** A small JPEG of the first flier for the drafts list; empty when nothing is drawn yet. */
@@ -41,7 +47,7 @@ function row(draft: Draft, n: number, actions: DraftsActions): HTMLLIElement {
   star.classList.add('draft-star');
   return el('li', {}, [
     el('img', { src: draft.thumb, alt: FM('drafts.thumb', when), width: String(THUMB_WIDTH) }),
-    el('span', { class: 'draft-when' }, [el('strong', { class: 'draft-stamp' }, [el('span', { text: draftDate(draft) }), el('span', { text: draftClock(draft) })]), el('span', { class: 'muted', text: FM('drafts.count', String(draft.fliers.length)) })]),
+    el('span', { class: 'draft-when' }, [el('strong', { class: 'draft-stamp' }, [el('span', { text: draftDay(draft.at) }), el('span', { text: draftClock(draft) })]), el('span', { class: 'muted', text: FM('drafts.count', String(draft.fliers.length)) })]),
     restore,
     star,
   ]);

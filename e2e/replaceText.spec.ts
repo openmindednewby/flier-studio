@@ -114,10 +114,11 @@ test('AC-33 See in the 360 bar lands the marked flier below the sticky rail', as
   await page.getByTestId('mini-see-marks').click();
 
   await expect.poll(async () => {
-    const rail = await page.locator('.rail').boundingBox();
-    const flier = await page.locator('.replace-marks').first().locator('xpath=ancestor::figure').boundingBox();
-    return (flier?.y ?? 0) >= (rail?.y ?? 0) + (rail?.height ?? 0);
-  }).toBe(true);
+    const rail = await page.getByTestId('section-nav').boundingBox();
+    const flier = await page.getByTestId('preview-1').boundingBox();
+    if (rail === null || flier === null) return `rail ${JSON.stringify(rail)}, flier ${JSON.stringify(flier)}`;
+    return flier.y >= rail.y + rail.height ? 'below' : `flier top ${String(flier.y)} under rail bottom ${String(rail.y + rail.height)}`;
+  }).toBe('below');
 });
 
 test.describe('AC-34 Replace applies only the ticked matches after saving a draft', () => {

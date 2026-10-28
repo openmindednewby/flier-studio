@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, onTestFinished } from 'vitest';
 import type { ReplaceMatch } from '../form/replaceText';
 import { MARKS_EVENT, drawMarks } from './replacePanel';
 
@@ -7,7 +7,9 @@ describe('drawMarks', () => {
     const grid = document.createElement('div');
     const match: ReplaceMatch = { flier: 0, field: 'title', at: 0, length: 13, line: 'Intermediates', after: 'Improvers' };
     let highlighted = -1;
-    document.addEventListener(MARKS_EVENT, (e) => { highlighted = (e as CustomEvent<number>).detail; });
+    const listen = (e: Event): void => { highlighted = (e as CustomEvent<number>).detail; };
+    document.addEventListener(MARKS_EVENT, listen);
+    onTestFinished(() => document.removeEventListener(MARKS_EVENT, listen));
 
     drawMarks(grid, [match], () => true, 'Intermediates');
 

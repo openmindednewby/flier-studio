@@ -12,6 +12,7 @@ import { nextDocs } from './form/sharedFields';
 import { withGenerated } from './form/generatedFlier';
 import { applyTheme, withDocs } from './form/themeScope';
 import { FM } from './i18n/fm';
+import { plural } from './i18n/plural';
 import { kizombaPreset } from './presets/kizomba';
 import { importShared } from './share/importShared';
 import { decodeShare, shareFragmentOf } from './share/shareCodec';
@@ -173,7 +174,7 @@ async function replaceText(ticked: readonly ReplaceMatch[], replacement: string)
   const texts = applyMatches(docs.map(blocksToText), ticked, replacement);
   const touched = new Set(ticked.map((m) => m.flier));
   state.fliers = withDocs(state.fliers, docs.map((d, i) => (touched.has(i) ? applyText(d, texts[i]) : d)));
-  status.textContent = FM('replace.done', String(ticked.length));
+  status.textContent = FM('replace.done', plural('replace.matches', ticked.length));
   showForm();
   refreshPreviews();
 }

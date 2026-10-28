@@ -5,6 +5,7 @@ import { DraftAutosave } from './drafts/draftAutosave';
 import { DraftStore, type Draft } from './drafts/draftStore';
 import { EditScope } from './form/EditScope';
 import { nextDocs } from './form/sharedFields';
+import { withGenerated } from './form/generatedFlier';
 import { applyTheme, withDocs } from './form/themeScope';
 import { FM } from './i18n/fm';
 import { kizombaPreset } from './presets/kizomba';
@@ -196,7 +197,7 @@ async function start(): Promise<void> {
     mini.bar,
     mini.sheet,
   );
-  renderPromptPanel(promptBox, (doc) => apply([doc]));
+  renderPromptPanel(promptBox, (doc) => { state.fliers = withGenerated(state.fliers, doc); select(state.fliers.length - 1); });
   renderConfigs();
   showDrafts();
   select(0);

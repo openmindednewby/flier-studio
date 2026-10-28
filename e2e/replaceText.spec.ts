@@ -121,6 +121,21 @@ test('AC-33 See in the 360 bar lands the marked flier below the sticky rail', as
   }).toBe('below');
 });
 
+test('every Replace mark badge stays inside the viewport', async ({ page }) => {
+  await open(page);
+
+  await search(page, 'Intermediates', 'Improvers');
+
+  await expect(page.locator('[data-testid="preview-1"] .replace-mark').first()).toBeVisible();
+  const width = page.viewportSize()?.width ?? 0;
+  const out = await page.locator('.replace-mark > b').evaluateAll((badges, vw) => badges.flatMap((b) => {
+    const r = b.getBoundingClientRect();
+    const inside = r.left >= 0 && r.right <= vw;
+    return inside ? [] : [`${b.textContent ?? ''} at ${String(r.left)}..${String(r.right)}`];
+  }), width);
+  expect(out).toEqual([]);
+});
+
 test.describe('AC-34 Replace applies only the ticked matches after saving a draft', () => {
   test('Replace changes the ticked matches in one step, keeps the unticked one and saves a draft first', async ({ page }) => {
     await open(page);

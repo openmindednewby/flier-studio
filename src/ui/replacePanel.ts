@@ -18,6 +18,7 @@ export interface ReplacePanel {
 /** Fired on document after the marks are redrawn; detail = how many matches are highlighted. */
 export const MARKS_EVENT = 'flier:replace-marks';
 const MARK_PAD = 3;
+const BADGE_ROOM = 30;
 
 const keyOf = (m: ReplaceMatch): string => `${String(m.flier)}:${m.field}:${String(m.at)}`;
 const px = (n: number): string => `${String(Math.round(n))}px`;
@@ -29,9 +30,11 @@ function runFor(runs: readonly TextRun[], needle: string, k: number): TextRun | 
 
 function markAt(line: LineBox, canvas: HTMLCanvasElement, on: boolean, n: number): HTMLElement {
   const scale = canvas.width > 0 ? canvas.clientWidth / canvas.width : 0;
+  const left = canvas.offsetLeft + line.x * scale - MARK_PAD;
   const mark = el('span', { class: on ? 'replace-mark' : 'replace-mark off' }, [el('b', { text: String(n) })]);
+  mark.classList.toggle('badge-inside', left < BADGE_ROOM);
   Object.assign(mark.style, {
-    left: px(canvas.offsetLeft + line.x * scale - MARK_PAD), top: px(canvas.offsetTop + line.y * scale - MARK_PAD),
+    left: px(left), top: px(canvas.offsetTop + line.y * scale - MARK_PAD),
     width: px(line.width * scale + 2 * MARK_PAD), height: px(line.height * scale + 2 * MARK_PAD),
   });
   return mark;

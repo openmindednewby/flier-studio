@@ -135,6 +135,15 @@ test.describe('AC-30 / AC-31 All fliers says what each setting changes', () => {
     await expect(page.getByTestId('all-ai-line')).toContainText('on-device AI');
   });
 
+  test('the describe-the-look link in All fliers is a hit box at least 44 px tall', async ({ page }) => {
+    await open(page);
+
+    await openPanel(page, Panel.All);
+
+    const box = await page.getByTestId('all-ai-line').getByRole('link').boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThanOrEqual(HIT);
+  });
+
   test('Shared text names its fields with their current values and says whether it is on', async ({ page }) => {
     await open(page);
     await openPanel(page, Panel.All);

@@ -1,0 +1,608 @@
+[
+{
+"svg": "thumbs-sheet.svg",
+"png": "thumbs-sheet.png",
+"w": 900,
+"h": 660
+},
+{
+"svg": "refined/r1.svg",
+"png": "refined/r1.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "refined/r1-16.svg",
+"png": "refined/r1-16.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "construction-r1.svg",
+"png": "construction-r1.png",
+"w": 640,
+"h": 400
+},
+{
+"svg": "stress/r1-16-light.svg",
+"png": "stress/r1-16-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r1-16-dark.svg",
+"png": "stress/r1-16-dark.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r1-32-light.svg",
+"png": "stress/r1-32-light.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/r1-32-dark.svg",
+"png": "stress/r1-32-dark.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/r1-16-full-light.svg",
+"png": "stress/r1-16-full-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r1-onecolour.svg",
+"png": "stress/r1-onecolour.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/r1-reversed.svg",
+"png": "stress/r1-reversed.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/r1-lineup32.svg",
+"png": "stress/r1-lineup32.png",
+"w": 288,
+"h": 64
+},
+{
+"svg": "stress/r1-stock24.svg",
+"png": "stress/r1-stock24.png",
+"w": 184,
+"h": 40
+},
+{
+"svg": "motion/r1-intro.svg",
+"png": "motion/r1-intro.png",
+"w": 192,
+"h": 192,
+"times": [
+0,
+140,
+280,
+420,
+560,
+700,
+860,
+1200
+]
+},
+{
+"svg": "motion/r1-micro.svg",
+"png": "motion/r1-micro.png",
+"w": 192,
+"h": 192,
+"times": [
+0,
+70,
+140,
+210,
+280
+]
+},
+{
+"svg": "motion/r1-still.svg",
+"png": "motion/r1-still.png",
+"w": 192,
+"h": 192,
+"reduced": true
+},
+{
+"svg": "surf/r1-tab.svg",
+"png": "surf/r1-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/r1-icon512.svg",
+"png": "surf/r1-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/r1-icon512-safe.svg",
+"png": "surf/r1-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/r1-home.svg",
+"png": "surf/r1-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/r1-header360.svg",
+"png": "surf/r1-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/r1-header1280.svg",
+"png": "surf/r1-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/r1-og.svg",
+"png": "surf/r1-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "refined/r1-lockup-h.svg",
+"png": "refined/r1-lockup-h.png",
+"w": 305,
+"h": 66
+},
+{
+"svg": "refined/r1-lockup-v.svg",
+"png": "refined/r1-lockup-v.png",
+"w": 153,
+"h": 104
+},
+{
+"svg": "refined/r2.svg",
+"png": "refined/r2.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "refined/r2-16.svg",
+"png": "refined/r2-16.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "construction-r2.svg",
+"png": "construction-r2.png",
+"w": 640,
+"h": 400
+},
+{
+"svg": "stress/r2-16-light.svg",
+"png": "stress/r2-16-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r2-16-dark.svg",
+"png": "stress/r2-16-dark.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r2-32-light.svg",
+"png": "stress/r2-32-light.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/r2-32-dark.svg",
+"png": "stress/r2-32-dark.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/r2-16-full-light.svg",
+"png": "stress/r2-16-full-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r2-onecolour.svg",
+"png": "stress/r2-onecolour.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/r2-reversed.svg",
+"png": "stress/r2-reversed.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/r2-lineup32.svg",
+"png": "stress/r2-lineup32.png",
+"w": 288,
+"h": 64
+},
+{
+"svg": "stress/r2-stock24.svg",
+"png": "stress/r2-stock24.png",
+"w": 184,
+"h": 40
+},
+{
+"svg": "motion/r2-intro.svg",
+"png": "motion/r2-intro.png",
+"w": 192,
+"h": 192,
+"times": [
+0,
+140,
+280,
+420,
+560,
+700,
+860,
+1200
+]
+},
+{
+"svg": "motion/r2-micro.svg",
+"png": "motion/r2-micro.png",
+"w": 192,
+"h": 192,
+"times": [
+0,
+70,
+140,
+210,
+280
+]
+},
+{
+"svg": "motion/r2-still.svg",
+"png": "motion/r2-still.png",
+"w": 192,
+"h": 192,
+"reduced": true
+},
+{
+"svg": "surf/r2-tab.svg",
+"png": "surf/r2-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/r2-icon512.svg",
+"png": "surf/r2-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/r2-icon512-safe.svg",
+"png": "surf/r2-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/r2-home.svg",
+"png": "surf/r2-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/r2-header360.svg",
+"png": "surf/r2-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/r2-header1280.svg",
+"png": "surf/r2-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/r2-og.svg",
+"png": "surf/r2-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "refined/r2-lockup-h.svg",
+"png": "refined/r2-lockup-h.png",
+"w": 310,
+"h": 66
+},
+{
+"svg": "refined/r2-lockup-v.svg",
+"png": "refined/r2-lockup-v.png",
+"w": 153,
+"h": 104
+},
+{
+"svg": "refined/r3.svg",
+"png": "refined/r3.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "refined/r3-16.svg",
+"png": "refined/r3-16.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "construction-r3.svg",
+"png": "construction-r3.png",
+"w": 640,
+"h": 400
+},
+{
+"svg": "stress/r3-16-light.svg",
+"png": "stress/r3-16-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r3-16-dark.svg",
+"png": "stress/r3-16-dark.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r3-32-light.svg",
+"png": "stress/r3-32-light.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/r3-32-dark.svg",
+"png": "stress/r3-32-dark.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "stress/r3-16-full-light.svg",
+"png": "stress/r3-16-full-light.png",
+"w": 16,
+"h": 16
+},
+{
+"svg": "stress/r3-onecolour.svg",
+"png": "stress/r3-onecolour.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/r3-reversed.svg",
+"png": "stress/r3-reversed.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "stress/r3-lineup32.svg",
+"png": "stress/r3-lineup32.png",
+"w": 288,
+"h": 64
+},
+{
+"svg": "stress/r3-stock24.svg",
+"png": "stress/r3-stock24.png",
+"w": 184,
+"h": 40
+},
+{
+"svg": "motion/r3-intro.svg",
+"png": "motion/r3-intro.png",
+"w": 192,
+"h": 192,
+"times": [
+0,
+140,
+280,
+420,
+560,
+700,
+860,
+1200
+]
+},
+{
+"svg": "motion/r3-micro.svg",
+"png": "motion/r3-micro.png",
+"w": 192,
+"h": 192,
+"times": [
+0,
+70,
+140,
+210,
+280
+]
+},
+{
+"svg": "motion/r3-still.svg",
+"png": "motion/r3-still.png",
+"w": 192,
+"h": 192,
+"reduced": true
+},
+{
+"svg": "surf/r3-tab.svg",
+"png": "surf/r3-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/r3-icon512.svg",
+"png": "surf/r3-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/r3-icon512-safe.svg",
+"png": "surf/r3-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/r3-home.svg",
+"png": "surf/r3-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/r3-header360.svg",
+"png": "surf/r3-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/r3-header1280.svg",
+"png": "surf/r3-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/r3-og.svg",
+"png": "surf/r3-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "refined/r3-lockup-h.svg",
+"png": "refined/r3-lockup-h.png",
+"w": 299,
+"h": 66
+},
+{
+"svg": "refined/r3-lockup-v.svg",
+"png": "refined/r3-lockup-v.png",
+"w": 153,
+"h": 104
+},
+{
+"svg": "surf/before-tab.svg",
+"png": "surf/before-tab.png",
+"w": 220,
+"h": 40
+},
+{
+"svg": "surf/before-icon512.svg",
+"png": "surf/before-icon512.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/before-icon512-safe.svg",
+"png": "surf/before-icon512-safe.png",
+"w": 512,
+"h": 512
+},
+{
+"svg": "surf/before-home.svg",
+"png": "surf/before-home.png",
+"w": 96,
+"h": 96
+},
+{
+"svg": "surf/before-header360.svg",
+"png": "surf/before-header360.png",
+"w": 360,
+"h": 56
+},
+{
+"svg": "surf/before-header1280.svg",
+"png": "surf/before-header1280.png",
+"w": 1280,
+"h": 64
+},
+{
+"svg": "surf/before-og.svg",
+"png": "surf/before-og.png",
+"w": 1200,
+"h": 630
+},
+{
+"svg": "concepts/c1.svg",
+"png": "concepts/c1.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "concepts/c1-32.svg",
+"png": "concepts/c1-32.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "concepts/c2.svg",
+"png": "concepts/c2.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "concepts/c2-32.svg",
+"png": "concepts/c2-32.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "concepts/c3.svg",
+"png": "concepts/c3.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "concepts/c3-32.svg",
+"png": "concepts/c3-32.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "concepts/c4.svg",
+"png": "concepts/c4.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "concepts/c4-32.svg",
+"png": "concepts/c4-32.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "concepts/c5.svg",
+"png": "concepts/c5.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "concepts/c5-32.svg",
+"png": "concepts/c5-32.png",
+"w": 32,
+"h": 32
+},
+{
+"svg": "concepts/c6.svg",
+"png": "concepts/c6.png",
+"w": 256,
+"h": 256
+},
+{
+"svg": "concepts/c6-32.svg",
+"png": "concepts/c6-32.png",
+"w": 32,
+"h": 32
+}
+]

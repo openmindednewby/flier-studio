@@ -1,0 +1,483 @@
+<title>Flier Studio Mark Pick</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Jost:wght@400;500&display=swap">
+<style>
+/* layout: one column of print-shop proof sheets, one block per question */
+:root{--paper:#ebe8e3;--sheet:#fbfaf8;--ink:#2f2925;--ink-2:#6f655c;--rule:#8c8279;--hold:#e9b47f;
+  --display:"Fraunces",Georgia,serif;--body:"Jost",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1c1a17;--sheet:#25221e;--ink:#f4efe8;--ink-2:#a59a8c;--rule:#80766a;--hold:#e9b47f;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#1c1a17;--sheet:#25221e;--ink:#f4efe8;--ink-2:#a59a8c;--rule:#80766a;--hold:#e9b47f;color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+main{max-width:1080px;margin:0 auto;display:grid;gap:32px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:2rem} h2{font-size:1.35rem} h3{font-size:1.15rem;display:flex;gap:10px;align-items:center}
+.hold{border:2px solid var(--hold);background:var(--sheet);padding:14px 16px;font-weight:500}
+.blk{background:var(--sheet);border:1px solid var(--rule);padding:20px;display:grid;gap:20px;min-width:0}
+.opts-grid{display:grid;gap:20px}
+.opt{display:grid;gap:12px;min-width:0;border-top:1px solid var(--rule);padding-top:16px}
+.lt{font-family:var(--body);font-size:.8rem;letter-spacing:.08em;border:1px solid var(--ink);padding:0 7px}
+.cap,.nums,figcaption,.motion span{color:var(--ink-2);font-size:.9rem;margin:0}
+.nums{font-variant-numeric:tabular-nums}
+figure{margin:0;display:grid;gap:8px;min-width:0}
+.surf{display:grid;gap:8px;min-width:0}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.px{image-rendering:pixelated}
+.home{border-radius:50%}
+.hdr{max-width:100%;height:auto;border:1px solid var(--rule)}
+.crop{overflow:hidden;max-width:100%;border:1px solid var(--rule)} .crop img{max-width:none;display:block;width:1280px;height:64px}
+.og{width:100%;max-width:600px;height:auto;border:1px solid var(--rule)}
+.motion{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end} .motion>div{display:grid;gap:6px;justify-items:start}
+.motion .px{width:64px;height:64px}
+.strip{width:100%;max-width:960px;height:auto;border:1px solid var(--rule)}
+.replay{font:inherit;font-size:.85rem;background:transparent;color:var(--ink);border:1px solid var(--rule);padding:8px 12px;min-height:44px;cursor:pointer}
+.replay:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sheet{width:100%;height:auto;max-width:900px;border:1px solid var(--rule);background:#fff}
+@media (min-width:900px){.opt{grid-template-columns:1fr 1fr;column-gap:24px} .opt h3,.opt .cap{grid-column:1/-1}}
+
+  /* ---- answer-UI token defaults --------------------------------------
+     Zero-specificity (:where) so ANY host declaration on :root / html
+     (specificity 0,1,0) overrides every value below. Self-sufficient on a
+     host palette that defines none of these. Light is declared on the bare
+     selector first; the dark blocks only REDEFINE, so no colour has its
+     sole definition inside a media query or [data-theme] rule. -------- */
+  :where(html){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  @media (prefers-color-scheme:dark){
+    :where(html:not([data-theme="light"])){
+      --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+      --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  }
+  :where(html[data-theme="dark"]){
+    --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+    --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  :where(html[data-theme="light"]){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de}
+
+  /* ---- answerable questions ---- */
+  .q{position:relative}
+  .q.answered{border-color:var(--ink-3)}
+  .q .opts li{cursor:pointer; padding-left:34px; position:relative;
+    transition:background .12s ease}
+  .q .opts li:hover{background:var(--rule-1, rgba(0,0,0,.03))}
+  .q .opts li::before{content:''; position:absolute; left:6px; top:13px;
+    width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:50%}
+  .q .opts li[aria-checked="true"]::before{border-color:var(--ink-1, #111);
+    background:var(--ink-1, #111); box-shadow:inset 0 0 0 3px var(--paper, #fff)}
+  .q .opts li[aria-checked="true"]{background:var(--rule-1, rgba(0,0,0,.05))}
+  .q .opts li:focus-visible{outline:2px solid var(--ink-2); outline-offset:-2px}
+  .q .ansbox{margin:14px 0 0; padding-top:12px; border-top:1px solid var(--rule-2)}
+  .q .ansbox .st{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+  .q .ansbox .st b{color:var(--ink-1, #111)}
+  .q .note-in{display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    font-family:inherit; font-size:14px; color:inherit; caret-color:currentColor;
+    background:transparent; border:1px solid var(--rule-2); border-radius:0;
+    padding:8px 10px; resize:vertical; min-height:2.4em}
+  .q .note-in:focus{outline:none; border-color:var(--ink-3)}
+  .qbar{border:1px solid var(--rule-2); padding:10px 14px; margin:20px 0;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    justify-content:space-between; position:sticky; top:0; z-index:5;
+    background:var(--paper, #fff)}
+  .qbar .prog{font-family:var(--mono); font-size:13px; color:var(--ink-2)}
+  .qbar .prog b{color:var(--ink-1, #111); font-size:15px}
+  .qbar .acts{display:flex; gap:9px; flex-wrap:wrap}
+  .qbar button{font-family:inherit; font-size:13px; padding:7px 14px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .qbar button:hover{background:var(--rule-1, rgba(0,0,0,.05))}
+  .qbar button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .qbar .mode{font-family:var(--mono); font-size:11.5px; color:var(--ink-3);
+    flex-basis:100%}
+  .expwrap{display:none; position:fixed; z-index:50; left:50%; top:50%;
+    transform:translate(-50%,-50%); width:min(720px, calc(100vw - 32px));
+    max-height:calc(100vh - 32px); box-sizing:border-box; overflow:auto;
+    padding:16px; background:var(--paper, #fff); color:var(--ink-1, #111);
+    border:1px solid var(--ink-3); box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .expwrap.on{display:block}
+  .expwrap .exphead{display:flex; justify-content:space-between; align-items:center;
+    gap:10px; margin:0 0 10px; font-weight:600}
+  .expwrap .exphead span{display:flex; gap:8px}
+  .expwrap button{font-family:inherit; font-size:13px; padding:7px 14px; min-height:44px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .expwrap button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .expwrap textarea{width:100%; box-sizing:border-box; min-height:190px; height:50vh;
+    font-family:var(--mono); font-size:12px; line-height:1.55; padding:12px;
+    border:1px solid var(--rule-2); background:transparent; color:inherit}
+  .expwrap .hint{font-size:13px; color:var(--ink-2); margin:8px 0 0}
+</style>
+<main>
+<header style="display:grid;gap:8px"><h1>Flier Studio mark</h1>
+<p class="hold" role="status">Do not pick yet. These three have not been scored by design-critic (LOGO-1 stage LP7). This page is held until the critic passes them; anything that fails is removed or redrawn first.</p></header>
+
+<section class="blk"><h2>Which mark should Flier Studio use?</h2>
+<div class="opts-grid"><div class="opt" data-option="MARK-A" data-inventory="5/5" data-aligned="pass">
+  <h3><span class="lt">A</span> Dealt F</h3>
+  <p class="cap">The F is three sheets of the set the form makes; the two arms are dealt off the stem.</p>
+  <figure data-visual="before"><figcaption>Today</figcaption><div class="surf">
+  <div class="row"><img class="px" src="png/surf/before-tab.png" width="220" height="40" alt="Today browser tab, favicon at 16 px"><img class="home" src="png/surf/before-home.png" width="64" height="64" alt="Today home-screen icon"></div>
+  <img class="hdr" src="png/surf/before-header360.png" width="360" height="56" alt="Today app header at 360">
+  <div class="crop"><img src="png/surf/before-header1280.png" width="1280" height="64" alt="Today app header at 1280"></div>
+  <img class="og" src="png/surf/before-og.png" width="1200" height="630" alt="Today share card 1200x630">
+</div></figure>
+  <figure data-visual="after"><figcaption>With Dealt F</figcaption><div class="surf">
+  <div class="row"><img class="px" src="png/surf/r1-tab.png" width="220" height="40" alt="Dealt F browser tab, favicon at 16 px"><img class="home" src="png/surf/r1-home.png" width="64" height="64" alt="Dealt F home-screen icon"></div>
+  <img class="hdr" src="png/surf/r1-header360.png" width="360" height="56" alt="Dealt F app header at 360">
+  <div class="crop"><img src="png/surf/r1-header1280.png" width="1280" height="64" alt="Dealt F app header at 1280"></div>
+  <img class="og" src="png/surf/r1-og.png" width="1200" height="630" alt="Dealt F share card 1200x630">
+</div>
+    <div class="motion"><div><img src="svg/motion/r1-intro.svg" width="144" height="144" alt="Dealt F intro animation" data-replay><button type="button" class="replay" id="replay-r1">Replay intro</button></div>
+    <div><img src="png/motion/r1-still.png" width="144" height="144" alt="Dealt F reduced-motion still"><span>Reduced motion</span></div>
+    <div><img class="px" src="png/stress/r1-16-light.png" width="64" height="64" alt="Dealt F 16 px light"><img class="px" src="png/stress/r1-16-dark.png" width="64" height="64" alt="Dealt F 16 px dark"><span>16 px, 4x</span></div></div>
+    <img class="strip" src="png/motion/r1-intro.png" alt="Dealt F intro frames 0 to 1200 ms">
+    <p class="nums">Ink at 16 px 35% · icon span 48%, 0 px outside the maskable circle · 0 live-text elements</p>
+  </figure>
+</div><div class="opt" data-option="MARK-B" data-inventory="5/5" data-aligned="pass">
+  <h3><span class="lt">B</span> Fan deck</h3>
+  <p class="cap">A printer's swatch fan on one rivet: pick a look, the strips open.</p>
+  <figure data-visual="before"><figcaption>Today</figcaption><div class="surf">
+  <div class="row"><img class="px" src="png/surf/before-tab.png" width="220" height="40" alt="Today browser tab, favicon at 16 px"><img class="home" src="png/surf/before-home.png" width="64" height="64" alt="Today home-screen icon"></div>
+  <img class="hdr" src="png/surf/before-header360.png" width="360" height="56" alt="Today app header at 360">
+  <div class="crop"><img src="png/surf/before-header1280.png" width="1280" height="64" alt="Today app header at 1280"></div>
+  <img class="og" src="png/surf/before-og.png" width="1200" height="630" alt="Today share card 1200x630">
+</div></figure>
+  <figure data-visual="after"><figcaption>With Fan deck</figcaption><div class="surf">
+  <div class="row"><img class="px" src="png/surf/r2-tab.png" width="220" height="40" alt="Fan deck browser tab, favicon at 16 px"><img class="home" src="png/surf/r2-home.png" width="64" height="64" alt="Fan deck home-screen icon"></div>
+  <img class="hdr" src="png/surf/r2-header360.png" width="360" height="56" alt="Fan deck app header at 360">
+  <div class="crop"><img src="png/surf/r2-header1280.png" width="1280" height="64" alt="Fan deck app header at 1280"></div>
+  <img class="og" src="png/surf/r2-og.png" width="1200" height="630" alt="Fan deck share card 1200x630">
+</div>
+    <div class="motion"><div><img src="svg/motion/r2-intro.svg" width="144" height="144" alt="Fan deck intro animation" data-replay><button type="button" class="replay" id="replay-r2">Replay intro</button></div>
+    <div><img src="png/motion/r2-still.png" width="144" height="144" alt="Fan deck reduced-motion still"><span>Reduced motion</span></div>
+    <div><img class="px" src="png/stress/r2-16-light.png" width="64" height="64" alt="Fan deck 16 px light"><img class="px" src="png/stress/r2-16-dark.png" width="64" height="64" alt="Fan deck 16 px dark"><span>16 px, 4x</span></div></div>
+    <img class="strip" src="png/motion/r2-intro.png" alt="Fan deck intro frames 0 to 1200 ms">
+    <p class="nums">Ink at 16 px 28% · icon span 51%, 0 px outside the maskable circle · 0 live-text elements</p>
+  </figure>
+</div><div class="opt" data-option="MARK-C" data-inventory="5/5" data-aligned="pass">
+  <h3><span class="lt">C</span> In flight</h3>
+  <p class="cap">A flier leaving the press, its corner still curling.</p>
+  <figure data-visual="before"><figcaption>Today</figcaption><div class="surf">
+  <div class="row"><img class="px" src="png/surf/before-tab.png" width="220" height="40" alt="Today browser tab, favicon at 16 px"><img class="home" src="png/surf/before-home.png" width="64" height="64" alt="Today home-screen icon"></div>
+  <img class="hdr" src="png/surf/before-header360.png" width="360" height="56" alt="Today app header at 360">
+  <div class="crop"><img src="png/surf/before-header1280.png" width="1280" height="64" alt="Today app header at 1280"></div>
+  <img class="og" src="png/surf/before-og.png" width="1200" height="630" alt="Today share card 1200x630">
+</div></figure>
+  <figure data-visual="after"><figcaption>With In flight</figcaption><div class="surf">
+  <div class="row"><img class="px" src="png/surf/r3-tab.png" width="220" height="40" alt="In flight browser tab, favicon at 16 px"><img class="home" src="png/surf/r3-home.png" width="64" height="64" alt="In flight home-screen icon"></div>
+  <img class="hdr" src="png/surf/r3-header360.png" width="360" height="56" alt="In flight app header at 360">
+  <div class="crop"><img src="png/surf/r3-header1280.png" width="1280" height="64" alt="In flight app header at 1280"></div>
+  <img class="og" src="png/surf/r3-og.png" width="1200" height="630" alt="In flight share card 1200x630">
+</div>
+    <div class="motion"><div><img src="svg/motion/r3-intro.svg" width="144" height="144" alt="In flight intro animation" data-replay><button type="button" class="replay" id="replay-r3">Replay intro</button></div>
+    <div><img src="png/motion/r3-still.png" width="144" height="144" alt="In flight reduced-motion still"><span>Reduced motion</span></div>
+    <div><img class="px" src="png/stress/r3-16-light.png" width="64" height="64" alt="In flight 16 px light"><img class="px" src="png/stress/r3-16-dark.png" width="64" height="64" alt="In flight 16 px dark"><span>16 px, 4x</span></div></div>
+    <img class="strip" src="png/motion/r3-intro.png" alt="In flight intro frames 0 to 1200 ms">
+    <p class="nums">Ink at 16 px 34% · icon span 45%, 0 px outside the maskable circle · 0 live-text elements</p>
+  </figure>
+</div></div>
+<div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which mark becomes the Flier Studio mark (tab icon, home-screen icon, app header, share card, dloizides.com card)?</p>
+<ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Dealt F</span></li><li data-letter="B"><span class="lt">B</span><span>Fan deck</span></li><li data-letter="C"><span class="lt">C</span><span>In flight</span></li><li data-letter="X"><span class="lt">X</span><span>None yet: redraw (say what is missing)</span></li></ul>
+<p class="why">Today every owned surface carries a customer's Bailemos logo.</p></div>
+</section>
+
+<section class="blk"><h2>Where they came from</h2>
+<p class="cap">34 black-and-white thumbnails from 7 idea sources, 6 concepts, 3 refined.</p>
+<img class="sheet" src="png/thumbs-sheet.png" alt="34 thumbnail sketches labelled by idea source">
+</section>
+</main>
+<script>
+document.querySelectorAll('.replay').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var img = b.parentElement.querySelector('img'); var src = img.getAttribute('src').split('?')[0];
+    img.setAttribute('src', src + '?t=' + Date.now());
+  });
+});
+</script>
+
+<script>
+(function () {
+  'use strict';
+  // Contrast guard: a host page forced dark (or light) while the OS scheme differs left
+  // --ink-1 #111 on a dark background, so typed notes were invisible (2026-10-01).
+  (function () {
+    function lum(c) {
+      var m = (c || '').match(/[\d.]+/g); if (!m || m.length < 3) return null;
+      var v = m.slice(0, 3).map(function (x) { x = x / 255;
+        return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    }
+    var el = document.body, bg = null;
+    while (el && el.nodeType === 1) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && !/rgba\([^)]*,\s*0\)|transparent/.test(c)) { bg = c; break; }
+      el = el.parentElement;
+    }
+    var root = document.documentElement;
+    var probe = document.createElement('span');
+    probe.style.color = 'var(--ink-1, #111)'; document.body.appendChild(probe);
+    var lb = lum(bg || 'rgb(255,255,255)'), li = lum(getComputedStyle(probe).color);
+    probe.remove();
+    if (lb === null || li === null) return;
+    if ((Math.max(lb, li) + 0.05) / (Math.min(lb, li) + 0.05) >= 4.5) return;
+    var dark = lb < 0.2, set = dark
+      ? ['#141414', '#f0efec', '#a8a49c', '#6f6b64', 'rgba(255,255,255,.06)', '#333029']
+      : ['#ffffff', '#111111', '#555555', '#8a8a8a', 'rgba(0,0,0,.05)', '#e2e2de'];
+    ['--paper', '--ink-1', '--ink-2', '--ink-3', '--rule-1', '--rule-2'].forEach(
+      function (k, i) { root.style.setProperty(k, set[i]); });
+  })();
+  var DOCKEY = 'flier-logo-p1';
+  var DOCTITLE = 'Flier Studio Mark Pick';
+  var LS = 'answers:' + DOCKEY;
+  var state = {};
+  var db = null;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(LS);
+      if (raw) state = JSON.parse(raw) || {};
+    } catch (e) { state = {}; }
+  }
+
+  function persistLocal() {
+    try { window.localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function persistDb(qid) {
+    if (!db) return;
+    var v = state[qid] || {};
+    db.doc('answers/' + qid).set({
+      question: v.question || '',
+      choice: v.choice || '',
+      choiceText: v.choiceText || '',
+      note: v.note || '',
+      doc: DOCKEY,
+      updatedAt: new Date().toISOString()
+    }).catch(function () { /* keep the local copy; export still works */ });
+  }
+
+  function save(qid) { persistLocal(); persistDb(qid); }
+
+  var blocks = [];
+
+  function render() {
+    var done = 0;
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      b.el.classList.toggle('answered', !!v.choice);
+      if (v.choice) done++;
+      b.opts.forEach(function (li) {
+        var on = li.getAttribute('data-letter') === v.choice;
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        li.setAttribute('tabindex', on || (!v.choice && li === b.opts[0]) ? '0' : '-1');
+      });
+      b.status.textContent = v.choice ? 'answered — ' : 'not answered yet';
+      if (v.choice) {
+        var bb = document.createElement('b');
+        bb.textContent = v.choice;
+        b.status.appendChild(bb);
+      }
+      if (b.note.value !== (v.note || '')) b.note.value = v.note || '';
+    });
+    if (bar) {
+      bar.prog.innerHTML = '<b>' + done + '</b> of ' + blocks.length + ' answered';
+    }
+  }
+
+  function choose(b, letter, text) {
+    var v = state[b.qid] || {};
+    if (v.choice === letter) { delete v.choice; delete v.choiceText; }
+    else { v.choice = letter; v.choiceText = text; }
+    v.question = b.question;
+    state[b.qid] = v;
+    save(b.qid);
+    render();
+  }
+
+  function buildExport() {
+    var out = ['# Answers \u2014 ' + DOCTITLE,
+               'recorded ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+               ''];
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      out.push('## ' + b.qid.toUpperCase() + ' \u2014 ' + b.question);
+      out.push(v.choice
+        ? '**Answer: ' + v.choice + '** \u2014 ' + (v.choiceText || '')
+        : '**Answer: (not answered)**');
+      if (v.note) out.push('Note: ' + v.note);
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
+  var bar = null;
+
+  function buildBar(firstQ) {
+    var el = document.createElement('div');
+    el.className = 'qbar';
+    el.innerHTML =
+      '<span class="prog"></span>' +
+      '<span class="acts">' +
+      '<button type="button" class="clr">Clear all</button>' +
+      '<button type="button" class="prim exp">Export answers</button>' +
+      '</span>' +
+      '<span class="mode"></span>';
+    var wrap = document.createElement('div');
+    wrap.className = 'expwrap';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-label', 'Exported answers');
+    wrap.innerHTML = '<div class="exphead">Your answers' +
+      '<span><button type="button" class="prim cpy">Copy</button>' +
+      '<button type="button" class="cls">Close</button></span></div>' +
+      '<textarea readonly aria-label="Answers for export"></textarea>' +
+      '<p class="hint">Press Copy, then paste the text into the conversation.</p>';
+    var section = firstQ.closest ? firstQ.closest('section') : null;
+    var anchor = section && section.parentNode ? section : firstQ;
+    anchor.parentNode.insertBefore(el, anchor);
+    document.body.appendChild(wrap);
+
+    bar = {
+      el: el,
+      prog: el.querySelector('.prog'),
+      mode: el.querySelector('.mode'),
+      exportBtn: el.querySelector('.exp'),
+      wrap: wrap,
+      ta: wrap.querySelector('textarea'),
+      hint: wrap.querySelector('.hint')
+    };
+
+    function closeExport() { wrap.classList.remove('on'); bar.exportBtn.focus(); }
+    wrap.querySelector('.cls').addEventListener('click', closeExport);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) closeExport();
+    });
+    wrap.querySelector('.cpy').addEventListener('click', function () {
+      bar.ta.focus();
+      bar.ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText)
+          navigator.clipboard.writeText(bar.ta.value).then(function () {
+            bar.hint.textContent = 'Copied. Paste it into the conversation.';
+          }, function () {});
+      } catch (e) {}
+      bar.hint.textContent = ok ? 'Copied. Paste it into the conversation.'
+        : 'The text is selected: press Ctrl+C (Cmd+C on a Mac), then paste it into the conversation.';
+    });
+
+    el.querySelector('.clr').addEventListener('click', function () {
+      blocks.forEach(function (b) {
+        state[b.qid] = { question: b.question, note: (state[b.qid] || {}).note || '' };
+        delete state[b.qid].choice;
+        save(b.qid);
+      });
+      render();
+    });
+
+    bar.exportBtn.addEventListener('click', function () {
+      var txt = buildExport();
+      bar.ta.value = txt;
+      bar.wrap.classList.add('on');
+      bar.hint.textContent = 'Press Copy, then paste the text into the conversation.';
+      bar.ta.focus();
+      bar.ta.select();
+    });
+  }
+
+  function init() {
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.q[data-qid]'));
+    if (!qs.length) return;
+
+    qs.forEach(function (el) {
+      var qid = el.getAttribute('data-qid');
+      var qn = el.querySelector('.qn');
+      var question = qn ? qn.textContent.replace(/\s+/g, ' ').replace(/^\s*Q\d+\s*/, '').trim() : qid;
+      var opts = Array.prototype.slice.call(el.querySelectorAll('.opts li[data-letter]'));
+      var group = el.querySelector('.opts');
+      if (group) group.setAttribute('role', 'radiogroup');
+
+      var box = document.createElement('div');
+      box.className = 'ansbox';
+      box.innerHTML = '<span class="st"></span>' +
+        '<textarea class="note-in" rows="2" placeholder="Optional \u2014 a caveat, a ' +
+        'condition, or why not the recommendation."></textarea>';
+      var oldAns = el.querySelector('.ans');
+      if (oldAns) oldAns.parentNode.replaceChild(box, oldAns);
+      else el.appendChild(box);
+
+      var b = {
+        el: el, qid: qid, question: question, opts: opts,
+        status: box.querySelector('.st'), note: box.querySelector('.note-in')
+      };
+
+      opts.forEach(function (li) {
+        li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
+        var span = li.querySelector('span:last-child');
+        var text = (span ? span.textContent : li.textContent)
+          .replace(/\s+/g, ' ').replace(/\s*recommended\s*$/i, '').trim();
+        li.addEventListener('click', function () {
+          choose(b, li.getAttribute('data-letter'), text);
+        });
+        li.addEventListener('keydown', function (ev) {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            choose(b, li.getAttribute('data-letter'), text);
+          }
+        });
+      });
+
+      b.note.addEventListener('input', function () {
+        var v = state[qid] || {};
+        v.note = b.note.value;
+        v.question = question;
+        state[qid] = v;
+        persistLocal();
+      });
+      b.note.addEventListener('blur', function () { persistDb(qid); });
+
+      blocks.push(b);
+    });
+
+    load();
+    buildBar(qs[0]);
+    render();
+
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('db').then(function (d) {
+        if (!d) { setMode('saved in this browser only'); return; }
+        db = d;
+        setMode('saved to this page \u2014 Claude can read these answers back');
+        d.collection('answers').get().then(function (snap) {
+          var touched = false;
+          snap.docs.forEach(function (doc) {
+            var data = doc.data() || {};
+            var cur = state[doc.id] || {};
+            if (!cur.choice && !cur.note && (data.choice || data.note)) {
+              state[doc.id] = {
+                question: data.question || cur.question || '',
+                choice: data.choice || '', choiceText: data.choiceText || '',
+                note: data.note || ''
+              };
+              touched = true;
+            }
+          });
+          if (touched) { persistLocal(); render(); }
+        }).catch(function () {});
+      }).catch(function () { setMode('saved in this browser only'); });
+    } else {
+      setMode('saved in this browser only');
+    }
+  }
+
+  function setMode(t) { if (bar) bar.mode.textContent = t; }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

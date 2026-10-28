@@ -1,0 +1,65 @@
+{
+ "r1": {
+  "S1_ink16_light_glyph": 0.348,
+  "S1_ink16_full_mark": 0.321,
+  "S1_ink32_light": 0.322,
+  "S3_ink16_dark_glyph": 0.346,
+  "S2_onecolour_ink": 0.275,
+  "S3_reversed_ink": 0.278,
+  "S8_icon_span_frac": 0.48,
+  "S8_px_outside_safe_circle": 0,
+  "S9_live_text_elements": 0,
+  "S9_edges": {
+   "horizontal": "wordmark baseline = mark bottom (0 px, by construction)",
+   "stacked": "wordmark ink left = mark left (0 px, lsb compensated)"
+  }
+ },
+ "r2": {
+  "S1_ink16_light_glyph": 0.276,
+  "S1_ink16_full_mark": 0.313,
+  "S1_ink32_light": 0.318,
+  "S3_ink16_dark_glyph": 0.274,
+  "S2_onecolour_ink": 0.269,
+  "S3_reversed_ink": 0.272,
+  "S8_icon_span_frac": 0.508,
+  "S8_px_outside_safe_circle": 0,
+  "S9_live_text_elements": 0,
+  "S9_edges": {
+   "horizontal": "wordmark baseline = mark bottom (0 px, by construction)",
+   "stacked": "wordmark ink left = mark left (0 px, lsb compensated)"
+  }
+ },
+ "r3": {
+  "S1_ink16_light_glyph": 0.342,
+  "S1_ink16_full_mark": 0.339,
+  "S1_ink32_light": 0.339,
+  "S3_ink16_dark_glyph": 0.34,
+  "S2_onecolour_ink": 0.292,
+  "S3_reversed_ink": 0.295,
+  "S8_icon_span_frac": 0.449,
+  "S8_px_outside_safe_circle": 0,
+  "S9_live_text_elements": 0,
+  "S9_edges": {
+   "horizontal": "wordmark baseline = mark bottom (0 px, by construction)",
+   "stacked": "wordmark ink left = mark left (0 px, lsb compensated)"
+  }
+ },
+ "c1": {
+  "S1_ink32": 0.316
+ },
+ "c2": {
+  "S1_ink32": 0.309
+ },
+ "c3": {
+  "S1_ink32": 0.326
+ },
+ "c4": {
+  "S1_ink32": 0.508
+ },
+ "c5": {
+  "S1_ink32": 0.473
+ },
+ "c6": {
+  "S1_ink32": 0.422
+ }
+}

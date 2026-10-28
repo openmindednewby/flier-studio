@@ -1,0 +1,74 @@
+{
+ "build": "before",
+ "pairMethod": "same-steps",
+ "frames": [
+  {
+   "view": "360",
+   "device": "Galaxy S5",
+   "route": "https://dloizides.com/",
+   "anchor": "flier-studio card scrollIntoView center",
+   "file": "before-360.png",
+   "card": {
+    "x": 0,
+    "y": 134,
+    "w": 360,
+    "h": 373
+   },
+   "img": {
+    "x": 0,
+    "y": 134,
+    "w": 360,
+    "h": 306
+   },
+   "objectFit": "cover",
+   "natural": [
+    1280,
+    800
+   ],
+   "scale": 0.3823,
+   "visibleSrc": {
+    "x0": 169,
+    "y0": 0,
+    "x1": 1111,
+    "y1": 800
+   },
+   "coveredFromImgY": -1,
+   "coveredFromSrcY": -3,
+   "cardHtml": "<a href=\"https://fliers.dloizides.com\" class=\"card\" target=\"_blank\" rel=\"noopener\" data-umami-event=\"project-click\" data-umami-event-project=\"Flier Studio\"><img src=\"./images/flier-studio.png\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" width=\"400\" height=\"306\" class=\"card__image\" alt=\"Flier Studio\"><div class=\"card__overlay\"><div class=\"card__header\"><svg class=\"card__arc\" xmlns=\"http://w"
+  },
+  {
+   "view": "1280",
+   "device": "Desktop Chrome 1280x800",
+   "route": "https://dloizides.com/",
+   "anchor": "flier-studio card scrollIntoView center",
+   "file": "before-1280.png",
+   "card": {
+    "x": 8,
+    "y": 213,
+    "w": 400,
+    "h": 373
+   },
+   "img": {
+    "x": 8,
+    "y": 213,
+    "w": 400,
+    "h": 306
+   },
+   "objectFit": "cover",
+   "natural": [
+    1280,
+    800
+   ],
+   "scale": 0.3823,
+   "visibleSrc": {
+    "x0": 117,
+    "y0": 0,
+    "x1": 1163,
+    "y1": 800
+   },
+   "coveredFromImgY": 258,
+   "coveredFromSrcY": 675,
+   "cardHtml": "<a href=\"https://fliers.dloizides.com\" class=\"card\" target=\"_blank\" rel=\"noopener\" data-umami-event=\"project-click\" data-umami-event-project=\"Flier Studio\"><img src=\"./images/flier-studio.png\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" width=\"400\" height=\"306\" class=\"card__image\" alt=\"Flier Studio\"><div class=\"card__overlay\"><div class=\"card__header\"><svg class=\"card__arc\" xmlns=\"http://w"
+  }
+ ]
+}

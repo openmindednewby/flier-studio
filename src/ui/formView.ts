@@ -14,6 +14,7 @@ export interface FormActions {
 }
 
 const PICKERS: readonly DocPicker[] = [DocPicker.Format, DocPicker.Layout, DocPicker.Palette, DocPicker.Fonts, DocPicker.Background];
+const ROW_PICKERS = PICKERS.filter((p) => p !== DocPicker.Layout);
 const SINGLE: readonly (keyof BlockText)[] = ['title', 'titleBottom', 'script', 'includesHeading', 'footer'];
 const MULTI: readonly (keyof BlockText)[] = ['venue', 'schedule', 'prices', 'includesItems', 'items'];
 const scaleSchema = flierDocSchema.properties?.picture?.properties?.scale;
@@ -57,7 +58,8 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   container.replaceChildren(
     el('h2', { text: FM('form.heading') }),
     el('p', { class: 'muted', text: FM('form.editing', String(position[0]), String(position[1])) }),
-    el('div', { class: 'row' }, PICKERS.map((p) => labelled(`form.${p}`, pickers[p]))),
+    el('div', { class: 'row' }, [labelled('form.layout', pickers[DocPicker.Layout])]),
+    el('div', { class: 'row' }, ROW_PICKERS.map((p) => labelled(`form.${p}`, pickers[p]))),
     el('div', { class: 'row' }, [labelled('form.anchor', anchor), labelled('form.scale', scale)]),
     el('div', { class: 'row' }, [
       fileButton('form.picture', 'upload-picture', 'image/*', (f) => actions.upload(UploadKind.Picture, f)),

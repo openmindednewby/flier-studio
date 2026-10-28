@@ -4,6 +4,7 @@ import { FM } from './i18n/fm';
 import { kizombaPreset } from './presets/kizomba';
 import { ConfigStore } from './store/configStore';
 import { ImageStore } from './store/imageStore';
+import { WorkingDocStore } from './store/workingDocStore';
 import { AssetBook } from './ui/assets';
 import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
@@ -17,7 +18,8 @@ const RENDER_DELAY_MS = 150;
 const DOWNLOAD_GAP_MS = 300;
 const DESKTOP_MIN = 1024;
 
-const state = { docs: kizombaPreset(), selected: 0, canvases: [] as HTMLCanvasElement[] };
+const working = new WorkingDocStore();
+const state = { docs: working.load() ?? kizombaPreset(), selected: 0, canvases: [] as HTMLCanvasElement[] };
 const assets = new AssetBook(new ImageStore());
 const configs = new ConfigStore();
 
@@ -32,6 +34,7 @@ const promptBox = el('section', { class: 'card' });
 
 let timer: number | undefined;
 function refreshPreviews(): void {
+  working.save(state.docs);
   window.clearTimeout(timer);
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(state.docs);

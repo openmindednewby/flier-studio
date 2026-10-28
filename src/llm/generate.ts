@@ -2,6 +2,7 @@ import { flierDocSchema, kizombaWorkshopDocs, type FlierDoc } from '@dloizides/p
 import { GenerateSource } from './GenerateSource';
 import { parseLlmDoc } from './parseLlmDoc';
 import { docFromPrompt } from './promptFallback';
+import { hasWebGpuAdapter } from './webGpu';
 
 const MB = 1024 * 1024;
 const MODEL_MB = 400;
@@ -17,7 +18,7 @@ interface LlmModule {
 }
 
 export interface GenerateDeps {
-  hasWebGpu(): boolean;
+  hasWebGpu(): Promise<boolean>;
   loadLlm(): Promise<LlmModule>;
   onProgress?: (e: unknown) => void;
 }
@@ -48,9 +49,15 @@ export function createGenerator(deps: GenerateDeps): { generate(prompt: string):
   };
   return {
     async generate(prompt: string): Promise<GenerateOutcome> {
-      if (!deps.hasWebGpu()) return { source: GenerateSource.NoWebGpu, doc: docFromPrompt(prompt), errors: [] };
-      client ??= connect();
-      const reply = await (await client).chat(buildPrompt(prompt));
+      if (!(await deps.hasWebGpu())) return { source: GenerateSource.NoWebGpu, doc: docFromPrompt(prompt), errors: [] };
+      let reply: string;
+      try {
+        client ??= connect();
+        reply = await (await client).chat(buildPrompt(prompt));
+      } catch (e) {
+        client = null;
+        return { source: GenerateSource.ModelFailed, doc: docFromPrompt(prompt), errors: [String(e)] };
+      }
       const parsed = parseLlmDoc(reply);
       if (parsed.ok) return { source: GenerateSource.Model, doc: parsed.doc, errors: [] };
       return { source: GenerateSource.Fallback, doc: docFromPrompt(prompt), errors: parsed.errors };
@@ -60,7 +67,7 @@ export function createGenerator(deps: GenerateDeps): { generate(prompt: string):
 
 export function browserDeps(onProgress?: (e: unknown) => void): GenerateDeps {
   return {
-    hasWebGpu: () => typeof navigator !== 'undefined' && 'gpu' in navigator,
+    hasWebGpu: async () => hasWebGpuAdapter(typeof navigator === 'undefined' ? undefined : (navigator as never)),
     loadLlm: async () => (await import('@dloizides/llm-run')) as unknown as LlmModule,
     onProgress,
   };

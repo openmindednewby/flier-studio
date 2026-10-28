@@ -14,7 +14,7 @@ interface TestDeps extends GenerateDeps {
 function deps(reply: string, webgpu = true): TestDeps {
   const chat = Object.assign(vi.fn(async () => reply), { completions: { create: vi.fn() } });
   const load = vi.fn(async () => ({ run: vi.fn(async () => ({ chat, unload: vi.fn() })) }));
-  return { hasWebGpu: () => webgpu, loadLlm: load, load };
+  return { hasWebGpu: async () => webgpu, loadLlm: load, load };
 }
 
 describe('createGenerator', () => {
@@ -64,6 +64,26 @@ describe('createGenerator', () => {
     await generator.generate('two');
 
     expect(d.load).toHaveBeenCalledTimes(1);
+  });
+
+  it('with the model failing to load, falls back to the keyword preset instead of throwing', async () => {
+    const d = deps(JSON.stringify(event));
+    d.loadLlm = async () => { throw new Error('LlmRunError: E_NETWORK'); };
+
+    const outcome = await createGenerator(d).generate('square salsa');
+
+    expect(outcome.source).toBe(GenerateSource.ModelFailed);
+    expect(outcome.doc.format).toBe(FormatId.Square);
+  });
+
+  it('with the chat call failing, falls back to the keyword preset instead of throwing', async () => {
+    const chat = vi.fn(async () => { throw new Error('device lost'); });
+    const d: GenerateDeps = { hasWebGpu: async () => true, loadLlm: async () => ({ run: async () => ({ chat }) }) };
+
+    const outcome = await createGenerator(d).generate('desktop wallpaper');
+
+    expect(outcome.source).toBe(GenerateSource.ModelFailed);
+    expect(outcome.doc.format).toBe(FormatId.Desktop);
   });
 
   it('with the chosen model, caps the download at 400 MB', () => {

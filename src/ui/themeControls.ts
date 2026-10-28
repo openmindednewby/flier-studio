@@ -23,5 +23,5 @@ export function themeRow(actions: ThemeActions, themes: readonly FlierTheme[] = 
   const scope = options(el('select', { 'data-testid': 'pick-theme-scope' }), scopes, actions.themeScope());
   pick.addEventListener('change', () => actions.setTheme(pick.value));
   scope.addEventListener('change', () => actions.setThemeScope(scope.value as EditScope));
-  return el('div', { class: 'row', 'data-testid': 'theme-row' }, [labelled('form.theme', pick), labelled('form.themeScope', scope)]);
+  return el('div', { class: 'row stack-narrow', 'data-testid': 'theme-row' }, [labelled('form.theme', pick), labelled('form.themeScope', scope)]);
 }

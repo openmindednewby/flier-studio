@@ -94,6 +94,10 @@ figure canvas { width: 100%; height: auto; display: block; border-radius: 8px; b
 figure.selected canvas { outline: 3px solid var(--primary); outline-offset: 2px; }
 figcaption.row > * { flex: 1 1 100%; }
 
+@media (max-width: 479px) {
+  .row.stack-narrow > * { flex-basis: 100%; }
+}
+
 @media (min-width: 1024px) {
   header, main { padding: 24px 32px; }
   main { grid-template-columns: minmax(360px, 420px) minmax(0, 1fr); align-items: start; }

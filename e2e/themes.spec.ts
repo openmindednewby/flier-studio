@@ -5,6 +5,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const HIT = 44;
 const FLIERS = 4;
+const SELECT_ARROW = 24;
 
 async function renders(page: Page): Promise<string[]> {
   await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');
@@ -28,7 +29,7 @@ const themeIds = (page: Page): Promise<string[]> =>
   page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { themeId: string }[]).map((f) => f.themeId));
 
 test.describe('poster themes (AC-14, AC-15)', () => {
-  test('the Theme control and its scope are labelled, 44 px tall, aligned and their text fits', async ({ page }) => {
+  test('the Theme control and its scope are labelled, 44 px tall, aligned at desktop, stacked at 360 and their text fits', async ({ page }, info) => {
     await page.goto('/');
     await page.locator('canvas').first().waitFor();
     const theme = page.getByTestId('pick-theme');
@@ -42,7 +43,27 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     const overflowing = await page.getByTestId('theme-row').evaluate((row) =>
       [...row.querySelectorAll<HTMLElement>('span, select')].filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.textContent));
     expect(overflowing).toEqual([]);
-    await expectFieldsAligned(page, '[data-testid="theme-row"]');
+    if (info.project.name === 'desktop') await expectFieldsAligned(page, '[data-testid="theme-row"]');
+    else expect((await scope.boundingBox())?.y ?? 0).toBeGreaterThanOrEqual(((await theme.boundingBox())?.y ?? 0) + HIT);
+  });
+
+  test('at every viewport each Theme row option text fits inside its select, and file inputs paint nothing', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('canvas').first().waitFor();
+
+    const clipped = await page.getByTestId('theme-row').evaluate((row, arrow) =>
+      [...row.querySelectorAll('select')].flatMap((select) => {
+        const css = getComputedStyle(select);
+        const pen = document.createElement('canvas').getContext('2d');
+        if (pen) pen.font = css.font;
+        const room = select.clientWidth - parseFloat(css.paddingLeft) - parseFloat(css.paddingRight) - arrow;
+        return [...select.options].filter((o) => (pen?.measureText(o.text).width ?? Infinity) > room).map((o) => `${o.text} > ${room}`);
+      }), SELECT_ARROW);
+    const paintedFileInputs = await page.locator('input[type=file]').evaluateAll((inputs) =>
+      inputs.filter((i) => getComputedStyle(i).clipPath !== 'inset(50%)').map((i) => i.dataset.testid));
+
+    expect(clipped).toEqual([]);
+    expect(paintedFileInputs).toEqual([]);
   });
 
   test('an autosave from before themes opens as Kizomba classic and draws pixel-identical', async ({ page }) => {

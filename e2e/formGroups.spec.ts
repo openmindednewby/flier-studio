@@ -38,8 +38,9 @@ test('the picture alignment says it places the picture within its area, not the 
   expect(selected).toBe('Bottom of its area');
 });
 
-test('every side-by-side form row shares one top edge and height', async ({ page }) => {
+test('every side-by-side form row shares one top edge and height', async ({ page }, info) => {
+  const rows = info.project.name === 'mobile' ? '[data-testid="flier-form"] .row:not(.stack-narrow)' : '[data-testid="flier-form"] .row';
   await open(page);
 
-  await expectFieldsAligned(page, '[data-testid="flier-form"] .row', { controlSelector: ROW_CONTROLS });
+  await expectFieldsAligned(page, rows, { controlSelector: ROW_CONTROLS });
 });

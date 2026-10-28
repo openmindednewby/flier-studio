@@ -1,0 +1,153 @@
+{
+  "fliers-360x640": {
+    "url": "https://fliers.dloizides.com/",
+    "errs": [],
+    "warns": [],
+    "bad": [],
+    "dims": {
+      "sw": 360,
+      "vw": 360
+    },
+    "palette": {
+      "bodyBg": "rgb(245, 244, 242)",
+      "bodyColor": "rgb(47, 41, 37)",
+      "btn": "Generate",
+      "btnBg": "rgb(74, 66, 60)",
+      "btnFg": "rgb(255, 255, 255)"
+    },
+    "small": [],
+    "textOverflow": [],
+    "mainWidth": {
+      "x": 0,
+      "w": 360
+    },
+    "barVisible": true,
+    "barPos": "Flier 1 of 4",
+    "barAfterEdit2": "Flier 1 of 4",
+    "sheetOpen": true,
+    "sheetClosed": true,
+    "preview1InView": true,
+    "download": {
+      "file": "flier-1-story.png",
+      "bytes": 1272046,
+      "png": true
+    },
+    "sw": {
+      "scope": "https://fliers.dloizides.com/",
+      "active": true,
+      "state": "activated"
+    },
+    "manifest": {
+      "href": "https://fliers.dloizides.com/manifest.json",
+      "name": "Flier Studio",
+      "short": "Fliers",
+      "start": "/",
+      "display": "standalone",
+      "icons": [
+        "192x192/any",
+        "512x512/any",
+        "192x192/maskable",
+        "512x512/maskable"
+      ]
+    },
+    "webgpu": true
+  },
+  "fliers-1280x800": {
+    "url": "https://fliers.dloizides.com/",
+    "errs": [],
+    "warns": [],
+    "bad": [],
+    "dims": {
+      "sw": 1280,
+      "vw": 1280
+    },
+    "palette": {
+      "bodyBg": "rgb(245, 244, 242)",
+      "bodyColor": "rgb(47, 41, 37)",
+      "btn": "Generate",
+      "btnBg": "rgb(74, 66, 60)",
+      "btnFg": "rgb(255, 255, 255)"
+    },
+    "small": [],
+    "textOverflow": [],
+    "mainWidth": {
+      "x": 40,
+      "w": 1200
+    },
+    "barVisible": false,
+    "download": {
+      "file": "flier-1-story.png",
+      "bytes": 1272046,
+      "png": true
+    },
+    "sw": {
+      "scope": "https://fliers.dloizides.com/",
+      "active": true,
+      "state": "activated"
+    },
+    "manifest": {
+      "href": "https://fliers.dloizides.com/manifest.json",
+      "name": "Flier Studio",
+      "short": "Fliers",
+      "start": "/",
+      "display": "standalone",
+      "icons": [
+        "192x192/any",
+        "512x512/any",
+        "192x192/maskable",
+        "512x512/maskable"
+      ]
+    },
+    "webgpu": true
+  },
+  "landing-360x640": {
+    "url": "https://dloizides.com/",
+    "errs": [],
+    "warns": [],
+    "bad": [],
+    "dims": {
+      "sw": 360,
+      "vw": 360
+    },
+    "cardCount": 1,
+    "cardLinks": [
+      {
+        "href": "https://fliers.dloizides.com/",
+        "text": "Flier StudioBy openmindednewbyMake event fliers and phone or",
+        "w": 360,
+        "h": 373
+      },
+      {
+        "href": "https://fliers.dloizides.com/",
+        "text": "Open →",
+        "w": 62,
+        "h": 44
+      }
+    ]
+  },
+  "landing-1280x800": {
+    "url": "https://dloizides.com/",
+    "errs": [],
+    "warns": [],
+    "bad": [],
+    "dims": {
+      "sw": 1280,
+      "vw": 1280
+    },
+    "cardCount": 1,
+    "cardLinks": [
+      {
+        "href": "https://fliers.dloizides.com/",
+        "text": "Flier StudioBy openmindednewbyMake event fliers and phone or",
+        "w": 400,
+        "h": 373
+      },
+      {
+        "href": "https://fliers.dloizides.com/",
+        "text": "Open →",
+        "w": 62,
+        "h": 44
+      }
+    ]
+  }
+}

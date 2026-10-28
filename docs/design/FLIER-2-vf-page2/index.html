@@ -1,0 +1,393 @@
+<title>Flier Studio Visual Rules 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* layout: one column of blocks, each = pictures then its question */
+:root{--bg:#f3f1ee;--panel:#ffffff;--ink:#2a2622;--ink2:#6b6259;--line:#d8d2ca;--act:#4a423c;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a17;--panel:#25221e;--ink:#f1ece5;--ink2:#a59a8c;--line:#3d3832;--act:#e8dccb;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1a17;--panel:#25221e;--ink:#f1ece5;--ink2:#a59a8c;--line:#3d3832;--act:#e8dccb;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1080px;margin:0 auto;padding-block:20px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:1.25rem;margin:0 0 4px}.intro{color:var(--ink2);margin:0 0 20px}
+.blk{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:0 0 20px}
+.pics{display:flex;flex-wrap:wrap;gap:16px}
+.opt{display:flex;gap:8px;flex:1 1 300px;min-width:0}
+.opt figure{margin:0;flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px}
+.opt figure svg,.opt figure img{width:100%;max-width:220px;height:auto;border:1px solid var(--line);border-radius:6px;display:block}
+.opt .mks{display:grid;grid-template-columns:1fr 1fr;gap:4px}.opt .mks img.mk{max-width:100%;border-radius:4px}
+.blk:last-of-type .opt figure svg{max-width:420px}
+.tag{font-size:.75rem;font-weight:600;color:var(--ink2);letter-spacing:.02em}
+figure[data-visual="after"] .tag{color:var(--ink)}
+.q{margin-top:12px}.qn{font-weight:600;margin:0 0 8px}.qi{display:inline-block;margin-right:8px;color:var(--ink2)}
+.opts{list-style:none;margin:0;padding:0;display:grid;gap:6px}.opts li{display:flex;gap:8px;align-items:baseline}
+.lt{font-weight:700;min-width:1.2em}.why:empty{display:none}
+.foot{color:var(--ink2);font-size:.85rem}code{font-size:.85em}
+.blk .opt figure svg{max-width:220px}.blk:nth-of-type(4) .opt figure svg,.blk:nth-of-type(5) .opt figure svg{max-width:420px}.mt{border-collapse:collapse;width:100%;margin-top:14px;font-size:.85rem}.mt th,.mt td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}.mtwrap{overflow-x:auto}.mtn{color:var(--ink2);font-size:.85rem}
+  /* ---- answer-UI token defaults --------------------------------------
+     Zero-specificity (:where) so ANY host declaration on :root / html
+     (specificity 0,1,0) overrides every value below. Self-sufficient on a
+     host palette that defines none of these. Light is declared on the bare
+     selector first; the dark blocks only REDEFINE, so no colour has its
+     sole definition inside a media query or [data-theme] rule. -------- */
+  :where(html){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  @media (prefers-color-scheme:dark){
+    :where(html:not([data-theme="light"])){
+      --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+      --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  }
+  :where(html[data-theme="dark"]){
+    --paper:#141414; --ink-1:#f0efec; --ink-2:#a8a49c; --ink-3:#6f6b64;
+    --rule-1:rgba(255,255,255,.06); --rule-2:#333029}
+  :where(html[data-theme="light"]){
+    --paper:#ffffff; --ink-1:#111111; --ink-2:#555555; --ink-3:#8a8a8a;
+    --rule-1:rgba(0,0,0,.05); --rule-2:#e2e2de}
+
+  /* ---- answerable questions ---- */
+  .q{position:relative}
+  .q.answered{border-color:var(--ink-3)}
+  .q .opts li{cursor:pointer; padding-left:34px; position:relative;
+    transition:background .12s ease}
+  .q .opts li:hover{background:var(--rule-1, rgba(0,0,0,.03))}
+  .q .opts li::before{content:''; position:absolute; left:6px; top:13px;
+    width:13px; height:13px; border:1.5px solid var(--ink-3); border-radius:50%}
+  .q .opts li[aria-checked="true"]::before{border-color:var(--ink-1, #111);
+    background:var(--ink-1, #111); box-shadow:inset 0 0 0 3px var(--paper, #fff)}
+  .q .opts li[aria-checked="true"]{background:var(--rule-1, rgba(0,0,0,.05))}
+  .q .opts li:focus-visible{outline:2px solid var(--ink-2); outline-offset:-2px}
+  .q .ansbox{margin:14px 0 0; padding-top:12px; border-top:1px solid var(--rule-2)}
+  .q .ansbox .st{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+  .q .ansbox .st b{color:var(--ink-1, #111)}
+  .q .note-in{display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    font-family:inherit; font-size:14px; color:inherit; caret-color:currentColor;
+    background:transparent; border:1px solid var(--rule-2); border-radius:0;
+    padding:8px 10px; resize:vertical; min-height:2.4em}
+  .q .note-in:focus{outline:none; border-color:var(--ink-3)}
+  .qbar{border:1px solid var(--rule-2); padding:10px 14px; margin:20px 0;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    justify-content:space-between; position:sticky; top:0; z-index:5;
+    background:var(--paper, #fff)}
+  .qbar .prog{font-family:var(--mono); font-size:13px; color:var(--ink-2)}
+  .qbar .prog b{color:var(--ink-1, #111); font-size:15px}
+  .qbar .acts{display:flex; gap:9px; flex-wrap:wrap}
+  .qbar button{font-family:inherit; font-size:13px; padding:7px 14px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .qbar button:hover{background:var(--rule-1, rgba(0,0,0,.05))}
+  .qbar button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .qbar .mode{font-family:var(--mono); font-size:11.5px; color:var(--ink-3);
+    flex-basis:100%}
+  .expwrap{display:none; position:fixed; z-index:50; left:50%; top:50%;
+    transform:translate(-50%,-50%); width:min(720px, calc(100vw - 32px));
+    max-height:calc(100vh - 32px); box-sizing:border-box; overflow:auto;
+    padding:16px; background:var(--paper, #fff); color:var(--ink-1, #111);
+    border:1px solid var(--ink-3); box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .expwrap.on{display:block}
+  .expwrap .exphead{display:flex; justify-content:space-between; align-items:center;
+    gap:10px; margin:0 0 10px; font-weight:600}
+  .expwrap .exphead span{display:flex; gap:8px}
+  .expwrap button{font-family:inherit; font-size:13px; padding:7px 14px; min-height:44px;
+    border:1px solid var(--ink-3); background:transparent; color:var(--ink-1, #111);
+    cursor:pointer; border-radius:0}
+  .expwrap button.prim{background:var(--ink-1, #111); color:var(--paper, #fff);
+    border-color:var(--ink-1, #111)}
+  .expwrap textarea{width:100%; box-sizing:border-box; min-height:190px; height:50vh;
+    font-family:var(--mono); font-size:12px; line-height:1.55; padding:12px;
+    border:1px solid var(--rule-2); background:transparent; color:inherit}
+  .expwrap .hint{font-size:13px; color:var(--ink-2); margin:8px 0 0}
+</style>
+<main><h1>Flier Studio visual rules, page 2 of 2</h1><p class="intro">Each block: today on the left, the proposed rule on the right, one question. Page 1 approved: print-shop details, calm tool, R6 shapes, R1 values, accent on the main action only, one Flier Studio mark.</p>
+<section class="blk"><div class="pics"><div class="opt" data-option="R2R8" data-inventory="11/11" data-aligned="pass" data-result="result.json"><figure data-visual="before"><span class="tag">Today</span><svg viewBox="0 0 200 356" role="img" aria-label="Today: sheet backdrop is text 60% (the dialog uses background 72%), no layer shadow"><rect width="200" height="356" fill="#f5f4f2"/><text x="10" y="22" font-size="13" font-weight="700" fill="#2f2925" font-family="system-ui">Flier Studio</text><rect x="10" y="30" width="150" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="10" y="38" width="110" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="8" y="54" width="184" height="112" rx="7" fill="#fbfaf8" stroke="#8c8279" stroke-width="1"/><text x="18" y="72" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Generate from prompt</text><rect x="8" y="178" width="184" height="110" rx="7" fill="#fbfaf8" stroke="#8c8279" stroke-width="1"/><text x="18" y="196" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier</text><text x="18" y="88" font-size="6.5" fill="#6f655c" font-family="system-ui">Describe the flier</text><rect x="18" y="93" width="164" height="36" rx="4" fill="#ffffff" stroke="#8c8279"/><rect x="18" y="137" width="164" height="20" rx="4" fill="#4a423c"/><text x="100" y="150" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="system-ui">Generate</text><text x="18" y="212" font-size="6.5" fill="#6f655c" font-family="system-ui">Editing flier 1 of 4</text><rect x="18" y="220" width="164" height="20" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="24" y="233" font-size="6.5" fill="#2f2925" font-family="system-ui">This flier only</text><rect x="0" y="304" width="200" height="52" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="10" y="310" width="30" height="40" rx="2" fill="#5b2a2a"/><rect x="13.6" y="314.0" width="21.0" height="4.0" fill="#f2e6cf"/><rect x="13.6" y="319.6" width="13.5" height="2.0" fill="#e9b47f"/><circle cx="28.6" cy="336.4" r="6.6" fill="#f2e6cf" opacity=".85"/><text x="48" y="326" font-size="7.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier 1 of 4</text><text x="48" y="337" font-size="6.5" fill="#6f655c" font-family="system-ui">Live preview</text><rect x="140" y="318" width="50" height="22" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="165" y="332" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">See all 4</text><rect width="200" height="356" fill="#2f2925" opacity="0.6"/><rect x="4" y="150" width="192" height="200" rx="12" fill="#ffffff" stroke="#8c8279" stroke-width=".8"/><text x="16" y="172" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier 1 of 4</text><rect x="16" y="182" width="60" height="84" rx="0" fill="#5b2a2a"/><rect x="23.2" y="190.4" width="42.0" height="8.4" fill="#f2e6cf"/><rect x="23.2" y="202.16" width="27.0" height="4.2" fill="#e9b47f"/><circle cx="53.2" cy="237.44" r="13.2" fill="#f2e6cf" opacity=".85"/><rect x="88" y="186" width="96" height="20" rx="8" fill="#fff" stroke="#8c8279"/><text x="136" y="199" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">Edit this flier</text><rect x="88" y="212" width="96" height="20" rx="8" fill="#4a423c"/><text x="136" y="225" font-size="6.5" font-weight="700" fill="#fff" text-anchor="middle" font-family="system-ui">Download PNG</text><rect x="88" y="238" width="96" height="20" rx="8" fill="#fff" stroke="#8c8279"/><text x="136" y="251" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">See all 4</text></svg></figure><figure data-visual="after"><span class="tag">Do: one backdrop, one filled button</span><svg viewBox="0 0 200 356" role="img" aria-label="Rule: one backdrop, one layer shadow, one filled primary"><rect width="200" height="356" fill="#ebe8e3"/><text x="10" y="22" font-size="13" font-weight="700" fill="#2f2925" font-family="system-ui">Flier Studio</text><rect x="10" y="30" width="150" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="10" y="38" width="110" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="8" y="54" width="184" height="112" rx="7" fill="#ffffff" stroke="#8c8279" stroke-width="1"/><text x="18" y="72" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Generate from prompt</text><rect x="8" y="178" width="184" height="110" rx="7" fill="#ffffff" stroke="#8c8279" stroke-width="1"/><text x="18" y="196" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier</text><text x="18" y="88" font-size="6.5" fill="#6f655c" font-family="system-ui">Describe the flier</text><rect x="18" y="93" width="164" height="36" rx="4" fill="#ffffff" stroke="#8c8279"/><rect x="18" y="137" width="164" height="20" rx="4" fill="#4a423c"/><text x="100" y="150" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="system-ui">Generate</text><text x="18" y="212" font-size="6.5" fill="#6f655c" font-family="system-ui">Editing flier 1 of 4</text><rect x="18" y="220" width="164" height="20" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="24" y="233" font-size="6.5" fill="#2f2925" font-family="system-ui">This flier only</text><rect x="0" y="304" width="200" height="52" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="10" y="310" width="30" height="40" rx="2" fill="#5b2a2a"/><rect x="13.6" y="314.0" width="21.0" height="4.0" fill="#f2e6cf"/><rect x="13.6" y="319.6" width="13.5" height="2.0" fill="#e9b47f"/><circle cx="28.6" cy="336.4" r="6.6" fill="#f2e6cf" opacity=".85"/><text x="48" y="326" font-size="7.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier 1 of 4</text><text x="48" y="337" font-size="6.5" fill="#6f655c" font-family="system-ui">Live preview</text><rect x="140" y="318" width="50" height="22" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="165" y="332" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">See all 4</text><rect width="200" height="356" fill="#f5f4f2" opacity="0.72"/><rect x="4" y="148" width="192" height="200" rx="12" fill="#000" opacity=".10"/><rect x="4" y="150" width="192" height="200" rx="12" fill="#ffffff" stroke="#8c8279" stroke-width=".8"/><text x="16" y="172" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier 1 of 4</text><rect x="16" y="182" width="60" height="84" rx="0" fill="#5b2a2a"/><rect x="23.2" y="190.4" width="42.0" height="8.4" fill="#f2e6cf"/><rect x="23.2" y="202.16" width="27.0" height="4.2" fill="#e9b47f"/><circle cx="53.2" cy="237.44" r="13.2" fill="#f2e6cf" opacity=".85"/><rect x="88" y="186" width="96" height="20" rx="8" fill="#fff" stroke="#8c8279"/><text x="136" y="199" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">Edit this flier</text><rect x="88" y="212" width="96" height="20" rx="8" fill="#4a423c"/><text x="136" y="225" font-size="6.5" font-weight="700" fill="#fff" text-anchor="middle" font-family="system-ui">Download PNG</text><rect x="88" y="238" width="96" height="20" rx="8" fill="#fff" stroke="#8c8279"/><text x="136" y="251" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">See all 4</text></svg></figure></div></div><div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span>R2 + R8 floating layers: flat chrome; one shadow token only on the sheet and dialog; one backdrop (background 72%) for both; one filled primary per view, everything else outlined 1px. Approve?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Approve</span></li><li data-letter="X"><span class="lt">X</span><span>Changes needed (note)</span></li><li data-letter="R"><span class="lt">R</span><span>None, redraw</span></li></ul><p class="why"></p></div></section><section class="blk"><div class="pics"><div class="opt" data-option="R7" data-inventory="11/11" data-aligned="pass" data-result="result.json"><figure data-visual="before"><span class="tag">Today</span><svg viewBox="0 0 200 356" role="img" aria-label="Today: dark primary + focus ring 1.61:1"><rect width="200" height="356" fill="#1c1a17"/><text x="10" y="22" font-size="13" font-weight="700" fill="#f4efe8" font-family="system-ui">Flier Studio</text><rect x="8" y="40" width="184" height="150" rx="12" fill="#25221e" stroke="#80766a"/><text x="18" y="58" font-size="8.5" font-weight="700" fill="#f4efe8" font-family="system-ui">Generate from prompt</text><rect x="18" y="68" width="164" height="36" rx="8" fill="#1c1a17" stroke="#80766a"/><rect x="18" y="114" width="164" height="22" rx="8" fill="#4a423c"/><text x="100" y="128" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="system-ui">Generate</text><rect x="15" y="111" width="170" height="28" rx="10" fill="none" stroke="#4a423c" stroke-width="2.5"/></svg></figure><figure data-visual="after"><span class="tag">Do: 11.7:1 button + focus ring</span><svg viewBox="0 0 200 356" role="img" aria-label="Rule: dark primary + focus ring in brandFill, status = glyph + word (not drawn)"><rect width="200" height="356" fill="#1c1a17"/><text x="10" y="22" font-size="13" font-weight="700" fill="#f4efe8" font-family="system-ui">Flier Studio</text><rect x="8" y="40" width="184" height="150" rx="12" fill="#25221e" stroke="#80766a"/><text x="18" y="58" font-size="8.5" font-weight="700" fill="#f4efe8" font-family="system-ui">Generate from prompt</text><rect x="18" y="68" width="164" height="36" rx="8" fill="#1c1a17" stroke="#80766a"/><rect x="18" y="114" width="164" height="22" rx="8" fill="#e8dccb"/><text x="100" y="128" font-size="7.5" font-weight="700" fill="#1c1a17" text-anchor="middle" font-family="system-ui">Generate</text><rect x="15" y="111" width="170" height="28" rx="10" fill="none" stroke="#e8dccb" stroke-width="2.5"/></svg></figure></div></div><div class="q" data-qid="q2"><p class="qn"><span class="qi">Q2</span>R7 dark theme: the main button and focus ring use brandFill #e8dccb on the dark card (11.7:1, today 1.61:1); a status is a glyph plus a word, never a coloured dot alone. Approve?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Approve</span></li><li data-letter="X"><span class="lt">X</span><span>Changes needed (note)</span></li><li data-letter="R"><span class="lt">R</span><span>None, redraw</span></li></ul><p class="why"></p></div></section><section class="blk"><div class="pics"><div class="opt" data-option="R345" data-inventory="11/11" data-aligned="pass" data-result="result.json"><figure data-visual="before"><span class="tag">Do not: texture, tints, boxed labels (a made-up bad case, not today)</span><svg viewBox="0 0 200 356" role="img" aria-label="Do not: texture, tints and boxes in the chrome"><rect width="200" height="356" fill="#f5f4f2"/><text x="10" y="22" font-size="13" font-weight="700" fill="#2f2925" font-family="system-ui">Flier Studio</text><rect x="10" y="30" width="150" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="10" y="38" width="110" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="8" y="54" width="184" height="112" rx="7" fill="#fbfaf8" stroke="#8c8279" stroke-width="1"/><text x="18" y="72" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Generate from prompt</text><rect x="18" y="75" width="88.0" height="2" fill="#e9b47f"/><rect x="8" y="178" width="184" height="110" rx="7" fill="#fbfaf8" stroke="#8c8279" stroke-width="1"/><text x="18" y="196" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier</text><rect x="18" y="199" width="22.0" height="2" fill="#e9b47f"/><text x="18" y="88" font-size="6.5" fill="#6f655c" font-family="system-ui">Describe the flier</text><rect x="18" y="93" width="164" height="36" rx="4" fill="#ffffff" stroke="#8c8279"/><rect x="18" y="137" width="164" height="20" rx="4" fill="#4a423c"/><text x="100" y="150" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="system-ui">Generate</text><text x="18" y="212" font-size="6.5" fill="#6f655c" font-family="system-ui">Editing flier 1 of 4</text><rect x="18" y="220" width="164" height="20" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="24" y="233" font-size="6.5" fill="#2f2925" font-family="system-ui">This flier only</text><rect x="0" y="304" width="200" height="52" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="10" y="310" width="30" height="40" rx="2" fill="#5b2a2a"/><rect x="13.6" y="314.0" width="21.0" height="4.0" fill="#f2e6cf"/><rect x="13.6" y="319.6" width="13.5" height="2.0" fill="#e9b47f"/><circle cx="28.6" cy="336.4" r="6.6" fill="#f2e6cf" opacity=".85"/><text x="48" y="326" font-size="7.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier 1 of 4</text><text x="48" y="337" font-size="6.5" fill="#6f655c" font-family="system-ui">Live preview</text><rect x="140" y="318" width="50" height="22" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="165" y="332" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">See all 4</text><rect x="12" y="58" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="49" y="111" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="86" y="164" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="123" y="217" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="160" y="270" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="21" y="103" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="58" y="156" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="95" y="209" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="132" y="262" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="169" y="95" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="30" y="148" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="67" y="201" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="104" y="254" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="141" y="87" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="178" y="140" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="39" y="193" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="76" y="246" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="113" y="79" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="150" y="132" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="187" y="185" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="48" y="238" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="85" y="71" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="122" y="124" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="159" y="177" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="20" y="230" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="57" y="63" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="94" y="116" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="131" y="169" width="9" height="3" fill="#c98f5a" opacity=".55"/><rect x="16" y="81" width="72" height="11" fill="none" stroke="#2f2925"/><rect x="16" y="205" width="80" height="11" fill="none" stroke="#2f2925"/><line x1="8" y1="172" x2="192" y2="172" stroke="#2f2925" stroke-width="1.4"/></svg></figure><figure data-visual="after"><span class="tag">Do: flat, hairline divider, no boxed labels</span><svg viewBox="0 0 200 356" role="img" aria-label="Do: flat chrome, hairline divider, outlines only on controls"><rect width="200" height="356" fill="#ebe8e3"/><text x="10" y="22" font-size="13" font-weight="700" fill="#2f2925" font-family="system-ui">Flier Studio</text><rect x="10" y="30" width="150" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="10" y="38" width="110" height="4" rx="2" fill="#6f655c" opacity=".5"/><rect x="8" y="54" width="184" height="112" rx="7" fill="#ffffff" stroke="#8c8279" stroke-width="1"/><text x="18" y="72" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Generate from prompt</text><rect x="8" y="178" width="184" height="110" rx="7" fill="#ffffff" stroke="#8c8279" stroke-width="1"/><text x="18" y="196" font-size="8.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier</text><text x="18" y="88" font-size="6.5" fill="#6f655c" font-family="system-ui">Describe the flier</text><rect x="18" y="93" width="164" height="36" rx="4" fill="#ffffff" stroke="#8c8279"/><rect x="18" y="137" width="164" height="20" rx="4" fill="#4a423c"/><text x="100" y="150" font-size="7.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="system-ui">Generate</text><text x="18" y="212" font-size="6.5" fill="#6f655c" font-family="system-ui">Editing flier 1 of 4</text><rect x="18" y="220" width="164" height="20" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="24" y="233" font-size="6.5" fill="#2f2925" font-family="system-ui">This flier only</text><rect x="0" y="304" width="200" height="52" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="10" y="310" width="30" height="40" rx="2" fill="#5b2a2a"/><rect x="13.6" y="314.0" width="21.0" height="4.0" fill="#f2e6cf"/><rect x="13.6" y="319.6" width="13.5" height="2.0" fill="#e9b47f"/><circle cx="28.6" cy="336.4" r="6.6" fill="#f2e6cf" opacity=".85"/><text x="48" y="326" font-size="7.5" font-weight="700" fill="#2f2925" font-family="system-ui">Flier 1 of 4</text><text x="48" y="337" font-size="6.5" fill="#6f655c" font-family="system-ui">Live preview</text><rect x="140" y="318" width="50" height="22" rx="4" fill="#ffffff" stroke="#8c8279"/><text x="165" y="332" font-size="6.5" fill="#2f2925" text-anchor="middle" font-family="system-ui">See all 4</text><line x1="16" y1="172" x2="184" y2="172" stroke="#e6e1da" stroke-width="1"/></svg></figure></div></div><div class="q" data-qid="q3"><p class="qn"><span class="qi">Q3</span>R3 + R4 + R5 quiet chrome: tool frames stay at or under 1% saturated pixels and 16% edges at 360 (today 0.05% / 15.1%); texture only inside fliers; dividers within 6 L* of their card; outlines only on things you can press and on the selected flier. Approve?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Approve</span></li><li data-letter="X"><span class="lt">X</span><span>Changes needed (note)</span></li><li data-letter="R"><span class="lt">R</span><span>None, redraw</span></li></ul><p class="why"></p></div></section><section class="blk"><div class="pics"><div class="opt" data-option="R9" data-inventory="11/11" data-aligned="pass" data-result="result.json"><figure data-visual="before"><span class="tag">Today</span><svg viewBox="0 0 420 150" role="img" aria-label="Median lightness per tool screen"><rect width="420" height="150" fill="#ffffff"/><rect x="130" y="10" width="280" height="110" fill="#ebe8e3"/><text x="8" y="30" font-size="9" fill="#2f2925" font-family="system-ui">Form</text><circle cx="399" cy="26" r="5" fill="#2f2925"/><text x="389" y="30" font-size="8" fill="#2f2925" text-anchor="end" font-family="ui-monospace,monospace">L* 98</text><text x="8" y="56" font-size="9" fill="#2f2925" font-family="system-ui">Previews</text><circle cx="388" cy="52" r="5" fill="#2f2925"/><text x="378" y="56" font-size="8" fill="#2f2925" text-anchor="end" font-family="ui-monospace,monospace">L* 96</text><text x="8" y="82" font-size="9" fill="#2f2925" font-family="system-ui">Flier sheet open</text><text x="140" y="82" font-size="8" fill="#6f655c" font-family="system-ui">not measured today</text><text x="8" y="108" font-size="9" fill="#2f2925" font-family="system-ui">Import dialog open</text><text x="140" y="108" font-size="8" fill="#6f655c" font-family="system-ui">not measured today</text><text x="130" y="146" font-size="7" fill="#6f655c" text-anchor="middle" font-family="ui-monospace,monospace">50</text><text x="270" y="146" font-size="7" fill="#6f655c" text-anchor="middle" font-family="ui-monospace,monospace">75</text><text x="410" y="146" font-size="7" fill="#6f655c" text-anchor="middle" font-family="ui-monospace,monospace">100</text></svg></figure><figure data-visual="after"><span class="tag">Do: all four screens inside the band</span><svg viewBox="0 0 420 150" role="img" aria-label="Median lightness per tool screen"><rect width="420" height="150" fill="#ffffff"/><rect x="130" y="10" width="280" height="110" fill="#ebe8e3"/><rect x="343" y="10" width="67" height="110" fill="#d6cfc4"/><text x="376" y="134" font-size="8" fill="#2f2925" text-anchor="middle" font-family="system-ui">band 88-100</text><text x="8" y="30" font-size="9" fill="#2f2925" font-family="system-ui">Form</text><circle cx="399" cy="26" r="5" fill="#2f2925"/><text x="389" y="30" font-size="8" fill="#2f2925" text-anchor="end" font-family="ui-monospace,monospace">L* 98</text><text x="8" y="56" font-size="9" fill="#2f2925" font-family="system-ui">Previews</text><circle cx="388" cy="52" r="5" fill="#2f2925"/><text x="378" y="56" font-size="8" fill="#2f2925" text-anchor="end" font-family="ui-monospace,monospace">L* 96</text><text x="8" y="82" font-size="9" fill="#2f2925" font-family="system-ui">Flier sheet open</text><path d="M371 78h10" stroke="#2f2925" stroke-width="2" stroke-dasharray="2 2"/><text x="337" y="82" font-size="8" fill="#6f655c" text-anchor="end" font-family="system-ui">must land here (after build)</text><text x="8" y="108" font-size="9" fill="#2f2925" font-family="system-ui">Import dialog open</text><path d="M371 104h10" stroke="#2f2925" stroke-width="2" stroke-dasharray="2 2"/><text x="337" y="108" font-size="8" fill="#6f655c" text-anchor="end" font-family="system-ui">must land here (after build)</text><text x="130" y="146" font-size="7" fill="#6f655c" text-anchor="middle" font-family="ui-monospace,monospace">50</text><text x="270" y="146" font-size="7" fill="#6f655c" text-anchor="middle" font-family="ui-monospace,monospace">75</text><text x="410" y="146" font-size="7" fill="#6f655c" text-anchor="middle" font-family="ui-monospace,monospace">100</text></svg></figure></div></div><div class="q" data-qid="q4"><p class="qn"><span class="qi">Q4</span>R9 colour script: every tool screen keeps its median lightness within 10 of the form (light 88-100, dark 3-23), sheet and dialog open included, so no screen flashes darker or lighter. Approve?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Approve</span></li><li data-letter="X"><span class="lt">X</span><span>Changes needed (note)</span></li><li data-letter="R"><span class="lt">R</span><span>None, redraw</span></li></ul><p class="why"></p></div></section><section class="blk"><div class="pics"><div class="opt" data-option="R10" data-inventory="11/11" data-aligned="pass" data-result="result.json"><figure data-visual="before"><span class="tag">Today: no motion, the sheet appears in one frame</span><svg viewBox="0 0 420 120" role="img" aria-label="Sheet entering, five frames"><rect width="420" height="120" fill="#ebe8e3"/><rect x="6" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><text x="44" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">0 ms</text><rect x="89" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="92" y="42.0" width="70" height="56.0" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="99" y="50.0" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="127" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">75 ms</text><rect x="172" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="175" y="42.0" width="70" height="56.0" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="182" y="50.0" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="210" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">150 ms</text><rect x="255" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="258" y="42.0" width="70" height="56.0" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="265" y="50.0" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="293" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">225 ms</text><rect x="338" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="341" y="42.0" width="70" height="56.0" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="348" y="50.0" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="376" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">300 ms</text></svg></figure><figure data-visual="after"><span class="tag">Do: sheet enters 300 ms decelerate</span><svg viewBox="0 0 420 120" role="img" aria-label="Sheet entering, five frames"><rect width="420" height="120" fill="#ebe8e3"/><rect x="6" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><text x="44" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">0 ms</text><rect x="89" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="92" y="59.3" width="70" height="38.7" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><text x="127" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">75 ms</text><rect x="172" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="175" y="48.2" width="70" height="49.8" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="182" y="56.2" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="210" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">150 ms</text><rect x="255" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="258" y="43.3" width="70" height="54.7" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="265" y="51.3" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="293" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">225 ms</text><rect x="338" y="6" width="76" height="92" fill="#ffffff" stroke="#8c8279" stroke-width=".6"/><rect x="341" y="42.0" width="70" height="56.0" rx="6" fill="#fbfaf8" stroke="#6f655c" stroke-width=".7" opacity="1"/><rect x="348" y="50.0" width="22" height="30" fill="#1d3b4f" opacity="1"/><text x="376" y="112" font-size="8" fill="#2f2925" text-anchor="middle" font-family="ui-monospace,monospace">300 ms</text></svg></figure></div><div class="mtwrap"><table class="mt"><thead><tr><th>Moment</th><th>Property</th><th>Token</th><th>Curve</th><th>Reduced motion</th></tr></thead><tbody>
+<tr><td>Press on any button</td><td>background, 1px inset</td><td>fast 140 ms</td><td>standard 0.2,0,0,1</td><td>instant 0</td></tr>
+<tr><td>Sheet / dialog enter</td><td>transform Y + opacity</td><td>slow 300 ms</td><td>decelerate 0,0,0,1</td><td>opacity only, instant 0</td></tr>
+<tr><td>Sheet / dialog leave</td><td>transform Y + opacity</td><td>base 200 ms</td><td>accelerate 0.3,0,1,1</td><td>instant 0</td></tr>
+<tr><td>Backdrop</td><td>opacity 0 to 72%</td><td>same as its layer</td><td>same as its layer</td><td>instant 0</td></tr>
+<tr><td>Flier re-render</td><td>opacity cross-fade</td><td>base 200 ms</td><td>standard</td><td>instant swap</td></tr>
+<tr><td>Export done</td><td>one cross-fade of the status line</td><td>base 200 ms</td><td>standard</td><td>instant 0</td></tr>
+</tbody></table></div><p class="mtn">No overshoot, at most one thing moving at a time, only <code>transform</code> and <code>opacity</code>. Values come from <code>@dloizides/design-tokens</code> <code>DEFAULT_MOTION</code>; reduced motion = <code>prefers-reduced-motion: reduce</code> sets every duration to <code>instant</code>.</p></div><div class="q" data-qid="q5"><p class="qn"><span class="qi">Q5</span>R10 motion: the table below, from the design-tokens motion values; reduced motion makes every step instant. Approve?</p><ul class="opts"><li data-letter="A"><span class="lt">A</span><span>Approve</span></li><li data-letter="X"><span class="lt">X</span><span>Changes needed (note)</span></li><li data-letter="R"><span class="lt">R</span><span>None, redraw</span></li></ul><p class="why"></p></div></section><p class="foot">Values, audit figures and sources: <code>apps/flier-studio/docs/visual-language.md</code></p></main>
+
+<script>
+(function () {
+  'use strict';
+  // Contrast guard: a host page forced dark (or light) while the OS scheme differs left
+  // --ink-1 #111 on a dark background, so typed notes were invisible (2026-10-01).
+  (function () {
+    function lum(c) {
+      var m = (c || '').match(/[\d.]+/g); if (!m || m.length < 3) return null;
+      var v = m.slice(0, 3).map(function (x) { x = x / 255;
+        return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    }
+    var el = document.body, bg = null;
+    while (el && el.nodeType === 1) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && !/rgba\([^)]*,\s*0\)|transparent/.test(c)) { bg = c; break; }
+      el = el.parentElement;
+    }
+    var root = document.documentElement;
+    var probe = document.createElement('span');
+    probe.style.color = 'var(--ink-1, #111)'; document.body.appendChild(probe);
+    var lb = lum(bg || 'rgb(255,255,255)'), li = lum(getComputedStyle(probe).color);
+    probe.remove();
+    if (lb === null || li === null) return;
+    if ((Math.max(lb, li) + 0.05) / (Math.min(lb, li) + 0.05) >= 4.5) return;
+    var dark = lb < 0.2, set = dark
+      ? ['#141414', '#f0efec', '#a8a49c', '#6f6b64', 'rgba(255,255,255,.06)', '#333029']
+      : ['#ffffff', '#111111', '#555555', '#8a8a8a', 'rgba(0,0,0,.05)', '#e2e2de'];
+    ['--paper', '--ink-1', '--ink-2', '--ink-3', '--rule-1', '--rule-2'].forEach(
+      function (k, i) { root.style.setProperty(k, set[i]); });
+  })();
+  var DOCKEY = 'flier-vf-p2';
+  var DOCTITLE = 'Flier Studio Visual Rules 2';
+  var LS = 'answers:' + DOCKEY;
+  var state = {};
+  var db = null;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(LS);
+      if (raw) state = JSON.parse(raw) || {};
+    } catch (e) { state = {}; }
+  }
+
+  function persistLocal() {
+    try { window.localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function persistDb(qid) {
+    if (!db) return;
+    var v = state[qid] || {};
+    db.doc('answers/' + qid).set({
+      question: v.question || '',
+      choice: v.choice || '',
+      choiceText: v.choiceText || '',
+      note: v.note || '',
+      doc: DOCKEY,
+      updatedAt: new Date().toISOString()
+    }).catch(function () { /* keep the local copy; export still works */ });
+  }
+
+  function save(qid) { persistLocal(); persistDb(qid); }
+
+  var blocks = [];
+
+  function render() {
+    var done = 0;
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      b.el.classList.toggle('answered', !!v.choice);
+      if (v.choice) done++;
+      b.opts.forEach(function (li) {
+        var on = li.getAttribute('data-letter') === v.choice;
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        li.setAttribute('tabindex', on || (!v.choice && li === b.opts[0]) ? '0' : '-1');
+      });
+      b.status.textContent = v.choice ? 'answered — ' : 'not answered yet';
+      if (v.choice) {
+        var bb = document.createElement('b');
+        bb.textContent = v.choice;
+        b.status.appendChild(bb);
+      }
+      if (b.note.value !== (v.note || '')) b.note.value = v.note || '';
+    });
+    if (bar) {
+      bar.prog.innerHTML = '<b>' + done + '</b> of ' + blocks.length + ' answered';
+    }
+  }
+
+  function choose(b, letter, text) {
+    var v = state[b.qid] || {};
+    if (v.choice === letter) { delete v.choice; delete v.choiceText; }
+    else { v.choice = letter; v.choiceText = text; }
+    v.question = b.question;
+    state[b.qid] = v;
+    save(b.qid);
+    render();
+  }
+
+  function buildExport() {
+    var out = ['# Answers \u2014 ' + DOCTITLE,
+               'recorded ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+               ''];
+    blocks.forEach(function (b) {
+      var v = state[b.qid] || {};
+      out.push('## ' + b.qid.toUpperCase() + ' \u2014 ' + b.question);
+      out.push(v.choice
+        ? '**Answer: ' + v.choice + '** \u2014 ' + (v.choiceText || '')
+        : '**Answer: (not answered)**');
+      if (v.note) out.push('Note: ' + v.note);
+      out.push('');
+    });
+    return out.join('\n');
+  }
+
+  var bar = null;
+
+  function buildBar(firstQ) {
+    var el = document.createElement('div');
+    el.className = 'qbar';
+    el.innerHTML =
+      '<span class="prog"></span>' +
+      '<span class="acts">' +
+      '<button type="button" class="clr">Clear all</button>' +
+      '<button type="button" class="prim exp">Export answers</button>' +
+      '</span>' +
+      '<span class="mode"></span>';
+    var wrap = document.createElement('div');
+    wrap.className = 'expwrap';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-label', 'Exported answers');
+    wrap.innerHTML = '<div class="exphead">Your answers' +
+      '<span><button type="button" class="prim cpy">Copy</button>' +
+      '<button type="button" class="cls">Close</button></span></div>' +
+      '<textarea readonly aria-label="Answers for export"></textarea>' +
+      '<p class="hint">Press Copy, then paste the text into the conversation.</p>';
+    var section = firstQ.closest ? firstQ.closest('section') : null;
+    var anchor = section && section.parentNode ? section : firstQ;
+    anchor.parentNode.insertBefore(el, anchor);
+    document.body.appendChild(wrap);
+
+    bar = {
+      el: el,
+      prog: el.querySelector('.prog'),
+      mode: el.querySelector('.mode'),
+      exportBtn: el.querySelector('.exp'),
+      wrap: wrap,
+      ta: wrap.querySelector('textarea'),
+      hint: wrap.querySelector('.hint')
+    };
+
+    function closeExport() { wrap.classList.remove('on'); bar.exportBtn.focus(); }
+    wrap.querySelector('.cls').addEventListener('click', closeExport);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) closeExport();
+    });
+    wrap.querySelector('.cpy').addEventListener('click', function () {
+      bar.ta.focus();
+      bar.ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText)
+          navigator.clipboard.writeText(bar.ta.value).then(function () {
+            bar.hint.textContent = 'Copied. Paste it into the conversation.';
+          }, function () {});
+      } catch (e) {}
+      bar.hint.textContent = ok ? 'Copied. Paste it into the conversation.'
+        : 'The text is selected: press Ctrl+C (Cmd+C on a Mac), then paste it into the conversation.';
+    });
+
+    el.querySelector('.clr').addEventListener('click', function () {
+      blocks.forEach(function (b) {
+        state[b.qid] = { question: b.question, note: (state[b.qid] || {}).note || '' };
+        delete state[b.qid].choice;
+        save(b.qid);
+      });
+      render();
+    });
+
+    bar.exportBtn.addEventListener('click', function () {
+      var txt = buildExport();
+      bar.ta.value = txt;
+      bar.wrap.classList.add('on');
+      bar.hint.textContent = 'Press Copy, then paste the text into the conversation.';
+      bar.ta.focus();
+      bar.ta.select();
+    });
+  }
+
+  function init() {
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.q[data-qid]'));
+    if (!qs.length) return;
+
+    qs.forEach(function (el) {
+      var qid = el.getAttribute('data-qid');
+      var qn = el.querySelector('.qn');
+      var question = qn ? qn.textContent.replace(/\s+/g, ' ').replace(/^\s*Q\d+\s*/, '').trim() : qid;
+      var opts = Array.prototype.slice.call(el.querySelectorAll('.opts li[data-letter]'));
+      var group = el.querySelector('.opts');
+      if (group) group.setAttribute('role', 'radiogroup');
+
+      var box = document.createElement('div');
+      box.className = 'ansbox';
+      box.innerHTML = '<span class="st"></span>' +
+        '<textarea class="note-in" rows="2" placeholder="Optional \u2014 a caveat, a ' +
+        'condition, or why not the recommendation."></textarea>';
+      var oldAns = el.querySelector('.ans');
+      if (oldAns) oldAns.parentNode.replaceChild(box, oldAns);
+      else el.appendChild(box);
+
+      var b = {
+        el: el, qid: qid, question: question, opts: opts,
+        status: box.querySelector('.st'), note: box.querySelector('.note-in')
+      };
+
+      opts.forEach(function (li) {
+        li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
+        var span = li.querySelector('span:last-child');
+        var text = (span ? span.textContent : li.textContent)
+          .replace(/\s+/g, ' ').replace(/\s*recommended\s*$/i, '').trim();
+        li.addEventListener('click', function () {
+          choose(b, li.getAttribute('data-letter'), text);
+        });
+        li.addEventListener('keydown', function (ev) {
+          if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            choose(b, li.getAttribute('data-letter'), text);
+          }
+        });
+      });
+
+      b.note.addEventListener('input', function () {
+        var v = state[qid] || {};
+        v.note = b.note.value;
+        v.question = question;
+        state[qid] = v;
+        persistLocal();
+      });
+      b.note.addEventListener('blur', function () { persistDb(qid); });
+
+      blocks.push(b);
+    });
+
+    load();
+    buildBar(qs[0]);
+    render();
+
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('db').then(function (d) {
+        if (!d) { setMode('saved in this browser only'); return; }
+        db = d;
+        setMode('saved to this page \u2014 Claude can read these answers back');
+        d.collection('answers').get().then(function (snap) {
+          var touched = false;
+          snap.docs.forEach(function (doc) {
+            var data = doc.data() || {};
+            var cur = state[doc.id] || {};
+            if (!cur.choice && !cur.note && (data.choice || data.note)) {
+              state[doc.id] = {
+                question: data.question || cur.question || '',
+                choice: data.choice || '', choiceText: data.choiceText || '',
+                note: data.note || ''
+              };
+              touched = true;
+            }
+          });
+          if (touched) { persistLocal(); render(); }
+        }).catch(function () {});
+      }).catch(function () { setMode('saved in this browser only'); });
+    } else {
+      setMode('saved in this browser only');
+    }
+  }
+
+  function setMode(t) { if (bar) bar.mode.textContent = t; }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

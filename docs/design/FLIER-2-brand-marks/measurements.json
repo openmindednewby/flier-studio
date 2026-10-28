@@ -1,0 +1,98 @@
+{
+ "A": {
+  "stats_fav16": "size      16x16\nL*        p10 17  p50 98  p90 98\nsaturated 0.00%\nedges     40.8%  (rule 4 on the work surface: <= 8%)",
+  "stats_og": "size      1200x630\nL*        p10 24  p50 92  p90 92\nsaturated 0.00%\nedges     11.8%  (rule 4 on the work surface: <= 8%)",
+  "layers_pwa512_views": {
+   "A-pwa512-deutan.png": "mark           L*  17.1\npaper          L*  98.2\nmark -> paper: 81.1 ok",
+   "A-pwa512-grey.png": "mark           L*  17.5\npaper          L*  98.3\nmark -> paper: 80.7 ok",
+   "A-pwa512-protan.png": "mark           L*  16.5\npaper          L*  97.9\nmark -> paper: 81.4 ok",
+   "A-pwa512-squint.png": "mark           L*  17.5\npaper          L*  98.3\nmark -> paper: 80.7 ok",
+   "A-pwa512-tritan.png": "mark           L*  16.6\npaper          L*  98.1\nmark -> paper: 81.4 ok"
+  },
+  "fav16_ink_pct": 25.0,
+  "fav16_grid": [
+   ".....#....#.....",
+   ".....#....#.....",
+   "................",
+   "................",
+   ".##..######..##.",
+   ".....######.....",
+   ".....######.....",
+   ".....######.....",
+   ".....######.....",
+   ".....######.....",
+   ".....######.....",
+   ".##..######..##.",
+   "................",
+   "................",
+   ".....#....#.....",
+   ".....#....#....."
+  ],
+  "swatch_light": "#2f2925   L*  17.1  saturated False\n#fbfaf8   L*  98.3  saturated False\n#2f2925 vs #fbfaf8: dL*  81.2  contrast 13.74:1",
+  "swatch_dark": "#e8dccb   L*  88.3  saturated False\n#25221e   L*  13.4  saturated False\n#e8dccb vs #25221e: dL*  74.9  contrast 11.71:1"
+ },
+ "B": {
+  "stats_fav16": "size      16x16\nL*        p10 17  p50 98  p90 98\nsaturated 0.00%\nedges     42.9%  (rule 4 on the work surface: <= 8%)",
+  "stats_og": "size      1200x630\nL*        p10 24  p50 92  p90 92\nsaturated 0.00%\nedges     11.2%  (rule 4 on the work surface: <= 8%)",
+  "layers_pwa512_views": {
+   "B-pwa512-deutan.png": "mark           L*  17.1\npaper          L*  98.2\nmark -> paper: 81.1 ok",
+   "B-pwa512-grey.png": "mark           L*  17.5\npaper          L*  98.3\nmark -> paper: 80.7 ok",
+   "B-pwa512-protan.png": "mark           L*  16.5\npaper          L*  97.9\nmark -> paper: 81.4 ok",
+   "B-pwa512-squint.png": "mark           L*  17.5\npaper          L*  98.3\nmark -> paper: 80.7 ok",
+   "B-pwa512-tritan.png": "mark           L*  16.6\npaper          L*  98.1\nmark -> paper: 81.4 ok"
+  },
+  "fav16_ink_pct": 26.6,
+  "fav16_grid": [
+   "................",
+   "................",
+   "...#########....",
+   "...#########....",
+   "...##...........",
+   "...##...........",
+   "...##...........",
+   "...#######......",
+   "...#######..##..",
+   "...##.......##..",
+   "...##.......##..",
+   "...##.......##..",
+   "...##...######..",
+   "...##...######..",
+   "................",
+   "................"
+  ],
+  "swatch_light": "#2f2925   L*  17.1  saturated False\n#fbfaf8   L*  98.3  saturated False\n#2f2925 vs #fbfaf8: dL*  81.2  contrast 13.74:1",
+  "swatch_dark": "#e8dccb   L*  88.3  saturated False\n#25221e   L*  13.4  saturated False\n#e8dccb vs #25221e: dL*  74.9  contrast 11.71:1"
+ },
+ "C": {
+  "stats_fav16": "size      16x16\nL*        p10 17  p50 98  p90 98\nsaturated 0.00%\nedges     26.5%  (rule 4 on the work surface: <= 8%)",
+  "stats_og": "size      1200x630\nL*        p10 24  p50 92  p90 92\nsaturated 0.00%\nedges     11.4%  (rule 4 on the work surface: <= 8%)",
+  "layers_pwa512_views": {
+   "C-pwa512-deutan.png": "mark           L*  17.1\npaper          L*  98.2\nmark -> paper: 81.1 ok",
+   "C-pwa512-grey.png": "mark           L*  17.5\npaper          L*  98.3\nmark -> paper: 80.7 ok",
+   "C-pwa512-protan.png": "mark           L*  16.5\npaper          L*  97.9\nmark -> paper: 81.4 ok",
+   "C-pwa512-squint.png": "mark           L*  17.5\npaper          L*  98.3\nmark -> paper: 80.7 ok",
+   "C-pwa512-tritan.png": "mark           L*  16.6\npaper          L*  98.1\nmark -> paper: 81.4 ok"
+  },
+  "fav16_ink_pct": 38.3,
+  "fav16_grid": [
+   "................",
+   "..........#.....",
+   ".........###....",
+   "........#####...",
+   ".......##.#.#...",
+   "..#############.",
+   "..####.##.#.#...",
+   "..#####.#####...",
+   "..#####...#.....",
+   "..#######.#.....",
+   "..########......",
+   "..########......",
+   "..########......",
+   "..########......",
+   "..########......",
+   "................"
+  ],
+  "swatch_light": "#2f2925   L*  17.1  saturated False\n#fbfaf8   L*  98.3  saturated False\n#2f2925 vs #fbfaf8: dL*  81.2  contrast 13.74:1",
+  "swatch_dark": "#e8dccb   L*  88.3  saturated False\n#25221e   L*  13.4  saturated False\n#e8dccb vs #25221e: dL*  74.9  contrast 11.71:1"
+ }
+}

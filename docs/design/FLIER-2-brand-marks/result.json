@@ -1,0 +1,284 @@
+{
+ "task": "FLIER-2 \"Flier Studio follow-ups\" VISUAL-1 page 3 (R11 mark)",
+ "pairMethod": "same-steps",
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "none: brand assets, no form rows; not tool-discovered",
+ "note": "noloss: allow new screen -- brand mark/wordmark are new assets",
+ "options": {
+  "MARK-A": {
+   "inventory": "7/7",
+   "items": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  "MARK-B": {
+   "inventory": "7/7",
+   "items": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  "MARK-C": {
+   "inventory": "7/7",
+   "items": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  }
+ },
+ "frames": [
+  {
+   "option": "MARK-A",
+   "shot": "owned brand surfaces",
+   "side": "before",
+   "build": "live assets 95d91d2 (audit captures)",
+   "pair": {
+    "route": "owned brand surfaces",
+    "state": "as served",
+    "fixture": "none (no customer data)",
+    "viewport": "native asset sizes",
+    "scrollAnchor": "none",
+    "crop": "whole asset"
+   },
+   "visibleItems": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  {
+   "option": "MARK-A",
+   "shot": "owned brand surfaces",
+   "side": "after",
+   "build": "rendered candidate A (Playwright, native sizes)",
+   "pair": {
+    "route": "owned brand surfaces",
+    "state": "as served",
+    "fixture": "none (no customer data)",
+    "viewport": "native asset sizes",
+    "scrollAnchor": "none",
+    "crop": "whole asset"
+   },
+   "visibleItems": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  {
+   "option": "MARK-B",
+   "shot": "owned brand surfaces",
+   "side": "before",
+   "build": "live assets 95d91d2 (audit captures)",
+   "pair": {
+    "route": "owned brand surfaces",
+    "state": "as served",
+    "fixture": "none (no customer data)",
+    "viewport": "native asset sizes",
+    "scrollAnchor": "none",
+    "crop": "whole asset"
+   },
+   "visibleItems": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  {
+   "option": "MARK-B",
+   "shot": "owned brand surfaces",
+   "side": "after",
+   "build": "rendered candidate B (Playwright, native sizes)",
+   "pair": {
+    "route": "owned brand surfaces",
+    "state": "as served",
+    "fixture": "none (no customer data)",
+    "viewport": "native asset sizes",
+    "scrollAnchor": "none",
+    "crop": "whole asset"
+   },
+   "visibleItems": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C",
+   "shot": "owned brand surfaces",
+   "side": "before",
+   "build": "live assets 95d91d2 (audit captures)",
+   "pair": {
+    "route": "owned brand surfaces",
+    "state": "as served",
+    "fixture": "none (no customer data)",
+    "viewport": "native asset sizes",
+    "scrollAnchor": "none",
+    "crop": "whole asset"
+   },
+   "visibleItems": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  },
+  {
+   "option": "MARK-C",
+   "shot": "owned brand surfaces",
+   "side": "after",
+   "build": "rendered candidate C (Playwright, native sizes)",
+   "pair": {
+    "route": "owned brand surfaces",
+    "state": "as served",
+    "fixture": "none (no customer data)",
+    "viewport": "native asset sizes",
+    "scrollAnchor": "none",
+    "crop": "whole asset"
+   },
+   "visibleItems": {
+    "before": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ],
+    "after": [
+     "favicon-16",
+     "favicon-32",
+     "pwa-192",
+     "pwa-512-maskable",
+     "og-card",
+     "landing-card",
+     "app-header"
+    ]
+   }
+  }
+ ]
+}

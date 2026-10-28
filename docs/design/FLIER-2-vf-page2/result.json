@@ -1,0 +1,586 @@
+{
+ "task": "FLIER-2 \"Flier Studio follow-ups\" VISUAL-1 page 2",
+ "pairMethod": "same-steps",
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "none: no side-by-side form rows in any frame (single-column 360 mockups); not tool-discovered",
+ "note": "rule approval page, no redesign; both sides are schematic mockups of the same route, state and crop",
+ "options": {
+  "R2R8": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  "R7": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  "R345": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  "R9": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  "R10": {
+   "inventory": "11/11",
+   "items": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  }
+ },
+ "frames": [
+  {
+   "option": "R2R8",
+   "shot": "form",
+   "side": "before",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R2R8",
+   "shot": "form",
+   "side": "after",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R7",
+   "shot": "form",
+   "side": "before",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, dark",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R7",
+   "shot": "form",
+   "side": "after",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, dark",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R345",
+   "shot": "form",
+   "side": "before",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R345",
+   "shot": "form",
+   "side": "after",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R9",
+   "shot": "form",
+   "side": "before",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R9",
+   "shot": "form",
+   "side": "after",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R10",
+   "shot": "form",
+   "side": "before",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  },
+  {
+   "option": "R10",
+   "shot": "form",
+   "side": "after",
+   "build": "schematic mockup (before = today, after = proposed rule)",
+   "pair": {
+    "route": "/",
+    "state": "form top, first load, light",
+    "fixture": "Kizomba preset, 4 fliers (default)",
+    "viewport": "360x640",
+    "scrollAnchor": "title",
+    "crop": "first screen"
+   },
+   "visibleItems": {
+    "before": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ],
+    "after": [
+     "title",
+     "lead",
+     "prompt-heading",
+     "describe-label",
+     "prompt-textarea",
+     "generate",
+     "flier-heading",
+     "editing-count",
+     "mini-thumb",
+     "mini-label",
+     "see-all"
+    ]
+   }
+  }
+ ]
+}

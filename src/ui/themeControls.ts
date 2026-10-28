@@ -1,4 +1,3 @@
-import { EditScope } from '../form/EditScope';
 import { FM } from '../i18n/fm';
 import { THEMES, type FlierTheme } from '../theme/themes';
 import { el, labelled } from './dom';
@@ -6,22 +5,15 @@ import { el, labelled } from './dom';
 export interface ThemeActions {
   theme(): string;
   setTheme(id: string): void;
-  themeScope(): EditScope;
-  setThemeScope(scope: EditScope): void;
 }
 
-function options(node: HTMLSelectElement, entries: readonly [string, string][], value: string): HTMLSelectElement {
-  node.append(...entries.map(([v, text]) => el('option', { value: v, text })));
-  node.value = value;
-  return node;
-}
-
-/** The Theme picker and its this flier / all fliers scope, side by side in one form row. */
-export function themeRow(actions: ThemeActions, themes: readonly FlierTheme[] = THEMES): HTMLElement {
-  const pick = options(el('select', { 'data-testid': 'pick-theme' }), themes.map((t) => [t.id, FM(t.nameKey)]), actions.theme());
-  const scopes = [EditScope.This, EditScope.All].map((s): [string, string] => [s, FM(`form.themeScopes.${s}`)]);
-  const scope = options(el('select', { 'data-testid': 'pick-theme-scope' }), scopes, actions.themeScope());
+/** The Theme picker; a change puts every flier on the theme. */
+export function themePicker(actions: ThemeActions, themes: readonly FlierTheme[] = THEMES): { label: HTMLLabelElement; pick: HTMLSelectElement } {
+  const pick = el('select', { 'data-testid': 'pick-theme' });
+  pick.append(...themes.map((t) => el('option', { value: t.id, text: FM(t.nameKey) })));
+  pick.value = actions.theme();
   pick.addEventListener('change', () => actions.setTheme(pick.value));
-  scope.addEventListener('change', () => actions.setThemeScope(scope.value as EditScope));
-  return el('div', { class: 'row stack-narrow', 'data-testid': 'theme-row' }, [labelled('form.theme', pick), labelled('form.themeScope', scope)]);
+  const label = labelled('form.theme', pick);
+  label.dataset.testid = 'theme-row';
+  return { label, pick };
 }

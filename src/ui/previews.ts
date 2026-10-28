@@ -24,9 +24,38 @@ function problem(doc: FlierDoc, error: string): HTMLParagraphElement {
   return el('p', { class: 'error', role: 'alert', text: FM('form.invalid', error) });
 }
 
+const DOUBLE_TAP_MS = 300;
+
+function selectable(trim: HTMLElement, i: number, view: PreviewView): HTMLElement {
+  const tap = { last: 0 };
+  trim.addEventListener('click', () => view.select(i));
+  trim.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    view.select(i);
+  });
+  trim.addEventListener('dblclick', () => view.enlarge(i, trim));
+  trim.addEventListener('pointerup', (e) => {
+    if (e.pointerType !== 'touch') return;
+    const twice = e.timeStamp - tap.last < DOUBLE_TAP_MS;
+    tap.last = twice ? 0 : e.timeStamp;
+    if (twice) view.enlarge(i, trim);
+  });
+  return trim;
+}
+
+/** Marks flier `index` selected (crop marks + aria-selected) without redrawing. */
+export function markSelected(container: HTMLElement, index: number): void {
+  container.querySelectorAll('figure').forEach((figure, i) => {
+    figure.classList.toggle('selected', i === index);
+    figure.querySelector('[role="option"]')?.setAttribute('aria-selected', String(i === index));
+  });
+}
+
 export interface PreviewView {
   selected: number;
   select: (i: number) => void;
+  enlarge: (i: number, from: HTMLElement) => void;
   fonts?: FontLoader;
 }
 
@@ -40,8 +69,9 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     canvas.setAttribute('aria-label', doc.blocks.title);
     const error = draw(doc, assets, canvas);
     const n = String(i + 1);
-    return el('figure', { class: i === selected ? 'selected' : '', 'data-testid': `preview-${n}` }, [
-      error === null ? el('div', { class: 'trim' }, [canvas]) : problem(doc, error),
+    const trim = el('div', { class: 'trim', role: 'option', tabindex: '0', 'aria-selected': String(i === selected), 'aria-label': FM('previews.flier', n, doc.blocks.title) }, [canvas]);
+    return el('figure', { class: i === selected ? 'selected' : '', role: 'none', 'data-testid': `preview-${n}` }, [
+      error === null ? selectable(trim, i, view) : problem(doc, error),
       el('figcaption', { class: 'row' }, [
         textButton(FM('previews.edit', n), `edit-${n}`, () => select(i)),
         button('previews.download', `download-${n}`, () => void downloadCanvas(canvas, doc, i)),

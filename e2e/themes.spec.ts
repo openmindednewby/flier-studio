@@ -33,17 +33,17 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     await page.goto('/');
     await page.locator('canvas').first().waitFor();
     const theme = page.getByTestId('pick-theme');
-    const scope = page.getByTestId('pick-theme-scope');
+    const scope = page.getByTestId('pick-scope');
 
     await expect(page.getByRole('combobox', { name: 'Theme', exact: true })).toBeVisible();
 
     await expect(theme.locator('option:checked')).toHaveText('Kizomba classic');
-    await expect(scope.locator('option')).toHaveText(['This flier only', 'All fliers']);
+    await expect(scope.locator('option')).toHaveText(['This flier only', 'All fliers (footer, level names, class price)']);
     for (const control of [theme, scope]) expect((await control.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(HIT);
     const overflowing = await page.getByTestId('theme-row').evaluate((row) =>
       [...row.querySelectorAll<HTMLElement>('span, select')].filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.textContent));
     expect(overflowing).toEqual([]);
-    if (info.project.name === 'desktop') await expectFieldsAligned(page, '[data-testid="theme-row"]');
+    if (info.project.name === 'desktop') await expectFieldsAligned(page, '[data-testid="all-fliers-row"]');
     else expect((await scope.boundingBox())?.y ?? 0).toBeGreaterThanOrEqual(((await theme.boundingBox())?.y ?? 0) + HIT);
   });
 
@@ -85,7 +85,6 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     await page.goto('/');
     const before = await renders(page);
     const text = await contentOf(page);
-    await page.getByTestId('pick-theme-scope').selectOption({ label: 'All fliers' });
 
     await page.getByTestId('pick-theme').selectOption({ label: 'Golden hour' });
 

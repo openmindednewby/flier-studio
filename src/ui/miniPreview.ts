@@ -15,6 +15,8 @@ export interface MiniPreviewActions {
 
 export interface MiniPreview {
   readonly bar: HTMLElement;
+  readonly sheet: HTMLDialogElement;
+  enlarge: (source: HTMLCanvasElement | undefined, index: number, opener: HTMLElement) => void;
   update: (source: HTMLCanvasElement | undefined, index: number, total: number) => void;
 }
 
@@ -36,13 +38,17 @@ function setLabel(node: HTMLElement, label: string): void {
   node.setAttribute('aria-description', FM('hint.button', label));
 }
 
-function createSheet(): { dialog: HTMLDialogElement; show: (source: HTMLCanvasElement, index: number) => void } {
+function createSheet(): { dialog: HTMLDialogElement; show: (source: HTMLCanvasElement, index: number, opener?: HTMLElement) => void } {
   const full = el('canvas', { role: 'img' });
   const close = textButton(FM('mini.close'), 'mini-close', () => dialog.close(), 'primary');
   close.setAttribute('autofocus', '');
   const dialog = el('dialog', { class: 'mini-sheet', 'data-testid': 'mini-sheet' }, [full, close]);
+  const back = { opener: undefined as HTMLElement | undefined };
   dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-  const show = (source: HTMLCanvasElement, index: number): void => {
+  dialog.addEventListener('close', () => back.opener?.focus());
+  const show = (source: HTMLCanvasElement, index: number, opener?: HTMLElement): void => {
+    if (dialog.open) return;
+    back.opener = opener;
     copyInto(full, source, source.width, source.height);
     const name = FM('mini.sheet', String(index + 1));
     dialog.setAttribute('aria-label', name);
@@ -62,7 +68,7 @@ export function createMiniPreview(actions: MiniPreviewActions): MiniPreview {
   const shown = { source: undefined as HTMLCanvasElement | undefined, index: 0 };
   open.addEventListener('click', () => { if (shown.source) sheet.show(shown.source, shown.index); });
   const text = el('div', { class: 'mini-text' }, [position, el('span', { class: 'muted', text: FM('mini.label') })]);
-  const bar = el('aside', { class: 'mini-preview', 'data-testid': 'mini-preview', 'aria-label': FM('mini.bar') }, [open, text, seeAll, sheet.dialog]);
+  const bar = el('aside', { class: 'mini-preview', 'data-testid': 'mini-preview', 'aria-label': FM('mini.bar') }, [open, text, seeAll]);
 
   const update = (source: HTMLCanvasElement | undefined, index: number, total: number): void => {
     Object.assign(shown, { source, index });
@@ -77,5 +83,6 @@ export function createMiniPreview(actions: MiniPreviewActions): MiniPreview {
     thumb.style.width = `${String(size.width)}px`;
     thumb.style.height = `${String(size.height)}px`;
   };
-  return { bar, update };
+  const enlarge = (source: HTMLCanvasElement | undefined, index: number, opener: HTMLElement): void => { if (source) sheet.show(source, index, opener); };
+  return { bar, sheet: sheet.dialog, update, enlarge };
 }

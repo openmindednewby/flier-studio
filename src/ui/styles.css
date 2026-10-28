@@ -46,7 +46,12 @@ main {
   min-width: 0;
 }
 
-label { display: grid; gap: 4px; font-size: 0.9rem; min-width: 0; }
+label { display: grid; gap: 8px; min-width: 0; }
+label > span:first-child { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+.label-head { display: flex; justify-content: space-between; gap: 8px; }
+.label-head output { color: var(--text); font-variant-numeric: tabular-nums; }
+.group { display: grid; gap: 12px; margin-top: 12px; min-width: 0; }
+.group > h3 { margin: 0; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
 
 button, select, input, textarea, .file {
   min-height: var(--hit);
@@ -70,6 +75,7 @@ button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-
 
 .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
 .row > * { flex: 1 1 140px; }
+.row.actions > button { align-self: stretch; }
 .row.head { align-items: center; margin-bottom: 12px; }
 .row.head > h2 { flex: 1 1 auto; margin: 0; }
 .row.head > button { flex: 0 1 auto; width: auto; }

@@ -26,6 +26,11 @@ test('Remove background cuts the flier picture on the device, opens on Use cut-o
   await expect(page.locator('#cutout-title')).toBeInViewport({ ratio: 1 });
 
   await expect(page.getByTestId('cutout-use')).toBeFocused();
+  await expect(page.getByTestId('cutout-erase')).toHaveAccessibleName('Erase');
+  expect(await page.getByTestId('cutout-erase').evaluate((b) => getComputedStyle(b, '::before').content)).toContain('\u2713\u00a0');
+  const dialogBox = await dialog.boundingBox();
+  const statusAtTop = await page.evaluate(([x, y]) => document.elementFromPoint(x, y)?.closest('[data-testid="cutout-status"]') !== null, [(dialogBox?.x ?? 0) + MIN_HIT, (dialogBox?.y ?? 0) + 2]);
+  expect(statusAtTop).toBe(false);
   const small = await dialog.evaluate((d, min) => [...d.querySelectorAll('button, input')]
     .filter((e) => { const r = e.getBoundingClientRect(); return r.width < min || r.height < min; }).map((e) => e.outerHTML.slice(0, 80)), MIN_HIT);
   const clipped = await dialog.evaluate((d) => [d, ...d.querySelectorAll('button, label, h2, p')]
@@ -41,6 +46,8 @@ test('Remove background cuts the flier picture on the device, opens on Use cut-o
   await page.mouse.move(x + 20, y + 20);
   await page.mouse.up();
   const shownWidth = await page.getByTestId('cutout-canvas').evaluate((c) => c.clientWidth);
+  await page.getByTestId('cutout-keep').click();
+  await expect(page.getByTestId('cutout-keep')).toHaveAccessibleName('Keep');
   await page.getByTestId('cutout-zoom-in').click();
   await page.getByTestId('cutout-zoom-in').click();
   await expect(page.getByTestId('cutout-zoom')).toHaveText('3x');

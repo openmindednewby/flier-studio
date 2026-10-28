@@ -1,6 +1,6 @@
 # FLIER-2 "Flier Studio follow-ups" AC-18..23 options: where the settings for all fliers live
 
-Status: **Critic pending — do not pick.** Page: index.html (published artifact, link in the task doc). Before = live https://fliers.dloizides.com at 98ca2bc; after = the same build with the option drawn in by `mockups.ts`. Pairs: same route, steps, fixture, viewport, anchor (`result.json`, `pairMethod: same-steps`). Inventory 63 items, role Visitor: `BaseClient/docs/Tasks/TODO/flier-studio/FLIER-2-flier-studio-followups/FLIER-2-AC18-20-inventory.md`.
+Status: **Withdrawn — do not pick.** design-critic 2026-10-28: A REDO (taste #1 = 2), B REDO + C REDO (hard fail: form row at 360); `critique-2026-10-28.md`. Page: index.html (published artifact, link in the task doc). Before = live https://fliers.dloizides.com at 98ca2bc; after = the same build with the option drawn in by `mockups.ts`. Pairs: same route, steps, fixture, viewport, anchor (`result.json`, `pairMethod: same-steps`). Inventory 63 items, role Visitor: `BaseClient/docs/Tasks/TODO/flier-studio/FLIER-2-flier-studio-followups/FLIER-2-AC18-20-inventory.md`.
 
 | Option | Inventory | Aligned | All fliers section | Drafts + Favourites | Enlarge (double-click) | Focus on enlarge |
 |---|---|---|---|---|---|---|

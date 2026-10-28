@@ -1,5 +1,8 @@
 @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 500 700; font-display: block; src: url('/fonts/oswald-latin-wght.woff2') format('woff2'); }
 @font-face { font-family: 'Sacramento'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/sacramento-latin-400.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 100 900; font-display: block; src: url('/fonts/fraunces-latin-wght.woff2') format('woff2'); }
+@font-face { font-family: 'Allura'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/allura-latin-400.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 100 900; font-display: block; src: url('/fonts/jost-latin-wght.woff2') format('woff2'); }
 @font-face { font-family: 'Fredoka'; font-style: normal; font-weight: 500 700; font-display: block; src: url('/fonts/fredoka-latin-wght.woff2') format('woff2'); }
 
 :root {

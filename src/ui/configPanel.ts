@@ -7,7 +7,8 @@ import { shareRow } from './shareControls';
 
 export interface ConfigActions {
   current(): FlierDoc[];
-  apply(docs: FlierDoc[]): void;
+  currentThemes(): string[];
+  apply(docs: FlierDoc[], themes?: readonly string[] | null): void;
   status(message: string): void;
 }
 
@@ -31,7 +32,7 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
   };
   const load = (): void => {
     const docs = store.load(saved.value);
-    if (docs) { actions.apply(docs); name.value = saved.value; actions.status(FM('config.loaded', saved.value)); }
+    if (docs) { actions.apply(docs, store.themesOf(saved.value)); name.value = saved.value; actions.status(FM('config.loaded', saved.value)); }
   };
   const rename = withName((value) => {
     const ok = store.rename(saved.value, value);
@@ -53,7 +54,7 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
   container.replaceChildren(
     el('h2', { text: FM('config.heading') }),
     el('div', { class: 'row' }, [labelled('config.name', name), button('config.save', 'config-save', withName((value) => {
-      store.save(value, actions.current()); refresh(value); actions.status(FM('config.saved', value));
+      store.save(value, actions.current(), actions.currentThemes()); refresh(value); actions.status(FM('config.saved', value));
     }), 'primary')]),
     el('div', { class: 'row' }, [labelled('config.pick', saved)]),
     el('div', { class: 'row' }, [
@@ -61,7 +62,7 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
       button('config.delete', 'config-delete', remove), button('config.export', 'config-export', () => exportConfig(store, saved.value)),
       fileButton('config.import', 'config-import', 'application/json,.json', (f) => void importFile(f)),
     ]),
-    shareRow(actions.current, actions.status),
+    shareRow(actions.current, actions.status, actions.currentThemes),
     button('config.preset', 'config-preset', () => actions.apply(kizombaPreset())),
   );
   refresh();

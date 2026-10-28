@@ -8,11 +8,11 @@ function copy(text: string): Promise<boolean> {
 }
 
 /** The Share row: builds a link holding the flier set in its fragment, shows it and copies it. */
-export function shareRow(current: () => FlierDoc[], status: (message: string) => void): HTMLElement {
+export function shareRow(current: () => FlierDoc[], status: (message: string) => void, themes?: () => string[]): HTMLElement {
   const link = el('input', { type: 'text', readonly: '', 'data-testid': 'share-url' });
   const share = async (): Promise<void> => {
     const docs = current();
-    const { fragment, dropped } = await encodeShare(docs);
+    const { fragment, dropped } = await encodeShare(docs, themes?.());
     const url = `${location.origin}${location.pathname}#${SHARE_PARAM}=${fragment}`;
     link.value = url;
     const copied = await copy(url);

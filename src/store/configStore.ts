@@ -18,6 +18,7 @@ export interface SavedConfig {
   timestamp: number;
   name: string;
   docs: FlierDoc[];
+  themes?: string[];
 }
 
 export interface ConfigEntry extends IndexEntry {
@@ -59,7 +60,7 @@ export class ConfigStore {
     return this.index().map((e) => ({ ...e, timestamp: this.slots.meta(e.slot).timestamp }));
   }
 
-  public save(name: string, docs: readonly FlierDoc[]): void {
+  public save(name: string, docs: readonly FlierDoc[], themes?: readonly string[]): void {
     const index = this.index();
     let entry = index.find((e) => e.name === name);
     if (entry === undefined) {
@@ -67,12 +68,21 @@ export class ConfigStore {
       index.push(entry);
       writeJson(this.kv, INDEX_KEY, index);
     }
-    this.slots.save(entry.slot, { version: VERSION, timestamp: Date.now(), name, docs: cloneDocs(docs) });
+    const config: SavedConfig = { version: VERSION, timestamp: Date.now(), name, docs: cloneDocs(docs) };
+    if (themes !== undefined) config.themes = [...themes];
+    this.slots.save(entry.slot, config);
   }
 
   public load(name: string): FlierDoc[] | null {
     const entry = this.find(name);
     return entry === undefined ? null : (this.slots.load(entry.slot)?.docs ?? null);
+  }
+
+  /** The theme id of each flier in a config, or null for a config saved before themes. */
+  public themesOf(name: string): string[] | null {
+    const entry = this.find(name);
+    const themes = entry === undefined ? undefined : this.slots.load(entry.slot)?.themes;
+    return Array.isArray(themes) ? themes : null;
   }
 
   public rename(from: string, to: string): boolean {
@@ -101,12 +111,12 @@ export class ConfigStore {
   public importJson(json: string): ImportOutcome {
     const read = readImport(json);
     if (typeof read === 'string') return { ok: false, error: read };
-    return { ok: true, name: this.addNew(read.name, read.docs) };
+    return { ok: true, name: this.addNew(read.name, read.docs, read.themes) };
   }
 
-  public addNew(name: string, docs: readonly FlierDoc[]): string {
+  public addNew(name: string, docs: readonly FlierDoc[], themes?: readonly string[]): string {
     const free = this.freeName(name);
-    this.save(free, docs);
+    this.save(free, docs, themes);
     return free;
   }
 

@@ -96,20 +96,22 @@ function setTheme(id: string): void {
   refreshPreviews();
 }
 
-function apply(docs: FlierDoc[]): void {
-  state.fliers = docs.map((d) => toThemed(d));
+function apply(docs: FlierDoc[], themes?: readonly string[] | null): void {
+  state.fliers = docs.map((d, i) => toThemed(d, themeById(themes?.[i] ?? '')?.id));
   select(0);
 }
 
 function renderConfigs(): void {
-  renderConfigPanel(configBox, configs, { current: docsOf, apply, status: (m) => { status.textContent = m; } });
+  renderConfigPanel(configBox, configs, { current: docsOf, currentThemes: () => state.fliers.map((f) => f.themeId), apply, status: (m) => { status.textContent = m; } });
 }
 
 async function checkShare(): Promise<void> {
   const fragment = shareFragmentOf(location.hash);
   if (fragment === null) return;
-  openImportDialog(await decodeShare(fragment), {
-    accept: (docs) => { const names = importShared(configs, docs); renderConfigs(); status.textContent = FM('share.imported', String(names.length)); },
+  const decoded = await decodeShare(fragment);
+  const themesFor = (docs: FlierDoc[]): (string | undefined)[] => docs.map((d) => (decoded.ok ? decoded.themes?.[decoded.docs.indexOf(d)] : undefined));
+  openImportDialog(decoded, {
+    accept: (docs) => { const names = importShared(configs, docs, themesFor(docs)); renderConfigs(); status.textContent = FM('share.imported', String(names.length)); },
     closed: () => history.replaceState(null, '', location.pathname + location.search),
   });
 }

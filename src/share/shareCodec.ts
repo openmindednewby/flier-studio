@@ -9,13 +9,14 @@ export const MAX_PAYLOAD_BYTES = 262144;
 export const MAX_FLIERS = 24;
 const FORMAT = 'deflate-raw';
 const B64_BLOCK = 4;
+const MAX_THEME_ID = 64;
 
 export interface ShareEncoded {
   fragment: string;
   dropped: number;
 }
 
-export type ShareDecoded = { ok: true; docs: FlierDoc[]; dropped: number } | { ok: false; error: ShareError };
+export type ShareDecoded = { ok: true; docs: FlierDoc[]; dropped: number; themes?: string[] } | { ok: false; error: ShareError };
 
 const isBuiltIn = (id: string | undefined): boolean => id === undefined || KIZOMBA_ASSET_URLS[id] !== undefined;
 
@@ -65,9 +66,10 @@ export async function packPayload(value: unknown): Promise<string> {
 }
 
 /** Encodes the flier set for a share link; uploaded images are left out and counted. */
-export async function encodeShare(docs: readonly FlierDoc[]): Promise<ShareEncoded> {
+export async function encodeShare(docs: readonly FlierDoc[], themes?: readonly string[]): Promise<ShareEncoded> {
   const stripped = stripUploads(docs);
-  const fragment = await packPayload({ v: SHARE_VERSION, dropped: stripped.dropped, docs: stripped.docs });
+  const payload = { v: SHARE_VERSION, dropped: stripped.dropped, docs: stripped.docs, ...(themes === undefined ? {} : { themes: [...themes] }) };
+  const fragment = await packPayload(payload);
   return { fragment, dropped: stripped.dropped };
 }
 
@@ -80,15 +82,22 @@ function validDoc(d: unknown): boolean {
   return validateFlierDoc(d).ok && isBuiltIn((d as FlierDoc).picture?.imageId) && isBuiltIn((d as FlierDoc).logo?.imageId);
 }
 
+function validThemes(themes: unknown, count: number): boolean {
+  if (themes === undefined) return true;
+  return Array.isArray(themes) && themes.length === count && themes.every((t) => typeof t === 'string' && t.length <= MAX_THEME_ID);
+}
+
 function checkPayload(raw: unknown): ShareDecoded {
-  const p = raw as { v?: unknown; dropped?: unknown; docs?: unknown } | null;
+  const p = raw as { v?: unknown; dropped?: unknown; docs?: unknown; themes?: unknown } | null;
   if (p === null || typeof p !== 'object') return { ok: false, error: ShareError.NotFlier };
   if (p.v !== SHARE_VERSION) return { ok: false, error: ShareError.Version };
   const docs = p.docs;
   const sized = Array.isArray(docs) && docs.length > 0 && docs.length <= MAX_FLIERS;
   const counted = typeof p.dropped === 'number' && Number.isInteger(p.dropped) && p.dropped >= 0;
-  if (!sized || !counted || !(docs as unknown[]).every(validDoc)) return { ok: false, error: ShareError.NotFlier };
-  return { ok: true, docs: cloneDocs(docs as FlierDoc[]), dropped: p.dropped as number };
+  if (!sized || !counted || !(docs as unknown[]).every(validDoc) || !validThemes(p.themes, docs.length)) return { ok: false, error: ShareError.NotFlier };
+  const decoded: ShareDecoded = { ok: true, docs: cloneDocs(docs as FlierDoc[]), dropped: p.dropped as number };
+  if (p.themes !== undefined) decoded.themes = [...(p.themes as string[])];
+  return decoded;
 }
 
 /** Decodes a share fragment; anything oversized, tampered, old or off-schema is refused whole. */

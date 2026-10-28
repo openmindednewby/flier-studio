@@ -1,4 +1,4 @@
-import { defaultLayoutFor, kizombaWorkshopDocs } from '@dloizides/poster-render';
+import { BackgroundStyle, FontSetId, LayoutId, PaletteId, PictureAnchor, defaultLayoutFor, kizombaWorkshopDocs } from '@dloizides/poster-render';
 import { layoutsFor } from '../form/layoutOptions';
 import { splitDoc, type FlierContent, type FlierStyle } from './flierTheme';
 import { ThemeId } from './ThemeId';
@@ -21,7 +21,22 @@ function classicStyle(content: FlierContent): FlierStyle {
 
 export const KIZOMBA_CLASSIC: FlierTheme = { id: ThemeId.KizombaClassic, nameKey: 'themes.kizombaClassic', styleFor: classicStyle };
 
-export const THEMES: readonly FlierTheme[] = [KIZOMBA_CLASSIC];
+function goldenStyle(content: FlierContent): FlierStyle {
+  const classic = classicStyle(content);
+  const fits = classic.layout !== LayoutId.List && layoutsFor(content.format).some((entry) => entry.id === LayoutId.PictureRight);
+  return {
+    ...classic,
+    layout: fits ? LayoutId.PictureRight : classic.layout,
+    palette: PaletteId.GoldenHorizon,
+    fonts: FontSetId.Coastal,
+    background: BackgroundStyle.Horizon,
+    picture: { imageId: 'couple', anchor: PictureAnchor.Bottom, scale: 1 },
+  };
+}
+
+export const GOLDEN_HOUR: FlierTheme = { id: ThemeId.GoldenHour, nameKey: 'themes.goldenHour', styleFor: goldenStyle };
+
+export const THEMES: readonly FlierTheme[] = [KIZOMBA_CLASSIC, GOLDEN_HOUR];
 
 export function themeById(id: string, themes: readonly FlierTheme[] = THEMES): FlierTheme | undefined {
   return themes.find((theme) => theme.id === id);

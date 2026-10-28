@@ -3,6 +3,7 @@ import { kizombaWorkshopDocs, type FlierDoc, type ScheduleRow } from '@dloizides
 export const KIZOMBA_ASSET_URLS: Readonly<Record<string, string | undefined>> = {
   dancers: '/img/dancers.png',
   logo: '/img/logo.png',
+  couple: '/img/couple.png',
 };
 
 export const LEVEL_NAMES: Readonly<Record<string, string | undefined>> = { 'Level 1': 'Beginners', 'Level 2': 'Intermediates' };

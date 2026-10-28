@@ -9,6 +9,11 @@ export const FONT_FACES: readonly string[] = [
   '500 48px "Fredoka"',
   '600 48px "Fredoka"',
   '700 48px "Fredoka"',
+  '400 48px "Fraunces"',
+  '600 48px "Fraunces"',
+  '400 48px "Allura"',
+  '400 48px "Jost"',
+  '500 48px "Jost"',
 ];
 
 const loaded = new WeakMap<FontLoader, Promise<void>>();

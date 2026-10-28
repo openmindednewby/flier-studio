@@ -112,7 +112,7 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 </head>
 <body>
 <main>
-<p class="withdrawn" role="note">Critic pending — do not pick. Round 2 (2026-10-28) applies every fix from critique-2026-10-28.md; design-critic has not judged it yet.</p>
+<p class="meta" role="note">design-critic round 2 (2026-10-28, critique-2026-10-28.md): B PASS (mean 4.1), A PASS (mean 4.0), ranked B then A. C REDO (taste, mean 3.8) and is not offered below.</p>
 <h1>Where the settings for all fliers live</h1>
 <p class="meta">FLIER-2 "Flier Studio follow-ups", AC-18 select on click · AC-19 "All fliers" section · AC-20 double-click enlarge · AC-21..23 drafts and favourites (D11, D12). Before = live https://fliers.dloizides.com at 98ca2bc; after = the same build with the option drawn in by moving its real controls (mockup, `mockups.ts`). Same route, steps, fixture (Kizomba preset, 4 fliers, fresh storage), viewport and anchor on both sides (`result.json`, pairMethod same-steps). Inventory: 52/52 first-load items for the one role, Visitor, measured in `result.json` (63 rows in `FLIER-2-AC18-20-inventory.md`: 11 are state-only and not on any first-load frame; "Theme applies to" is dropped by D11 in every option). Round 2 probes, run on every frame and failing the capture run on a miss: side-by-side form controls share top edge and height within 1px; the enlarged flier and its buttons sit inside 360x640 and 1280x800 with no scrolling; no text leaves its card.</p>
 
@@ -146,6 +146,7 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 
 <article data-option="C" data-inventory="52/52" data-aligned="pass" data-result="result.json">
 <h2>C. Sticky set bar with one chip per theme</h2>
+<p class="withdrawn" role="note">Withdrawn — do not pick. design-critic round 2: REDO (mean 3.8; #1, #3 and #7 at 3; fixes in critique-2026-10-28.md).</p>
 <p>A bar pinned to the top of the previews while they scroll: one chip per theme, so a switch is one tap and its effect is in view, plus the scope, Add flier and Download all. Add flier and Download all PNGs stack below 400px wide. Drafts sit as thumbnail tiles under the fliers, wrapping to two per row on a phone so no tile is cut. Double-click opens the full-size sheet with the flier number and a Download, sized so the whole flier and its buttons fit 360x640 and 1280x800.</p>
 <p class="meta"><strong>Inventory:</strong> 52/52 (Theme select becomes chips, 4 moved into the bar, 1 dropped D11) · form rows aligned: pass (top + height) · enlarge fits both viewports · Drafts: wrapping tiles below the previews, All / Favourites chips.</p>
 <h3>First load, 1280x800, full page</h3>
@@ -162,9 +163,8 @@ td, th { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; 
 <ul class="opts">
 <li data-letter="A"><span class="lt">A</span><span>"All fliers" card on top of the previews, drafts in their own card under the fliers, the existing full-size sheet</span></li>
 <li data-letter="B"><span class="lt">B</span><span>"All n fliers" card first in the controls, drafts in their own card, a stepping dialog</span></li>
-<li data-letter="C"><span class="lt">C</span><span>Sticky set bar with theme chips, drafts strip under the fliers, full-size sheet with Download</span></li>
 </ul>
-<p class="why">All three keep 52/52 first-load items and select a flier on click. They differ in where the whole-set settings sit relative to the fliers they change.</p></div>
+<p class="why">Both keep 52/52 first-load items and select a flier on click. Critic rank: B first (fliers stay at the top of the desktop page), A second. They differ in where the whole-set settings sit relative to the fliers they change.</p></div>
 </main>
 </body>
 </html>

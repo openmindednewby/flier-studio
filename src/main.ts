@@ -38,7 +38,7 @@ if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.document
 
 const status = el('p', { class: 'muted', role: 'status', 'aria-live': 'polite', 'data-testid': 'status' });
 const formBox = el('section', { class: 'card', 'data-testid': 'flier-form' });
-const previewGrid = el('div', { class: 'preview-grid' });
+const previewGrid = el('div', { class: 'preview-grid', 'data-testid': 'preview-grid' });
 const configBox = el('section', { class: 'card' });
 const promptBox = el('section', { class: 'card' });
 const mini = createMiniPreview({ seeAll: () => previewGrid.closest('section')?.scrollIntoView({ block: 'start' }) });
@@ -48,10 +48,12 @@ function refreshPreviews(): void {
   working.save(state.fliers);
   const docs = docsOf();
   window.clearTimeout(timer);
+  previewGrid.dataset.render = 'pending';
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(docs);
     state.canvases = await renderPreviews(previewGrid, docs, book, { selected: state.selected, select });
     mini.update(state.canvases[state.selected], state.selected, docs.length);
+    previewGrid.dataset.render = 'done';
   }, RENDER_DELAY_MS);
 }
 
@@ -109,9 +111,8 @@ async function checkShare(): Promise<void> {
   const fragment = shareFragmentOf(location.hash);
   if (fragment === null) return;
   const decoded = await decodeShare(fragment);
-  const themesFor = (docs: FlierDoc[]): (string | undefined)[] => docs.map((d) => (decoded.ok ? decoded.themes?.[decoded.docs.indexOf(d)] : undefined));
   openImportDialog(decoded, {
-    accept: (docs) => { const names = importShared(configs, docs, themesFor(docs)); renderConfigs(); status.textContent = FM('share.imported', String(names.length)); },
+    accept: (docs, themes) => { const names = importShared(configs, docs, themes); renderConfigs(); status.textContent = FM('share.imported', String(names.length)); },
     closed: () => history.replaceState(null, '', location.pathname + location.search),
   });
 }

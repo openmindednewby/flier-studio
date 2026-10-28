@@ -13,7 +13,7 @@ describe('FlierStore', () => {
 
     const loaded = new FlierStore(kv).load();
 
-    expect(loaded?.map((f) => f.themeId)).toEqual(Array(4).fill('kizomba-classic'));
+    expect(loaded?.map((f) => f.themeId)).toEqual(Array(old.length).fill('kizomba-classic'));
     expect(loaded?.map(toDoc)).toEqual(old);
   });
 
@@ -34,5 +34,26 @@ describe('FlierStore', () => {
     const loaded = new FlierStore(kv).load();
 
     expect(loaded).toBeNull();
+  });
+
+  it('with a remembered style that is not a valid style, loads nothing', () => {
+    const kv = new MemoryKeyValueStore();
+    const flier = toThemed(kizombaPreset()[0]);
+    writeJson(kv, 'flier-studio:fliers', [{ ...flier, kept: { 'golden-hour': { palette: 42 } } }]);
+
+    const loaded = new FlierStore(kv).load();
+
+    expect(loaded).toBeNull();
+  });
+
+  it('with a valid remembered style, loads the flier with it', () => {
+    const kv = new MemoryKeyValueStore();
+    const flier = toThemed(kizombaPreset()[0]);
+    const fliers = [{ ...flier, themeId: 'golden-hour', kept: { 'kizomba-classic': flier.style } }];
+    new FlierStore(kv).save(fliers);
+
+    const loaded = new FlierStore(kv).load();
+
+    expect(loaded).toEqual(fliers);
   });
 });

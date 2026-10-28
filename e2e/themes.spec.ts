@@ -5,11 +5,10 @@ import { expect, test, type Page } from '@playwright/test';
 
 const HIT = 44;
 const FLIERS = 4;
-const SETTLE_MS = 1500;
 
 async function renders(page: Page): Promise<string[]> {
-  await page.locator('[data-testid="previews"] canvas').nth(FLIERS - 1).waitFor();
-  await page.waitForTimeout(SETTLE_MS);
+  await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');
+  await expect(page.locator('[data-testid="previews"] canvas')).toHaveCount(FLIERS);
   return page.locator('[data-testid="previews"] canvas').evaluateAll((list) => list.map((c) => (c as HTMLCanvasElement).toDataURL()));
 }
 

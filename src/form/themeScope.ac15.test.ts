@@ -20,8 +20,8 @@ describe('applyTheme', () => {
 
     const out = applyTheme(EditScope.All, fliers, 0, night);
 
-    expect(out.map((f) => f.themeId)).toEqual(Array(4).fill('night-test'));
-    expect(out.map((f) => f.style.palette)).toEqual(Array(4).fill('night'));
+    expect(out.map((f) => f.themeId)).toEqual(Array(fliers.length).fill('night-test'));
+    expect(out.map((f) => f.style.palette)).toEqual(Array(fliers.length).fill('night'));
     expect(texts(out.map(toDoc))).toEqual(texts(fliers.map(toDoc)));
   });
 
@@ -46,7 +46,9 @@ describe('applyTheme', () => {
 
 describe('withDocs', () => {
   it('with an edited doc, keeps each flier on its theme and keeps its remembered styles', () => {
-    const fliers = applyTheme(EditScope.This, kizombaPreset().map((d) => toThemed(d)), 0, night);
+    const preset = kizombaPreset();
+    preset[0].palette = PaletteId.Sand;
+    const fliers = applyTheme(EditScope.This, preset.map((d) => toThemed(d)), 0, night);
     const docs = fliers.map(toDoc);
     docs[0].blocks.title = 'SALSA';
 
@@ -54,6 +56,6 @@ describe('withDocs', () => {
 
     expect(out[0].themeId).toBe('night-test');
     expect(out[0].content.blocks.title).toBe('SALSA');
-    expect(out[0].kept?.['kizomba-classic']?.palette).toBe('sand');
+    expect(out[0].kept?.['kizomba-classic']?.palette).toBe(PaletteId.Sand);
   });
 });

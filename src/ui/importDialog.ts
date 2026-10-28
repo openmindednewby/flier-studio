@@ -4,7 +4,7 @@ import type { ShareDecoded } from '../share/shareCodec';
 import { button, el } from './dom';
 
 export interface ImportDialogActions {
-  accept(docs: FlierDoc[]): void;
+  accept(docs: FlierDoc[], themes?: string[]): void;
   closed(): void;
 }
 
@@ -33,7 +33,7 @@ export function openImportDialog(result: ShareDecoded, actions: ImportDialogActi
   const dialog = el('dialog', { class: 'import-dialog', 'data-testid': 'import-dialog', 'aria-labelledby': TITLE_ID });
   const close = (): void => dialog.close();
   const accept = (): void => {
-    if (result.ok) actions.accept(result.docs);
+    if (result.ok) actions.accept(result.docs, result.themes);
     close();
   };
   dialog.addEventListener('close', () => { dialog.remove(); actions.closed(); });

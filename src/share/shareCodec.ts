@@ -82,7 +82,8 @@ function validDoc(d: unknown): boolean {
   return validateFlierDoc(d).ok && isBuiltIn((d as FlierDoc).picture?.imageId) && isBuiltIn((d as FlierDoc).logo?.imageId);
 }
 
-function validThemes(themes: unknown, count: number): boolean {
+/** True when themes is absent or one id per doc, each a string of at most 64 chars. */
+export function validThemes(themes: unknown, count: number): boolean {
   if (themes === undefined) return true;
   return Array.isArray(themes) && themes.length === count && themes.every((t) => typeof t === 'string' && t.length <= MAX_THEME_ID);
 }

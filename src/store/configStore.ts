@@ -2,6 +2,7 @@ import { validateFlierDoc, type FlierDoc } from '@dloizides/poster-render';
 import { SlotStore, defaultKeyValueStore, readJson, writeJson, type KeyValueStore } from '@dloizides/save-state';
 import { FM } from '../i18n/fm';
 import { cloneDocs } from '../presets/kizomba';
+import { validThemes } from '../share/shareCodec';
 
 const INDEX_KEY = 'flier-studio:configs';
 const PREFIX = 'flier-studio:config:';
@@ -36,7 +37,7 @@ function readImport(json: string): SavedConfig | string {
   }
   const raw = parsed as Partial<SavedConfig> | null;
   const hasShape = raw !== null && typeof raw === 'object' && typeof raw.name === 'string' && Array.isArray(raw.docs);
-  if (!hasShape || raw.version !== VERSION || raw.docs === undefined || raw.docs.length === 0) {
+  if (!hasShape || raw.version !== VERSION || raw.docs === undefined || raw.docs.length === 0 || !validThemes(raw.themes, raw.docs.length)) {
     return FM('errors.configNotFlier');
   }
   const errors = raw.docs.flatMap((doc, i) => {
@@ -81,8 +82,9 @@ export class ConfigStore {
   /** The theme id of each flier in a config, or null for a config saved before themes. */
   public themesOf(name: string): string[] | null {
     const entry = this.find(name);
-    const themes = entry === undefined ? undefined : this.slots.load(entry.slot)?.themes;
-    return Array.isArray(themes) ? themes : null;
+    const config = entry === undefined ? null : this.slots.load(entry.slot);
+    const themes = config?.themes;
+    return config !== null && themes !== undefined && validThemes(themes, config.docs.length) ? themes : null;
   }
 
   public rename(from: string, to: string): boolean {

@@ -5,8 +5,14 @@ import { WorkingDocStore } from './workingDocStore';
 
 const KEY = 'flier-studio:fliers';
 
+const keptValid = (f: ThemedFlier): boolean => {
+  if (f.kept === undefined) return true;
+  if (typeof f.kept !== 'object' || f.kept === null || Array.isArray(f.kept)) return false;
+  return Object.values(f.kept).every((style) => style === undefined || (typeof style === 'object' && style !== null && validateFlierDoc(toDoc({ ...f, style })).ok));
+};
+
 const isFlier = (f: ThemedFlier): boolean =>
-  typeof f === 'object' && f !== null && typeof f.themeId === 'string' && typeof f.content === 'object' && validateFlierDoc(toDoc(f)).ok;
+  typeof f === 'object' && f !== null && typeof f.themeId === 'string' && typeof f.content === 'object' && validateFlierDoc(toDoc(f)).ok && keptValid(f);
 
 /** The unsaved working fliers as content + theme; reads an autosave from before themes as Kizomba classic. */
 export class FlierStore {

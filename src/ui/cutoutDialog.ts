@@ -1,5 +1,6 @@
-import { attachRefineBrush, BrushMode, encodeCutout, type CutResult } from '@dloizides/background-removal';
+import { attachRefineBrush, BrushMode, type CutResult } from '@dloizides/background-removal';
 import { BRUSH_CSS, brushRadiusPx, nextZoom, ZOOM } from '../cutout/brushScale';
+import { encodeOffThread } from '../cutout/encodeOffThread';
 import { FM } from '../i18n/fm';
 import { button, el } from './dom';
 
@@ -101,7 +102,7 @@ export function openCutoutDialog(actions: CutoutDialogActions): HTMLDialogElemen
   let cut: CutResult | undefined;
   let detach = (): void => undefined;
   const use = button('cutout.use', 'cutout-use', () => {
-    if (cut !== undefined) void encodeCutout(cut.image, cut.mask).then((png) => { actions.use(png); dialog.close(); });
+    if (cut !== undefined) void encodeOffThread(cut).then((png) => { actions.use(png); dialog.close(); });
   }, 'primary');
   for (const c of [...tools.controls, use]) c.disabled = true;
   const cancel = button('cutout.cancel', 'cutout-cancel', () => dialog.close());

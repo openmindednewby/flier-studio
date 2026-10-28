@@ -57,7 +57,7 @@ test('Remove background cuts the flier picture on the device, opens on Use cut-o
   await expect(dialog).toHaveCount(0);
   await expect(page.getByTestId('preview-grid')).toHaveAttribute('data-render', 'done');
 
-  const leaks = seen.filter((r) => r.method !== 'GET' || r.bodyBytes > 0 || !r.url.startsWith(baseURL ?? '-'));
+  const leaks = seen.filter((r) => r.method !== 'GET' || r.bodyBytes > 0 || !r.url.replace(/^blob:/, '').startsWith(baseURL ?? '-'));
   expect(seen.some((r) => r.url.includes('/bg-removal/'))).toBe(true);
   expect(leaks).toEqual([]);
 });

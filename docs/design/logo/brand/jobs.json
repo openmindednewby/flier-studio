@@ -1,0 +1,73 @@
+[
+ {
+  "svg": "_fav16.svg",
+  "png": "favicon-16.png",
+  "w": 16,
+  "h": 16,
+  "transparent": true
+ },
+ {
+  "svg": "_fav32.svg",
+  "png": "favicon-32.png",
+  "w": 32,
+  "h": 32,
+  "transparent": true
+ },
+ {
+  "svg": "_fav48.svg",
+  "png": "favicon-48.png",
+  "w": 48,
+  "h": 48,
+  "transparent": true
+ },
+ {
+  "svg": "_icon-192.svg",
+  "png": "icon-192.png",
+  "w": 192,
+  "h": 192
+ },
+ {
+  "svg": "_icon-512.svg",
+  "png": "icon-512.png",
+  "w": 512,
+  "h": 512
+ },
+ {
+  "svg": "_icon-512-maskable.svg",
+  "png": "icon-512-maskable.png",
+  "w": 512,
+  "h": 512
+ },
+ {
+  "svg": "_apple-touch-icon.svg",
+  "png": "apple-touch-icon.png",
+  "w": 180,
+  "h": 180
+ },
+ {
+  "svg": "lockup-header-light.svg",
+  "png": "_check-header-light.png",
+  "w": 223,
+  "h": 50,
+  "bg": "#fbfaf8"
+ },
+ {
+  "svg": "lockup-header-dark.svg",
+  "png": "_check-header-dark.png",
+  "w": 223,
+  "h": 50,
+  "bg": "#1c1a17"
+ },
+ {
+  "svg": "_og.svg",
+  "png": "og-image.png",
+  "w": 1200,
+  "h": 630
+ },
+ {
+  "svg": "_landing-card.svg",
+  "png": "landing-card-1280x800.png",
+  "w": 1280,
+  "h": 800
+ }
+]

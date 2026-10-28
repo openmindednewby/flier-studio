@@ -1,0 +1,93 @@
+{
+  "mark": "Flier Studio R3 \"In flight\"",
+  "player": "@dloizides/ui-motion/logo playLogo (intro) + bindMicro (micro)",
+  "svg": "mark.svg (groups carry data-motion-layer)",
+  "layers": {
+    "sheet": "mark-sheet, transform-origin 14px 56px (bottom-left corner)",
+    "curl": "mark-curl, transform-origin 40px 48px (the fold)"
+  },
+  "intro": [
+    {
+      "layer": "sheet",
+      "keyframes": [
+        {
+          "transform": "translate(-10px, 10px) rotate(12deg)",
+          "opacity": 0
+        },
+        {
+          "transform": "none",
+          "opacity": 1
+        }
+      ],
+      "duration": "slow",
+      "easing": "decelerate",
+      "delay": 0
+    },
+    {
+      "layer": "curl",
+      "keyframes": [
+        {
+          "transform": "rotate(28deg) scale(0.6)",
+          "opacity": 0
+        },
+        {
+          "transform": "none",
+          "opacity": 1
+        }
+      ],
+      "duration": "slow",
+      "easing": "decelerate",
+      "delay": 280
+    }
+  ],
+  "micro": {
+    "triggers": [
+      "hover",
+      "focus",
+      "loading"
+    ],
+    "beats": [
+      {
+        "layer": "curl",
+        "keyframes": [
+          {
+            "transform": "none"
+          },
+          {
+            "transform": "rotate(-10deg)",
+            "offset": 0.5
+          },
+          {
+            "transform": "none"
+          }
+        ],
+        "duration": 280,
+        "easing": "standard",
+        "delay": 0
+      },
+      {
+        "layer": "sheet",
+        "keyframes": [
+          {
+            "transform": "none"
+          },
+          {
+            "transform": "translateY(-1.5px)",
+            "offset": 0.5
+          },
+          {
+            "transform": "none"
+          }
+        ],
+        "duration": 280,
+        "easing": "standard",
+        "delay": 0
+      }
+    ]
+  },
+  "durationsFrom": "design-tokens DEFAULT_MOTION: fast 140, base 200, slow 300 ms; micro 280 = 2 x fast",
+  "reducedMotion": "no animation; the static mark at once",
+  "overshoot": "none (visual-foundation R10)",
+  "introEndsMs": 580,
+  "microMs": 280
+}

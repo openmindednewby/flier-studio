@@ -1,0 +1,57 @@
+{
+ "favicon-16.png": {
+  "w": 16,
+  "h": 16,
+  "liveText": 0
+ },
+ "favicon-32.png": {
+  "w": 32,
+  "h": 32,
+  "liveText": 0
+ },
+ "favicon-48.png": {
+  "w": 48,
+  "h": 48,
+  "liveText": 0
+ },
+ "icon-192.png": {
+  "w": 192,
+  "h": 192,
+  "liveText": 0
+ },
+ "icon-512.png": {
+  "w": 512,
+  "h": 512,
+  "liveText": 0
+ },
+ "icon-512-maskable.png": {
+  "w": 512,
+  "h": 512,
+  "liveText": 0
+ },
+ "apple-touch-icon.png": {
+  "w": 180,
+  "h": 180,
+  "liveText": 0
+ },
+ "_check-header-light.png": {
+  "w": 223,
+  "h": 50,
+  "liveText": 0
+ },
+ "_check-header-dark.png": {
+  "w": 223,
+  "h": 50,
+  "liveText": 0
+ },
+ "og-image.png": {
+  "w": 1200,
+  "h": 630,
+  "liveText": 0
+ },
+ "landing-card-1280x800.png": {
+  "w": 1280,
+  "h": 800,
+  "liveText": 0
+ }
+}

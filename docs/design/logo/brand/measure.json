@@ -1,0 +1,20 @@
+{
+ "ink16": 0.339,
+ "ink32": 0.336,
+ "maskable_span_w": 0.451,
+ "maskable_span_h": 0.619,
+ "maskable_px_outside_safe": 0,
+ "apple_mode": "RGB",
+ "apple_opaque": [
+  255,
+  255
+ ],
+ "#4a423c/#fbfaf8": 9.43,
+ "#2f2925/#fbfaf8": 13.74,
+ "#2f2925/#ebe8e3": 11.73,
+ "#e8dccb/#4a423c": 7.27,
+ "#e8dccb/#1c1a17": 12.84,
+ "#e8dccb/#25221e": 11.71,
+ "#6f655c/#ebe8e3": 4.65,
+ "#4a423c/#25221e": 1.61
+}

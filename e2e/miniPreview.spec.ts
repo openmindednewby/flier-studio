@@ -54,6 +54,30 @@ test.describe('mini preview bar', () => {
     expect(lastBottom).toBeLessThanOrEqual(barTop);
   });
 
+  test('at 360 focusing the scope select scrolls it clear of the bar', async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile');
+    const scope = page.getByTestId('pick-scope');
+
+    await scope.focus();
+
+    const barTop = (await page.getByTestId('mini-preview').boundingBox())?.y ?? 0;
+    const box = await scope.boundingBox();
+    expect(box?.y ?? -1).toBeGreaterThanOrEqual(0);
+    expect((box?.y ?? 0) + (box?.height ?? 0)).toBeLessThanOrEqual(barTop);
+  });
+
+  test('at 360 on first load the scope select never peeks out from under the bar', async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile');
+
+    const box = await page.getByTestId('pick-scope').boundingBox();
+
+    const barTop = (await page.getByTestId('mini-preview').boundingBox())?.y ?? 0;
+    const top = box?.y ?? 0;
+    const clearAbove = top + (box?.height ?? 0) <= barTop;
+    const behindFold = top >= barTop;
+    expect(clearAbove || behindFold).toBe(true);
+  });
+
   test('at 1280 there is no bar and the layout is unchanged', async ({ page }, info) => {
     test.skip(info.project.name !== 'desktop');
 

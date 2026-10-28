@@ -1,0 +1,133 @@
+{
+  "viewport": "d1280",
+  "scroll": {
+    "sw": 1280,
+    "iw": 1280
+  },
+  "smallTargets": [],
+  "scopeBox": {
+    "x": 89,
+    "y": 590.59375,
+    "width": 386,
+    "height": 44
+  },
+  "scopeFocused": {
+    "scopeTop": 591,
+    "scopeBottom": 635,
+    "inView": true,
+    "centerHitsScope": true,
+    "barTop": 0,
+    "barBottom": 0,
+    "barVisible": false,
+    "covered": false,
+    "active": "pick-scope"
+  },
+  "whileEditingFooter": {
+    "scopeTop": -651,
+    "scopeBottom": -607,
+    "inView": false,
+    "centerHitsScope": false,
+    "barTop": 0,
+    "barBottom": 0,
+    "barVisible": false,
+    "covered": false,
+    "active": "field-footer"
+  },
+  "allFooter": [
+    "QA ALL FOOTER",
+    "QA ALL FOOTER",
+    "QA ALL FOOTER",
+    "QA ALL FOOTER"
+  ],
+  "whileEditingSchedule": {
+    "scopeTop": -651,
+    "scopeBottom": -607,
+    "inView": false,
+    "centerHitsScope": false,
+    "barTop": 0,
+    "barBottom": 0,
+    "barVisible": false,
+    "covered": false,
+    "active": "field-schedule"
+  },
+  "allLevelNames": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "thisFooter": [
+    "QA THIS ONLY",
+    "QA ALL FOOTER",
+    "QA ALL FOOTER",
+    "QA ALL FOOTER"
+  ],
+  "flier2FooterField": "QA ALL FOOTER",
+  "flier2EditingFooter": {
+    "scopeTop": -651,
+    "scopeBottom": -607,
+    "inView": false,
+    "centerHitsScope": false,
+    "barTop": 0,
+    "barBottom": 0,
+    "barVisible": false,
+    "covered": false,
+    "active": "field-footer"
+  },
+  "focusRing": {
+    "id": "field-venue",
+    "outline": "solid 3px rgb(74, 66, 60)",
+    "shadow": "none"
+  },
+  "linkLen": 797,
+  "status": "",
+  "clipboardMatches": true,
+  "importTitle": "Import 4 templates?",
+  "importFocus": "import-confirm",
+  "importBtns": [
+    [
+      219,
+      44
+    ],
+    [
+      219,
+      44
+    ]
+  ],
+  "importScroll": 1280,
+  "importChangedKeys": [
+    "flier-studio:configs",
+    "flier-studio:config:2",
+    "flier-studio:config:3",
+    "flier-studio:config:4",
+    "flier-studio:config:5"
+  ],
+  "configsBefore": 1,
+  "configsAfter": 5,
+  "existingConfigKept": true,
+  "titleAfterImport": "THEIRS-AUTOSAVE",
+  "hashAfter": "",
+  "dismissIdentical": true,
+  "tamper_flipped": {
+    "dlg": 1,
+    "title": "This share link cannot be imported",
+    "msg": "The link is damaged or was changed after it was made.",
+    "hasConfirm": 0,
+    "unchanged": true
+  },
+  "tamper_garbage": {
+    "dlg": 1,
+    "title": "This share link cannot be imported",
+    "msg": "The link is damaged or was changed after it was made.",
+    "hasConfirm": 0,
+    "unchanged": true
+  },
+  "tamper_truncated": {
+    "dlg": 1,
+    "title": "This share link cannot be imported",
+    "msg": "The link is damaged or was changed after it was made.",
+    "hasConfirm": 0,
+    "unchanged": true
+  },
+  "errors": []
+}

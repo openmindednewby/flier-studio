@@ -24,11 +24,11 @@ async function itemsAndRows(page: Page, fullPage: boolean): Promise<{ items: str
   }, fullPage);
 }
 
-async function record(page: Page, option: string, shot: string, pair: Record<string, string>, fullPage: boolean): Promise<void> {
+async function record(page: Page, option: string, shot: string, pair: Record<string, string>, fullPage: boolean, countPage = fullPage): Promise<void> {
   const file = `${option}-${SIDE}-${shot}.png`;
   await page.screenshot({ path: join(OUT, file), fullPage });
-  const { items, misaligned } = await itemsAndRows(page, fullPage);
-  const frame = { option, shot, side: SIDE, build: BUILD, file, pair, visibleItems: { before: items, after: items }, formRows: { misaligned } };
+  const { items, misaligned } = await itemsAndRows(page, countPage);
+  const frame = { option, shot, side: SIDE, build: BUILD, file, pair, itemsCounted: countPage ? 'whole page' : 'in frame', visibleItems: { before: items, after: items }, formRows: { misaligned } };
   mkdirSync(join(OUT, 'frames'), { recursive: true });
   writeFileSync(join(OUT, 'frames', `${option}-${SIDE}-${shot}.json`), `${JSON.stringify(frame, null, 1)}\n`);
 }
@@ -54,3 +54,25 @@ for (const [width, height] of [[360, 640], [1280, 800]]) {
     await record(page, 'share', String(width), { route: '/#share=<4-flier kizomba link>', state: 'opened a share link in a fresh browser', fixture: FIXTURE, viewport: `${width}x${height}`, scrollAnchor: 'page top', crop: 'full page' }, true);
   });
 }
+
+test('scope control at 360 scrolled to the form card', async ({ page }) => {
+  test.skip(process.env.CAPTURE_ONLY === 'share');
+  await page.setViewportSize({ width: 360, height: 640 });
+  await page.goto('/');
+  await page.locator('canvas').first().waitFor();
+  await page.getByTestId('flier-form').evaluate((n) => window.scrollTo(0, n.getBoundingClientRect().top + window.scrollY));
+  await page.waitForTimeout(300);
+
+  await record(page, 'scope', '360-anchor', { route: '/', state: 'first load, flier 1 of 4, no edits', fixture: FIXTURE, viewport: '360x640', scrollAnchor: 'flier-form card top at y 0', crop: 'viewport' }, false, true);
+});
+
+test('share import dialog at 1280 in the viewport', async ({ page }) => {
+  test.skip(process.env.CAPTURE_ONLY === 'scope');
+  const { fragment } = await encodeShare(kizombaPreset());
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto(`/#share=${fragment}`);
+  await page.locator('canvas').first().waitFor();
+  await page.waitForTimeout(600);
+
+  await record(page, 'share', '1280-viewport', { route: '/#share=<4-flier kizomba link>', state: 'opened a share link in a fresh browser', fixture: FIXTURE, viewport: '1280x800', scrollAnchor: 'page top', crop: 'viewport' }, false, true);
+});

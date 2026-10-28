@@ -1,0 +1,13 @@
+{
+  "side": "before",
+  "pair": {
+    "route": "/",
+    "state": "Text group folded, reload",
+    "fixture": "kizomba preset, 4 fliers, clock 2026-10-28 15:00Z",
+    "viewport": "1280",
+    "anchor": "window.scrollTo(0, 0)"
+  },
+  "focused": "BODY",
+  "focusedInView": false,
+  "flier1Top": 192
+}

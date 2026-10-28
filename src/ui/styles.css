@@ -146,7 +146,6 @@ header > .lead { margin: 0; }
 .ai-entry { justify-self: start; display: inline-flex; align-items: center; min-height: var(--hit); padding: 0 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-weight: 600; text-decoration: none; }
 .badge { display: inline-block; padding: 1px 8px; border: 1px solid var(--text); border-radius: 999px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; vertical-align: middle; }
 .section-nav { padding: 8px; gap: 4px; }
-.section-nav h2 { margin: 4px 12px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
 .section-nav ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
 .section-nav a { display: flex; align-items: center; gap: 10px; min-height: var(--hit); padding: 0 12px; border-radius: 8px; color: var(--text); text-decoration: none; }
 .section-nav .n { font-variant-numeric: tabular-nums; font-size: 0.8rem; color: var(--text-secondary); }
@@ -159,10 +158,14 @@ header > .lead { margin: 0; }
 @media (min-width: 1024px) {
   header, main { padding: 24px 32px; }
   main { grid-template-columns: minmax(360px, 420px) minmax(0, 1fr); align-items: start; }
-  header { grid-template-columns: minmax(360px, 420px) minmax(0, 1fr); column-gap: 24px; }
-  header > .top-row { grid-column: 1 / -1; }
-  header > .lead, header > [role="status"] { grid-column: 1; }
-  header > .ai-entry { grid-column: 2; grid-row: 2; }
+  header { grid-template-columns: minmax(360px, 420px) minmax(0, 1fr) auto; column-gap: 24px; }
+  header > .top-row { display: contents; }
+  .top-row > h1 { grid-column: 1; grid-row: 1; align-self: center; }
+  .top-row > button { grid-column: 3; grid-row: 1; align-self: center; max-width: none; }
+  header > .ai-entry { grid-column: 2; grid-row: 1; justify-self: end; align-self: center; }
+  header > .lead, header > [role="status"] { grid-column: 1 / -1; }
+  header > [role="status"]:empty { margin: 0; }
+  main { padding-top: 0; }
   .previews { position: sticky; top: 16px; max-height: calc(100dvh - 32px); overflow: auto; padding: 0 16px 16px; margin: 0 -16px; }
   .preview-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 }

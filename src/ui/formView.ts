@@ -1,7 +1,7 @@
 import { flierDocSchema, type FlierDoc } from '@dloizides/poster-render';
 import { applyText, blocksToText, type BlockText } from '../form/docEdit';
 import { layoutsFor, withFormat } from '../form/layoutOptions';
-import { FORM_GROUPS } from '../form/formGroups';
+import { FORM_GROUPS, LEAD_ROW } from '../form/formGroups';
 import { scalePercent } from '../form/pictureScale';
 import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
@@ -91,6 +91,7 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     logo: fileButton('form.logo', 'upload-logo', 'image/*', (f) => actions.upload(UploadKind.Logo, f)),
   };
   const body = el('div', { class: 'fold-body' }, [
+    el('div', { class: 'row' }, LEAD_ROW.map((key) => controls[key])),
     el('p', { class: 'muted', text: FM('form.editing', String(position[0]), String(position[1])) }),
     ...groups(controls),
     el('div', { class: 'row actions' }, [button('form.remove', 'remove-flier', actions.remove)]),
@@ -98,6 +99,10 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   container.replaceChildren(el('h2', { class: 'fold-head' }, [foldToggle(body, { id: 'flier-form', title: FM('form.heading') })]), body);
 }
 
-export function focusTitle(container: HTMLElement): void {
-  container.querySelector<HTMLInputElement>('[data-testid="field-title"]')?.focus({ preventScroll: true });
+const INITIAL_FOCUS = ['field-title', 'flier-form-toggle'];
+
+/** Focuses Title, or the Flier header toggle when the viewer folded the form. */
+export function focusInitial(container: HTMLElement): void {
+  const shown = INITIAL_FOCUS.map((id) => container.querySelector<HTMLElement>(`[data-testid="${id}"]`)).find((n) => n !== null && n.getClientRects().length > 0);
+  shown?.focus({ preventScroll: true });
 }

@@ -1,0 +1,13 @@
+{
+  "side": "after",
+  "pair": {
+    "route": "/",
+    "state": "load",
+    "fixture": "kizomba preset, 4 fliers, fresh storage, clock 2026-10-28 15:00Z",
+    "viewport": "1280",
+    "anchor": "window.scrollTo(0, 0)"
+  },
+  "focused": "field-title",
+  "focusedInView": true,
+  "flier1Top": 160
+}

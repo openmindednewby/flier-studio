@@ -18,7 +18,7 @@ export function sectionNav(): HTMLElement {
     const link = el('a', { href: `#${target}`, 'data-testid': `nav-${key}`, 'aria-description': FM('hint.jump', label) }, [el('span', { class: 'n', text: String(i + 1).padStart(NUMBER_WIDTH, '0') }), label]);
     return el('li', {}, [link]);
   });
-  return el('nav', { class: 'section-nav card', 'aria-label': FM('nav.label'), 'data-testid': 'section-nav' }, [el('h2', { text: FM('nav.heading') }), el('ul', {}, links)]);
+  return el('nav', { class: 'section-nav card', 'aria-label': FM('nav.label'), 'data-testid': 'section-nav' }, [el('ul', {}, links)]);
 }
 
 /** The one-line entry above the fliers that names the on-device AI and jumps to the Generate card. */

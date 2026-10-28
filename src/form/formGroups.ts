@@ -5,7 +5,10 @@ export interface FormGroupSpec {
   rows: readonly (readonly string[])[];
 }
 
-const TEXT_FIELDS = ['title', 'titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'];
+const TEXT_FIELDS = ['titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'];
+
+/** The row above the groups: Title first, so the initial focus lands in the first viewport. */
+export const LEAD_ROW: readonly string[] = ['title'];
 
 /** The flier form in three groups; each row lists the controls that sit side by side. */
 export const FORM_GROUPS: readonly FormGroupSpec[] = [
@@ -15,5 +18,5 @@ export const FORM_GROUPS: readonly FormGroupSpec[] = [
 ];
 
 export function groupedControls(): string[] {
-  return FORM_GROUPS.flatMap((g) => g.rows.flat());
+  return [...LEAD_ROW, ...FORM_GROUPS.flatMap((g) => g.rows.flat())];
 }

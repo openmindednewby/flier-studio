@@ -1,15 +1,25 @@
 import { describe, expect, it } from 'vitest';
 import { FM } from '../i18n/fm';
-import { FORM_GROUPS, groupedControls } from './formGroups';
+import { FORM_GROUPS, LEAD_ROW, groupedControls } from './formGroups';
 
 describe('groupedControls', () => {
-  it('across the three groups, keeps every form control exactly once', () => {
+  it('across the lead row and the three groups, keeps every form control exactly once', () => {
     const inventory = ['layout', 'format', 'palette', 'fonts', 'background', 'picture', 'logo', 'cutout', 'anchor', 'scale',
       'title', 'titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'];
 
     const controls = groupedControls();
 
     expect([...controls].sort()).toEqual([...inventory].sort());
+  });
+});
+
+describe('LEAD_ROW', () => {
+  it('above the groups, holds only the Title field', () => {
+    const expected = ['title'];
+
+    const row = [...LEAD_ROW];
+
+    expect(row).toEqual(expected);
   });
 });
 

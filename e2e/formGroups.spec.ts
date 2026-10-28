@@ -17,7 +17,8 @@ test('the form groups its controls under Layout, Pictures and Text', async ({ pa
   expect(headings).toEqual(['Layout', 'Pictures', 'Text']);
   await expect(form.getByRole('group', { name: 'Layout' }).getByTestId('pick-layout')).toBeVisible();
   await expect(form.getByRole('group', { name: 'Pictures' }).getByTestId('pick-anchor')).toBeVisible();
-  await expect(form.getByRole('group', { name: 'Text' }).getByTestId('field-title')).toBeVisible();
+  await expect(form.getByRole('group', { name: 'Text' }).getByTestId('field-script')).toBeVisible();
+  await expect(form.getByRole('group', { name: 'Text' }).getByTestId('field-title')).toHaveCount(0);
 });
 
 test('the picture size slider shows its value and follows it', async ({ page }) => {

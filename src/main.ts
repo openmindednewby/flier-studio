@@ -24,7 +24,7 @@ import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
 import { draftTime, draftsPanel, thumbOf } from './ui/draftsPanel';
 import { createMiniPreview } from './ui/miniPreview';
-import { focusTitle, renderForm } from './ui/formView';
+import { focusInitial, renderForm } from './ui/formView';
 import { openImportDialog } from './ui/importDialog';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
@@ -202,7 +202,7 @@ async function start(): Promise<void> {
   renderConfigs();
   showDrafts();
   select(0);
-  if (window.innerWidth >= DESKTOP_MIN) focusTitle(formBox);
+  if (window.innerWidth >= DESKTOP_MIN) focusInitial(formBox);
   window.addEventListener('hashchange', () => void checkShare());
   await checkShare();
 }

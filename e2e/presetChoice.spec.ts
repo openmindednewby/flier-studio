@@ -7,9 +7,29 @@ const MINE = 'MINE ONLY';
 const PRESET_SIZE = 4;
 const DPAD_RIGHT = 15;
 const EAST = 1;
+const FIRST_ROW = 1;
+const DRAFTS_ADDED_BY_REPLACE = 1;
 
 const titles = (page: Page): Promise<string[]> =>
   page.evaluate(() => (JSON.parse(localStorage.getItem('flier-studio:fliers') ?? '[]') as { content: object }[]).map((f) => JSON.stringify(f.content)));
+
+const draftsNewestFirst = (page: Page): Promise<string[]> =>
+  page.evaluate(() => new Promise<string[]>((resolve, reject) => {
+    const opening = indexedDB.open('flier-studio-drafts');
+    opening.onerror = (): void => reject(opening.error);
+    opening.onsuccess = (): void => {
+      const db = opening.result;
+      const all = db.transaction('drafts', 'readonly').objectStore('drafts').getAll() as IDBRequest<{ id: number; at: number; fliers: unknown }[]>;
+      all.onerror = (): void => reject(all.error);
+      all.onsuccess = (): void => {
+        db.close();
+        resolve(all.result.sort((a, b) => (b.at !== a.at ? b.at - a.at : b.id - a.id)).map((d) => JSON.stringify(d.fliers)));
+      };
+    };
+  }));
+
+const nextFrames = (page: Page): Promise<void> =>
+  page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
 
 async function openPreset(page: Page): Promise<void> {
   await page.goto('/');
@@ -72,14 +92,17 @@ test.describe('AC-35 the Kizomba preset asks first when fliers exist', () => {
 
   test('Replace saves a draft first, then swaps the set, and Drafts brings the old set back', async ({ page }) => {
     await openPreset(page);
+    await expect.poll(async () => (await draftsNewestFirst(page))[0] ?? '').toContain(MINE);
+    const draftsBefore = await draftsNewestFirst(page);
+    const mineRowAfterReplace = draftsBefore.findIndex((d) => d.includes(MINE)) + FIRST_ROW + DRAFTS_ADDED_BY_REPLACE;
 
     await page.getByTestId('preset-replace').click();
 
     await expect.poll(async () => (await titles(page)).some((t) => t.includes(MINE))).toBe(false);
     expect(await titles(page)).toHaveLength(PRESET_SIZE);
     await openPanel(page, Panel.Drafts);
-    await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(3);
-    await page.getByTestId('draft-restore-2').click();
+    await expect(page.getByTestId('drafts-list').getByRole('listitem')).toHaveCount(draftsBefore.length + DRAFTS_ADDED_BY_REPLACE);
+    await page.getByTestId(`draft-restore-${String(mineRowAfterReplace)}`).click();
     await expect.poll(async () => (await titles(page))[0]).toContain(MINE);
   });
 
@@ -122,16 +145,17 @@ test.describe('AC-35 the Kizomba preset asks first when fliers exist', () => {
     });
     await openPreset(page);
     const before = await titles(page);
-    const tap = async (index: number): Promise<void> => {
-      await page.evaluate((i) => { (window as unknown as { testPad: { buttons: { pressed: boolean }[] } }).testPad.buttons[i].pressed = true; }, index);
-      await page.waitForTimeout(100);
-      await page.evaluate((i) => { (window as unknown as { testPad: { buttons: { pressed: boolean }[] } }).testPad.buttons[i].pressed = false; }, index);
-      await page.waitForTimeout(100);
+    const setPad = (index: number, pressed: boolean): Promise<void> =>
+      page.evaluate(([i, on]) => { (window as unknown as { testPad: { buttons: { pressed: boolean }[] } }).testPad.buttons[i].pressed = on; }, [index, pressed] as const);
+    const tap = async (index: number, settled: () => Promise<void>): Promise<void> => {
+      await setPad(index, true);
+      await settled();
+      await setPad(index, false);
+      await nextFrames(page);
     };
 
-    await tap(DPAD_RIGHT);
-    await expect(page.getByTestId('preset-replace')).toBeFocused();
-    await tap(EAST);
+    await tap(DPAD_RIGHT, () => expect(page.getByTestId('preset-replace')).toBeFocused());
+    await tap(EAST, () => expect(page.getByTestId('preset-dialog')).toHaveCount(0));
 
     await expect(page.getByTestId('preset-dialog')).toHaveCount(0);
     expect(await titles(page)).toEqual(before);

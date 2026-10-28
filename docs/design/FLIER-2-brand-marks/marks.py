@@ -13,18 +13,13 @@ TAG1, TAG2 = 'Event fliers and phone wallpapers from one form.', 'Everything sta
 
 
 def mark_a(c, bg):
-    """Trim: a flier sheet with the four pairs of crop marks a print shop cuts to."""
-    s = f'<rect x="18" y="14" width="28" height="36" fill="{c}"/>'
-    for x in (18, 46):
-        s += f'<path d="M{x} 0v9M{x} 55v9" stroke="{c}" stroke-width="3.5"/>'
-    for y in (14, 50):
-        s += f'<path d="M0 {y}h13M51 {y}h13" stroke="{c}" stroke-width="3.5"/>'
-    return s
+    """Trim: a 3:4 flier sheet with two diagonal pairs of crop marks."""
+    return (f'<rect x="20" y="16" width="24" height="32" fill="{c}"/>'
+            f'<path d="M20 2v9M6 16h9M44 53v9M49 48h9" stroke="{c}" stroke-width="3.5"/>')
 
 
 def mark_a16(c, bg):
-    s = f'<rect x="5" y="4" width="6" height="8" fill="{c}"/>'
-    return s + f'<path d="M5 0h1v2h-1zM10 0h1v2h-1zM5 14h1v2h-1zM10 14h1v2h-1zM1 4h2v1h-2zM13 4h2v1h-2zM1 11h2v1h-2zM13 11h2v1h-2z" fill="{c}"/>'
+    return f'<rect x="5" y="4" width="6" height="8" fill="{c}"/><path d="M5 0h1v2h-1zM1 4h2v1h-2zM10 14h1v2h-1zM13 11h2v1h-2z" fill="{c}"/>'
 
 
 def mark_b(c, bg):
@@ -46,26 +41,29 @@ def mark_c(c, bg):
 
 
 def mark_c16(c, bg):
-    return (f'<rect x="2" y="5" width="8" height="10" fill="{c}"/><circle cx="10.5" cy="5.5" r="4.5" fill="{bg}"/>'
-            f'<circle cx="10.5" cy="5.5" r="2.6" fill="none" stroke="{c}" stroke-width="1.1"/><path d="M10.5 1v9M6 5.5h9" stroke="{c}" stroke-width="1"/>')
+    """Drawn for 16 px: square sheet, pixel ring + crosshair on its corner."""
+    return (f'<path d="M2 6h7v9H2zM10 2h3v1h-3zM10 6h3v1h-3zM9 3h1v3H9zM13 3h1v3h-1zM7 4h9v1H7zM11 0h1v9h-1z" fill="{c}"/>')
+
+
+from outline import word as _ow
 
 
 def word_a(x, y, size, c):
-    return f'<text x="{x}" y="{y}" font-size="{size}" fill="{c}" font-family="Segoe UI,system-ui,sans-serif"><tspan font-weight="700">Flier</tspan><tspan font-weight="400"> Studio</tspan></text>'
+    return _ow([('Flier', 700), (' Studio', 400)], x, y, size, c)
 
 
 def word_b(x, y, size, c):
-    return f'<text x="{x}" y="{y}" font-size="{size}" font-weight="800" letter-spacing="{-0.02*size:.2f}" fill="{c}" font-family="Segoe UI,system-ui,sans-serif">flier studio</text>'
+    return _ow([('flier studio', 600)], x, y, size, c, -0.01)
 
 
 def word_c(x, y, size, c):
-    return f'<text x="{x}" y="{y}" font-size="{size*.82:.1f}" font-weight="600" letter-spacing="{0.14*size:.2f}" fill="{c}" font-family="Consolas,ui-monospace,monospace">FLIER STUDIO</text>'
+    return _ow([('FLIER STUDIO', 500)], x, y, size * .78, c, 0.12)
 
 
 CANDS = {
-    'A': dict(name='Trim', big=mark_a, small=mark_a16, word=word_a, why='the sheet a print shop trims, inside its four pairs of crop marks; wordmark weight-led, sentence case', sample=(246, 250, 20, 20)),
-    'B': dict(name='Crop F', big=mark_b, small=mark_b16, word=word_b, why='the top-left crop corner drawn as the letter F, the opposite corner closing the sheet; wordmark heavy lowercase', sample=(186, 240, 20, 20)),
-    'C': dict(name='Register', big=mark_c, small=mark_c16, word=word_c, why='a flier sheet with a registration target on its corner; wordmark a printer\'s job-slug in monospace', sample=(200, 300, 20, 20)),
+    'A': dict(name='Trim', big=mark_a, small=mark_a16, word=word_a, why='a 3:4 sheet with two diagonal pairs of crop marks; wordmark Jost Bold + Regular, sentence case', sample=(246, 250, 20, 20), bbox=(6, 2, 58, 62)),
+    'B': dict(name='Crop F', big=mark_b, small=mark_b16, word=word_b, why='the top-left crop corner drawn as the letter F, the opposite corner closing the sheet; wordmark Jost Semibold lowercase', sample=(186, 240, 20, 20), bbox=(14, 12, 50, 52)),
+    'C': dict(name='Register', big=mark_c, small=mark_c16, word=word_c, why='a flier sheet with a registration target on its corner, own 16 px drawing; wordmark Jost Medium caps, tracked', sample=(200, 300, 20, 20), bbox=(10, 2, 56, 58)),
 }
 ASSETS = [('fav16', 16, 16), ('fav32', 32, 32), ('pwa192', 192, 192), ('pwa512', 512, 512), ('og', 1200, 630), ('landing', 1280, 800), ('header360', 360, 56), ('header1280dark', 1280, 64)]
 
@@ -83,24 +81,27 @@ def sample_fliers(x, y, w, h, gap, n, crop_first):
 
 def asset(k, cand, w, h):
     m, sm, wd = cand['big'], cand['small'], cand['word']
+    lx = lambda x, size: x - cand['bbox'][0] * size / 64
     if k in ('fav16', 'fav32'):
         b = f'<rect width="16" height="16" rx="3" fill="{PAPER}"/>{sm(INK, PAPER)}'
         return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 16 16" shape-rendering="crispEdges">{b}</svg>'
     if k.startswith('pwa'):
-        b = f'<rect width="64" height="64" fill="{PAPER}"/><g transform="translate(16 16) scale(.5)">{m(INK, PAPER)}</g>'
+        x0, y0, x1, y1 = cand['bbox']; k = 0.55 * 64 / max(x1 - x0, y1 - y0)
+        tx, ty = 32 - (x0 + x1) / 2 * k, 32 - (y0 + y1) / 2 * k
+        b = f'<rect width="64" height="64" fill="{PAPER}"/><g transform="translate({tx:.2f} {ty:.2f}) scale({k:.4f})">{m(INK, PAPER)}</g>'
         return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 64 64">{b}</svg>'
     if k == 'og':
-        b = f'<rect width="{w}" height="{h}" fill="{PAGE}"/>' + place(m, 90, 120, 150, INK, PAGE) + wd(90, 360, 76, INK)
+        b = f'<rect width="{w}" height="{h}" fill="{PAGE}"/>' + place(m, lx(90, 150), 120, 150, INK, PAGE) + wd(90, 360, 76, INK)
         b += f'<text x="90" y="430" font-size="30" fill="{INK2}" font-family="Segoe UI,system-ui,sans-serif">{TAG1}</text><text x="90" y="472" font-size="30" fill="{INK2}" font-family="Segoe UI,system-ui,sans-serif">{TAG2}</text>'
         b += sample_fliers(860, 110, 140, 200, 30, 2, True) + sample_fliers(860, 340, 140, 200, 30, 2, False)
     elif k == 'landing':
-        b = f'<rect width="{w}" height="{h}" fill="{PAPER}"/>' + place(m, 96, 96, 112, INK, PAPER) + wd(240, 172, 64, INK)
+        b = f'<rect width="{w}" height="{h}" fill="{PAPER}"/>' + place(m, lx(96, 112), 96, 112, INK, PAPER) + wd(96 + (cand['bbox'][2] - cand['bbox'][0]) * 112 / 64 + 28, 172, 64, INK)
         b += f'<text x="96" y="268" font-size="28" fill="{INK2}" font-family="Segoe UI,system-ui,sans-serif">{TAG1} {TAG2}</text>'
         b += sample_fliers(96, 340, 230, 330, 52, 4, True)
     elif k == 'header360':
-        b = f'<rect width="{w}" height="{h}" fill="{PAPER}"/><rect y="{h-1}" width="{w}" height="1" fill="{BORDER}"/>' + place(m, 16, 14, 28, INK, PAPER) + wd(54, 35, 18, INK)
+        b = f'<rect width="{w}" height="{h}" fill="{PAPER}"/><rect y="{h-1}" width="{w}" height="1" fill="{BORDER}"/>' + place(m, lx(16, 28), 14, 28, INK, PAPER) + wd(16 + (cand['bbox'][2] - cand['bbox'][0]) * 28 / 64 + 10, 35, 18, INK)
     else:
-        b = f'<rect width="{w}" height="{h}" fill="{DARK_CARD}"/><rect y="{h-1}" width="{w}" height="1" fill="#80766a"/>' + place(m, 24, 16, 32, BRAND_D, DARK_CARD) + wd(68, 40, 20, DARK_INK)
+        b = f'<rect width="{w}" height="{h}" fill="{DARK_CARD}"/><rect y="{h-1}" width="{w}" height="1" fill="#80766a"/>' + place(m, lx(24, 32), 16, 32, BRAND_D, DARK_CARD) + wd(24 + (cand['bbox'][2] - cand['bbox'][0]) * 32 / 64 + 12, 40, 20, DARK_INK)
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">{b}</svg>'
 
 
@@ -207,7 +208,7 @@ def do_page():
     html = p1.HEAD.replace('Visual Rules</title>', 'Visual Rules 3</title>').replace('page 1 of 2', 'page 3: the Flier Studio mark')
     html = html.replace('</style>', CSS + '</style>')
     html = html.replace('<p class="intro">', '<div class="hold" role="note"><b>Do not pick yet.</b> design-critic has not reviewed these candidates; answers are held until it passes.</div><p class="intro">')
-    html = html.replace('Each block: today on the left, the proposed rule on the right, one question.', 'Three marks from the print shop (page 1 Q1), calm ink on paper-white, R6 shapes: the sheet is square paper, tiles round 12/64. Each is shown on every surface Flier Studio owns. Posters keep their own content logo.')
+    html = html.replace('Each block: today on the left, the proposed rule on the right, one question.', 'Round 2 after design-critic REDO (critique-2026-10-28.md): wordmarks outlined from Jost, A two crop corners on a 3:4 sheet, B Semibold and 55% icon, C own 16 px drawing. Three marks from the print shop (page 1 Q1), calm ink on paper-white, R6 shapes: the sheet is square paper, tiles round 12/64. Each is shown on every surface Flier Studio owns. Posters keep their own content logo.')
     html += ''.join(blocks) + '<p class="foot">Generator <code>apps/flier-studio/docs/design/FLIER-2-brand-marks/marks.py</code>, renders <code>png/</code>, checks <code>measurements.json</code>.</p></main>'
     res = {'task': 'FLIER-2 "Flier Studio follow-ups" VISUAL-1 page 3 (R11 mark)', 'pairMethod': 'same-steps', 'countMethod': 'visible-in-frame',
            'rowsMethod': 'none: brand assets, no form rows; not tool-discovered', 'note': 'noloss: allow new screen -- brand mark/wordmark are new assets', 'options': options, 'frames': frames}

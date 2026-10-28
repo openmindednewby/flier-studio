@@ -1,5 +1,5 @@
 const { chromium } = require('../../../node_modules/playwright');
-const { writeFileSync } = require('fs');
+const { existsSync, readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
 
 const builds = { before: process.argv[2], after: process.argv[3] };
@@ -9,8 +9,10 @@ const steps = ['goto /', 'wait preview-grid[data-render=done]', 'wait 900 ms (lo
 
 (async () => {
   const browser = await chromium.launch();
-  const frames = [];
-  for (const [w, h] of viewports) for (const scheme of schemes) for (const [build, url] of Object.entries(builds)) {
+  const skipped = Object.keys(builds).filter((b) => builds[b] === '-');
+  const prior = existsSync(join(__dirname, 'result.json')) ? JSON.parse(readFileSync(join(__dirname, 'result.json'), 'utf8')).frames : [];
+  const frames = prior.filter((f) => skipped.includes(f.build));
+  for (const [w, h] of viewports) for (const scheme of schemes) for (const [build, url] of Object.entries(builds).filter(([, u]) => u !== '-')) {
     const context = await browser.newContext({ viewport: { width: w, height: h }, colorScheme: scheme, deviceScaleFactor: 1 });
     const page = await context.newPage();
     await page.goto(url);

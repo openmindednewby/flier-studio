@@ -31,7 +31,7 @@ export function renderPromptPanel(container: HTMLElement, apply: (doc: FlierDoc)
   container.replaceChildren(
     el('h2', { text: FM('prompt.heading') }),
     labelled('prompt.label', prompt),
-    button('prompt.generate', 'prompt-generate', () => void generate(), 'primary'),
+    button('prompt.generate', 'prompt-generate', () => void generate()),
     status,
   );
 }

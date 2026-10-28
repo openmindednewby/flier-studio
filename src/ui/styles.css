@@ -97,22 +97,22 @@ dialog[open] { animation: dialog-enter var(--motion-slow) var(--ease-decelerate)
 }
 
 figure { margin: 0; display: grid; gap: 8px; align-content: start; min-width: 0; }
-figure canvas { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border); }
+figure canvas { width: 100%; height: auto; display: block; border-radius: 0; border: 1px solid var(--border); }
 .trim { position: relative; }
 figure.selected .trim::after {
   content: "";
   position: absolute;
-  inset: -8px;
+  inset: -16px;
   pointer-events: none;
   background:
-    linear-gradient(var(--text), var(--text)) left 0 top 7px / 6px 2px no-repeat,
-    linear-gradient(var(--text), var(--text)) right 0 top 7px / 6px 2px no-repeat,
-    linear-gradient(var(--text), var(--text)) left 0 bottom 7px / 6px 2px no-repeat,
-    linear-gradient(var(--text), var(--text)) right 0 bottom 7px / 6px 2px no-repeat,
-    linear-gradient(var(--text), var(--text)) left 7px top 0 / 2px 6px no-repeat,
-    linear-gradient(var(--text), var(--text)) right 7px top 0 / 2px 6px no-repeat,
-    linear-gradient(var(--text), var(--text)) left 7px bottom 0 / 2px 6px no-repeat,
-    linear-gradient(var(--text), var(--text)) right 7px bottom 0 / 2px 6px no-repeat;
+    linear-gradient(var(--brand-fill), var(--brand-fill)) left 0 top 15px / 12px 2px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) right 0 top 15px / 12px 2px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) left 0 bottom 15px / 12px 2px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) right 0 bottom 15px / 12px 2px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) left 15px top 0 / 2px 12px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) right 15px top 0 / 2px 12px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) left 15px bottom 0 / 2px 12px no-repeat,
+    linear-gradient(var(--brand-fill), var(--brand-fill)) right 15px bottom 0 / 2px 12px no-repeat;
 }
 figcaption.row > * { flex: 1 1 100%; }
 
@@ -162,7 +162,7 @@ body { padding-bottom: calc(var(--mini-bar) + env(safe-area-inset-bottom)); }
 }
 .mini-sheet[open] { display: grid; gap: 12px; justify-items: center; }
 .mini-sheet::backdrop { background: color-mix(in srgb, var(--background) 72%, transparent); }
-.mini-sheet canvas { display: block; max-width: 100%; max-height: calc(100dvh - 140px); width: auto; height: auto; border-radius: 8px; }
+.mini-sheet canvas { display: block; max-width: 100%; max-height: calc(100dvh - 140px); width: auto; height: auto; border-radius: 0; }
 
 @media (min-width: 768px) {
   html { scroll-padding-bottom: 0; }

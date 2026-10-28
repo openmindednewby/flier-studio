@@ -36,32 +36,6 @@
       "scrollWidth": 360
     },
     {
-      "build": "after",
-      "file": "after-360x640-light-top.png",
-      "anchor": "scroll 0",
-      "pair": {
-        "route": "/",
-        "state": "kizomba preset, flier 1 selected",
-        "fixture": "default preset",
-        "viewport": "360x640",
-        "scheme": "light"
-      },
-      "scrollWidth": 360
-    },
-    {
-      "build": "after",
-      "file": "after-360x640-light-previews.png",
-      "anchor": "preview-1 block start + download-all focused",
-      "pair": {
-        "route": "/",
-        "state": "kizomba preset, flier 1 selected",
-        "fixture": "default preset",
-        "viewport": "360x640",
-        "scheme": "light"
-      },
-      "scrollWidth": 360
-    },
-    {
       "build": "before",
       "file": "before-360x640-dark-top.png",
       "anchor": "scroll 0",
@@ -77,32 +51,6 @@
     {
       "build": "before",
       "file": "before-360x640-dark-previews.png",
-      "anchor": "preview-1 block start + download-all focused",
-      "pair": {
-        "route": "/",
-        "state": "kizomba preset, flier 1 selected",
-        "fixture": "default preset",
-        "viewport": "360x640",
-        "scheme": "dark"
-      },
-      "scrollWidth": 360
-    },
-    {
-      "build": "after",
-      "file": "after-360x640-dark-top.png",
-      "anchor": "scroll 0",
-      "pair": {
-        "route": "/",
-        "state": "kizomba preset, flier 1 selected",
-        "fixture": "default preset",
-        "viewport": "360x640",
-        "scheme": "dark"
-      },
-      "scrollWidth": 360
-    },
-    {
-      "build": "after",
-      "file": "after-360x640-dark-previews.png",
       "anchor": "preview-1 block start + download-all focused",
       "pair": {
         "route": "/",
@@ -140,32 +88,6 @@
       "scrollWidth": 1280
     },
     {
-      "build": "after",
-      "file": "after-1280x800-light-top.png",
-      "anchor": "scroll 0",
-      "pair": {
-        "route": "/",
-        "state": "kizomba preset, flier 1 selected",
-        "fixture": "default preset",
-        "viewport": "1280x800",
-        "scheme": "light"
-      },
-      "scrollWidth": 1280
-    },
-    {
-      "build": "after",
-      "file": "after-1280x800-light-previews.png",
-      "anchor": "preview-1 block start + download-all focused",
-      "pair": {
-        "route": "/",
-        "state": "kizomba preset, flier 1 selected",
-        "fixture": "default preset",
-        "viewport": "1280x800",
-        "scheme": "light"
-      },
-      "scrollWidth": 1280
-    },
-    {
       "build": "before",
       "file": "before-1280x800-dark-top.png",
       "anchor": "scroll 0",
@@ -188,6 +110,84 @@
         "fixture": "default preset",
         "viewport": "1280x800",
         "scheme": "dark"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-light-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "light"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-light-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "light"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-dark-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "dark"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-360x640-dark-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "360x640",
+        "scheme": "dark"
+      },
+      "scrollWidth": 360
+    },
+    {
+      "build": "after",
+      "file": "after-1280x800-light-top.png",
+      "anchor": "scroll 0",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "light"
+      },
+      "scrollWidth": 1280
+    },
+    {
+      "build": "after",
+      "file": "after-1280x800-light-previews.png",
+      "anchor": "preview-1 block start + download-all focused",
+      "pair": {
+        "route": "/",
+        "state": "kizomba preset, flier 1 selected",
+        "fixture": "default preset",
+        "viewport": "1280x800",
+        "scheme": "light"
       },
       "scrollWidth": 1280
     },

@@ -24,6 +24,7 @@ export interface GenerateOutcome {
   source: GenerateSource;
   doc: FlierDoc;
   errors: string[];
+  reply?: string;
 }
 
 export function buildPrompt(prompt: string): string {
@@ -38,13 +39,18 @@ export function buildPrompt(prompt: string): string {
 }
 
 /** Prompt-to-flier generator; the model module is imported on the first generate() only. */
-export function createGenerator(deps: GenerateDeps): { generate(prompt: string): Promise<GenerateOutcome> } {
+export function createGenerator(deps: GenerateDeps): { generate(prompt: string): Promise<GenerateOutcome>; loadMs(): number | null } {
   let client: Promise<LlmClient> | null = null;
+  let loadMs: number | null = null;
   const connect = async (): Promise<LlmClient> => {
+    const started = performance.now();
     const llm = await deps.loadLlm();
-    return llm.run(MODEL_ID, { maxModelBytes: MAX_MODEL_BYTES, onProgress: deps.onProgress });
+    const ready = await llm.run(MODEL_ID, { maxModelBytes: MAX_MODEL_BYTES, onProgress: deps.onProgress });
+    loadMs = Math.round(performance.now() - started);
+    return ready;
   };
   return {
+    loadMs: () => loadMs,
     async generate(prompt: string): Promise<GenerateOutcome> {
       if (!(await deps.hasWebGpu())) return { source: GenerateSource.NoWebGpu, doc: docFromPrompt(prompt), errors: [] };
       let reply: string;
@@ -57,7 +63,7 @@ export function createGenerator(deps: GenerateDeps): { generate(prompt: string):
       }
       const parsed = parseLlmDoc(reply);
       if (parsed.ok) return { source: GenerateSource.Model, doc: parsed.doc, errors: [] };
-      return { source: GenerateSource.Fallback, doc: docFromPrompt(prompt), errors: parsed.errors };
+      return { source: GenerateSource.Fallback, doc: docFromPrompt(prompt), errors: parsed.errors, reply };
     },
   };
 }

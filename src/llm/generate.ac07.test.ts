@@ -46,6 +46,24 @@ describe('createGenerator', () => {
     expect(outcome.errors.join(' ')).toContain('layout');
   });
 
+  it('with a reply that is not JSON, returns the raw reply beside the fallback', async () => {
+    const d = deps('Sure! Here is your flier.', true);
+
+    const outcome = await createGenerator(d).generate('salsa');
+
+    expect(outcome.reply).toBe('Sure! Here is your flier.');
+  });
+
+  it('before and after the model loads, reports no load time and then a load time', async () => {
+    const generator = createGenerator(deps(JSON.stringify(event), true));
+    const before = generator.loadMs();
+
+    await generator.generate('salsa');
+
+    expect(before).toBeNull();
+    expect(generator.loadMs()).toBeGreaterThanOrEqual(0);
+  });
+
   it('with no WebGPU, uses the keyword preset without loading the model', async () => {
     const d = deps(JSON.stringify(event), false);
 

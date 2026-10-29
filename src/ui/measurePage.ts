@@ -14,6 +14,6 @@ export async function runModelMeasure(out: HTMLElement): Promise<void> {
     traces.push(traceOf(p, outcome));
     return outcome.source === GenerateSource.Model ? outcome.doc : null;
   });
-  const webGpu = await hasWebGpuAdapter(navigator as never);
+  const webGpu = await hasWebGpuAdapter();
   out.textContent = JSON.stringify(measureReport(result, traces, { at: new Date().toISOString(), webGpu, loadMs: generator.loadMs() }), null, 2);
 }

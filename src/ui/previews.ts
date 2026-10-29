@@ -61,16 +61,18 @@ export interface PreviewView {
   enlarge: (i: number, from: HTMLElement) => void;
   fonts?: FontLoader;
   pause?: () => Promise<void>;
+  current?: () => boolean;
 }
 
-/** One live canvas per flier with edit and PNG download; returns the canvases in doc order. */
-export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, view: PreviewView): Promise<HTMLCanvasElement[]> {
-  const { selected, select, fonts = document.fonts, pause = nextTask } = view;
+/** One live canvas per flier with edit and PNG download; the canvases in order, or null if a newer render took over. */
+export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, view: PreviewView): Promise<HTMLCanvasElement[] | null> {
+  const { selected, select, fonts = document.fonts, pause = nextTask, current = (): boolean => true } = view;
   await fontsReady(fonts);
   const canvases = docs.map(() => el('canvas', { role: 'img' }));
   const errors: (string | null)[] = [];
   for (const [i, doc] of docs.entries()) {
     await pause();
+    if (!current()) return null;
     canvases[i].setAttribute('aria-label', doc.blocks.title);
     errors.push(draw(doc, assets, canvases[i]));
   }

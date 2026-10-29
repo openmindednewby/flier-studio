@@ -2,8 +2,10 @@ import { BadgeSpot } from './BadgeSpot';
 
 export interface Box { l: number; t: number; r: number; b: number }
 
-const GAP = 4;
-const EDGE = 2;
+export const BADGE_GAP_PX = 4;
+export const BADGE_EDGE_PX = 2;
+const GAP = BADGE_GAP_PX;
+const EDGE = BADGE_EDGE_PX;
 
 function candidates(mark: Box, w: number, h: number): [BadgeSpot, Box][] {
   const mid = (mark.t + mark.b) / 2 - h / 2;

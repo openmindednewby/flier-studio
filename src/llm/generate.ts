@@ -1,9 +1,9 @@
 import type { LlmClient, ProgressEvent, run } from '@dloizides/llm-run';
 import { flierDocSchema, kizombaWorkshopDocs, type FlierDoc } from '@dloizides/poster-render';
+import { hasWebGpuAdapter } from '@dloizides/text-generation';
 import { GenerateSource } from './GenerateSource';
 import { parseLlmDoc } from './parseLlmDoc';
 import { docFromPrompt } from './promptFallback';
-import { hasWebGpuAdapter } from '@dloizides/text-generation';
 
 const MB = 1024 * 1024;
 const MODEL_MB = 400;
@@ -70,7 +70,7 @@ export function createGenerator(deps: GenerateDeps): { generate(prompt: string):
 
 export function browserDeps(onProgress?: (e: ProgressEvent) => void): GenerateDeps {
   return {
-    hasWebGpu: async () => hasWebGpuAdapter(typeof navigator === 'undefined' ? undefined : (navigator as never)),
+    hasWebGpu: async () => hasWebGpuAdapter(),
     loadLlm: async () => import('@dloizides/llm-run'),
     onProgress,
   };

@@ -15,20 +15,19 @@ async function search(page: Page, find: string): Promise<void> {
   await page.getByTestId('replace-find').fill(find);
 }
 
-test('replacing one ticked match says Replaced 1 match, in the singular', async ({ page }) => {
+test('AC-34 replacing one ticked match says Replaced 1 match, in the singular', async ({ page }) => {
   await open(page);
   await search(page, 'Intermediates');
-  const rows = page.getByTestId('replace-matches').getByRole('checkbox');
-  await expect(rows.first()).toBeVisible();
-  const n = await rows.count();
-  for (let i = 1; i < n; i++) await rows.nth(i).uncheck();
+  await expect(page.getByTestId('replace-tick-1')).toBeVisible();
+  const n = await page.locator('[data-testid^="replace-tick-"]').count();
+  for (let i = 2; i <= n; i++) await page.getByTestId(`replace-tick-${String(i)}`).uncheck();
 
   await page.getByTestId('replace-apply').click();
 
   await expect(page.getByTestId('status')).toContainText('Replaced 1 match.');
 });
 
-test('at 360 a long match list keeps Replace N ticked on screen, above the mini bar', async ({ page }, info) => {
+test('AC-33 at 360 a long match list keeps Replace N ticked on screen, above the mini bar', async ({ page }, info) => {
   test.skip(info.project.name !== 'mobile', '360 layout only');
   await open(page);
   await search(page, 'e');
@@ -44,7 +43,7 @@ test('at 360 a long match list keeps Replace N ticked on screen, above the mini 
   expect(hit).toBe(true);
 });
 
-test('a match on the first line of each flier keeps its badge on screen and never above the flier', async ({ page }) => {
+test('AC-33 a match on the first line of each flier keeps its badge on screen and never above the flier', async ({ page }) => {
   await open(page);
   const title = (await page.locator('[data-testid="preview-1"] canvas').getAttribute('aria-label')) ?? '';
   const word = title.split(/\s+/)[0];

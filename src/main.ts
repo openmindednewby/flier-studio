@@ -33,6 +33,7 @@ import { draftTime, draftsPanel, thumbOf } from './ui/draftsPanel';
 import { createMiniPreview } from './ui/miniPreview';
 import { focusInitial, renderForm } from './ui/formView';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
+import { renderGate } from './ui/renderGate';
 import { renderPromptPanel } from './ui/promptPanel';
 import { PanelKey } from './ui/PanelKey';
 import { aiEntry, sectionRail } from './ui/sectionNav';
@@ -85,14 +86,18 @@ function showDrafts(): void {
 }
 
 let timer: number | undefined;
+const nextRender = renderGate();
 function refreshPreviews(): void {
   working.save(state.fliers);
   const docs = docsOf();
   window.clearTimeout(timer);
+  const current = nextRender();
   previewGrid.dataset.render = 'pending';
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(docs);
-    state.canvases = await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge });
+    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, current }) : null;
+    if (canvases === null) return;
+    state.canvases = canvases;
     mini.update(state.canvases[state.selected], state.selected, docs.length);
     allFliers.update(docs.length);
     void autosave.save(state.fliers, thumbOf(state.canvases[0]));

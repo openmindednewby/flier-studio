@@ -2,7 +2,7 @@ import type { BlockText } from '../form/docEdit';
 import { findMatches, type ReplaceMatch } from '../form/replaceText';
 import { FM } from '../i18n/fm';
 import { plural } from '../i18n/plural';
-import { badgeSpot, type Box } from './badgePlacement';
+import { BADGE_EDGE_PX, BADGE_GAP_PX, badgeSpot, type Box } from './badgePlacement';
 import { el, labelled } from './dom';
 import { lineBox, textRunsOf, type LineBox, type TextRun } from './textRuns';
 
@@ -70,7 +70,7 @@ export function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], t
     const runs = canvas === null ? [] : textRunsOf(canvas);
     const run = runFor(runs, find.toLowerCase(), k);
     if (trim === null || canvas === null || run === undefined) return;
-    const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true' }));
+    const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true', style: `--badge-gap: ${String(BADGE_GAP_PX)}px; --badge-edge: ${String(BADGE_EDGE_PX)}px` }));
     const mark = markAt(lineBox(run), canvas, ticked(m), i + 1);
     box.append(mark);
     placeBadge(mark, trim, runs.filter((r) => r !== run).map((r) => screenBox(lineBox(r), canvas)));

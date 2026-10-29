@@ -1,5 +1,6 @@
 import type { GenerateOutcome } from './generate';
 import type { GenerateSource } from './GenerateSource';
+import { MeasureMode } from './MeasureMode';
 import type { MeasureResult } from './measure';
 
 const REPLY_CAP = 300;
@@ -12,7 +13,7 @@ export interface PromptTrace {
 }
 
 export interface MeasureReport extends MeasureResult {
-  mode: 'model';
+  mode: MeasureMode.Model;
   at: string;
   webGpu: boolean;
   loadMs: number | null;
@@ -28,5 +29,5 @@ export function traceOf(prompt: string, outcome: GenerateOutcome): PromptTrace {
 
 /** The AC-07 measure output: the valid count unchanged, plus WebGPU, model load time and one trace per prompt. */
 export function measureReport(result: MeasureResult, prompts: PromptTrace[], env: { at: string; webGpu: boolean; loadMs: number | null }): MeasureReport {
-  return { mode: 'model', at: env.at, webGpu: env.webGpu, loadMs: env.loadMs, ...result, prompts };
+  return { mode: MeasureMode.Model, at: env.at, webGpu: env.webGpu, loadMs: env.loadMs, ...result, prompts };
 }

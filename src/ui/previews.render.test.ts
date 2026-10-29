@@ -20,6 +20,18 @@ describe('renderPreviews', () => {
     expect(pauses).toBe(3);
   });
 
+  it('with zero fliers and a newer render already started, returns null and leaves the grid as it was', async () => {
+    const grid = document.createElement('div');
+    grid.append(document.createElement('figure'));
+    const nextRender = renderGate();
+    const stale = { ...baseView, current: nextRender() };
+    nextRender();
+
+    const result = await renderPreviews(grid, [], {}, stale);
+
+    expect({ result, figures: grid.querySelectorAll('figure').length }).toEqual({ result: null, figures: 1 });
+  });
+
   it('with a newer render finishing before an older one, leaves the grid showing the newer render', async () => {
     const grid = document.createElement('div');
     const docs = kizombaPreset();

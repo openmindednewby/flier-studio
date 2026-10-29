@@ -4,17 +4,15 @@ export interface Box { l: number; t: number; r: number; b: number }
 
 export const BADGE_GAP_PX = 4;
 export const BADGE_EDGE_PX = 2;
-const GAP = BADGE_GAP_PX;
-const EDGE = BADGE_EDGE_PX;
 
 function candidates(mark: Box, w: number, h: number): [BadgeSpot, Box][] {
   const mid = (mark.t + mark.b) / 2 - h / 2;
-  const left = mark.l - EDGE;
+  const left = mark.l - BADGE_EDGE_PX;
   return [
-    [BadgeSpot.Left, { l: mark.l - GAP - w, t: mid, r: mark.l - GAP, b: mid + h }],
-    [BadgeSpot.Right, { l: mark.r + GAP, t: mid, r: mark.r + GAP + w, b: mid + h }],
-    [BadgeSpot.Below, { l: left, t: mark.b + EDGE, r: left + w, b: mark.b + EDGE + h }],
-    [BadgeSpot.Above, { l: left, t: mark.t - EDGE - h, r: left + w, b: mark.t - EDGE }],
+    [BadgeSpot.Left, { l: mark.l - BADGE_GAP_PX - w, t: mid, r: mark.l - BADGE_GAP_PX, b: mid + h }],
+    [BadgeSpot.Right, { l: mark.r + BADGE_GAP_PX, t: mid, r: mark.r + BADGE_GAP_PX + w, b: mid + h }],
+    [BadgeSpot.Below, { l: left, t: mark.b + BADGE_EDGE_PX, r: left + w, b: mark.b + BADGE_EDGE_PX + h }],
+    [BadgeSpot.Above, { l: left, t: mark.t - BADGE_EDGE_PX - h, r: left + w, b: mark.t - BADGE_EDGE_PX }],
   ];
 }
 

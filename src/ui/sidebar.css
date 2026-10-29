@@ -64,7 +64,8 @@
 .replace-list b { display: block; font-weight: 600; }
 .replace-list s { color: var(--text-secondary); }
 .replace-list ins { text-decoration: none; font-weight: 700; }
-.replace-results > button { justify-self: start; width: auto; position: sticky; bottom: calc(var(--mini-bar, 0px) + env(safe-area-inset-bottom) + 8px); z-index: 1; box-shadow: 0 0 0 calc(var(--gap) / 2) var(--surface); }
+.replace-bar { position: sticky; bottom: calc(var(--mini-bar, 0px) + env(safe-area-inset-bottom)); z-index: 1; padding-block: calc(var(--gap) / 2); background: var(--surface); border-top: 1px solid var(--border); }
+.replace-bar > button { width: auto; }
 .replace-marks { position: absolute; inset: 0; pointer-events: none; }
 .replace-mark { position: absolute; box-sizing: border-box; border: 2px solid var(--mark-ink); border-radius: 4px; box-shadow: 0 0 0 1px var(--mark-halo); }
 .replace-mark.off { border-style: dashed; }

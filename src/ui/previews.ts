@@ -76,6 +76,7 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     canvases[i].setAttribute('aria-label', doc.blocks.title);
     errors.push(draw(doc, assets, canvases[i]));
   }
+  if (!current()) return null;
   const figures = docs.map((doc, i) => {
     const canvas = canvases[i];
     const error = errors[i];

@@ -100,7 +100,7 @@ export function replacePanel(grid: HTMLElement, actions: ReplaceActions): Replac
   const list = el('ul', { class: 'replace-list', 'data-testid': 'replace-matches' });
   const apply = el('button', { type: 'button', class: 'primary', 'data-testid': 'replace-apply', 'aria-description': FM('hint.button', FM('replace.heading')) });
   const empty = el('p', { class: 'muted', text: FM('replace.empty') });
-  const results = el('div', { class: 'replace-results' }, [count, list, apply, el('p', { class: 'muted', text: FM('replace.note') })]);
+  const results = el('div', { class: 'replace-results' }, [count, list, el('div', { class: 'replace-bar', 'data-testid': 'replace-bar' }, [apply]), el('p', { class: 'muted', text: FM('replace.note') })]);
   const off = new Set<string>();
   let matches: ReplaceMatch[] = [];
   const isTicked = (m: ReplaceMatch): boolean => !off.has(keyOf(m));

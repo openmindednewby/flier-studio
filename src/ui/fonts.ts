@@ -14,6 +14,9 @@ export const FONT_FACES: readonly string[] = [
   '400 48px "Allura"',
   '400 48px "Jost"',
   '500 48px "Jost"',
+  '400 48px "Anton"',
+  '500 48px "Barlow Semi Condensed"',
+  '700 48px "Barlow Semi Condensed"',
 ];
 
 const loaded = new WeakMap<FontLoader, Promise<void>>();

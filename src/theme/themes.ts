@@ -1,4 +1,4 @@
-import { BackgroundStyle, FontSetId, LayoutId, PaletteId, PictureAnchor, defaultLayoutFor, kizombaWorkshopDocs } from '@dloizides/poster-render';
+import { BackgroundStyle, FontSetId, LayoutId, PaletteId, PictureAnchor, RowIcon, defaultLayoutFor, kizombaWorkshopDocs } from '@dloizides/poster-render';
 import { layoutsFor } from '../form/layoutOptions';
 import { splitDoc, type FlierContent, type FlierStyle } from './flierTheme';
 import { ThemeId } from './ThemeId';
@@ -39,7 +39,28 @@ function goldenStyle(content: FlierContent): FlierStyle {
 
 export const GOLDEN_HOUR: FlierTheme = { id: ThemeId.GoldenHour, nameKey: 'themes.goldenHour', styleFor: goldenStyle };
 
-export const THEMES: readonly FlierTheme[] = [KIZOMBA_CLASSIC, GOLDEN_HOUR];
+const SAMPLE_HEADER = { headerTop: 113, titleScriptGap: 13, scriptTitleGap: 25, titleScale: 1.31, titleBottomScale: 1.75 };
+const SAMPLE_ROWS = { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 2, toPicture: true } };
+
+function sampleStyle(content: FlierContent): FlierStyle {
+  const classic = classicStyle(content);
+  const fits = classic.layout !== LayoutId.List && layoutsFor(content.format).some((entry) => entry.id === LayoutId.PictureRight);
+  const picture = { imageId: 'couple', anchor: PictureAnchor.Bottom, scale: 1 };
+  const base: FlierStyle = {
+    ...classic,
+    layout: fits ? LayoutId.PictureRight : classic.layout,
+    palette: PaletteId.KizombaSample,
+    fonts: FontSetId.KizombaSample,
+    background: BackgroundStyle.Brush,
+    picture,
+  };
+  if (!fits) return base;
+  return { ...base, tuning: SAMPLE_HEADER, rows: SAMPLE_ROWS };
+}
+
+export const KIZOMBA_SAMPLE: FlierTheme = { id: ThemeId.KizombaSample, nameKey: 'themes.kizombaSample', styleFor: sampleStyle };
+
+export const THEMES: readonly FlierTheme[] = [KIZOMBA_CLASSIC, GOLDEN_HOUR, KIZOMBA_SAMPLE];
 
 export function themeById(id: string, themes: readonly FlierTheme[] = THEMES): FlierTheme | undefined {
   return themes.find((theme) => theme.id === id);

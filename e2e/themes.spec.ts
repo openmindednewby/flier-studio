@@ -107,6 +107,23 @@ test.describe('poster themes (AC-14, AC-15)', () => {
     expect(await contentOf(page)).toBe(text);
   });
 
+  test('switching all 4 fliers to Kizomba sample keeps the text byte-identical, changes the render and fits every label', async ({ page }) => {
+    await page.goto('/');
+    const before = await renders(page);
+    const text = await contentOf(page);
+    await openPanel(page, Panel.All);
+
+    await page.getByTestId('pick-theme').selectOption({ label: 'Kizomba sample' });
+
+    const sample = await renders(page);
+    expect(await themeIds(page)).toEqual(Array(FLIERS).fill('kizomba-sample'));
+    expect(await contentOf(page)).toBe(text);
+    expect(sample).not.toEqual(before);
+    expect(await overflowingText(page)).toEqual([]);
+    const out = process.env.FLIER_EXPORT_DIR;
+    if (out !== undefined) sample.forEach((url, i) => writeFileSync(join(out, `${EXPORT_NAMES[i] ?? String(i)}-kizomba-sample.png`), Buffer.from(url.split(',')[1] ?? '', 'base64')));
+  });
+
   test('on a desktop, the form still opens with the title focused', async ({ page }, info) => {
     test.skip(info.project.name !== 'desktop');
 

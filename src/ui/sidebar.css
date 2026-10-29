@@ -6,7 +6,6 @@
 .rail a[aria-current="true"] { background: var(--background); box-shadow: inset 3px 0 0 var(--brand-fill); font-weight: 600; }
 .rail a:focus-visible, .rail .rail-toggle:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: -3px; }
 .rail-icon { flex: 0 0 20px; }
-.rail-label { overflow-wrap: anywhere; }
 .rail[data-collapsed="true"] .rail-label, .rail .rail-toggle .rail-label { display: none; }
 .rail .rail-toggle svg { transition: transform var(--motion-fast) var(--ease-standard); }
 @media (prefers-reduced-motion: reduce) { .rail .rail-toggle svg { transition: none; } }
@@ -20,6 +19,11 @@
   .rail .rail-toggle svg { transform: rotate(90deg); }
   .rail[data-collapsed="true"] .rail-toggle svg { transform: rotate(-90deg); }
   .controls > .card, .previews, .preview-grid, .preview-grid figure { scroll-margin-top: var(--rail-h); }
+}
+
+@media (max-width: 399px) {
+  .rail { padding-inline: 4px; }
+  .rail a { padding-inline: 0; font-size: 0.64rem; }
 }
 
 @media (min-width: 1024px) {

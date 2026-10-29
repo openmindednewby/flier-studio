@@ -83,6 +83,23 @@ test.describe('AC-29 the sidebar switches the panel', () => {
     await expect(page.getByTestId('prompt-text')).toBeFocused();
   });
 
+  test('at 360 wide, every rail caption fits its item and no word breaks across lines', async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile', 'narrow rail');
+    await open(page);
+
+    const captions = await page.locator('.rail a .rail-label').evaluateAll((labels) => labels.map((label) => {
+      const range = document.createRange();
+      range.selectNodeContents(label);
+      const item = label.closest('a') as HTMLElement;
+      const lines = new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+      const words = (label.textContent ?? '').split(' ').length;
+      const fits = item.scrollWidth <= item.clientWidth && label.getBoundingClientRect().right <= item.getBoundingClientRect().right;
+      return { text: label.textContent, fits, brokenWord: lines > words };
+    }));
+
+    expect(captions.filter((c) => !c.fits || c.brokenWord)).toEqual([]);
+  });
+
   test('the Fliers item brings the fliers into view and keeps the open panel', async ({ page }) => {
     await open(page);
 

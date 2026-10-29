@@ -72,7 +72,6 @@ body = f'''
 </head>
 <body>
 <main>
-<p class="withdrawn">Critic pending &mdash; do not pick.</p>
 <h1>FLIER-2 "Flier Studio follow-ups": draft names, delete and clean-up, Same width, Same size (AC-36..39)</h1>
 <p class="meta">Live build {R['beforeBuild']} with each option applied by restyling the real rows and redrawing the real flier (<code>drafts.ts</code>, <code>lines.ts</code>). Galaxy S5 360x640 and Desktop Chrome 1280x800, light and dark; six drafts made by typing five titles at fixed times, two starred; the same steps for before and after (<code>capture.spec.ts</code>, <code>frames/*.json</code>, <code>result.json</code>). The line tools and the redraw are a target, not built: Same width and Same size need a per-line size in <code>@dloizides/poster-render</code> (D25).</p>
 <p>Today: KIZOMBA {lb.get('firstW')} px wide at {lb.get('firstPx')} px, WORKSHOP {lb.get('secondW')} px at {lb.get('secondPx')} px (flier 1, canvas {lb.get('canvasW')} px). Same width scales the second line until both draw at one width (&plusmn;1 px), inside the margins. Same size gives the second line the first line's size, shrunk only if it would cross the margins. Both apply to the flier you are editing, and a theme change keeps them.</p>

@@ -234,11 +234,12 @@ async function downloadAll(): Promise<void> {
 async function start(): Promise<void> {
   const app = document.getElementById('app');
   if (!app) return;
-  if (new URLSearchParams(location.search).get('measure') === 'llm') {
+  const measure = new URLSearchParams(location.search).get('measure');
+  if (measure === 'llm' || measure === 'tiers') {
     const live = el('pre', { 'data-testid': 'measure-progress', 'aria-live': 'polite' });
     const out = el('pre', { 'data-testid': 'measure' });
     app.replaceChildren(live, out);
-    await (await import('./ui/measurePage')).runModelMeasure(out, live);
+    await (measure === 'tiers' ? (await import('./ui/tiersPage')).runTiersMeasure(out, live) : (await import('./ui/measurePage')).runModelMeasure(out, live));
     return;
   }
   const previews = el('section', { class: 'previews', 'data-testid': 'previews' }, [

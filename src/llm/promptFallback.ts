@@ -25,8 +25,8 @@ const SUBTITLES: readonly [RegExp, string][] = [
   [/party|social|night|milonga/i, 'PARTY'],
   [/class|session|taster/i, 'CLASS'],
 ];
-const DATE = /\b(?:mon|tues|wednes|thurs|fri|satur|sun)day\s+\d{1,2}\s+[a-z]+/i;
-const TIME = /\b\d{1,2}:\d{2}(?:\s*-\s*\d{1,2}:\d{2})?/;
+export const DATE = /\b(?:mon|tues|wednes|thurs|fri|satur|sun)day\s+\d{1,2}\s+[a-z]+/i;
+export const TIME = /\b\d{1,2}:\d{2}(?:\s*-\s*\d{1,2}:\d{2})?/;
 
 function pick<T>(prompt: string, table: readonly [RegExp, T][], fallback: T): T {
   return table.find(([re]) => re.test(prompt))?.[1] ?? fallback;

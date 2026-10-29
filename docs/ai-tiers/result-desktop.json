@@ -1,0 +1,1255 @@
+{
+  "env": {
+    "at": "2026-10-29T10:17:19.861Z",
+    "viewport": "1280x800",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+    "webGpu": false,
+    "crossOriginIsolated": true,
+    "cores": 24
+  },
+  "tiers": [
+    {
+      "tier": "keyword",
+      "downloadMB": 0,
+      "loadMs": 0,
+      "msPerPrompt": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "p50Ms": 0,
+      "longestTaskMs": 0,
+      "score": 18,
+      "rows": [
+        {
+          "prompt": "Kizomba workshop on Saturday 31 October, Level 1 20:00 - 21:00, party pass 20€",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "PARTY",
+            "date": "Saturday 31 October",
+            "time": "20:00 - 21:00"
+          }
+        },
+        {
+          "prompt": "Salsa social night, Instagram post, dark colours",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Bachata beginners class every Tuesday at 19:30, story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "CLASS",
+            "date": "",
+            "time": "19:30"
+          }
+        },
+        {
+          "prompt": "Upcoming kizomba workshops list for November",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "list",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Desktop wallpaper with a night kizomba theme",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "desktop",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Phone wallpaper, rose colours, tango",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "rose",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "TANGO",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Square flier for a zouk party on Friday 6 November",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "ZOUK",
+            "subtitle": "PARTY",
+            "date": "Friday 6 November",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Summer beach salsa party, sea colours, post",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sea",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Valentine bachata night with a pink palette",
+          "right": false,
+          "misses": [
+            "palette"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Swing dance taster class on Sunday 15 November at 18:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SWING",
+            "subtitle": "CLASS",
+            "date": "Sunday 15 November",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "List of upcoming salsa and bachata workshops, Instagram post",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "post",
+            "layout": "list",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Kizomba bootcamp weekend, elegant fonts, story",
+          "right": false,
+          "misses": [
+            "fonts"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "MASTERCLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Tango milonga on Saturday 21 November 21:00 - 01:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "TANGO",
+            "subtitle": "PARTY",
+            "date": "Saturday 21 November",
+            "time": "21:00 - 01:00"
+          }
+        },
+        {
+          "prompt": "Lock screen wallpaper for kizomba lovers",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "rose",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Hip hop open class for teens, square",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "HIP HOP",
+            "subtitle": "CLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Yoga morning session on Sunday 22 November at 09:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "YOGA",
+            "subtitle": "CLASS",
+            "date": "Sunday 22 November",
+            "time": "09:00"
+          }
+        },
+        {
+          "prompt": "Bachata sensual masterclass with the picture on the left",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-left",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "MASTERCLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Salsa workshop with text on top and the picture at the bottom",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-bottom",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Laptop wallpaper, calm sand colours",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "desktop",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Upcoming zouk socials schedule, story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "list",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "ZOUK",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        }
+      ]
+    },
+    {
+      "tier": "embed",
+      "downloadMB": 23.8,
+      "loadMs": 16655,
+      "msPerPrompt": [
+        40,
+        22,
+        25,
+        18,
+        21,
+        21,
+        26,
+        23,
+        19,
+        30,
+        28,
+        28,
+        30,
+        23,
+        23,
+        27,
+        26,
+        29,
+        20,
+        20
+      ],
+      "p50Ms": 24,
+      "longestTaskMs": 0,
+      "score": 15,
+      "rows": [
+        {
+          "prompt": "Kizomba workshop on Saturday 31 October, Level 1 20:00 - 21:00, party pass 20€",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "Saturday 31 October",
+            "time": "20:00 - 21:00"
+          }
+        },
+        {
+          "prompt": "Salsa social night, Instagram post, dark colours",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "title": "SALSA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Bachata beginners class every Tuesday at 19:30, story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "BACHATA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": "19:30"
+          }
+        },
+        {
+          "prompt": "Upcoming kizomba workshops list for November",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Desktop wallpaper with a night kizomba theme",
+          "right": false,
+          "misses": [
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Phone wallpaper, rose colours, tango",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "rose",
+            "fonts": "classic",
+            "title": "TANGO",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Square flier for a zouk party on Friday 6 November",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "ZOUK",
+            "subtitle": "WORKSHOP",
+            "date": "Friday 6 November",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Summer beach salsa party, sea colours, post",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sea",
+            "fonts": "classic",
+            "title": "SALSA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Valentine bachata night with a pink palette",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "rose",
+            "fonts": "classic",
+            "title": "BACHATA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Swing dance taster class on Sunday 15 November at 18:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "SWING",
+            "subtitle": "PARTY",
+            "date": "Sunday 15 November",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "List of upcoming salsa and bachata workshops, Instagram post",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "SALSA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Kizomba bootcamp weekend, elegant fonts, story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "elegant",
+            "title": "KIZOMBA",
+            "subtitle": "MASTERCLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Tango milonga on Saturday 21 November 21:00 - 01:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "TANGO",
+            "subtitle": "WORKSHOP",
+            "date": "Saturday 21 November",
+            "time": "21:00 - 01:00"
+          }
+        },
+        {
+          "prompt": "Lock screen wallpaper for kizomba lovers",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Hip hop open class for teens, square",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "HIP HOP",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Yoga morning session on Sunday 22 November at 09:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "YOGA",
+            "subtitle": "WORKSHOP",
+            "date": "Sunday 22 November",
+            "time": "09:00"
+          }
+        },
+        {
+          "prompt": "Bachata sensual masterclass with the picture on the left",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-left",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "BACHATA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Salsa workshop with text on top and the picture at the bottom",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-bottom",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "SALSA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Laptop wallpaper, calm sand colours",
+          "right": false,
+          "misses": [
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Upcoming zouk socials schedule, story",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "ZOUK",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        }
+      ]
+    },
+    {
+      "tier": "llm",
+      "downloadMB": 100.6,
+      "loadMs": 40716,
+      "msPerPrompt": [
+        1841,
+        1709,
+        1708,
+        1616,
+        1724,
+        1447,
+        1534,
+        1606,
+        2484,
+        8894,
+        2045,
+        1869,
+        2033,
+        1606,
+        1567,
+        1880,
+        1851,
+        1948,
+        1992,
+        2060
+      ],
+      "p50Ms": 1846,
+      "longestTaskMs": 0,
+      "score": 2,
+      "nGpuLayers": 0,
+      "rows": [
+        {
+          "prompt": "Kizomba workshop on Saturday 31 October, Level 1 20:00 - 21:00, party pass 20€",
+          "right": false,
+          "misses": [
+            "time"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WELCOME",
+            "date": "Saturday 31 October",
+            "time": "20:00"
+          }
+        },
+        {
+          "prompt": "Salsa social night, Instagram post, dark colours",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "palette"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALAD SALAD",
+            "subtitle": "STANDING",
+            "date": "Sunday 10th",
+            "time": "00:00"
+          }
+        },
+        {
+          "prompt": "Bachata beginners class every Tuesday at 19:30, story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "CLASS",
+            "date": "19:30",
+            "time": "19:30"
+          }
+        },
+        {
+          "prompt": "Upcoming kizomba workshops list for November",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WELCOME",
+            "date": "November 15",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Desktop wallpaper with a night kizomba theme",
+          "right": false,
+          "misses": [
+            "title",
+            "palette"
+          ],
+          "settings": {
+            "format": "desktop",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "DESKTOP PAPER",
+            "subtitle": "CLASS",
+            "date": "20:00 - 21:00",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Phone wallpaper, rose colours, tango",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "palette",
+            "layout"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "ZUMBA",
+            "subtitle": "CLASS",
+            "date": "Monday 2 March",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Square flier for a zouk party on Friday 6 November",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "ZUMBA",
+            "subtitle": "CLASS",
+            "date": "Friday 6 November",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Summer beach salsa party, sea colours, post",
+          "right": false,
+          "misses": [
+            "palette"
+          ],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "BEGINNER",
+            "date": "Sunday 10th",
+            "time": "00:00"
+          }
+        },
+        {
+          "prompt": "Valentine bachata night with a pink palette",
+          "right": false,
+          "misses": [
+            "title",
+            "palette"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "Valentine's Bachata",
+            "subtitle": "BOOST,",
+            "date": "Saturday 31 October",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Swing dance taster class on Sunday 15 November at 18:00",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "Swing Dance Taster Class",
+            "subtitle": "CLASS",
+            "date": "Sunday 15 November",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "List of upcoming salsa and bachata workshops, Instagram post",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "WELCOME",
+            "date": "2019-01-01",
+            "time": "01:00-02:00"
+          }
+        },
+        {
+          "prompt": "Kizomba bootcamp weekend, elegant fonts, story",
+          "right": false,
+          "misses": [
+            "format",
+            "fonts"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "BOOST CAMP",
+            "date": "Sunday 10th",
+            "time": "08:00-10:00"
+          }
+        },
+        {
+          "prompt": "Tango milonga on Saturday 21 November 21:00 - 01:00",
+          "right": false,
+          "misses": [
+            "title",
+            "date",
+            "time"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "TANGULA MOLONGO",
+            "subtitle": "MILONGONE",
+            "date": "21:00 - 01:00",
+            "time": "01:00"
+          }
+        },
+        {
+          "prompt": "Lock screen wallpaper for kizomba lovers",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "LOCK SCREEN PAIRING",
+            "subtitle": "CLASS",
+            "date": "Monday 2 March",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Hip hop open class for teens, square",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "HIPHOOP",
+            "subtitle": "CLASS",
+            "date": "Monday 2 March",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Yoga morning session on Sunday 22 November at 09:00",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "Yoga",
+            "subtitle": "MUSIC",
+            "date": "Sunday 22 November",
+            "time": "09:00"
+          }
+        },
+        {
+          "prompt": "Bachata sensual masterclass with the picture on the left",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "SINGLE DAY",
+            "date": "2018-01-01",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Salsa workshop with text on top and the picture at the bottom",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "WELCOME TO SALSA",
+            "date": "2019-01-01",
+            "time": "01:00"
+          }
+        },
+        {
+          "prompt": "Laptop wallpaper, calm sand colours",
+          "right": false,
+          "misses": [
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "LAPTOP PAPER",
+            "subtitle": "PAWNAP",
+            "date": "2019-01-01",
+            "time": "18:00"
+          }
+        },
+        {
+          "prompt": "Upcoming zouk socials schedule, story",
+          "right": false,
+          "misses": [
+            "title",
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "modern",
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "ZUMBA",
+            "subtitle": "CLASS",
+            "date": "20:00 - 21:00",
+            "time": "18:00"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -42,7 +42,7 @@ describe('KIZOMBA_SAMPLE.styleFor', () => {
 
     const styles = list.map((c) => KIZOMBA_SAMPLE.styleFor(c));
 
-    expect(styles.map((s) => ({ tuning: s.tuning, rows: s.rows }))).toEqual(list.map(() => ({ tuning: { scriptTitleGap: 24, bodyTop: 523, headerHeight: 507 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true, oneLine: true }, textWidth: 640 } })));
+    expect(styles.map((s) => ({ tuning: s.tuning, rows: s.rows }))).toEqual(list.map(() => ({ tuning: { scriptTitleGap: 24, bodyTop: 523, headerHeight: 507 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true, oneLine: true, pinGap: 16, pinShift: -8, centred: true }, textWidth: 640 } })));
   });
 
   it('with the id kizomba-sample, finds the theme', () => {

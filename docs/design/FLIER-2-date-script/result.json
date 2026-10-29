@@ -1,0 +1,109 @@
+{
+ "task": "FLIER-2 \"Flier Studio follow-ups\" D30 date script",
+ "pairMethod": "same-steps",
+ "countMethod": "visible-in-frame",
+ "rowsMethod": "auto",
+ "rows": [],
+ "steps": "e2e/themes.spec.ts 'to Kizomba sample', desktop project, FLIER_EXPORT_DIR, same preset content, 1080x1920",
+ "frames": [
+  {
+   "option": "D-A",
+   "font": "Sofia (OFL)",
+   "pair": {
+    "route": "/",
+    "state": "all fliers Kizomba sample",
+    "fixture": "workshop-20261031 preset",
+    "viewport": "1080x1920 export",
+    "crop": "y240-420 / full"
+   }
+  },
+  {
+   "option": "D-B",
+   "font": "Satisfy (OFL)",
+   "pair": {
+    "route": "/",
+    "state": "all fliers Kizomba sample",
+    "fixture": "workshop-20261031 preset",
+    "viewport": "1080x1920 export",
+    "crop": "y240-420 / full"
+   }
+  },
+  {
+   "option": "D-C",
+   "font": "Montez (OFL)",
+   "pair": {
+    "route": "/",
+    "state": "all fliers Kizomba sample",
+    "fixture": "workshop-20261031 preset",
+    "viewport": "1080x1920 export",
+    "crop": "y240-420 / full"
+   }
+  },
+  {
+   "option": "D-K",
+   "font": "Style Script (current)",
+   "pair": {
+    "route": "/",
+    "state": "all fliers Kizomba sample",
+    "fixture": "workshop-20261031 preset",
+    "viewport": "1080x1920 export",
+    "crop": "y240-420 / full"
+   }
+  },
+  {
+   "option": "V-A",
+   "change": "upcoming venue centred:true pinGap 16 pinShift -8",
+   "measured": {
+    "before": {
+     "pinCy": 596,
+     "textCy": 572,
+     "gap": 53
+    },
+    "after": {
+     "pinCy": 588,
+     "textCy": 589,
+     "gap": 37
+    }
+   },
+   "pair": {
+    "route": "/",
+    "state": "all fliers Kizomba sample",
+    "fixture": "upcoming-workshops preset",
+    "viewport": "1080x1920 export",
+    "crop": "x0-720 y480-700"
+   }
+  }
+ ],
+ "options": {
+  "D-A": {
+   "inventory": "1/1",
+   "aligned": "pass",
+   "note": "only the date line / venue line is touched; text unchanged"
+  },
+  "D-B": {
+   "inventory": "1/1",
+   "aligned": "pass",
+   "note": "only the date line / venue line is touched; text unchanged"
+  },
+  "D-C": {
+   "inventory": "1/1",
+   "aligned": "pass",
+   "note": "only the date line / venue line is touched; text unchanged"
+  },
+  "D-K": {
+   "inventory": "1/1",
+   "aligned": "pass",
+   "note": "only the date line / venue line is touched; text unchanged"
+  },
+  "V-A": {
+   "inventory": "1/1",
+   "aligned": "pass",
+   "note": "only the date line / venue line is touched; text unchanged"
+  },
+  "V-B": {
+   "inventory": "1/1",
+   "aligned": "pass",
+   "note": "only the date line / venue line is touched; text unchanged"
+  }
+ }
+}

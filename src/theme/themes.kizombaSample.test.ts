@@ -31,8 +31,8 @@ describe('KIZOMBA_SAMPLE.styleFor', () => {
 
     expect(styles.map((s) => [s.layout, s.tuning, s.rows, s.picture?.overlap])).toEqual(contents.map(() => [
       LayoutId.PictureRight,
-      { headerTop: 113, titleScriptGap: -55, scriptTitleGap: 13, titleScale: 0.68, titleBottomScale: 1.1, titleSpacing: -0.03, scriptScale: 1.1, headerTextWidth: 715, bodyTop: 570, headerHeight: 600 },
-      { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 5, lengths: [668, 572, 480, 390, 366] }, priceLabelScale: 0.62, venue: { body: true, bare: true, oneLine: true }, labelScale: 0.92, timeScale: 0.95, timeWeight: 500, textWidth: 660 },
+      { headerTop: 113, titleScriptGap: -40, scriptTitleGap: 8, titleScale: 0.68, titleBottomScale: 1.1, titleSpacing: -0.03, scriptScale: 1, headerTextWidth: 715, bodyTop: 595, headerHeight: 600 },
+      { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 5, lengths: [668, 572, 480, 390, 366] }, priceLabelScale: 0.62, venue: { body: true, bare: true, oneLine: true, pinSize: 91, pinGap: 16, pinShift: -8, centred: true }, priceGap: -17, labelScale: 0.92, timeScale: 0.95, timeWeight: 500, textWidth: 660 },
       undefined,
     ]));
   });
@@ -42,7 +42,7 @@ describe('KIZOMBA_SAMPLE.styleFor', () => {
 
     const styles = list.map((c) => KIZOMBA_SAMPLE.styleFor(c));
 
-    expect(styles.map((s) => ({ tuning: s.tuning, rows: s.rows }))).toEqual(list.map(() => ({ tuning: { scriptTitleGap: 24 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true } } })));
+    expect(styles.map((s) => ({ tuning: s.tuning, rows: s.rows }))).toEqual(list.map(() => ({ tuning: { scriptTitleGap: 24, bodyTop: 523, headerHeight: 507 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true, oneLine: true }, textWidth: 640 } })));
   });
 
   it('with the id kizomba-sample, finds the theme', () => {

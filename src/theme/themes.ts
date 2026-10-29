@@ -39,9 +39,9 @@ function goldenStyle(content: FlierContent): FlierStyle {
 
 export const GOLDEN_HOUR: FlierTheme = { id: ThemeId.GoldenHour, nameKey: 'themes.goldenHour', styleFor: goldenStyle };
 
-const SAMPLE_HEADER = { headerTop: 113, titleScriptGap: -55, scriptTitleGap: 13, titleScale: 0.68, titleBottomScale: 1.1, titleSpacing: -0.03, scriptScale: 1.1, headerTextWidth: 715, bodyTop: 570, headerHeight: 600 };
-const SAMPLE_ROWS = { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 5, lengths: [668, 572, 480, 390, 366] }, priceLabelScale: 0.62, venue: { body: true, bare: true, oneLine: true }, labelScale: 0.92, timeScale: 0.95, timeWeight: 500, textWidth: 660 };
-const SAMPLE_LIST = { tuning: { scriptTitleGap: 24 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true } } };
+const SAMPLE_HEADER = { headerTop: 113, titleScriptGap: -40, scriptTitleGap: 8, titleScale: 0.68, titleBottomScale: 1.1, titleSpacing: -0.03, scriptScale: 1, headerTextWidth: 715, bodyTop: 595, headerHeight: 600 };
+const SAMPLE_ROWS = { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 5, lengths: [668, 572, 480, 390, 366] }, priceLabelScale: 0.62, venue: { body: true, bare: true, oneLine: true, pinSize: 91, pinGap: 16, pinShift: -8, centred: true }, priceGap: -17, labelScale: 0.92, timeScale: 0.95, timeWeight: 500, textWidth: 660 };
+const SAMPLE_LIST = { tuning: { scriptTitleGap: 24, bodyTop: 523, headerHeight: 507 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true, oneLine: true }, textWidth: 640 } };
 
 function sampleStyle(content: FlierContent): FlierStyle {
   const classic = classicStyle(content);

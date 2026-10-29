@@ -10,10 +10,11 @@
   "all-fliers-row",
   "all-fonts",
   "all-fonts-row",
+  "all-layout",
+  "all-layout-row",
   "all-palette",
   "all-palette-row",
   "font-more-title",
-  "font-reset-title",
   "font-role-panel",
   "font-role-title",
   "font-roles",
@@ -27,13 +28,16 @@
   "nav-drafts",
   "nav-form",
   "nav-previews",
+  "pick-theme",
   "rail-toggle",
-  "section-nav"
+  "section-nav",
+  "theme-row"
  ],
  "misaligned": [],
  "textFit": [],
  "under44": [],
  "hscroll": false,
  "highlightBoxesInView": 2,
- "focused": "nav-all"
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

@@ -35,6 +35,7 @@
  "textFit": [],
  "under44": [],
  "hscroll": false,
- "highlightBoxesInView": 2,
- "focused": "nav-all"
+ "highlightBoxesInView": 4,
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

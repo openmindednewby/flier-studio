@@ -48,12 +48,15 @@
   "replace-word",
   "section-nav",
   "shared-fields",
-  "shared-state"
+  "shared-state",
+  "txt:replace-empty",
+  "txt:shared-head"
  ],
  "misaligned": [],
  "textFit": [],
  "under44": [],
  "hscroll": false,
  "highlightBoxesInView": 0,
- "focused": "nav-all"
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

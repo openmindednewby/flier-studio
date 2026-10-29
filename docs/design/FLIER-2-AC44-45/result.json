@@ -101,6 +101,22 @@
    "kind": "probe"
   },
   {
+   "id": "fold:closed",
+   "item": "Card folded (fold state, remembered)",
+   "source": "src/ui/collapsible.ts:64",
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
+   "id": "mini-highlighted",
+   "item": "mini-highlighted",
+   "source": "src/ui/miniPreview.ts:58",
+   "s360": "seen",
+   "s1280": "not in a 360 frame",
+   "kind": "probe"
+  },
+  {
    "id": "mini-open",
    "item": "mini-open",
    "source": "src/ui/miniPreview.ts:58",
@@ -127,6 +143,14 @@
   {
    "id": "mini-see-all",
    "item": "mini-see-all",
+   "source": "src/ui/miniPreview.ts:58",
+   "s360": "seen",
+   "s1280": "not in a 360 frame",
+   "kind": "probe"
+  },
+  {
+   "id": "mini-see-marks",
+   "item": "mini-see-marks",
    "source": "src/ui/miniPreview.ts:58",
    "s360": "seen",
    "s1280": "not in a 360 frame",
@@ -197,9 +221,41 @@
    "kind": "probe"
   },
   {
+   "id": "replace-apply",
+   "item": "replace-apply",
+   "source": "src/ui/replacePanel.ts:101",
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
+   "id": "replace-bar",
+   "item": "replace-bar",
+   "source": "src/ui/replacePanel.ts:103",
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
+   "id": "replace-count",
+   "item": "replace-count",
+   "source": "src/ui/replacePanel.ts:99",
+   "s360": "not in a 360 frame",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
    "id": "replace-find",
    "item": "replace-find",
    "source": "src/ui/replacePanel.ts:96",
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
+   "id": "replace-matches",
+   "item": "replace-matches",
+   "source": "src/ui/replacePanel.ts:100",
    "s360": "seen",
    "s1280": "seen",
    "kind": "probe"
@@ -245,68 +301,36 @@
    "kind": "probe"
   },
   {
-   "id": "note",
-   "item": "Card note \"Every setting here changes all n fliers\"",
-   "source": "src/ui/allFliersPanel.ts:72",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
-  },
-  {
-   "id": "look-head",
+   "id": "txt:look-head",
    "item": "Heading \"Look of every flier\"",
    "source": "src/ui/allFliersPanel.ts:76",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
   },
   {
-   "id": "shared-head",
+   "id": "txt:note",
+   "item": "Card note \"Every setting here changes all n fliers\"",
+   "source": "src/ui/allFliersPanel.ts:72",
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
+   "id": "txt:replace-empty",
+   "item": "Replace hint (no word typed)",
+   "source": "src/ui/replacePanel.ts:102",
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
+  },
+  {
+   "id": "txt:shared-head",
    "item": "Heading \"Shared text\"",
    "source": "src/ui/allFliersPanel.ts:59",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
-  },
-  {
-   "id": "replace-empty",
-   "item": "Replace text hint (no word typed)",
-   "source": "src/ui/replacePanel.ts:102",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
-  },
-  {
-   "id": "replace-count",
-   "item": "Replace: match count (after typing)",
-   "source": "src/ui/replacePanel.ts:99",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
-  },
-  {
-   "id": "replace-matches",
-   "item": "Replace: ticked match list (after typing)",
-   "source": "src/ui/replacePanel.ts:100",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
-  },
-  {
-   "id": "replace-apply",
-   "item": "Replace: Apply n (after typing)",
-   "source": "src/ui/replacePanel.ts:101",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
-  },
-  {
-   "id": "fold",
-   "item": "Card fold state (open/closed, remembered)",
-   "source": "src/ui/collapsible.ts:64",
-   "s360": "inside all-fliers, untouched",
-   "s1280": "inside all-fliers, untouched",
-   "kind": "contained"
+   "s360": "seen",
+   "s1280": "seen",
+   "kind": "probe"
   }
  ],
  "newItems": [
@@ -340,57 +364,60 @@
  ],
  "options": {
   "A": {
-   "inventory": "38/38",
+   "inventory": "41/41",
    "lost": [],
    "added": "3/3",
    "highlight": [
-    "A-1280-dark-hover.png:7",
-    "A-1280-dark-open.png:8",
-    "A-1280-light-hover.png:7",
-    "A-1280-light-open.png:8",
+    "A-1280-dark-hover.png:8",
+    "A-1280-dark-open.png:16",
+    "A-1280-light-hover.png:8",
+    "A-1280-light-open.png:16",
     "A-360-dark-hover.png:2",
-    "A-360-dark-open.png:2",
+    "A-360-dark-open.png:4",
     "A-360-light-hover.png:2",
-    "A-360-light-open.png:2"
+    "A-360-light-open.png:4"
    ],
+   "conflicts": [],
    "misaligned": [],
    "textFit": [],
    "hscroll": [],
    "under44": []
   },
   "B": {
-   "inventory": "38/38",
+   "inventory": "41/41",
    "lost": [],
    "added": "3/3",
    "highlight": [
-    "B-1280-dark-hover.png:7",
-    "B-1280-dark-open.png:8",
-    "B-1280-light-hover.png:7",
-    "B-1280-light-open.png:8",
+    "B-1280-dark-hover.png:8",
+    "B-1280-dark-open.png:16",
+    "B-1280-light-hover.png:8",
+    "B-1280-light-open.png:16",
     "B-360-dark-hover.png:2",
-    "B-360-dark-open.png:2",
+    "B-360-dark-open.png:4",
     "B-360-light-hover.png:2",
-    "B-360-light-open.png:2"
+    "B-360-light-open.png:4"
    ],
+   "conflicts": [],
    "misaligned": [],
    "textFit": [],
    "hscroll": [],
    "under44": []
   },
   "C": {
-   "inventory": "38/38",
+   "inventory": "41/41",
    "lost": [],
    "added": "3/3",
    "highlight": [
-    "C-1280-dark-hover.png:7",
-    "C-1280-dark-open.png:8",
-    "C-1280-light-hover.png:7",
-    "C-1280-light-open.png:8",
+    "C-1280-dark-hover.png:8",
+    "C-1280-dark-open.png:16",
+    "C-1280-light-hover.png:8",
+    "C-1280-light-open.png:16",
     "C-360-dark-hover.png:2",
-    "C-360-dark-open.png:2",
+    "C-360-dark-open.png:4",
     "C-360-light-hover.png:2",
-    "C-360-light-open.png:2"
+    "C-360-light-open.png:4"
    ],
+   "conflicts": [],
    "misaligned": [],
    "textFit": [],
    "hscroll": [],
@@ -449,7 +476,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -512,6 +541,140 @@
   },
   {
    "option": "A",
+   "shot": "1280-light-card-end-typed",
+   "side": "before",
+   "build": "live",
+   "file": "before-1280-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-count",
+     "replace-find",
+     "replace-match-1",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-1",
+     "replace-tick-2",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "replace-with",
+     "replace-word",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-card-end-typed",
+   "side": "after",
+   "build": "live + mockup A",
+   "file": "A-1280-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-count",
+     "replace-find",
+     "replace-match-1",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-1",
+     "replace-tick-2",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "replace-with",
+     "replace-word",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "A",
    "shot": "1280-light-card-end",
    "side": "before",
    "build": "live",
@@ -560,7 +723,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -616,7 +781,97 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-card-folded",
+   "side": "before",
+   "build": "live",
+   "file": "before-1280-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "fold:closed",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "1280-light-card-folded",
+   "side": "after",
+   "build": "live + mockup A",
+   "file": "A-1280-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "fold:closed",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
     ]
    }
   },
@@ -670,7 +925,10 @@
      "previews",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -726,7 +984,9 @@
      "previews",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ]
    }
   },
@@ -783,7 +1043,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -841,7 +1102,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ]
    }
   },
@@ -896,7 +1158,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -997,7 +1261,8 @@
      "replace-text",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -1046,6 +1311,114 @@
   },
   {
    "option": "A",
+   "shot": "360-light-card-end-typed",
+   "side": "before",
+   "build": "live",
+   "file": "before-360-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-card-end-typed",
+   "side": "after",
+   "build": "live + mockup A",
+   "file": "A-360-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "A",
    "shot": "360-light-card-end",
    "side": "before",
    "build": "live",
@@ -1081,7 +1454,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty"
     ],
     "after": []
    }
@@ -1124,7 +1498,104 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty"
+    ]
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-card-folded",
+   "side": "before",
+   "build": "live",
+   "file": "before-360-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "fold:closed",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "A",
+   "shot": "360-light-card-folded",
+   "side": "after",
+   "build": "live + mockup A",
+   "file": "A-360-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "fold:closed",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
     ]
    }
   },
@@ -1167,7 +1638,9 @@
      "pick-theme",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ],
     "after": []
    }
@@ -1212,7 +1685,9 @@
      "pick-theme",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ]
    }
   },
@@ -1257,7 +1732,8 @@
      "previews",
      "rail-toggle",
      "replace-text",
-     "section-nav"
+     "section-nav",
+     "txt:replace-empty"
     ],
     "after": []
    }
@@ -1304,7 +1780,8 @@
      "previews",
      "rail-toggle",
      "replace-text",
-     "section-nav"
+     "section-nav",
+     "txt:replace-empty"
     ]
    }
   },
@@ -1348,7 +1825,8 @@
      "replace-text",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -1446,7 +1924,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -1515,6 +1995,140 @@
   },
   {
    "option": "B",
+   "shot": "1280-light-card-end-typed",
+   "side": "before",
+   "build": "live",
+   "file": "before-1280-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-count",
+     "replace-find",
+     "replace-match-1",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-1",
+     "replace-tick-2",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "replace-with",
+     "replace-word",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-card-end-typed",
+   "side": "after",
+   "build": "live + mockup B",
+   "file": "B-1280-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-count",
+     "replace-find",
+     "replace-match-1",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-1",
+     "replace-tick-2",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "replace-with",
+     "replace-word",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "B",
    "shot": "1280-light-card-end",
    "side": "before",
    "build": "live",
@@ -1563,7 +2177,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -1620,7 +2236,97 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-card-folded",
+   "side": "before",
+   "build": "live",
+   "file": "before-1280-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "fold:closed",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "1280-light-card-folded",
+   "side": "after",
+   "build": "live + mockup B",
+   "file": "B-1280-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "fold:closed",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
     ]
    }
   },
@@ -1674,7 +2380,10 @@
      "previews",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -1740,7 +2449,9 @@
      "previews",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ]
    }
   },
@@ -1797,7 +2508,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -1853,7 +2565,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ]
    }
   },
@@ -1908,7 +2621,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2015,7 +2730,8 @@
      "replace-text",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2074,6 +2790,114 @@
   },
   {
    "option": "B",
+   "shot": "360-light-card-end-typed",
+   "side": "before",
+   "build": "live",
+   "file": "before-360-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-card-end-typed",
+   "side": "after",
+   "build": "live + mockup B",
+   "file": "B-360-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "B",
    "shot": "360-light-card-end",
    "side": "before",
    "build": "live",
@@ -2109,7 +2933,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty"
     ],
     "after": []
    }
@@ -2152,7 +2977,104 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty"
+    ]
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-card-folded",
+   "side": "before",
+   "build": "live",
+   "file": "before-360-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "fold:closed",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "B",
+   "shot": "360-light-card-folded",
+   "side": "after",
+   "build": "live + mockup B",
+   "file": "B-360-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "fold:closed",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
     ]
    }
   },
@@ -2195,7 +3117,9 @@
      "pick-theme",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ],
     "after": []
    }
@@ -2240,7 +3164,9 @@
      "pick-theme",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ]
    }
   },
@@ -2285,7 +3211,8 @@
      "previews",
      "rail-toggle",
      "replace-text",
-     "section-nav"
+     "section-nav",
+     "txt:replace-empty"
     ],
     "after": []
    }
@@ -2332,7 +3259,8 @@
      "previews",
      "rail-toggle",
      "replace-text",
-     "section-nav"
+     "section-nav",
+     "txt:replace-empty"
     ]
    }
   },
@@ -2376,7 +3304,8 @@
      "replace-text",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2484,7 +3413,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2518,13 +3449,19 @@
      "edit-1",
      "edit-2",
      "edit-3",
+     "font-more-levels",
+     "font-more-prices",
      "font-more-script",
+     "font-more-times",
      "font-more-title",
      "font-more-titleBottom",
      "font-more-venue",
      "font-reset-title",
+     "font-role-levels",
      "font-role-panel",
+     "font-role-prices",
      "font-role-script",
+     "font-role-times",
      "font-role-title",
      "font-role-titleBottom",
      "font-role-venue",
@@ -2542,6 +3479,140 @@
      "preview-grid",
      "previews",
      "rail-toggle",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-card-end-typed",
+   "side": "before",
+   "build": "live",
+   "file": "before-1280-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-count",
+     "replace-find",
+     "replace-match-1",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-1",
+     "replace-tick-2",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "replace-with",
+     "replace-word",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-card-end-typed",
+   "side": "after",
+   "build": "live + mockup C",
+   "file": "C-1280-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-count",
+     "replace-find",
+     "replace-match-1",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-1",
+     "replace-tick-2",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "replace-with",
+     "replace-word",
      "section-nav"
     ]
    }
@@ -2596,7 +3667,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2630,6 +3703,7 @@
      "edit-1",
      "edit-2",
      "edit-3",
+     "font-more-footer",
      "font-role-footer",
      "font-roles",
      "nav-ai",
@@ -2652,7 +3726,97 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-card-folded",
+   "side": "before",
+   "build": "live",
+   "file": "before-1280-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "fold:closed",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "1280-light-card-folded",
+   "side": "after",
+   "build": "live + mockup C",
+   "file": "C-1280-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "1280x800",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "download-3",
+     "edit-1",
+     "edit-2",
+     "edit-3",
+     "fold:closed",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
     ]
    }
   },
@@ -2706,7 +3870,10 @@
      "previews",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2763,7 +3930,9 @@
      "previews",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ]
    }
   },
@@ -2820,7 +3989,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2854,8 +4024,10 @@
      "edit-2",
      "edit-3",
      "font-more-footer",
+     "font-more-incHead",
      "font-more-incItems",
      "font-role-footer",
+     "font-role-incHead",
      "font-role-incItems",
      "font-roles",
      "nav-ai",
@@ -2878,7 +4050,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ]
    }
   },
@@ -2933,7 +4106,9 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -2967,13 +4142,19 @@
      "edit-1",
      "edit-2",
      "edit-3",
+     "font-more-levels",
+     "font-more-prices",
      "font-more-script",
+     "font-more-times",
      "font-more-title",
      "font-more-titleBottom",
      "font-more-venue",
      "font-reset-title",
+     "font-role-levels",
      "font-role-panel",
+     "font-role-prices",
      "font-role-script",
+     "font-role-times",
      "font-role-title",
      "font-role-titleBottom",
      "font-role-venue",
@@ -3035,7 +4216,8 @@
      "replace-text",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }
@@ -3086,6 +4268,114 @@
   },
   {
    "option": "C",
+   "shot": "360-light-card-end-typed",
+   "side": "before",
+   "build": "live",
+   "file": "before-360-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "add-flier",
+     "all-fliers",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-card-end-typed",
+   "side": "after",
+   "build": "live + mockup C",
+   "file": "C-360-light-card-end-typed.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-end-typed",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "replace-text bottom at viewport bottom - 16, Find = Kizomba",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "add-flier",
+     "all-fliers",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "rail-toggle",
+     "replace-apply",
+     "replace-bar",
+     "replace-match-2",
+     "replace-match-3",
+     "replace-match-4",
+     "replace-match-5",
+     "replace-match-6",
+     "replace-match-7",
+     "replace-match-8",
+     "replace-matches",
+     "replace-text",
+     "replace-tick-3",
+     "replace-tick-4",
+     "replace-tick-5",
+     "replace-tick-6",
+     "replace-tick-7",
+     "replace-tick-8",
+     "section-nav"
+    ]
+   }
+  },
+  {
+   "option": "C",
    "shot": "360-light-card-end",
    "side": "before",
    "build": "live",
@@ -3121,7 +4411,8 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty"
     ],
     "after": []
    }
@@ -3164,7 +4455,104 @@
      "replace-word",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:replace-empty"
+    ]
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-card-folded",
+   "side": "before",
+   "build": "live",
+   "file": "before-360-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "fold:closed",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
+    ],
+    "after": []
+   }
+  },
+  {
+   "option": "C",
+   "shot": "360-light-card-folded",
+   "side": "after",
+   "build": "live + mockup C",
+   "file": "C-360-light-card-folded.png",
+   "pair": {
+    "route": "/",
+    "state": "All fliers panel open, flier 1 of 4 selected; card-folded",
+    "fixture": "fresh visitor, default Kizomba preset (4 fliers), flier 1 selected; clock 2026-10-29 09:30Z",
+    "viewport": "360x640",
+    "colorScheme": "light",
+    "scrollAnchor": "all-fliers top - 16, card folded",
+    "crop": "viewport"
+   },
+   "visibleItems": {
+    "before": [],
+    "after": [
+     "all-fliers",
+     "all-fliers-toggle",
+     "download-1",
+     "download-2",
+     "edit-1",
+     "edit-2",
+     "fold:closed",
+     "mini-highlighted",
+     "mini-open",
+     "mini-position",
+     "mini-preview",
+     "mini-see-all",
+     "mini-see-marks",
+     "nav-ai",
+     "nav-all",
+     "nav-configs",
+     "nav-drafts",
+     "nav-form",
+     "nav-previews",
+     "preview-1",
+     "preview-2",
+     "preview-3",
+     "preview-4",
+     "preview-grid",
+     "previews",
+     "rail-toggle",
+     "section-nav"
     ]
    }
   },
@@ -3207,7 +4595,9 @@
      "pick-theme",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ],
     "after": []
    }
@@ -3239,6 +4629,7 @@
      "all-layout-row",
      "all-palette",
      "all-palette-row",
+     "font-roles",
      "mini-open",
      "mini-position",
      "mini-preview",
@@ -3252,7 +4643,9 @@
      "pick-theme",
      "rail-toggle",
      "section-nav",
-     "theme-row"
+     "theme-row",
+     "txt:look-head",
+     "txt:note"
     ]
    }
   },
@@ -3297,7 +4690,8 @@
      "previews",
      "rail-toggle",
      "replace-text",
-     "section-nav"
+     "section-nav",
+     "txt:replace-empty"
     ],
     "after": []
    }
@@ -3344,7 +4738,8 @@
      "previews",
      "rail-toggle",
      "replace-text",
-     "section-nav"
+     "section-nav",
+     "txt:replace-empty"
     ]
    }
   },
@@ -3388,7 +4783,8 @@
      "replace-text",
      "section-nav",
      "shared-fields",
-     "shared-state"
+     "shared-state",
+     "txt:shared-head"
     ],
     "after": []
    }

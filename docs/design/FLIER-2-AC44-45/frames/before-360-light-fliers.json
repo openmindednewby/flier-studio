@@ -38,12 +38,14 @@
   "previews",
   "rail-toggle",
   "replace-text",
-  "section-nav"
+  "section-nav",
+  "txt:replace-empty"
  ],
  "misaligned": [],
  "textFit": [],
  "under44": [],
  "hscroll": false,
  "highlightBoxesInView": 0,
- "focused": "nav-all"
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

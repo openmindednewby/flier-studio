@@ -6,6 +6,8 @@
  "file": "C-1280-light-open.png",
  "pair": null,
  "inViewport": [
+  "all-ai-line",
+  "all-custom-layouts",
   "all-fliers",
   "all-fliers-row",
   "download-1",
@@ -19,6 +21,7 @@
   "font-more-incItems",
   "font-more-priceLabels",
   "font-more-prices",
+  "font-more-times",
   "font-reset-prices",
   "font-role-footer",
   "font-role-incHead",
@@ -34,6 +37,7 @@
   "nav-drafts",
   "nav-form",
   "nav-previews",
+  "pick-scope",
   "preview-1",
   "preview-2",
   "preview-3",
@@ -41,12 +45,14 @@
   "preview-grid",
   "previews",
   "rail-toggle",
-  "section-nav"
+  "section-nav",
+  "txt:shared-head"
  ],
  "misaligned": [],
  "textFit": [],
  "under44": [],
  "hscroll": false,
- "highlightBoxesInView": 8,
- "focused": "nav-all"
+ "highlightBoxesInView": 16,
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

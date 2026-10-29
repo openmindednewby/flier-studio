@@ -61,26 +61,38 @@ export function fontTools(side: string): void {
     pen.font = r.font; const full = pen.measureText(r.text).width || 1; const k = (r.x1 - r.x0) / full;
     const a = r.x0 + pen.measureText(r.text.slice(0, from)).width * k; return { ...r, text: r.text.slice(from, from + len), x0: a, x1: a + pen.measureText(r.text.slice(from, from + len)).width * k };
   };
-  const RX: Record<string, RegExp> = { prices: /\d+\s?€|€\s?\d+/g, times: /\d{1,2}[:.]\d{2}\s*[-–]\s*\d{1,2}[:.]\d{2}/g };
-  const runsOf = (role: string, cv: HTMLCanvasElement): Run[] => {
-    const runs = (window as unknown as { __mkRuns: Map<HTMLCanvasElement, Run[]> }).__mkRuns.get(cv) ?? [];
+  const clean = (x: string): string => x.replace(/\s+/g, ' ').trim();
+  const RX: Record<string, RegExp> = { prices: /\d+\s?€|€\s?\d+/, times: /\d{1,2}[:.]\d{2}\s*[-–]\s*\d{1,2}[:.]\d{2}/ };
+  const keyed = (cv: HTMLCanvasElement): Record<string, string[]> => {
     const fig = cv.closest('[data-testid^="preview-"]'); const host = fig ? (fig.querySelector('[aria-label]') ?? fig) : null;
-    const second = norm(val('titleBottom'));
-    const title = norm(host?.getAttribute('aria-label') ?? val('title')).split(' ').filter((t) => t.length > 1 && t !== second);
-    const targets: Record<string, string[]> = {
-      title, titleBottom: [val('titleBottom'), 'WORKSHOPS'], script: [val('script'), 'Saturday', 'Sunday'], venue: lines('venue'), levels: part('schedule', 0),
-      priceLabels: part('prices', 1), incHead: [val('includesHeading')], incItems: lines('includesItems'), footer: [val('footer'), ...val('footer').split(/\s+by\s+/)],
+    const second = clean(val('titleBottom'));
+    return {
+      title: clean(host?.getAttribute('aria-label') ?? val('title')).split(' ').filter((t) => t.length > 1 && t !== second), titleBottom: [second, 'WORKSHOPS'],
+      venue: lines('venue').map(clean), levels: part('schedule', 0).map(clean), priceLabels: part('prices', 1).map(clean), incHead: [clean(val('includesHeading'))],
+      incItems: lines('includesItems').map(clean), footer: [clean(val('footer'))],
     };
-    const out: Run[] = [];
-    for (const r of runs) {
-      if (r.text.length < 2) continue;
-      const rx = RX[role];
-      if (rx) { for (const m of r.text.matchAll(rx)) out.push(sub(r, m.index ?? 0, m[0].length)); continue; }
-      const up = r.text.toUpperCase();
-      if (role === 'title' || role === 'titleBottom') { if (targets[role].map(norm).includes(norm(r.text)) && (role === 'titleBottom' || norm(r.text) !== second)) out.push(r); continue; }
-      if (role === 'script' && /^(mon|tue|wed|thu|fri|sat|sun)/i.test(r.text) && !/€/.test(r.text) && r.text.length < 26) { out.push(r); continue; }
-      const t = (targets[role] ?? []).filter((x) => x.trim().length > 1).map((x) => x.trim().toUpperCase()).find((x) => up.includes(x) || (up.length > 3 && x.includes(up)));
-      if (t) { const i = up.indexOf(t); out.push(i >= 0 ? sub(r, i, t.length) : r); }
+  };
+  const roleOf = (r: Run, k: Record<string, string[]>): { role: string; box: Run }[] => {
+    const t = clean(r.text); const hits: { role: string; box: Run }[] = [];
+    for (const role of Object.keys(k)) if (k[role].includes(t)) hits.push({ role, box: r });
+    if (hits.length === 0 && /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\b/.test(t) && !/€|:\d\d/.test(t)) hits.push({ role: 'script', box: r });
+    for (const role of ['prices', 'times']) { const m = RX[role].exec(r.text); if (m) hits.push({ role, box: m[0].length >= t.length - 1 ? r : sub(r, m.index, m[0].length) }); }
+    const lv = k.levels.find((l) => t.startsWith(`${l} `) && RX.times.test(t)); if (lv) hits.push({ role: 'levels', box: sub(r, r.text.indexOf(lv), lv.length) });
+    const pl = k.priceLabels.find((l) => t !== l && t.includes(l) && RX.prices.test(t)); if (pl) hits.push({ role: 'priceLabels', box: sub(r, r.text.indexOf(pl), pl.length) });
+    return hits;
+  };
+  const runsOf = (role: string, cv: HTMLCanvasElement): Run[] => {
+    const runs = (window as unknown as { __mkRuns: Map<HTMLCanvasElement, Run[]> }).__mkRuns.get(cv) ?? []; const k = keyed(cv);
+    return runs.filter((r) => r.text.length > 1).flatMap((r) => roleOf(r, k).filter((h) => h.role === role).map((h) => h.box));
+  };
+  (window as unknown as { mkConflicts: () => string[] }).mkConflicts = (): string[] => {
+    const out: string[] = [];
+    for (const cv of document.querySelectorAll<HTMLCanvasElement>('[data-testid^="preview-"] canvas')) {
+      const k = keyed(cv);
+      for (const r of (window as unknown as { __mkRuns: Map<HTMLCanvasElement, Run[]> }).__mkRuns.get(cv) ?? []) {
+        const roles = roleOf(r, k).map((h) => h.role);
+        if (new Set(roles).size > 1 && !(roles.includes('levels') && roles.includes('times')) && !(roles.includes('prices') && roles.includes('priceLabels'))) out.push(`${r.text}: ${roles.join('+')}`);
+      }
     }
     return out;
   };
@@ -92,26 +104,22 @@ export function fontTools(side: string): void {
     let count = 0;
     const bar = q('mini-preview'); const src = document.querySelector<HTMLCanvasElement>('[data-testid="preview-1"] canvas');
     if (bar && src && bar.getBoundingClientRect().height > 1) {
-      const peek = mk('div', 'mk-peek'); const cv = document.createElement('canvas'); const wd = 168; const ht = Math.round((wd * src.height) / src.width);
+      const peek = mk('div', 'mk-peek'); peek.append(mk('b', '', label ?? ''), mk('small', '', 'on flier 1'));
+      const cv = document.createElement('canvas'); const ht = 108; const wd = Math.round((ht * src.width) / src.height);
       cv.width = wd * 2; cv.height = ht * 2; cv.style.width = `${String(wd)}px`; cv.style.height = `${String(ht)}px`;
-      peek.style.bottom = `${String(innerHeight - bar.getBoundingClientRect().top + 8)}px`; peek.append(cv); document.body.append(peek);
+      peek.style.bottom = `${String(innerHeight - bar.getBoundingClientRect().top)}px`; peek.append(cv); document.body.append(peek);
       cv.getContext('2d')?.drawImage(src, 0, 0, cv.width, cv.height);
     }
     for (const cv of document.querySelectorAll<HTMLCanvasElement>('[data-testid^="preview-"] canvas, .mk-peek canvas')) {
       const r = cv.getBoundingClientRect(); if (r.width < 2) continue;
       const sx = r.width / cv.width; const sy = r.height / cv.height;
-      const found = runsOf(role, cv);
-      for (const run of found) {
+      for (const run of runsOf(role, cv)) {
+        const pad = 4; const x = r.left + scrollX + run.x0 * sx - pad; const y = r.top + scrollY + run.y0 * sy - pad; const h = (run.y1 - run.y0) * sy + 2 * pad;
         const box = mk('div', 'mk-hi'); box.dataset.role = role;
-        const pad = Math.max(2, 4 * sx);
-        Object.assign(box.style, { left: `${String(r.left + scrollX + run.x0 * sx - pad)}px`, top: `${String(r.top + scrollY + run.y0 * sy - pad)}px`, width: `${String((run.x1 - run.x0) * sx + 2 * pad)}px`, height: `${String((run.y1 - run.y0) * sy + 2 * pad)}px` });
-        document.body.append(box); count += 1;
-      }
-      if (found.length > 0 && label && r.width > 120) {
-        const top = Math.min(...found.map((f) => f.y0)); const left = Math.min(...found.map((f) => f.x0));
-        const tag = mk('div', 'mk-hi mk-hi-tag', label);
-        Object.assign(tag.style, { left: `${String(r.left + scrollX + Math.max(0, left * sx))}px`, top: `${String(r.top + scrollY + Math.max(0, top * sy - 26))}px` });
-        document.body.append(tag);
+        Object.assign(box.style, { left: `${String(x)}px`, top: `${String(y)}px`, width: `${String((run.x1 - run.x0) * sx + 2 * pad)}px`, height: `${String(h)}px` });
+        const mark = mk('div', 'mk-hi mk-hi-bar');
+        Object.assign(mark.style, { left: `${String(r.left + scrollX + 1)}px`, top: `${String(y)}px`, height: `${String(h)}px` });
+        document.body.append(box, mark); count += 1;
       }
     }
     if (hold > 0) timer = window.setTimeout(() => hi(null), hold);
@@ -119,15 +127,14 @@ export function fontTools(side: string): void {
   };
   const css = mk('style', '');
   css.textContent = [
-    '.mk-hi{position:absolute;z-index:7;pointer-events:none;border:2px dashed var(--brand-fill);border-radius:3px;box-shadow:0 0 0 2px rgb(255 255 255/.7)}',
-    '.mk-peek{position:fixed;right:12px;z-index:6;padding:6px;border-radius:8px;background:var(--surface);border:1px solid var(--border);box-shadow:0 4px 16px rgb(0 0 0/.22);pointer-events:none}.mk-peek canvas{display:block}',
-    '.mk-hi{position:absolute}.mk-peek~.mk-hi{position:absolute}',
-    '.mk-hi-tag{border:0;box-shadow:none;border-radius:4px;padding:2px 6px;font:600 .75rem/1.4 system-ui,sans-serif;background:var(--brand-fill);color:var(--brand-on,#fff);white-space:nowrap}',
+    '.mk-hi{position:absolute;z-index:7;pointer-events:none;border:2px dashed var(--brand-fill);border-radius:3px;box-shadow:0 0 0 1px rgb(255 255 255/.85),inset 0 0 0 1px rgb(255 255 255/.85)}',
+    '.mk-peek{position:fixed;left:0;right:0;z-index:6;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 1fr;align-items:start;gap:0 12px;height:120px;box-sizing:border-box;padding:6px 16px;background:var(--surface);border-top:1px solid var(--border);box-shadow:0 -4px 12px rgb(0 0 0/.15);pointer-events:none}.mk-peek b{font-size:.95rem}.mk-peek small{grid-column:1;color:var(--text-secondary)}.mk-peek canvas{grid-column:2;grid-row:1/3;display:block}',
+    '.mk-hi-bar{width:4px;border:0;border-radius:2px;background:var(--brand-fill);box-shadow:none}',
     '.mk-fonts{display:grid;gap:8px;min-width:0}.mk-fonts>small{color:var(--text-secondary);font-size:.85rem;line-height:1.35}',
     '.mk-role{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:6px 10px;text-align:left;box-sizing:border-box}',
     '.mk-role b{font-size:.95rem;min-width:0;overflow-wrap:break-word}.mk-role small{color:var(--text-secondary);font-size:.8rem;font-variant-numeric:tabular-nums;text-align:right}',
-    '.mk-role[aria-expanded="true"],.mk-chips button[aria-pressed="true"]{border:2px solid var(--brand-fill);font-weight:600}',
-    '.mk-chips{display:flex;flex-wrap:wrap;gap:6px}.mk-chips button{width:auto;min-height:44px;height:44px;padding:0 12px;font-size:.9rem}',
+    '.mk-role[aria-expanded="true"]{border:2px solid var(--brand-fill);font-weight:600}.mk-chips button[aria-pressed="true"]{background:var(--text);color:var(--surface);border-color:var(--text);font-weight:600}',
+    '.mk-chips{display:flex;flex-wrap:wrap;gap:8px}.mk-chips button{width:auto;min-height:44px;height:44px;padding:0 12px;font-size:.9rem}',
     '.mk-sheetrow{display:grid;gap:6px;padding:8px 0;border-top:1px solid var(--border);min-width:0}.mk-sheetrow:first-of-type{border-top:0}',
     '.mk-rh{display:flex;align-items:center;justify-content:space-between;gap:8px}.mk-rh b{font-size:.95rem}.mk-rh button{width:auto;min-width:44px;min-height:44px;padding:0 10px}',
     '.mk-sp{display:grid;gap:10px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--surface);min-width:0;box-sizing:border-box}.mk-sp h4{margin:0;font-size:1rem}',
@@ -137,6 +144,9 @@ export function fontTools(side: string): void {
     '.mk-sseg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.mk-sseg button{width:100%;min-height:44px;height:44px;padding:0 4px}',
     '.mk-sp button[aria-pressed="true"]:not([data-c]){border:2px solid var(--brand-fill);font-weight:600}.mk-sfoot{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}.mk-sfoot button{width:auto;min-height:44px}.mk-sfoot small{color:var(--text-secondary)}',
     '@media (max-width:599px){.mk-srow.wide{grid-template-columns:minmax(0,1fr)}}',
+    '.mk-c1{display:grid;grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"n c" "f s";gap:6px 8px;align-items:center;padding:6px 0;border-top:1px solid var(--border)}.mk-c1>b{grid-area:n;font-size:.95rem;min-width:0}.mk-c1>select{grid-area:f;width:100%;min-height:44px;height:44px}.mk-c1>.mk-step{grid-area:s}.mk-c1>.mk-chev{grid-area:c;width:44px;min-height:44px;height:44px;padding:0}.mk-c1>.mk-sp{grid-column:1/-1}',
+    '@media (min-width:600px){.mk-c1{grid-template-columns:minmax(0,.6fr) minmax(0,1.4fr) 124px 44px;grid-template-areas:"n f s c"}.mk-c1>select{font-size:.9rem;padding-left:8px}.mk-c1 .mk-step{grid-template-columns:40px minmax(0,1fr) 40px}.mk-c1 .mk-step button{width:44px}}',
+    '.mk-chev svg{transition:transform .2s}.mk-chev[aria-expanded="true"] svg{transform:rotate(180deg)}',
   ].join('\n');
   document.head.append(css);
   const sample = (role: string): string => {
@@ -196,11 +206,12 @@ export function fontTools(side: string): void {
   }
   if (side === 'C') {
     for (const [role, name] of ROLES) {
-      const r = mk('div', 'mk-sheetrow'); r.dataset.testid = `font-role-${role}`; r.setAttribute('role', 'group'); r.setAttribute('aria-label', name);
-      const more = btn('More', `font-more-${role}`, `More for ${name}: colour, weight, spacing`); more.setAttribute('aria-expanded', 'false'); more.addEventListener('click', () => open.C(role));
-      const head = mk('div', 'mk-rh'); head.append(mk('b', '', name), more);
-      const line = mk('div', 'mk-srow'); line.append(fontSel(name, sample(role).split(' · ')[0]), sizeStep(name));
-      r.append(head, line); r.querySelectorAll<HTMLElement>('button, select').forEach((n) => hover(n, role, name)); hover(head, role, name); box.append(r);
+      const r = mk('div', 'mk-c1'); r.dataset.testid = `font-role-${role}`; r.setAttribute('role', 'group'); r.setAttribute('aria-label', name);
+      const chev = btn('', `font-more-${role}`, `More for ${name}: colour, weight, spacing`); chev.classList.add('mk-chev'); chev.setAttribute('aria-expanded', 'false');
+      chev.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+      chev.addEventListener('click', () => open.C(role));
+      r.append(mk('b', '', name), fontSel(name, sample(role).split(' · ')[0]), sizeStep(name), chev);
+      r.querySelectorAll<HTMLElement>('button, select').forEach((n) => hover(n, role, name)); box.append(r);
     }
     open.C = (role: string): void => {
       box.querySelectorAll('[data-testid="font-role-panel"]').forEach((n) => n.remove()); box.querySelectorAll('[data-testid^="font-more-"]').forEach((n) => n.setAttribute('aria-expanded', 'false'));

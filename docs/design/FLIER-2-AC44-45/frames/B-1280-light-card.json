@@ -57,12 +57,15 @@
   "previews",
   "rail-toggle",
   "section-nav",
-  "theme-row"
+  "theme-row",
+  "txt:look-head",
+  "txt:note"
  ],
  "misaligned": [],
  "textFit": [],
  "under44": [],
  "hscroll": false,
  "highlightBoxesInView": 0,
- "focused": "nav-all"
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

@@ -45,12 +45,14 @@
   "previews",
   "rail-toggle",
   "section-nav",
-  "shared-fields"
+  "shared-fields",
+  "txt:shared-head"
  ],
  "misaligned": [],
  "textFit": [],
  "under44": [],
  "hscroll": false,
- "highlightBoxesInView": 8,
- "focused": "nav-all"
+ "highlightBoxesInView": 16,
+ "roleConflicts": [],
+ "focused": "replace-find"
 }

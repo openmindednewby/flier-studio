@@ -11,11 +11,15 @@ OPT = {
     'C': ('Type sheet, every role visible',
           'Under the Fonts picker, every role is a row with its Font and Size always on show; "More" on a row opens Colour, Bold / Italic, Letter spacing and Reset to theme under it. Longest card, but face and size of every role are visible without a tap.'),
 }
-HL = ('Highlight (AC-45), same in all three: pointing at or keyboard-focusing any role control outlines that text on every flier in the preview with a dashed accent box and a role tag; leaving clears it. '
-      'On a phone the fliers are off screen, so a tap shows a 168 px peek of the selected flier above the flier bar with the outline for 2 s. Outlines sit on top of the preview only, never in a PNG. The same outline is wired to the per-field Style controls (AC-40) when option B ships.')
+HL = ('Highlight (AC-45), same in all three: pointing at or keyboard-focusing any role control outlines that text on every flier with a 2 px dashed accent box (4 px padding, light halo) and a slim accent bar in the poster&rsquo;s left margin; no tag sits on the poster, the role name is the control you are on. Leaving clears it. '
+      'On a phone the fliers are off screen, so a tap docks a 120 px strip above the flier bar for 2 s: role name on the left, flier 1 with the outline on the right. Outlines sit over the preview only, never in a PNG; the same outline is wired to the per-field Style controls (AC-40) when option B ships. '
+      'Matching is by role: each drawn line is keyed to the flier field it comes from (title, venue.n, schedule.n.label/time, prices.n.amount/label, includes, footer), whole line, case-sensitive; 0 lines claimed by two roles in every frame (result.json <code>conflicts</code>). '
+      'The build reads per-role boxes from poster-render (a <code>lineBoxes</code> keyed by line, added to the render report), not text.')
 PAIRS = [('1280', 'light', 'fonts', 'Fonts row and what follows it'), ('360', 'light', 'fonts', 'Fonts row at 360'),
          ('1280', 'light', 'card', 'Top of the All fliers card'), ('360', 'light', 'card', 'Top of the card at 360'),
          ('1280', 'light', 'card-end', 'End of the card: Replace text, Add flier'), ('360', 'light', 'card-end', 'End of the card at 360'),
+         ('1280', 'light', 'card-end-typed', 'Replace text with "Kizomba" typed: count, ticked list, Apply'), ('360', 'light', 'card-end-typed', 'Replace text typed at 360'),
+         ('1280', 'light', 'card-folded', 'All fliers card folded'), ('360', 'light', 'card-folded', 'Card folded at 360'),
          ('1280', 'light', 'fliers', 'The fliers'), ('1280', 'dark', 'fonts', 'Dark, Fonts row'), ('360', 'dark', 'fonts', 'Dark, Fonts row at 360')]
 STATES = [('hover', 'Pointing at Title: every title outlined'), ('open', 'Prices editor open, prices outlined')]
 

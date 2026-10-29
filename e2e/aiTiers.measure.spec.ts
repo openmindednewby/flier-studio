@@ -7,11 +7,12 @@ test.skip(process.env.AI_TIERS !== '1', 'AC-42 tier comparison downloads ~160 MB
 
 test('AC-42 grades keyword, embedding and SmolLM2-135M on the 20 prompts', async ({ page }, info) => {
   test.setTimeout(RUN_MS);
-  await page.goto('/?measure=tiers');
+  const heldout = process.env.AI_SET === 'heldout';
+  await page.goto(heldout ? '/?measure=tiers&tiers=keyword,embed&set=heldout' : '/?measure=tiers');
 
   const out = page.getByTestId('measure');
   await expect(out).not.toBeEmpty({ timeout: RUN_MS });
 
   mkdirSync('docs/ai-tiers', { recursive: true });
-  writeFileSync(`docs/ai-tiers/result-${info.project.name}.json`, (await out.textContent()) ?? '');
+  writeFileSync(`docs/ai-tiers/result-${heldout ? 'heldout-' : ''}${info.project.name}.json`, (await out.textContent()) ?? '');
 });

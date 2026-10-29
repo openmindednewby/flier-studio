@@ -1,31 +1,20 @@
 import type { Draft } from '../drafts/draftStore';
 import { FM } from '../i18n/fm';
 import { foldableCard } from './collapsible';
+import { confirmDelete } from './confirmDialog';
 import { el, textButton } from './dom';
+import { THUMB_WIDTH, draftRow, type DraftsActions, type RowFocus } from './draftRow';
+import { plural } from '../i18n/plural';
 
-const THUMB_WIDTH = 36;
+export { draftDay, draftTime, type DraftsActions } from './draftRow';
+
 const PIXEL_RATIO = 2;
 const JPEG_QUALITY = 0.8;
-
-export interface DraftsActions {
-  restore(draft: Draft): void;
-  star(draft: Draft, starred: boolean): void;
-}
 
 export interface DraftsPanel {
   readonly card: HTMLElement;
   show(drafts: readonly Draft[]): void;
 }
-
-export const draftTime = (draft: Draft): string => new Date(draft.at).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' });
-const DAY_MONTH: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'numeric' };
-
-/** The short date of a draft, without the year when it was saved this year. */
-export function draftDay(at: number, now: number = Date.now()): string {
-  const sameYear = new Date(at).getFullYear() === new Date(now).getFullYear();
-  return new Date(at).toLocaleDateString([], sameYear ? DAY_MONTH : { dateStyle: 'short' });
-}
-const draftClock = (draft: Draft): string => new Date(draft.at).toLocaleTimeString([], { timeStyle: 'short' });
 
 /** A small JPEG of the first flier for the drafts list; empty when nothing is drawn yet. */
 export function thumbOf(source: HTMLCanvasElement | undefined): string {
@@ -37,37 +26,35 @@ export function thumbOf(source: HTMLCanvasElement | undefined): string {
   return thumb.toDataURL('image/jpeg', JPEG_QUALITY);
 }
 
-function row(draft: Draft, n: number, actions: DraftsActions): HTMLLIElement {
-  const when = draftTime(draft);
-  const restore = textButton(FM('drafts.restore'), `draft-restore-${String(n)}`, () => actions.restore(draft));
-  restore.setAttribute('aria-label', FM('drafts.restoreAt', when));
-  const star = textButton(FM(draft.starred ? 'drafts.starred' : 'drafts.star'), `draft-star-${String(n)}`, () => actions.star(draft, !draft.starred));
-  star.setAttribute('aria-label', FM(draft.starred ? 'drafts.starredAt' : 'drafts.starAt', when));
-  star.setAttribute('aria-pressed', String(draft.starred));
-  star.classList.add('draft-star');
-  return el('li', {}, [
-    el('img', { src: draft.thumb, alt: FM('drafts.thumb', when), width: String(THUMB_WIDTH) }),
-    el('span', { class: 'draft-when' }, [el('strong', { class: 'draft-stamp' }, [el('span', { text: draftDay(draft.at) }), el('span', { text: draftClock(draft) })]), el('span', { class: 'muted', text: FM('drafts.count', String(draft.fliers.length)) })]),
-    restore,
-    star,
-  ]);
+function askCleanUp(others: number, favourites: number, go: () => void): void {
+  confirmDelete({ title: plural('drafts.confirmTitle', others), body: plural('drafts.confirmBody', favourites), keep: FM('drafts.keep'), go: plural('drafts.confirmGo', others) }, go);
 }
 
-/** Drafts on this device: All / Favourites filter, and per draft its time, thumbnail, Restore and Star. */
+/** Drafts on this device: All / Favourites filter, Clean up, and per draft its name, thumbnail, Restore, Star and More. */
 export function draftsPanel(actions: DraftsActions): DraftsPanel {
   const view = { favouritesOnly: false, drafts: [] as readonly Draft[] };
   const list = el('ul', { class: 'drafts', 'data-testid': 'drafts-list' });
   const empty = el('p', { class: 'muted', 'data-testid': 'drafts-empty' });
+  let pending: string | undefined;
+  const focus: RowFocus = {
+    now: (...testIds) => testIds.map((id) => card.querySelector<HTMLElement>(`[data-testid="${id}"]`)).find((node) => node !== null)?.focus(),
+    later: (testId) => { pending = testId; },
+  };
   const render = (): void => {
     const starred = view.drafts.filter((d) => d.starred);
+    const others = view.drafts.length - starred.length;
     const rows = view.favouritesOnly ? starred : view.drafts;
     all.textContent = FM('drafts.all', String(view.drafts.length));
     favourites.textContent = FM('drafts.favourites', String(starred.length));
     all.setAttribute('aria-pressed', String(!view.favouritesOnly));
     favourites.setAttribute('aria-pressed', String(view.favouritesOnly));
-    list.replaceChildren(...rows.map((d, i) => row(d, i + 1, actions)));
+    cleanup.disabled = others === 0;
+    cleanup.setAttribute('aria-label', plural('drafts.cleanUpLabel', others));
+    list.replaceChildren(...rows.map((d, i) => draftRow(d, i + 1, actions, focus)));
     empty.textContent = FM(view.favouritesOnly ? 'drafts.noFavourites' : 'drafts.none');
     empty.hidden = rows.length > 0;
+    if (pending !== undefined) focus.now(pending);
+    pending = undefined;
   };
   const filter = (favouritesOnly: boolean): void => {
     view.favouritesOnly = favouritesOnly;
@@ -75,8 +62,12 @@ export function draftsPanel(actions: DraftsActions): DraftsPanel {
   };
   const all = textButton(FM('drafts.all', '0'), 'drafts-all', () => filter(false));
   const favourites = textButton(FM('drafts.favourites', '0'), 'drafts-favourites', () => filter(true));
+  const cleanup = textButton(FM('drafts.cleanUp'), 'drafts-cleanup', () => {
+    const starred = view.drafts.filter((d) => d.starred).length;
+    askCleanUp(view.drafts.length - starred, starred, () => actions.cleanUp());
+  });
   const chips = el('div', { class: 'chips', role: 'group', 'aria-label': FM('drafts.filter') }, [all, favourites]);
-  const card = foldableCard('drafts-panel', FM('drafts.heading'), [chips, list, empty]);
+  const card = foldableCard('drafts-panel', FM('drafts.heading'), [el('div', { class: 'drafts-top' }, [chips, cleanup]), list, empty]);
   const show = (drafts: readonly Draft[]): void => {
     view.drafts = drafts;
     render();

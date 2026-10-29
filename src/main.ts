@@ -1,6 +1,7 @@
 import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/design-tokens';
 import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
 import { cutPicture, cutoutFile, inFlight, lazy } from './cutout/cutoutFlow';
+import { draftActions } from './drafts/draftActions';
 import { DraftAutosave } from './drafts/draftAutosave';
 import { DraftStore, type Draft } from './drafts/draftStore';
 import { applySetting } from './form/allSettings';
@@ -40,6 +41,7 @@ import { aiEntry, sectionRail } from './ui/sectionNav';
 import { UploadKind } from './ui/UploadKind';
 import './ui/styles.css';
 import './ui/sidebar.css';
+import './ui/lineTools.css';
 
 const RENDER_DELAY_MS = 150;
 const DOWNLOAD_GAP_MS = 300;
@@ -72,7 +74,7 @@ const allFliers = allFliersCard({
   replace: (ticked, replacement) => void replaceText(ticked, replacement),
 }, previewGrid);
 const draftStore = new DraftStore();
-const drafts = draftsPanel({ restore: (draft) => restore(draft), star: (draft, on) => void draftStore.star(draft.id, on).then(showDrafts, (e: unknown) => { status.textContent = FM('drafts.starFailed', String(e)); }) });
+const drafts = draftsPanel(draftActions(draftStore, { restore: (draft) => restore(draft), refresh: () => showDrafts(), failed: (message) => { status.textContent = message; } }));
 const autosave = new DraftAutosave(draftStore, {
   saved: () => showDrafts(),
   full: () => { status.textContent = FM('drafts.full'); },
@@ -111,6 +113,7 @@ function showForm(): void {
     change: (doc) => { const reshaped = doc.format !== docs[state.selected].format; state.fliers = withDocs(state.fliers, nextDocs(state.scope, docsOf(), state.selected, doc)); if (reshaped) showForm(); refreshPreviews(); },
     upload: (kind, file) => void uploads.track(upload(kind, file)),
     removeBackground: () => void removeBackground(),
+    restyleAll: (edit) => { state.fliers = withDocs(state.fliers, docsOf().map(edit)); refreshPreviews(); },
     remove: () => { if (state.fliers.length > 1) { state.fliers.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
   });
 }

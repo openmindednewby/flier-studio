@@ -6,6 +6,7 @@ import { scalePercent } from '../form/pictureScale';
 import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
 import { foldToggle } from './collapsible';
+import { addFormTools } from './formTools';
 import { button, el, fileButton, labelled } from './dom';
 import { UploadKind } from './UploadKind';
 
@@ -14,6 +15,7 @@ export interface FormActions {
   upload(kind: UploadKind, file: File): void;
   removeBackground(): void;
   remove(): void;
+  restyleAll(edit: (doc: FlierDoc) => FlierDoc): void;
 }
 
 const PICKERS: readonly DocPicker[] = [DocPicker.Format, DocPicker.Layout, DocPicker.Palette, DocPicker.Fonts, DocPicker.Background];
@@ -72,10 +74,11 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   scale.value = String(doc.picture?.scale ?? 1);
   const scaleValue = el('output', { 'data-testid': 'pick-scale-value', text: scalePercent(Number(scale.value)) });
   scale.addEventListener('input', () => { scaleValue.textContent = scalePercent(Number(scale.value)); });
+  const live = { doc };
   const texts = textControls(blocksToText(doc));
   const read = (): FlierDoc => {
     const values = Object.fromEntries(Object.entries(texts).map(([k, c]) => [k, c.value])) as unknown as BlockText;
-    const next = { ...applyText(doc, values), ...Object.fromEntries(PICKERS.map((p) => [p, pickers[p].value])) } as FlierDoc;
+    const next = { ...applyText(live.doc, values), ...Object.fromEntries(PICKERS.map((p) => [p, pickers[p].value])) } as FlierDoc;
     const shaped = withFormat(next, next.format);
     if (shaped.picture) shaped.picture = { ...shaped.picture, anchor: anchor.value as typeof shaped.picture.anchor, scale: Number(scale.value) };
     return shaped;
@@ -97,6 +100,12 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     el('div', { class: 'row actions' }, [button('form.remove', 'remove-flier', actions.remove)]),
   ]);
   container.replaceChildren(el('h2', { class: 'fold-head' }, [foldToggle(body, { id: 'flier-form', title: FM('form.heading') })]), body);
+  addFormTools(body, {
+    doc: () => live.doc,
+    set: (next) => { live.doc = next; actions.change(read()); },
+    apply: (edit, everyFlier) => { live.doc = edit(live.doc); if (everyFlier) actions.restyleAll(edit); else actions.change(read()); },
+    count: position[1],
+  });
 }
 
 const INITIAL_FOCUS = ['field-title', 'flier-form-toggle'];

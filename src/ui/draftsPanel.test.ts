@@ -1,17 +1,19 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { Draft } from '../drafts/draftStore';
-import { draftDay, draftsPanel } from './draftsPanel';
+import { FM } from '../i18n/fm';
+import { draftDay, draftTime, draftsPanel } from './draftsPanel';
 
 const draft = (starred: boolean): Draft => ({ id: 1, at: 1_700_000_000_000, starred, fliers: [], thumb: '' });
 
 describe('draftsPanel', () => {
-  it.each([true, false])('with starred %s, the Star button name starts with its visible text', (starred) => {
-    const panel = draftsPanel({ restore: vi.fn(), star: vi.fn() });
+  it.each([[true, 'drafts.starredAt'], [false, 'drafts.starAt']] as const)('with starred %s, names the Star button by %s and its pressed state', (starred, key) => {
+    const panel = draftsPanel({ restore: vi.fn(), star: vi.fn(), rename: vi.fn(), remove: vi.fn(), cleanUp: vi.fn() });
+    const saved = draft(starred);
 
-    panel.show([draft(starred)]);
+    panel.show([saved]);
 
     const star = panel.card.querySelector('[data-testid="draft-star-1"]');
-    expect(star?.getAttribute('aria-label')?.startsWith(star.textContent ?? '?')).toBe(true);
+    expect([star?.getAttribute('aria-label'), star?.getAttribute('aria-pressed')]).toEqual([FM(key, draftTime(saved)), String(starred)]);
   });
 });
 

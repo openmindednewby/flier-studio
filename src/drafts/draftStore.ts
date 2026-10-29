@@ -5,6 +5,7 @@ export interface Draft {
   readonly id: number;
   readonly at: number;
   readonly starred: boolean;
+  readonly name?: string;
   readonly fliers: ThemedFlier[];
   readonly thumb: string;
 }
@@ -60,21 +61,48 @@ export class DraftStore {
   }
 
   public async star(id: number, starred: boolean): Promise<void> {
+    await this.update(id, (draft) => ({ ...draft, starred }));
+  }
+
+  public async rename(id: number, name: string): Promise<void> {
+    const given = name.trim();
+    await this.update(id, (draft) => ({ ...draft, name: given === '' ? undefined : given }));
+  }
+
+  public async remove(id: number): Promise<void> {
+    await this.removeAll([id]);
+  }
+
+  public async put(draft: Draft): Promise<void> {
     const tx = await this.tx('readwrite');
-    const store = tx.objectStore(STORE);
-    const request = store.get(id) as IDBRequest<Draft | undefined>;
-    request.onsuccess = (): void => {
-      if (request.result !== undefined) store.put({ ...request.result, starred });
-    };
+    tx.objectStore(STORE).put(draft);
     await committed(tx);
+  }
+
+  public async removeUnstarred(): Promise<void> {
+    await this.removeAll((await this.list()).filter((d) => !d.starred).map((d) => d.id));
   }
 
   private async prune(): Promise<void> {
     const gone = prunable(await this.list());
-    if (gone.length === 0) return;
-    const pruning = await this.tx('readwrite');
-    for (const id of gone) pruning.objectStore(STORE).delete(id);
-    await committed(pruning);
+    await this.removeAll(gone);
+  }
+
+  private async update(id: number, edit: (draft: Draft) => Draft): Promise<void> {
+    const tx = await this.tx('readwrite');
+    const store = tx.objectStore(STORE);
+    const request = store.get(id) as IDBRequest<Draft | undefined>;
+    request.onsuccess = (): void => {
+      if (request.result !== undefined) store.put(edit(request.result));
+    };
+    await committed(tx);
+  }
+
+  private async removeAll(ids: readonly number[]): Promise<void> {
+    if (ids.length === 0) return;
+    const tx = await this.tx('readwrite');
+    for (const id of ids) tx.objectStore(STORE).delete(id);
+    await committed(tx);
   }
 
   private async tx(mode: IDBTransactionMode): Promise<IDBTransaction> {

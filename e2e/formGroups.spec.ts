@@ -1,7 +1,7 @@
 import { expectFieldsAligned } from '@dloizides/e2e-helpers';
 import { expect, test, type Page } from '@playwright/test';
 
-const ROW_CONTROLS = 'select, input:not([type=file]), textarea, button, label.file';
+const ROW_CONTROLS = 'select, input:not([type=file]), textarea, button:not(.label-head > button), label.file';
 
 async function open(page: Page): Promise<void> {
   await page.goto('/');

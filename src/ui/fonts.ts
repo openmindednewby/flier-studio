@@ -6,6 +6,7 @@ export const FONT_FACES: readonly string[] = [
   '500 48px "Oswald"',
   '700 48px "Oswald"',
   '400 48px "Sacramento"',
+  '400 48px "Dancing Script"',
   '500 48px "Fredoka"',
   '600 48px "Fredoka"',
   '700 48px "Fredoka"',

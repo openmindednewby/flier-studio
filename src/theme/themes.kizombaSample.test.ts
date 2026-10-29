@@ -31,10 +31,18 @@ describe('KIZOMBA_SAMPLE.styleFor', () => {
 
     expect(styles.map((s) => [s.layout, s.tuning, s.rows, s.picture?.overlap])).toEqual(contents.map(() => [
       LayoutId.PictureRight,
-      { headerTop: 113, titleScriptGap: 13, scriptTitleGap: 25, titleScale: 0.82, titleBottomScale: 0.82 },
-      { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 2, toPicture: true }, priceLabelScale: 0.62, venue: { body: true, bare: true } },
+      { headerTop: 113, titleScriptGap: -55, scriptTitleGap: 13, titleScale: 0.68, titleBottomScale: 1.1, titleSpacing: -0.03, scriptScale: 1.1, headerTextWidth: 715, bodyTop: 570, headerHeight: 600 },
+      { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 5, lengths: [668, 572, 480, 390, 366] }, priceLabelScale: 0.62, venue: { body: true, bare: true, oneLine: true }, labelScale: 0.92, timeScale: 0.95, timeWeight: 500, textWidth: 660 },
       undefined,
     ]));
+  });
+
+  it('with the upcoming workshops list, sets 5px dividers, the body-face venue with a bare pin and room under the script', () => {
+    const list = kizombaPreset().filter((d) => d.items !== undefined).map((d) => splitDoc(d).content);
+
+    const styles = list.map((c) => KIZOMBA_SAMPLE.styleFor(c));
+
+    expect(styles.map((s) => ({ tuning: s.tuning, rows: s.rows }))).toEqual(list.map(() => ({ tuning: { scriptTitleGap: 24 }, rows: { dividers: { thickness: 5 }, venue: { body: true, bare: true } } })));
   });
 
   it('with the id kizomba-sample, finds the theme', () => {

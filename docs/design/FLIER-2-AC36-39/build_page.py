@@ -19,7 +19,7 @@ OPT = {
           'The name is a text box that looks like a heading: click and type to rename. Each row has Restore, a star icon and a Delete icon (Undo toast as in A). '
           '"Select" beside the chips turns on checkboxes, pre-ticks every draft that is not a favourite and shows "Delete n selected" (asks first), "Select all but favourites" and Done. '
           'Line tool: on the flier itself. Shift-click (or Tab to the flier, arrow keys) selects two lines; a small toolbar under them offers Same width, Same size, Reset.',
-          'Drafts panel: the newest draft\'s Restore. Rename: that name box. Select mode: "Delete n selected" is not focused; focus stays on the Select button. Flier form: Title (unchanged).'),
+          'Drafts panel: the newest draft\'s Restore. Rename: that name box. Select mode: focus moves to "Delete n selected" only on Tab, never on open; it stays on Select. Flier form: Title (unchanged).'),
 }
 SHOTS = [('1280', 'light', 'drafts', 'Drafts panel: names, delete, clean-up'),
          ('360', 'light', 'drafts', 'Drafts panel at 360'),

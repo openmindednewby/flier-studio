@@ -1,0 +1,52 @@
+{
+ "option": "B",
+ "side": "after",
+ "shot": "form-mid",
+ "build": "live index-D2oPVMyr.js + mockup B",
+ "file": "B-360-light-form-mid.png",
+ "pair": {
+  "route": "/",
+  "state": "form panel open, flier 1 of 4 selected; form-mid",
+  "fixture": "kizomba preset, 4 fliers; drafts seeded by typing 5 titles at 07:05-09:12Z (BACHATA NIGHT, SALSA SOCIAL, BACHATA, KIZOMBA NIGHT, KIZOMBA), drafts 2 and 4 starred; clock 2026-10-29 09:30Z",
+  "viewport": "360x640",
+  "colorScheme": "light",
+  "scrollAnchor": "field-includesHeading scrollIntoView block center",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "BODY",
+ "inViewport": [
+  "field-footer",
+  "field-includesHeading",
+  "field-schedule",
+  "field-script",
+  "field-venue",
+  "flier-form",
+  "line-sizes",
+  "mini-open",
+  "mini-position",
+  "mini-preview",
+  "mini-see-all",
+  "nav-ai",
+  "nav-all",
+  "nav-configs",
+  "nav-drafts",
+  "nav-form",
+  "nav-previews",
+  "rail-toggle",
+  "section-nav"
+ ],
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "hscroll": false,
+ "line": {
+  "first": "KIZOMBA",
+  "second": "WORKSHOP",
+  "firstW": 627,
+  "secondW": 627,
+  "firstPx": 169,
+  "secondPx": 133,
+  "canvasW": 1080
+ },
+ "focused": "nav-form"
+}

@@ -32,8 +32,6 @@ import { button, el } from './ui/dom';
 import { draftTime, draftsPanel, thumbOf } from './ui/draftsPanel';
 import { createMiniPreview } from './ui/miniPreview';
 import { focusInitial, renderForm } from './ui/formView';
-import { openImportDialog } from './ui/importDialog';
-import { openPresetDialog } from './ui/presetDialog';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
 import { renderPromptPanel } from './ui/promptPanel';
 import { PanelKey } from './ui/PanelKey';
@@ -198,20 +196,22 @@ async function choosePreset(choice: PresetChoice): Promise<void> {
   status.textContent = FM(key, String(preset.length));
 }
 
-function loadPreset(): void {
+async function loadPreset(): Promise<void> {
   const choose = (choice: PresetChoice): void => void choosePreset(choice);
-  if (asksFirst(state.fliers.length)) openPresetDialog([state.fliers.length, kizombaPreset().length], choose);
-  else choose(PresetChoice.Replace);
+  if (!asksFirst(state.fliers.length)) { choose(PresetChoice.Replace); return; }
+  const { openPresetDialog } = await import('./ui/presetDialog');
+  openPresetDialog([state.fliers.length, kizombaPreset().length], choose);
 }
 
 function renderConfigs(): void {
-  renderConfigPanel(configBox, configs, { current: docsOf, currentThemes: () => state.fliers.map((f) => f.themeId), apply, preset: loadPreset, status: (m) => { status.textContent = m; } });
+  renderConfigPanel(configBox, configs, { current: docsOf, currentThemes: () => state.fliers.map((f) => f.themeId), apply, preset: () => void loadPreset(), status: (m) => { status.textContent = m; } });
 }
 
 async function checkShare(): Promise<void> {
   const fragment = shareFragmentOf(location.hash);
   if (fragment === null) return;
   const decoded = await decodeShare(fragment);
+  const { openImportDialog } = await import('./ui/importDialog');
   openImportDialog(decoded, {
     accept: (docs, themes) => { const names = importShared(configs, docs, themes); renderConfigs(); status.textContent = FM('share.imported', String(names.length)); },
     closed: () => history.replaceState(null, '', location.pathname + location.search),

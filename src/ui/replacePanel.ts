@@ -2,6 +2,7 @@ import type { BlockText } from '../form/docEdit';
 import { findMatches, type ReplaceMatch } from '../form/replaceText';
 import { FM } from '../i18n/fm';
 import { plural } from '../i18n/plural';
+import { badgeSpot, type Box } from './badgePlacement';
 import { el, labelled } from './dom';
 import { lineBox, textRunsOf, type LineBox, type TextRun } from './textRuns';
 
@@ -18,8 +19,6 @@ export interface ReplacePanel {
 /** Fired on document after the marks are redrawn; detail = how many matches are highlighted. */
 export const MARKS_EVENT = 'flier:replace-marks';
 const MARK_PAD = 3;
-const BADGE_ROOM = 30;
-const BADGE_HEADROOM = 24;
 
 const keyOf = (m: ReplaceMatch): string => `${String(m.flier)}:${m.field}:${String(m.at)}`;
 const px = (n: number): string => `${String(Math.round(n))}px`;
@@ -40,12 +39,22 @@ function markAt(line: LineBox, canvas: HTMLCanvasElement, on: boolean, n: number
   return mark;
 }
 
-function placeBadge(mark: HTMLElement, trim: HTMLElement): void {
+const boxOf = (r: DOMRect): Box => ({ l: r.left, t: r.top, r: r.right, b: r.bottom });
+
+function screenBox(line: LineBox, canvas: HTMLCanvasElement): Box {
+  const r = canvas.getBoundingClientRect();
+  const scale = canvas.width > 0 ? r.width / canvas.width : 0;
+  return { l: r.left + line.x * scale, t: r.top + line.y * scale, r: r.left + (line.x + line.width) * scale, b: r.top + (line.y + line.height) * scale };
+}
+
+function placeBadge(mark: HTMLElement, trim: HTMLElement, others: readonly Box[]): void {
   const box = mark.getBoundingClientRect();
-  if (box.width === 0) return;
-  const clipped = box.left < BADGE_ROOM;
-  mark.classList.toggle('badge-inside', clipped);
-  mark.classList.toggle('badge-below', clipped && box.top - trim.getBoundingClientRect().top < BADGE_HEADROOM);
+  const badge = mark.querySelector('b')?.getBoundingClientRect();
+  if (box.width === 0 || badge === undefined) return;
+  const flier = trim.getBoundingClientRect();
+  const area = { l: 0, t: flier.top, r: document.documentElement.clientWidth, b: flier.bottom };
+  const spot = badgeSpot(boxOf(box), { w: badge.width, h: badge.height }, area, others);
+  mark.dataset.badge = spot;
 }
 
 /** Draws a numbered mark on each match it can place and announces how many it drew. */
@@ -58,12 +67,13 @@ export function drawMarks(grid: HTMLElement, matches: readonly ReplaceMatch[], t
     perFlier.set(m.flier, k + 1);
     const trim = grid.querySelector<HTMLElement>(`[data-testid="preview-${String(m.flier + 1)}"] .trim`);
     const canvas = trim?.querySelector('canvas') ?? null;
-    const run = canvas === null ? undefined : runFor(textRunsOf(canvas), find.toLowerCase(), k);
+    const runs = canvas === null ? [] : textRunsOf(canvas);
+    const run = runFor(runs, find.toLowerCase(), k);
     if (trim === null || canvas === null || run === undefined) return;
     const box = trim.querySelector('.replace-marks') ?? trim.appendChild(el('div', { class: 'replace-marks', 'aria-hidden': 'true' }));
     const mark = markAt(lineBox(run), canvas, ticked(m), i + 1);
     box.append(mark);
-    placeBadge(mark, trim);
+    placeBadge(mark, trim, runs.filter((r) => r !== run).map((r) => screenBox(lineBox(r), canvas)));
     drawn += 1;
   });
   document.dispatchEvent(new CustomEvent<number>(MARKS_EVENT, { detail: drawn }));

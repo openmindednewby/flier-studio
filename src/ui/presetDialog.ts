@@ -21,6 +21,11 @@ function startNav(): () => void {
   return () => { poller.stop(); nav.dispose(); };
 }
 
+/** The dialog body, naming the fliers on screen in the singular or plural. */
+export function presetBodyText(counts: [mine: number, samples: number]): string {
+  return FM('config.presetBody', plural('config.presetFliers', counts[0]), String(counts[1]), plural('config.presetSwaps', counts[0]));
+}
+
 /** Asks whether the sample fliers replace or join the current ones; Add has focus and Cancel or Escape changes nothing. */
 export function openPresetDialog(counts: [mine: number, samples: number], choose: (choice: PresetChoice) => void): HTMLDialogElement {
   const dialog = el('dialog', { class: 'import-dialog', role: 'dialog', 'aria-modal': 'true', 'data-testid': 'preset-dialog', 'aria-labelledby': TITLE_ID });
@@ -30,7 +35,7 @@ export function openPresetDialog(counts: [mine: number, samples: number], choose
   add.setAttribute(MENU_DEFAULT_ATTR, '');
   dialog.append(
     el('h2', { id: TITLE_ID, 'data-testid': 'preset-title', text: FM('config.presetTitle') }),
-    el('p', { class: 'muted', 'data-testid': 'preset-body', text: FM('config.presetBody', plural('config.presetFliers', counts[0]), String(counts[1]), String(counts[0])) }),
+    el('p', { class: 'muted', 'data-testid': 'preset-body', text: presetBodyText(counts) }),
     el('div', { class: 'row preset-actions' }, [add, textButton(plural('config.presetReplaceAll', counts[0]), 'preset-replace', pick(PresetChoice.Replace), 'destructive-text'), button('config.presetCancel', 'preset-cancel', pick(PresetChoice.Cancel))]),
   );
   const stopNav = startNav();

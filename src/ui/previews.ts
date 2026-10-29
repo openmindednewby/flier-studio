@@ -27,6 +27,8 @@ function problem(doc: FlierDoc, error: string): HTMLParagraphElement {
 
 const DOUBLE_TAP_MS = 300;
 
+const nextTask = (): Promise<void> => new Promise((resolve) => { setTimeout(resolve, 0); });
+
 function selectable(trim: HTMLElement, i: number, view: PreviewView): HTMLElement {
   const tap = { last: 0 };
   trim.addEventListener('click', () => view.select(i));
@@ -58,17 +60,23 @@ export interface PreviewView {
   select: (i: number) => void;
   enlarge: (i: number, from: HTMLElement) => void;
   fonts?: FontLoader;
+  pause?: () => Promise<void>;
 }
 
 /** One live canvas per flier with edit and PNG download; returns the canvases in doc order. */
 export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, view: PreviewView): Promise<HTMLCanvasElement[]> {
-  const { selected, select, fonts = document.fonts } = view;
+  const { selected, select, fonts = document.fonts, pause = nextTask } = view;
   await fontsReady(fonts);
   const canvases = docs.map(() => el('canvas', { role: 'img' }));
+  const errors: (string | null)[] = [];
+  for (const [i, doc] of docs.entries()) {
+    await pause();
+    canvases[i].setAttribute('aria-label', doc.blocks.title);
+    errors.push(draw(doc, assets, canvases[i]));
+  }
   const figures = docs.map((doc, i) => {
     const canvas = canvases[i];
-    canvas.setAttribute('aria-label', doc.blocks.title);
-    const error = draw(doc, assets, canvas);
+    const error = errors[i];
     const n = String(i + 1);
     const trim = el('div', { class: 'trim', role: 'button', tabindex: '0', 'aria-pressed': String(i === selected), 'aria-label': FM('previews.flier', n, doc.blocks.title) }, [canvas]);
     return el('figure', { class: i === selected ? 'selected' : '', 'data-testid': `preview-${n}` }, [

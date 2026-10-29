@@ -17,6 +17,8 @@ export function styleTools(side: string): void {
     '.mk-sw{display:flex;flex-wrap:wrap;gap:6px}.mk-sw button{width:44px;min-height:44px;padding:0}.mk-sw button[data-c]{border-radius:50%}.mk-sw button[aria-pressed="true"]{outline:2px solid var(--text);outline-offset:2px}.mk-sw .mk-cust{width:auto;padding:0 10px}',
     '.mk-sseg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mk-sseg button{width:100%;min-height:44px;padding:0 4px}.mk-sseg.two{grid-template-columns:repeat(2,minmax(0,1fr))}',
     '.mk-sp button[aria-pressed="true"]:not([data-c]){border:2px solid var(--brand-fill);font-weight:600}.mk-sfoot{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}.mk-sfoot button{width:auto}.mk-sfoot small{color:var(--text-secondary)}',
+    '@media (max-width:599px){.mk-srow{grid-template-columns:minmax(0,1fr)}}',
+    '.mk-sheet .mk-srow{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.mk-sheet{gap:8px;padding:10px 12px}.mk-sheet h4{font-size:.95rem}',
     '.mk-sheet{position:fixed;left:0;right:0;bottom:0;max-height:78vh;overflow:auto;z-index:9;border-radius:12px 12px 0 0;box-shadow:0 -4px 16px rgb(0 0 0/.18)}',
     '.mk-pop{position:absolute;z-index:8;width:360px;box-shadow:0 4px 16px rgb(0 0 0/.18)}',
   ].join('\n');
@@ -26,17 +28,18 @@ export function styleTools(side: string): void {
     const span = label?.querySelector(':scope > span, :scope > .label-head > span');
     return (span?.textContent ?? key).trim();
   };
+  const NAMES: Record<string, string> = Object.fromEntries(KEYS.map((k) => [k, nameOf(k)]));
   for (const key of KEYS) {
     const field = q(`field-${key}`); const label = field?.closest('label'); if (!field || !label) continue;
     const head = label.querySelector(':scope > .label-head, :scope > span') as HTMLElement | null; if (!head) continue;
-    const name = nameOf(key);
+    const name = NAMES[key] ?? key;
     const b = btn('Style', `style-${key}`, `Style of ${name}: font, size, colour`);
     b.classList.add('mk-sty'); b.setAttribute('aria-expanded', 'false');
     b.insertAdjacentHTML('afterbegin', '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 19 9.5 5h1L16 19M6.3 14h7.4M17 19v-6.5a2.5 2.5 0 0 1 5 0V19"/></svg>');
     if (head.classList.contains('label-head')) { head.classList.add('mk-lh'); head.append(b); } else { const row = mk('span', 'mk-lh'); head.replaceWith(row); row.append(head, b); }
   }
   const panel = (key: string): HTMLElement => {
-    const name = nameOf(key); const p = mk('div', 'mk-sp'); p.dataset.testid = 'style-panel'; p.setAttribute('role', 'group'); p.setAttribute('aria-label', `Style of ${name}`);
+    const name = NAMES[key] ?? key; const p = mk('div', 'mk-sp'); p.dataset.testid = 'style-panel'; p.setAttribute('role', 'group'); p.setAttribute('aria-label', `Style of ${name}`);
     const seg = (labels: string[], on: string, cls = 'mk-sseg'): HTMLElement => { const g = mk('div', cls); for (const l of labels) g.append(btn(l, '', undefined, l === on)); return g; };
     const field = (label: string, control: HTMLElement): HTMLElement => { const f = mk('div', 'mk-sf'); f.append(mk('span', '', label), control); return f; };
     const font = mk('select', '') as HTMLSelectElement; for (const f of ['Theme: Oswald', 'Bebas Neue', 'Playfair Display', 'Great Vibes', 'Poppins']) font.append(new Option(f));
@@ -55,10 +58,10 @@ export function styleTools(side: string): void {
     const p = panel(key);
     if (side === 'A') row.after(p);
     if (side === 'B') {
-      if (innerWidth < 1024) { p.classList.add('mk-sheet'); document.body.append(p); }
-      else { p.classList.add('mk-pop'); const r = b.getBoundingClientRect(); const rr = row.getBoundingClientRect(); Object.assign(p.style, { left: `${String(Math.round(rr.left + scrollX))}px`, width: `${String(Math.round(rr.width))}px`, top: `${String(Math.round(r.bottom + scrollY + 8))}px` }); document.body.append(p); }
+      if (innerWidth < 1024) { p.classList.add('mk-sheet'); const mini = q('mini-preview')?.getBoundingClientRect(); if (mini && mini.height > 1 && mini.top < innerHeight) Object.assign(p.style, { bottom: `${String(Math.round(innerHeight - mini.top + 8))}px`, maxHeight: `${String(Math.round(mini.top - 24))}px`, borderRadius: '12px' }); document.body.append(p); }
+      else { p.classList.add('mk-pop'); const r = b.getBoundingClientRect(); const rr = row.getBoundingClientRect(); Object.assign(p.style, { left: `${String(Math.round(rr.left + scrollX))}px`, width: `${String(Math.round(rr.width))}px`, top: `${String(Math.round(rr.bottom + scrollY + 8))}px` }); document.body.append(p); }
     }
-    if (side === 'C') { const edit = q('edit-1'); const card = q('preview-1'); if (innerWidth < 600 && card) { card.after(p); p.style.gridColumn = '1 / -1'; } else if (edit) edit.before(p); else row.after(p); p.querySelector('h4')?.after(mk('small', '', 'Marked on flier 1 with corners. Tap another line on the flier to style it.')); }
+    if (side === 'C') { q('line-toolbar')?.remove(); const edit = q('edit-1'); const card = q('preview-1'); if (card) { card.after(p); p.style.gridColumn = '1 / -1'; } else if (edit) edit.before(p); else row.after(p); p.querySelector('h4')?.after(mk('small', '', 'Marked on flier 1 with corners. Tap another line on the flier to style it.')); }
     (p.querySelector('select') as HTMLElement | null)?.focus();
   };
 }

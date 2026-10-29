@@ -103,10 +103,11 @@ export function draftsMock(arg: { side: string; drafts: DraftMeta[] }): void {
       d.append(box); document.body.append(d); keep.focus();
     }
     if ((state === 'cleanup' || state === 'confirm') && side === 'C') {
+      if (document.querySelector('[data-testid="drafts-selbar"]')) return;
       list.querySelectorAll(':scope > li').forEach((li, i) => { const c = mk('input', 'mk-check') as HTMLInputElement; c.type = 'checkbox'; c.checked = !drafts[i]?.starred; c.setAttribute('aria-label', `Select ${drafts[i] ? nameOf(drafts[i], i) : ''}`); li.classList.add('mk-sel-mode'); li.prepend(c); });
       const bar = mk('div', 'mk-selbar'); bar.dataset.testid = 'drafts-selbar';
       bar.append(btn(`Delete ${String(others)} selected`, 'drafts-delete-selected'), btn('Delete all except favourites', 'drafts-cleanup'), btn('Done', 'drafts-select-done'));
-      list.after(bar);
+      list.after(bar); const mini = document.querySelector('[data-testid="mini-preview"]')?.getBoundingClientRect(); if (mini && mini.height > 1 && mini.top < innerHeight) bar.style.bottom = `${String(Math.round(innerHeight - mini.top))}px`;
       (document.querySelector('[data-testid="drafts-select"]') as HTMLElement).textContent = `${String(others)} selected`;
     }
     if (state === 'rename') {

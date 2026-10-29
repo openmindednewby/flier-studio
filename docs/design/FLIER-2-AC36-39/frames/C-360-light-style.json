@@ -2,7 +2,7 @@
  "option": "C",
  "side": "after",
  "shot": "style",
- "build": "live index-D2oPVMyr.js + mockup C",
+ "build": "live index-YJ9GLdI7.js + mockup C",
  "file": "C-360-light-style.png",
  "pair": null,
  "focusedOnLoad": "BODY",
@@ -23,8 +23,7 @@
   "previews",
   "rail-toggle",
   "section-nav",
-  "style-panel",
-  "style-reset"
+  "style-panel"
  ],
  "misaligned": [],
  "textFit": [],

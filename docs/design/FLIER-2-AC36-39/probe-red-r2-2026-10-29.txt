@@ -1,0 +1,10 @@
+Probe r2 (clipped select text, overlapping siblings, doubled checkboxes, covered sheet/select bar) on the round-3 mockups, light, before the r4 fixes:
+A-360-light-style.json: clipped select SELECT:Theme: OswaldBebas NeueP
+B-360-light-style.json: covered BUTTON:Left, covered BUTTON:Centre, covered BUTTON:Right, covered style-reset
+C-1280-light-confirm.json: doubled checkbox draft-row-1, doubled checkbox draft-row-2, doubled checkbox draft-row-3, doubled checkbox draft-row-4, doubled checkbox draft-row-5, doubled checkbox draft-row-6
+C-1280-light-style.json: clipped select SELECT:Theme: OswaldBebas NeueP, clipped select SELECT:NormalTightWideWider, doubled checkbox draft-row-1, doubled checkbox draft-row-3, doubled checkbox draft-row-4, doubled checkbox draft-row-5, doubled checkbox draft-row-6
+C-1280-light-toast.json: doubled checkbox draft-row-1, doubled checkbox draft-row-3, doubled checkbox draft-row-4, doubled checkbox draft-row-5, doubled checkbox draft-row-6
+C-360-light-cleanup.json: covered drafts-delete-selected, covered drafts-cleanup, covered drafts-select-done
+C-360-light-confirm.json: covered drafts-delete-selected, covered drafts-cleanup, covered drafts-select-done, doubled checkbox draft-row-1, doubled checkbox draft-row-2, doubled checkbox draft-row-3, doubled checkbox draft-row-4, doubled checkbox draft-row-5, doubled checkbox draft-row-6
+C-360-light-style.json: clipped select SELECT:Theme: OswaldBebas NeueP, doubled checkbox draft-row-1, doubled checkbox draft-row-3, doubled checkbox draft-row-4, doubled checkbox draft-row-5, doubled checkbox draft-row-6
+C-360-light-toast.json: covered drafts-delete-selected, covered drafts-cleanup, covered drafts-select-done, doubled checkbox draft-row-1, doubled checkbox draft-row-3, doubled checkbox draft-row-4, doubled checkbox draft-row-5, doubled checkbox draft-row-6

@@ -16,8 +16,8 @@ const AFTER_ONLY = ['rename', 'cleanup', 'confirm', 'toast', 'style'];
 const RUNS = [
   { name: '360', scheme: 'light', use: devices['Galaxy S5'], size: '360x640', shots: [...PAIRS, ...AFTER_ONLY] },
   { name: '1280', scheme: 'light', use: DESK, size: '1280x800', shots: [...PAIRS, ...AFTER_ONLY] },
-  { name: '360', scheme: 'dark', use: devices['Galaxy S5'], size: '360x640', shots: ['drafts', 'lines'] },
-  { name: '1280', scheme: 'dark', use: DESK, size: '1280x800', shots: ['drafts', 'lines'] },
+  { name: '360', scheme: 'dark', use: devices['Galaxy S5'], size: '360x640', shots: ['drafts', 'lines', ...AFTER_ONLY] },
+  { name: '1280', scheme: 'dark', use: DESK, size: '1280x800', shots: ['drafts', 'lines', ...AFTER_ONLY] },
 ] as const;
 const PANEL: Record<string, string> = { top: 'drafts', 'form-mid': 'form', drafts: 'drafts', 'drafts-end': 'drafts', rename: 'drafts', cleanup: 'drafts', confirm: 'drafts', toast: 'drafts', style: 'form', form: 'form', 'form-end': 'form', lines: 'form', flier: 'form', size: 'form' };
 const ANCHOR: Record<string, string> = { top: 'window.scrollTo(0, 0)', 'form-mid': 'field-includesHeading scrollIntoView block center', drafts: 'drafts-panel top - 16', 'drafts-end': 'drafts-panel bottom at viewport bottom - 16', rename: 'drafts-panel top - 16', cleanup: 'drafts-panel top - 16', confirm: 'drafts-panel top - 16', style: 'field-titleBottom scrollIntoView block center', toast: 'drafts-panel top - 16', form: 'flier-form top - 16', 'form-end': 'flier-form bottom at viewport bottom - 16', lines: 'field-titleBottom scrollIntoView block center', flier: 'preview-1 scrollIntoView block center', size: 'preview-1 scrollIntoView block center' };
@@ -52,11 +52,24 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
       return false;
     }).map((n) => `mid-word ${name(n)}`);
     const clipped = [...document.querySelectorAll('.drafts input, .drafts li span, .mk-name, .mk-edit')].filter(inView).filter((n) => n.clientWidth > 0 && (n.scrollWidth > n.clientWidth + 1 || n.scrollHeight > n.clientHeight + 1)).map((n) => `clipped ${name(n)}`);
-    const covered = [...document.querySelectorAll('.mk-toast span, .mk-toast button, .mk-bar button')].filter(seen).filter((n) => {
+    const covered = [...document.querySelectorAll('.mk-toast span, .mk-toast button, .mk-bar button, .mk-selbar button, .mk-sheet button, .mk-sheet select')].filter(seen).filter((n) => {
       const r = box(n); const x = r.left + r.width / 2; const y = r.top + r.height / 2;
-      if (y < 0 || y > innerHeight || x < 0 || x > innerWidth) return n.closest('.mk-toast') !== null;
-      const hit = document.elementFromPoint(x, y); if (hit && hit.closest('.mk-dlg')) return false; if (n.closest('.mk-bar') && hit && hit.closest('[data-testid=mini-preview]')) return false; return !hit || !(n === hit || n.contains(hit));
+      if (y < 0 || y > innerHeight || x < 0 || x > innerWidth) return n.closest('.mk-toast, .mk-sheet') !== null;
+      const sheet = n.closest('.mk-sheet'); if (sheet) { const sr = box(sheet); if (y < sr.top || y > sr.bottom) return false; } const hit = document.elementFromPoint(x, y); if (hit && hit.closest('.mk-dlg')) return false; if (n.closest('.mk-bar') && hit && hit.closest('[data-testid=mini-preview]')) return false; if (n.closest('.mk-selbar') && (y > innerHeight || y < 0)) return false; return !hit || !(n === hit || n.contains(hit));
     }).map((n) => `covered ${name(n)}`);
+    const pen = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
+    const selClip = [...document.querySelectorAll('.mk-sp select, .mk-lt select, .drafts select')].filter(inView).filter((n) => {
+      const sel = n as HTMLSelectElement; const cs = getComputedStyle(sel);
+      pen.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const room = sel.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 18;
+      return pen.measureText(sel.selectedOptions[0]?.text ?? '').width > room;
+    }).map((n) => `clipped select ${name(n)}`);
+    const overlap = [...document.querySelectorAll('.mk-step, .mk-seg, .mk-sseg, .mk-srow, .mk-acts, .mk-r-acts, .mk-bar, .mk-sw, .mk-selbar, .mk-sfoot')].filter(inView).flatMap((g) => {
+      const kids = [...g.children].filter(seen);
+      const hit = (r1: DOMRect, r2: DOMRect): boolean => r1.left < r2.right - 1 && r2.left < r1.right - 1 && r1.top < r2.bottom - 1 && r2.top < r1.bottom - 1;
+      return kids.flatMap((k1, i) => kids.slice(i + 1).filter((k2) => hit(box(k1), box(k2))).map((k2) => `overlap ${name(k1)} / ${name(k2)}`));
+    });
+    const doubled = [...document.querySelectorAll('.drafts li')].filter((li) => li.querySelectorAll(':scope > .mk-check').length > 1).map((li) => `doubled checkbox ${name(li)}`);
     const cv = document.querySelector('[data-testid="preview-1"] canvas');
     const drawn = (window as unknown as { __mkDrawn?: Map<Element, { text: string; w: number; px: number }[]> }).__mkDrawn?.get(cv as Element) ?? [];
     const pick = (t: string[]): { text: string; w: number; px: number } | undefined => drawn.find((r) => t.includes(r.text));
@@ -64,7 +77,7 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
     const b = pick(['WORKSHOP', 'WORKSHOPS']);
     const ae = document.activeElement;
     return {
-      inViewport, misaligned, textFit: [...textFit, ...midWord, ...clipped, ...covered], under44, hscroll: document.documentElement.scrollWidth > innerWidth,
+      inViewport, misaligned, textFit: [...textFit, ...midWord, ...clipped, ...covered, ...selClip, ...overlap, ...doubled], under44, hscroll: document.documentElement.scrollWidth > innerWidth,
       line: a && b ? { first: a.text, second: b.text, firstW: Math.round(a.w), secondW: Math.round(b.w), firstPx: Math.round(a.px), secondPx: Math.round(b.px), canvasW: (cv as HTMLCanvasElement).width } : null,
       focused: ae && ae !== document.body ? (tid(ae) || `${ae.tagName}:${(ae.getAttribute('aria-label') ?? ae.textContent ?? '').trim().slice(0, 30)}`) : '',
     };
@@ -109,7 +122,7 @@ async function apply(page: Page, side: string): Promise<void> {
 }
 
 async function place(page: Page, shot: string): Promise<void> {
-  await page.evaluate(() => document.querySelectorAll('.mk-dlg, .mk-toast, .mk-menu').forEach((n) => n.remove()));
+  await page.evaluate(() => { document.querySelectorAll('.mk-dlg, .mk-toast, .mk-menu, .mk-selbar, .mk-check, .mk-sheet, .mk-pop, .mk-sp').forEach((n) => n.remove()); document.querySelectorAll('.mk-sel-mode').forEach((n) => n.classList.remove('mk-sel-mode')); });
   await panel(page, PANEL[shot]);
   const top = shot === 'form' ? 'flier-form' : PANEL[shot] === 'drafts' && shot !== 'drafts-end' && shot !== 'top' ? 'drafts-panel' : '';
   if (top) await page.evaluate((x) => { const n = document.querySelector(`[data-testid="${x}"]`); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); }, top);

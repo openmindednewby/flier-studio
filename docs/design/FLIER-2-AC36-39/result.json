@@ -2,7 +2,7 @@
  "countMethod": "visible-in-frame",
  "rowsMethod": "auto",
  "pairMethod": "same-steps",
- "beforeBuild": "live index-D2oPVMyr.js",
+ "beforeBuild": "live index-YJ9GLdI7.js",
  "lineBefore": {
   "first": "KIZOMBA",
   "second": "WORKSHOP",
@@ -18,7 +18,7 @@
    "item": "`download-1`",
    "id": "download-1",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -26,7 +26,7 @@
    "item": "`download-2`",
    "id": "download-2",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -34,7 +34,7 @@
    "item": "`download-3`",
    "id": "download-3",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -42,7 +42,7 @@
    "item": "`download-all`",
    "id": "download-all",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts-end, 1280 top, 360 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts-end, 1280 top, 360 top",
    "kind": "probe"
   },
   {
@@ -50,7 +50,7 @@
    "item": "`draft-restore-1`",
    "id": "draft-restore-1",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -58,7 +58,7 @@
    "item": "`draft-restore-2`",
    "id": "draft-restore-2",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -66,7 +66,7 @@
    "item": "`draft-restore-3`",
    "id": "draft-restore-3",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -74,7 +74,7 @@
    "item": "`draft-restore-4`",
    "id": "draft-restore-4",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -82,7 +82,7 @@
    "item": "`draft-restore-5`",
    "id": "draft-restore-5",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -90,7 +90,7 @@
    "item": "`draft-restore-6`",
    "id": "draft-restore-6",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -98,7 +98,7 @@
    "item": "`draft-star-1`",
    "id": "draft-star-1",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -106,7 +106,7 @@
    "item": "`draft-star-2`",
    "id": "draft-star-2",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -114,7 +114,7 @@
    "item": "`draft-star-3`",
    "id": "draft-star-3",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -122,7 +122,7 @@
    "item": "`draft-star-4`",
    "id": "draft-star-4",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -130,7 +130,7 @@
    "item": "`draft-star-5`",
    "id": "draft-star-5",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -138,7 +138,7 @@
    "item": "`draft-star-6`",
    "id": "draft-star-6",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -146,7 +146,7 @@
    "item": "`drafts-all`",
    "id": "drafts-all",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -154,7 +154,7 @@
    "item": "`drafts-favourites`",
    "id": "drafts-favourites",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -162,7 +162,7 @@
    "item": "`drafts-list`",
    "id": "drafts-list",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -170,7 +170,7 @@
    "item": "`drafts-panel`",
    "id": "drafts-panel",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -178,7 +178,7 @@
    "item": "`drafts-panel-toggle`",
    "id": "drafts-panel-toggle",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 drafts-end, 1280 top",
    "kind": "probe"
   },
   {
@@ -186,7 +186,7 @@
    "item": "`edit-1`",
    "id": "edit-1",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -194,7 +194,7 @@
    "item": "`edit-2`",
    "id": "edit-2",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -202,7 +202,7 @@
    "item": "`edit-3`",
    "id": "edit-3",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -210,7 +210,7 @@
    "item": "`field-footer`",
    "id": "field-footer",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-end",
    "kind": "probe"
   },
   {
@@ -218,7 +218,7 @@
    "item": "`field-includesHeading`",
    "id": "field-includesHeading",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -226,7 +226,7 @@
    "item": "`field-includesItems`",
    "id": "field-includesItems",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form-end, 360 form-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form-end, 360 form-end",
    "kind": "probe"
   },
   {
@@ -234,7 +234,7 @@
    "item": "`field-items`",
    "id": "field-items",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form-end, 360 flier, 360 form-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form-end, 360 flier, 360 form-end",
    "kind": "probe"
   },
   {
@@ -242,7 +242,7 @@
    "item": "`field-prices`",
    "id": "field-prices",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form-end, 360 form-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form-end, 360 form-end",
    "kind": "probe"
   },
   {
@@ -250,7 +250,7 @@
    "item": "`field-schedule`",
    "id": "field-schedule",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form-end, 1280 form-mid, 360 form-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form-end, 1280 form-mid, 360 form-end",
    "kind": "probe"
   },
   {
@@ -258,7 +258,7 @@
    "item": "`field-script`",
    "id": "field-script",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -266,7 +266,7 @@
    "item": "`field-title`",
    "id": "field-title",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form, 360 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form, 360 form",
    "kind": "probe"
   },
   {
@@ -274,7 +274,7 @@
    "item": "`field-titleBottom`",
    "id": "field-titleBottom",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -282,7 +282,7 @@
    "item": "`field-venue`",
    "id": "field-venue",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 form-end, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 form-end, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -290,7 +290,7 @@
    "item": "`flier-form`",
    "id": "flier-form",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-end",
    "kind": "probe"
   },
   {
@@ -298,7 +298,7 @@
    "item": "`flier-form-toggle`",
    "id": "flier-form-toggle",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form, 360 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form, 360 form",
    "kind": "probe"
   },
   {
@@ -306,7 +306,7 @@
    "item": "`group-toggle-layout`",
    "id": "group-toggle-layout",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form, 360 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form, 360 form",
    "kind": "probe"
   },
   {
@@ -314,7 +314,7 @@
    "item": "`group-toggle-pictures`",
    "id": "group-toggle-pictures",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 flier, 1280 form, 1280 size",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 flier, 1280 form, 1280 size",
    "kind": "probe"
   },
   {
@@ -322,7 +322,7 @@
    "item": "`group-toggle-text`",
    "id": "group-toggle-text",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -330,7 +330,7 @@
    "item": "`mini-preview`",
    "id": "mini-preview",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 360 drafts, 360 lines, 360 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 360 drafts, 360 lines, 360 drafts-end",
    "kind": "probe"
   },
   {
@@ -338,7 +338,7 @@
    "item": "`nav-ai`",
    "id": "nav-ai",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -346,7 +346,7 @@
    "item": "`nav-all`",
    "id": "nav-all",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -354,7 +354,7 @@
    "item": "`nav-configs`",
    "id": "nav-configs",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -362,7 +362,7 @@
    "item": "`nav-drafts`",
    "id": "nav-drafts",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -370,7 +370,7 @@
    "item": "`nav-form`",
    "id": "nav-form",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -378,7 +378,7 @@
    "item": "`nav-previews`",
    "id": "nav-previews",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -386,7 +386,7 @@
    "item": "`pick-anchor`",
    "id": "pick-anchor",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -394,7 +394,7 @@
    "item": "`pick-background`",
    "id": "pick-background",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 flier, 1280 form, 1280 size",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 flier, 1280 form, 1280 size",
    "kind": "probe"
   },
   {
@@ -402,7 +402,7 @@
    "item": "`pick-fonts`",
    "id": "pick-fonts",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 flier, 1280 form, 1280 size",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 flier, 1280 form, 1280 size",
    "kind": "probe"
   },
   {
@@ -410,7 +410,7 @@
    "item": "`pick-format`",
    "id": "pick-format",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form, 1280 size, 360 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form, 1280 size, 360 form",
    "kind": "probe"
   },
   {
@@ -418,7 +418,7 @@
    "item": "`pick-layout`",
    "id": "pick-layout",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form, 1280 size, 360 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form, 1280 size, 360 form",
    "kind": "probe"
   },
   {
@@ -426,7 +426,7 @@
    "item": "`pick-palette`",
    "id": "pick-palette",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 form, 1280 size, 360 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 form, 1280 size, 360 form",
    "kind": "probe"
   },
   {
@@ -434,7 +434,7 @@
    "item": "`pick-scale`",
    "id": "pick-scale",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -442,7 +442,7 @@
    "item": "`pick-scale-value`",
    "id": "pick-scale-value",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form-mid",
    "kind": "probe"
   },
   {
@@ -450,7 +450,7 @@
    "item": "`preview-1`",
    "id": "preview-1",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -458,7 +458,7 @@
    "item": "`preview-2`",
    "id": "preview-2",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -466,7 +466,7 @@
    "item": "`preview-3`",
    "id": "preview-3",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -474,7 +474,7 @@
    "item": "`preview-4`",
    "id": "preview-4",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -482,7 +482,7 @@
    "item": "`preview-grid`",
    "id": "preview-grid",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -490,7 +490,7 @@
    "item": "`rail-toggle`",
    "id": "rail-toggle",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -498,7 +498,7 @@
    "item": "`remove-background`",
    "id": "remove-background",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form",
    "kind": "probe"
   },
   {
@@ -506,7 +506,7 @@
    "item": "`section-nav`",
    "id": "section-nav",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 drafts, 1280 lines, 1280 drafts-end",
    "kind": "probe"
   },
   {
@@ -514,7 +514,7 @@
    "item": "`upload-logo`",
    "id": "upload-logo",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form",
    "kind": "probe"
   },
   {
@@ -522,7 +522,7 @@
    "item": "`upload-picture`",
    "id": "upload-picture",
    "role": "Visitor",
-   "source": "live live index-D2oPVMyr.js, seen in 1280 lines, 1280 flier, 1280 form",
+   "source": "live live index-YJ9GLdI7.js, seen in 1280 lines, 1280 flier, 1280 form",
    "kind": "probe"
   },
   {
@@ -699,11 +699,15 @@
     "canvasW": 1080
    },
    "focus": {
+    "A-1280-dark-cleanup.png": "drafts-confirm-keep",
     "A-1280-dark-drafts.png": "nav-drafts",
+    "A-1280-dark-rename.png": "INPUT:",
     "A-1280-light-cleanup.png": "drafts-confirm-keep",
     "A-1280-light-drafts.png": "nav-drafts",
     "A-1280-light-rename.png": "INPUT:",
+    "A-360-dark-cleanup.png": "drafts-confirm-keep",
     "A-360-dark-drafts.png": "nav-drafts",
+    "A-360-dark-rename.png": "INPUT:",
     "A-360-light-cleanup.png": "drafts-confirm-keep",
     "A-360-light-drafts.png": "nav-drafts",
     "A-360-light-rename.png": "INPUT:"
@@ -747,11 +751,15 @@
     "canvasW": 1080
    },
    "focus": {
+    "B-1280-dark-cleanup.png": "drafts-confirm-keep",
     "B-1280-dark-drafts.png": "nav-drafts",
+    "B-1280-dark-rename.png": "draft-menu-rename",
     "B-1280-light-cleanup.png": "drafts-confirm-keep",
     "B-1280-light-drafts.png": "nav-drafts",
     "B-1280-light-rename.png": "draft-menu-rename",
+    "B-360-dark-cleanup.png": "drafts-confirm-keep",
     "B-360-dark-drafts.png": "nav-drafts",
+    "B-360-dark-rename.png": "draft-menu-rename",
     "B-360-light-cleanup.png": "drafts-confirm-keep",
     "B-360-light-drafts.png": "nav-drafts",
     "B-360-light-rename.png": "draft-menu-rename"
@@ -795,11 +803,15 @@
     "canvasW": 1080
    },
    "focus": {
+    "C-1280-dark-cleanup.png": "nav-drafts",
     "C-1280-dark-drafts.png": "nav-drafts",
+    "C-1280-dark-rename.png": "draft-name-1",
     "C-1280-light-cleanup.png": "nav-drafts",
     "C-1280-light-drafts.png": "nav-drafts",
     "C-1280-light-rename.png": "draft-name-1",
+    "C-360-dark-cleanup.png": "nav-drafts",
     "C-360-dark-drafts.png": "nav-drafts",
+    "C-360-dark-rename.png": "draft-name-1",
     "C-360-light-cleanup.png": "nav-drafts",
     "C-360-light-drafts.png": "nav-drafts",
     "C-360-light-rename.png": "draft-name-1"
@@ -822,7 +834,7 @@
    "option": "A",
    "shot": "1280-dark-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -880,7 +892,7 @@
    "option": "A",
    "shot": "1280-dark-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-1280-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -958,7 +970,7 @@
    "option": "A",
    "shot": "1280-dark-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-dark-lines.png",
    "pair": {
     "route": "/",
@@ -1012,7 +1024,7 @@
    "option": "A",
    "shot": "1280-dark-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-1280-dark-lines.png",
    "pair": {
     "route": "/",
@@ -1069,7 +1081,7 @@
    "option": "A",
    "shot": "1280-light-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-drafts.png",
    "pair": {
     "route": "/",
@@ -1127,7 +1139,7 @@
    "option": "A",
    "shot": "1280-light-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-1280-light-drafts.png",
    "pair": {
     "route": "/",
@@ -1205,7 +1217,7 @@
    "option": "A",
    "shot": "1280-light-flier",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-flier.png",
    "pair": {
     "route": "/",
@@ -1261,7 +1273,7 @@
    "option": "A",
    "shot": "1280-light-flier",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-1280-light-flier.png",
    "pair": {
     "route": "/",
@@ -1319,7 +1331,7 @@
    "option": "A",
    "shot": "1280-light-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-lines.png",
    "pair": {
     "route": "/",
@@ -1373,7 +1385,7 @@
    "option": "A",
    "shot": "1280-light-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-1280-light-lines.png",
    "pair": {
     "route": "/",
@@ -1430,7 +1442,7 @@
    "option": "A",
    "shot": "1280-light-size",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-size.png",
    "pair": {
     "route": "/",
@@ -1487,7 +1499,7 @@
    "option": "A",
    "shot": "1280-light-size",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-1280-light-size.png",
    "pair": {
     "route": "/",
@@ -1545,7 +1557,7 @@
    "option": "A",
    "shot": "360-dark-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -1599,7 +1611,7 @@
    "option": "A",
    "shot": "360-dark-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-360-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -1655,7 +1667,7 @@
    "option": "A",
    "shot": "360-dark-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-dark-lines.png",
    "pair": {
     "route": "/",
@@ -1698,7 +1710,7 @@
    "option": "A",
    "shot": "360-dark-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-360-dark-lines.png",
    "pair": {
     "route": "/",
@@ -1744,7 +1756,7 @@
    "option": "A",
    "shot": "360-light-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-drafts.png",
    "pair": {
     "route": "/",
@@ -1798,7 +1810,7 @@
    "option": "A",
    "shot": "360-light-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-360-light-drafts.png",
    "pair": {
     "route": "/",
@@ -1854,7 +1866,7 @@
    "option": "A",
    "shot": "360-light-flier",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-flier.png",
    "pair": {
     "route": "/",
@@ -1900,7 +1912,7 @@
    "option": "A",
    "shot": "360-light-flier",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-360-light-flier.png",
    "pair": {
     "route": "/",
@@ -1946,7 +1958,7 @@
    "option": "A",
    "shot": "360-light-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-lines.png",
    "pair": {
     "route": "/",
@@ -1989,7 +2001,7 @@
    "option": "A",
    "shot": "360-light-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-360-light-lines.png",
    "pair": {
     "route": "/",
@@ -2035,7 +2047,7 @@
    "option": "A",
    "shot": "360-light-size",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-size.png",
    "pair": {
     "route": "/",
@@ -2081,7 +2093,7 @@
    "option": "A",
    "shot": "360-light-size",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup A",
+   "build": "live index-YJ9GLdI7.js + mockup A",
    "file": "A-360-light-size.png",
    "pair": {
     "route": "/",
@@ -2127,7 +2139,7 @@
    "option": "B",
    "shot": "1280-dark-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -2185,7 +2197,7 @@
    "option": "B",
    "shot": "1280-dark-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-1280-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -2262,7 +2274,7 @@
    "option": "B",
    "shot": "1280-dark-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-dark-lines.png",
    "pair": {
     "route": "/",
@@ -2316,7 +2328,7 @@
    "option": "B",
    "shot": "1280-dark-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-1280-dark-lines.png",
    "pair": {
     "route": "/",
@@ -2371,7 +2383,7 @@
    "option": "B",
    "shot": "1280-light-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-drafts.png",
    "pair": {
     "route": "/",
@@ -2429,7 +2441,7 @@
    "option": "B",
    "shot": "1280-light-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-1280-light-drafts.png",
    "pair": {
     "route": "/",
@@ -2506,7 +2518,7 @@
    "option": "B",
    "shot": "1280-light-flier",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-flier.png",
    "pair": {
     "route": "/",
@@ -2562,7 +2574,7 @@
    "option": "B",
    "shot": "1280-light-flier",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-1280-light-flier.png",
    "pair": {
     "route": "/",
@@ -2618,7 +2630,7 @@
    "option": "B",
    "shot": "1280-light-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-lines.png",
    "pair": {
     "route": "/",
@@ -2672,7 +2684,7 @@
    "option": "B",
    "shot": "1280-light-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-1280-light-lines.png",
    "pair": {
     "route": "/",
@@ -2727,7 +2739,7 @@
    "option": "B",
    "shot": "1280-light-size",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-size.png",
    "pair": {
     "route": "/",
@@ -2784,7 +2796,7 @@
    "option": "B",
    "shot": "1280-light-size",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-1280-light-size.png",
    "pair": {
     "route": "/",
@@ -2842,7 +2854,7 @@
    "option": "B",
    "shot": "360-dark-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -2896,7 +2908,7 @@
    "option": "B",
    "shot": "360-dark-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-360-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -2955,7 +2967,7 @@
    "option": "B",
    "shot": "360-dark-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-dark-lines.png",
    "pair": {
     "route": "/",
@@ -2998,7 +3010,7 @@
    "option": "B",
    "shot": "360-dark-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-360-dark-lines.png",
    "pair": {
     "route": "/",
@@ -3041,7 +3053,7 @@
    "option": "B",
    "shot": "360-light-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-drafts.png",
    "pair": {
     "route": "/",
@@ -3095,7 +3107,7 @@
    "option": "B",
    "shot": "360-light-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-360-light-drafts.png",
    "pair": {
     "route": "/",
@@ -3154,7 +3166,7 @@
    "option": "B",
    "shot": "360-light-flier",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-flier.png",
    "pair": {
     "route": "/",
@@ -3200,7 +3212,7 @@
    "option": "B",
    "shot": "360-light-flier",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-360-light-flier.png",
    "pair": {
     "route": "/",
@@ -3246,7 +3258,7 @@
    "option": "B",
    "shot": "360-light-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-lines.png",
    "pair": {
     "route": "/",
@@ -3289,7 +3301,7 @@
    "option": "B",
    "shot": "360-light-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-360-light-lines.png",
    "pair": {
     "route": "/",
@@ -3332,7 +3344,7 @@
    "option": "B",
    "shot": "360-light-size",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-size.png",
    "pair": {
     "route": "/",
@@ -3378,7 +3390,7 @@
    "option": "B",
    "shot": "360-light-size",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup B",
+   "build": "live index-YJ9GLdI7.js + mockup B",
    "file": "B-360-light-size.png",
    "pair": {
     "route": "/",
@@ -3424,7 +3436,7 @@
    "option": "C",
    "shot": "1280-dark-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -3482,7 +3494,7 @@
    "option": "C",
    "shot": "1280-dark-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-1280-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -3561,7 +3573,7 @@
    "option": "C",
    "shot": "1280-dark-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-dark-lines.png",
    "pair": {
     "route": "/",
@@ -3615,7 +3627,7 @@
    "option": "C",
    "shot": "1280-dark-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-1280-dark-lines.png",
    "pair": {
     "route": "/",
@@ -3674,7 +3686,7 @@
    "option": "C",
    "shot": "1280-light-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-drafts.png",
    "pair": {
     "route": "/",
@@ -3732,7 +3744,7 @@
    "option": "C",
    "shot": "1280-light-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-1280-light-drafts.png",
    "pair": {
     "route": "/",
@@ -3811,7 +3823,7 @@
    "option": "C",
    "shot": "1280-light-flier",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-flier.png",
    "pair": {
     "route": "/",
@@ -3867,7 +3879,7 @@
    "option": "C",
    "shot": "1280-light-flier",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-1280-light-flier.png",
    "pair": {
     "route": "/",
@@ -3926,7 +3938,7 @@
    "option": "C",
    "shot": "1280-light-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-lines.png",
    "pair": {
     "route": "/",
@@ -3980,7 +3992,7 @@
    "option": "C",
    "shot": "1280-light-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-1280-light-lines.png",
    "pair": {
     "route": "/",
@@ -4039,7 +4051,7 @@
    "option": "C",
    "shot": "1280-light-size",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-1280-light-size.png",
    "pair": {
     "route": "/",
@@ -4096,7 +4108,7 @@
    "option": "C",
    "shot": "1280-light-size",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-1280-light-size.png",
    "pair": {
     "route": "/",
@@ -4156,7 +4168,7 @@
    "option": "C",
    "shot": "360-dark-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -4210,7 +4222,7 @@
    "option": "C",
    "shot": "360-dark-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-360-dark-drafts.png",
    "pair": {
     "route": "/",
@@ -4266,7 +4278,7 @@
    "option": "C",
    "shot": "360-dark-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-dark-lines.png",
    "pair": {
     "route": "/",
@@ -4309,7 +4321,7 @@
    "option": "C",
    "shot": "360-dark-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-360-dark-lines.png",
    "pair": {
     "route": "/",
@@ -4354,7 +4366,7 @@
    "option": "C",
    "shot": "360-light-drafts",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-drafts.png",
    "pair": {
     "route": "/",
@@ -4408,7 +4420,7 @@
    "option": "C",
    "shot": "360-light-drafts",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-360-light-drafts.png",
    "pair": {
     "route": "/",
@@ -4464,7 +4476,7 @@
    "option": "C",
    "shot": "360-light-flier",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-flier.png",
    "pair": {
     "route": "/",
@@ -4510,7 +4522,7 @@
    "option": "C",
    "shot": "360-light-flier",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-360-light-flier.png",
    "pair": {
     "route": "/",
@@ -4556,7 +4568,7 @@
    "option": "C",
    "shot": "360-light-lines",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-lines.png",
    "pair": {
     "route": "/",
@@ -4599,7 +4611,7 @@
    "option": "C",
    "shot": "360-light-lines",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-360-light-lines.png",
    "pair": {
     "route": "/",
@@ -4644,7 +4656,7 @@
    "option": "C",
    "shot": "360-light-size",
    "side": "before",
-   "build": "live index-D2oPVMyr.js",
+   "build": "live index-YJ9GLdI7.js",
    "file": "before-360-light-size.png",
    "pair": {
     "route": "/",
@@ -4690,7 +4702,7 @@
    "option": "C",
    "shot": "360-light-size",
    "side": "after",
-   "build": "live index-D2oPVMyr.js + mockup C",
+   "build": "live index-YJ9GLdI7.js + mockup C",
    "file": "C-360-light-size.png",
    "pair": {
     "route": "/",

@@ -1,0 +1,42 @@
+{
+ "option": "C",
+ "side": "after",
+ "shot": "style",
+ "build": "live index-YJ9GLdI7.js + mockup C",
+ "file": "C-360-dark-style.png",
+ "pair": null,
+ "focusedOnLoad": "BODY",
+ "inViewport": [
+  "download-1",
+  "mini-open",
+  "mini-position",
+  "mini-preview",
+  "mini-see-all",
+  "nav-ai",
+  "nav-all",
+  "nav-configs",
+  "nav-drafts",
+  "nav-form",
+  "nav-previews",
+  "preview-1",
+  "preview-grid",
+  "previews",
+  "rail-toggle",
+  "section-nav",
+  "style-panel"
+ ],
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "hscroll": false,
+ "line": {
+  "first": "KIZOMBA",
+  "second": "WORKSHOP",
+  "firstW": 627,
+  "secondW": 627,
+  "firstPx": 169,
+  "secondPx": 133,
+  "canvasW": 1080
+ },
+ "focused": "SELECT:Theme: OswaldBebas NeuePlayfai"
+}

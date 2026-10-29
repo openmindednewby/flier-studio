@@ -7,7 +7,7 @@ export default defineConfig({
   testMatch: /capture\.spec\.ts/,
   reporter: 'list',
   workers: 2,
-  timeout: 90_000,
+  timeout: 180_000,
   outputDir: join(tmpdir(), 'flier2-ac36-39-test-output'),
   use: { baseURL: process.env.CAPTURE_URL ?? 'https://fliers.dloizides.com' },
 });

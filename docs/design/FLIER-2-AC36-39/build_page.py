@@ -44,14 +44,14 @@ def article(o, title, desc, focus):
     r = R['options'][o]
     w, s = r['sameWidth'] or {}, r['sameSize'] or {}
     figs = ''.join(f'<h3>{cap}</h3>{pair(o, dv, sc, sh, cap)}' for dv, sc, sh, cap in SHOTS)
-    states = ''.join(f'<figure class="solo"><img src="{o}-{d}-light-{st}.png" alt="Option {o} at {d}: {cap}" loading="lazy"><figcaption>{o}, {d}: {cap}</figcaption></figure>' for st, cap in STATES for d in ('360', '1280'))
+    states = ''.join(f'<figure class="solo"><img src="{o}-{d}-{sc}-{st}.png" alt="Option {o} at {d} {sc}: {cap}" loading="lazy"><figcaption>{o}, {d} {sc}: {cap}</figcaption></figure>' for st, cap in STATES for sc in ('light', 'dark') for d in ('360', '1280'))
     return f'''<article data-option="{o}" data-inventory="{r['inventory']}" data-aligned="pass" data-result="result.json">
 <h2>{o} &middot; {title}</h2>
 <p class="meta"><b>Inventory:</b> {r['inventory']} &middot; new items shown {r['added']} &middot; aligned: pass &middot; text fit: pass &middot; 44 px targets &middot; no sideways scroll &middot; Same width: KIZOMBA {w.get('firstW')} px / WORKSHOP {w.get('secondW')} px &middot; Same size: {s.get('firstPx')} px / {s.get('secondPx')} px</p>
 <p>{desc}</p>
 <p><b>Initial focus:</b> {focus}</p>
 {figs}
-<h3>After only: rename, clean-up, undo (360 and 1280)</h3>
+<h3>After only: rename, clean-up, undo (360 and 1280, light and dark)</h3>
 <div class="states">{states}</div>
 </article>'''
 

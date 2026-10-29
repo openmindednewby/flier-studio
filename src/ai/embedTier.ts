@@ -13,6 +13,10 @@ interface FieldSpec {
 
 export type Embed = (text: string) => Promise<number[]>;
 
+export interface EmbedSettings extends AiSettings {
+  readonly matched: readonly (keyof AiSettings)[];
+}
+
 const THRESHOLD = 0.5;
 const FRAGMENT = /,| with | for | on | at /i;
 const STYLES = ['kizomba', 'salsa', 'bachata', 'tango', 'zouk', 'swing', 'hip hop', 'yoga'];
@@ -50,9 +54,6 @@ const FIELDS: readonly FieldSpec[] = [
   } },
 ];
 
-/** The value each setting falls back to when no labelled example is close enough. */
-export const EMBED_FALLBACKS: Readonly<Partial<Record<keyof AiSettings, string>>> = Object.fromEntries(FIELDS.map((spec) => [spec.field, spec.fallback]));
-
 async function labelAll(embed: Embed): Promise<Labelled[][]> {
   const out: Labelled[][] = [];
   for (const spec of FIELDS) {
@@ -67,8 +68,8 @@ async function labelAll(embed: Embed): Promise<Labelled[][]> {
   return out;
 }
 
-function bestOver(vecs: readonly number[][], labelled: readonly Labelled[], fallback: string): string {
-  let best = fallback;
+function bestOver(vecs: readonly number[][], labelled: readonly Labelled[]): string | undefined {
+  let best: string | undefined;
   let bestScore = THRESHOLD;
   for (const entry of labelled) {
     const score = Math.max(...vecs.flatMap((v) => entry.vectors.map((e) => cosine(v, e))));
@@ -81,18 +82,20 @@ function bestOver(vecs: readonly number[][], labelled: readonly Labelled[], fall
 }
 
 /** Tier 2: a sentence-embedding matcher over labelled examples per setting; no text generation. */
-export function createEmbedTier(embed: Embed): { settings(prompt: string): Promise<AiSettings> } {
+export function createEmbedTier(embed: Embed): { settings(prompt: string): Promise<EmbedSettings> } {
   let labelled: Promise<Labelled[][]> | null = null;
   return {
-    async settings(prompt: string): Promise<AiSettings> {
+    async settings(prompt: string): Promise<EmbedSettings> {
       labelled ??= labelAll(embed);
       const lists = await labelled;
       const parts = [prompt, ...prompt.split(FRAGMENT).map((p) => p.trim()).filter((p) => p !== '')];
       const vecs: number[][] = [];
       for (const part of parts) vecs.push(await embed(part));
-      const picked = Object.fromEntries(FIELDS.map((spec, i) => [spec.field, bestOver(vecs, lists[i], spec.fallback)]));
+      const best = lists.map((list) => bestOver(vecs, list));
+      const picked = Object.fromEntries(FIELDS.map((spec, i) => [spec.field, best[i] ?? spec.fallback])) as Partial<AiSettings>;
+      const matched = FIELDS.filter((_spec, i) => best[i] !== undefined).map((spec) => spec.field);
       const fixed = { background: BackgroundStyle.Tint, pictureAnchor: PictureAnchor.Center, pictureScale: '1' };
-      return { ...fixed, ...picked, date: DATE.exec(prompt)?.[0] ?? '', time: TIME.exec(prompt)?.[0] ?? '' } as AiSettings;
+      return { ...fixed, ...picked, date: DATE.exec(prompt)?.[0] ?? '', time: TIME.exec(prompt)?.[0] ?? '', matched } as EmbedSettings;
     },
   };
 }

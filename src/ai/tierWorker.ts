@@ -1,6 +1,7 @@
 import type { AiSettings } from './aiSettings';
 import { createEmbedTier } from './embedTier';
 import { createLlmTier } from './llmTier';
+import { tierCache } from './tierCache';
 import { TierId } from './TierId';
 
 export interface TierRequest {
@@ -19,7 +20,7 @@ const WLLAMA_WASM = 'https://cdn.jsdelivr.net/npm/@wllama/wllama@3.6.1/src/wasm/
 const EMBED_CTX = 512;
 
 type Tier = { settings(prompt: string): Promise<AiSettings>; nGpuLayers?: number };
-const tiers = new Map<TierId, Promise<Tier>>();
+const tiers = tierCache<TierId, Tier>();
 const post = (reply: TierReply): void => {
   self.postMessage(reply);
 };
@@ -48,8 +49,7 @@ async function loadLlm(webGpu: boolean): Promise<Tier> {
 async function handle(req: TierRequest): Promise<void> {
   const started = performance.now();
   try {
-    if (!tiers.has(req.tier)) tiers.set(req.tier, req.tier === TierId.Llm ? loadLlm(req.webGpu) : loadEmbed());
-    const tier = await (tiers.get(req.tier) as Promise<Tier>);
+    const tier = await tiers(req.tier, () => (req.tier === TierId.Llm ? loadLlm(req.webGpu) : loadEmbed()));
     const settings = await tier.settings(req.prompt);
     post({ kind: 'done', id: req.id, ms: performance.now() - started, settings, nGpuLayers: tier.nGpuLayers });
   } catch (e) {

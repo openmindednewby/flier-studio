@@ -34,9 +34,9 @@ test('the picture size slider shows its value and follows it', async ({ page }) 
 test('the picture alignment says it places the picture within its area, not the layout', async ({ page }) => {
   await open(page);
 
-  const selected = await page.getByTestId('pick-anchor').evaluate((n: HTMLSelectElement) => n.selectedOptions[0]?.textContent);
+  const selected = page.getByTestId('pick-anchor').locator('option:checked');
 
-  expect(selected).toBe('Bottom of its area');
+  await expect(selected).toHaveText('Bottom of its area');
 });
 
 test('every side-by-side form row shares one top edge and height', async ({ page }, info) => {

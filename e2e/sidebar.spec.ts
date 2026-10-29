@@ -80,6 +80,7 @@ test.describe('AC-29 the sidebar switches the panel', () => {
 
     expect(await visiblePanels(page)).toEqual(['generate']);
     await expect(page.getByTestId('prompt-text')).toBeInViewport();
+    await expect(page.getByTestId('prompt-text')).toBeFocused();
   });
 
   test('the Fliers item brings the fliers into view and keeps the open panel', async ({ page }) => {

@@ -48,7 +48,9 @@ export function sectionRail(panels: Partial<Record<PanelKey, HTMLElement>>, flie
       return;
     }
     for (const [k, p] of Object.entries(panels)) p.hidden = k !== key;
-    if (reveal) panel.scrollIntoView({ block: 'nearest' });
+    if (!reveal) return;
+    panel.scrollIntoView({ block: 'nearest' });
+    panel.querySelector<HTMLElement>('[data-autofocus]')?.focus({ preventScroll: true });
   };
   links.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); show(ORDER[i], true); }));
   const nav = el('nav', { class: 'rail', 'aria-label': FM('nav.label'), 'data-testid': 'section-nav' }, [el('ul', {}, links.map((a) => el('li', {}, [a])))]);

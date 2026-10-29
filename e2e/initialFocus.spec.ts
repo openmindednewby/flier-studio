@@ -55,7 +55,7 @@ test.describe('contents card and header', () => {
     await expect(nav.locator('h2')).toHaveCount(0);
   });
 
-  test('on a desktop, the on-device AI entry shares the header top row with Download all', async ({ page }, info) => {
+  test('on a desktop, the Generate entry shares the header top row with Download all', async ({ page }, info) => {
     test.skip(info.project.name !== 'desktop');
     await open(page);
 

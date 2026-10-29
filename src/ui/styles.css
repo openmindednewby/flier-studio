@@ -145,7 +145,6 @@ header { display: grid; gap: 8px; }
 .top-row > button { width: auto; flex: 0 0 auto; max-width: 52%; line-height: 1.2; }
 header > .lead { margin: 0; }
 .ai-entry { justify-self: start; display: inline-flex; align-items: center; min-height: var(--hit); padding: 0 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-weight: 600; text-decoration: none; }
-.badge { display: inline-block; padding: 1px 8px; border: 1px solid var(--text); border-radius: 999px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; vertical-align: middle; }
 .section-nav { padding: 8px; gap: 4px; }
 .section-nav ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
 .section-nav a { display: flex; align-items: center; gap: 10px; min-height: var(--hit); padding: 0 12px; border-radius: 8px; color: var(--text); text-decoration: none; }

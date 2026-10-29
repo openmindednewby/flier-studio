@@ -1,0 +1,878 @@
+{
+  "env": {
+    "at": "2026-10-29T10:23:48.670Z",
+    "viewport": "1280x800",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+    "webGpu": false,
+    "crossOriginIsolated": true,
+    "cores": 24
+  },
+  "tiers": [
+    {
+      "tier": "keyword",
+      "downloadMB": 0,
+      "loadMs": 1,
+      "msPerPrompt": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "p50Ms": 0,
+      "longestTaskMs": 0,
+      "score": 4,
+      "rows": [
+        {
+          "prompt": "Bachata night this Friday 13 November from 21:30, dark vibe, insta post",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "PARTY",
+            "date": "Friday 13 November",
+            "time": "21:30"
+          }
+        },
+        {
+          "prompt": "Βραδιά σάλσα το Σάββατο, story για Instagram",
+          "right": false,
+          "misses": [
+            "title",
+            "format"
+          ],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Μαθήματα κιζόμπα για αρχάριους, τετράγωνη αφίσα",
+          "right": false,
+          "misses": [
+            "format"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Wallpaper for my iPhone with ocean blues, kizomba",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "phone",
+            "layout": "picture-right",
+            "palette": "sea",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Monthly timetable of our tango classes",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "TANGO",
+            "subtitle": "CLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Flamenco show, Saturday 28 November 20:30, warm golden sunset tones",
+          "right": false,
+          "misses": [
+            "title",
+            "palette"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "Saturday 28 November",
+            "time": "20:30"
+          }
+        },
+        {
+          "prompt": "Zumba fitness class, modern clean font, square",
+          "right": false,
+          "misses": [
+            "title",
+            "fonts"
+          ],
+          "settings": {
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "CLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Ταπετσαρία για υπολογιστή με θέμα τάνγκο",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "West coast swing weekend festival, put the photo on the left",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "picture-left",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SWING",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Ballet recital for kids on Sunday 6 December at 17:00",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "Sunday 6 December",
+            "time": "17:00"
+          }
+        },
+        {
+          "prompt": "salsa+bachata party tonight!! pink & romantic",
+          "right": false,
+          "misses": [
+            "palette"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Pilates mat class, beige neutral look, feed post",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "CLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Lindy hop social with the photo underneath the heading",
+          "right": false,
+          "misses": [
+            "title",
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Ζουκ πάρτι με σκούρα χρώματα",
+          "right": false,
+          "misses": [
+            "title",
+            "palette"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Calendar of all upcoming bachata socials in December, vertical story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "format": "story",
+            "layout": "list",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "BACHATA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Homescreen background for a samba fan",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Kizomba intensive with classy refined lettering",
+          "right": false,
+          "misses": [
+            "fonts"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "CLASS",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Afro house workshop Thursday 19 November 19:00 - 20:30",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "Thursday 19 November",
+            "time": "19:00 - 20:30"
+          }
+        },
+        {
+          "prompt": "Big screen background, turquoise seaside, salsa",
+          "right": false,
+          "misses": [
+            "format",
+            "palette",
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "SALSA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Πρόγραμμα σεμιναρίων μπατσάτα για τον Νοέμβριο",
+          "right": false,
+          "misses": [
+            "title",
+            "layout"
+          ],
+          "settings": {
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "background": "solid",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        }
+      ]
+    },
+    {
+      "tier": "embed",
+      "downloadMB": 23.8,
+      "loadMs": 27933,
+      "msPerPrompt": [
+        1160,
+        766,
+        819,
+        1636,
+        554,
+        1075,
+        982,
+        570,
+        1052,
+        1679,
+        540,
+        1278,
+        866,
+        645,
+        847,
+        899,
+        885,
+        575,
+        1085,
+        694
+      ],
+      "p50Ms": 875.5,
+      "longestTaskMs": 0,
+      "score": 4,
+      "rows": [
+        {
+          "prompt": "Bachata night this Friday 13 November from 21:30, dark vibe, insta post",
+          "right": false,
+          "misses": [
+            "format"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "night",
+            "fonts": "classic",
+            "title": "BACHATA",
+            "subtitle": "WORKSHOP",
+            "date": "Friday 13 November",
+            "time": "21:30"
+          }
+        },
+        {
+          "prompt": "Βραδιά σάλσα το Σάββατο, story για Instagram",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Μαθήματα κιζόμπα για αρχάριους, τετράγωνη αφίσα",
+          "right": false,
+          "misses": [
+            "format"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Wallpaper for my iPhone with ocean blues, kizomba",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "phone",
+            "layout": "picture-left",
+            "palette": "sea",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Monthly timetable of our tango classes",
+          "right": false,
+          "misses": [
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "TANGO",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Flamenco show, Saturday 28 November 20:30, warm golden sunset tones",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "golden-horizon",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "Saturday 28 November",
+            "time": "20:30"
+          }
+        },
+        {
+          "prompt": "Zumba fitness class, modern clean font, square",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "square",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "modern",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Ταπετσαρία για υπολογιστή με θέμα τάνγκο",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "West coast swing weekend festival, put the photo on the left",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-left",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Ballet recital for kids on Sunday 6 December at 17:00",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "BACHATA",
+            "subtitle": "WORKSHOP",
+            "date": "Sunday 6 December",
+            "time": "17:00"
+          }
+        },
+        {
+          "prompt": "salsa+bachata party tonight!! pink & romantic",
+          "right": false,
+          "misses": [
+            "palette"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "SALSA",
+            "subtitle": "PARTY",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Pilates mat class, beige neutral look, feed post",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "post",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Lindy hop social with the photo underneath the heading",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-bottom",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Ζουκ πάρτι με σκούρα χρώματα",
+          "right": false,
+          "misses": [
+            "title",
+            "palette"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Calendar of all upcoming bachata socials in December, vertical story",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "list",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "BACHATA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Homescreen background for a samba fan",
+          "right": false,
+          "misses": [
+            "title",
+            "format",
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "desktop",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Kizomba intensive with classy refined lettering",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "elegant",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Afro house workshop Thursday 19 November 19:00 - 20:30",
+          "right": false,
+          "misses": [
+            "title"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "Thursday 19 November",
+            "time": "19:00 - 20:30"
+          }
+        },
+        {
+          "prompt": "Big screen background, turquoise seaside, salsa",
+          "right": true,
+          "misses": [],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "desktop",
+            "layout": "picture-right",
+            "palette": "sea",
+            "fonts": "classic",
+            "title": "SALSA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        },
+        {
+          "prompt": "Πρόγραμμα σεμιναρίων μπατσάτα για τον Νοέμβριο",
+          "right": false,
+          "misses": [
+            "title",
+            "layout"
+          ],
+          "settings": {
+            "background": "tint",
+            "pictureAnchor": "center",
+            "pictureScale": "1",
+            "format": "story",
+            "layout": "picture-right",
+            "palette": "sand",
+            "fonts": "classic",
+            "title": "KIZOMBA",
+            "subtitle": "WORKSHOP",
+            "date": "",
+            "time": ""
+          }
+        }
+      ]
+    }
+  ]
+}

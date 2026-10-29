@@ -40,7 +40,9 @@ function workerAsk(worker: Worker, tier: TierId, webGpu: boolean, bytes: Map<str
   });
 }
 
-async function measureTier(tier: TierId, ask: Ask, bytes: Map<string, number>, live: HTMLElement, keys: readonly KeyRow[]): Promise<TierResult> {
+interface Run { live: HTMLElement; keys: readonly KeyRow[] }
+
+async function measureTier(tier: TierId, ask: Ask, bytes: Map<string, number>, { live, keys }: Run): Promise<TierResult> {
   const t0 = performance.now();
   const warm = await ask(WARM_UP);
   const rows: Row[] = [];
@@ -77,7 +79,7 @@ export async function runTiersMeasure(out: HTMLElement, live: HTMLElement): Prom
   for (const tier of [TierId.Keyword, TierId.Embed, TierId.Llm].filter((t) => wanted.includes(t))) {
     const bytes = new Map<string, number>();
     const ask = tier === TierId.Keyword ? keywordAsk : workerAsk(worker, tier, webGpu, bytes);
-    results.push(await measureTier(tier, ask, bytes, live, keys));
+    results.push(await measureTier(tier, ask, bytes, { live, keys }));
   }
   worker.terminate();
   const env = { at: new Date().toISOString(), viewport: `${innerWidth}x${innerHeight}`, userAgent: navigator.userAgent, webGpu, crossOriginIsolated, cores: navigator.hardwareConcurrency };

@@ -24,3 +24,37 @@ Written and committed 2026-10-29 before keyword or embedding ran on any of them.
 | 18 | Afro house workshop Thursday 19 November 19:00 - 20:30 | title: ['AFRO HOUSE', 'AFRO'], date: ['Thursday 19 November'], time: ['19:00 - 20:30'] |
 | 19 | Big screen background, turquoise seaside, salsa | title: ['SALSA'], format: ['desktop'], palette: ['sea'], layout: desktop layouts |
 | 20 | Πρόγραμμα σεμιναρίων μπατσάτα για τον Νοέμβριο | title: ['BACHATA', 'ΜΠΑΤΣΑΤΑ'], layout: ['list'] |
+
+## Result (run 2026-10-29, headless Chromium on the dev PC, no WebGPU; flier-studio c2b8859, rules unchanged since the key was committed)
+
+| Project | Tier | Download MB | Load s | p50 s/prompt | Longest main-thread task ms | Held-out graded |
+|---|---|---|---|---|---|---|
+| mobile 396x704 | keyword | 0 | 0.0 | 0.00 | 0 | 4/20 |
+| mobile 396x704 | embed | 23.8 | 29.5 | 1.08 | 0 | 4/20 |
+| desktop 1280x800 | keyword | 0 | 0.0 | 0.00 | 0 | 4/20 |
+| desktop 1280x800 | embed | 23.8 | 27.9 | 0.88 | 0 | 4/20 |
+
+| # | keyword | embed |
+|---|---|---|
+| 1 | right | wrong (format) |
+| 2 | wrong (title, format) | wrong (title) |
+| 3 | wrong (format) | wrong (format) |
+| 4 | right | right |
+| 5 | wrong (layout) | wrong (layout) |
+| 6 | wrong (title, palette) | wrong (title) |
+| 7 | wrong (title, fonts) | wrong (title) |
+| 8 | wrong (title, format, layout) | wrong (title, format, layout) |
+| 9 | right | wrong (title) |
+| 10 | wrong (title) | wrong (title) |
+| 11 | wrong (palette) | wrong (palette) |
+| 12 | wrong (title) | wrong (title) |
+| 13 | wrong (title, layout) | wrong (title) |
+| 14 | wrong (title, palette) | wrong (title, palette) |
+| 15 | right | right |
+| 16 | wrong (title, format, layout) | wrong (title, format, layout) |
+| 17 | wrong (fonts) | right |
+| 18 | wrong (title) | wrong (title) |
+| 19 | wrong (format, palette, layout) | right |
+| 20 | wrong (title, layout) | wrong (title, layout) |
+
+Verdict: a tie, keyword 4/20 and embedding 4/20 on both projects; field misses keyword 28, embedding 22. Neither reaches the AC-43 bar of 18/20. Embedding did not win, so per D31 and AC-42 "Pick the lightest that works" keyword ships: 0 MB, instant. Both fail on the same things: Greek words, dance styles outside the eight known ones, and wording no rule or example covers.

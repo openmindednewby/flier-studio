@@ -235,9 +235,10 @@ async function start(): Promise<void> {
   const app = document.getElementById('app');
   if (!app) return;
   if (new URLSearchParams(location.search).get('measure') === 'llm') {
+    const live = el('pre', { 'data-testid': 'measure-progress', 'aria-live': 'polite' });
     const out = el('pre', { 'data-testid': 'measure' });
-    app.replaceChildren(out);
-    await (await import('./ui/measurePage')).runModelMeasure(out);
+    app.replaceChildren(live, out);
+    await (await import('./ui/measurePage')).runModelMeasure(out, live);
     return;
   }
   const previews = el('section', { class: 'previews', 'data-testid': 'previews' }, [

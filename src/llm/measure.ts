@@ -8,14 +8,16 @@ export interface MeasureResult {
 }
 
 /** Runs each prompt through a generator and counts schema-valid docs (AC-07 needs at least 18 of 20). */
-export async function measurePrompts(prompts: readonly string[], gen: (p: string) => Promise<unknown>): Promise<MeasureResult> {
+export async function measurePrompts(prompts: readonly string[], gen: (p: string) => Promise<unknown>, onDone?: (k: number, ms: number) => void): Promise<MeasureResult> {
   const result: MeasureResult = { valid: 0, total: prompts.length, invalid: [], msPerPrompt: [] };
   for (const prompt of prompts) {
     const started = performance.now();
     const check = validateFlierDoc(await gen(prompt));
-    result.msPerPrompt.push(Math.round(performance.now() - started));
+    const ms = Math.round(performance.now() - started);
+    result.msPerPrompt.push(ms);
     if (check.ok) result.valid++;
     else result.invalid.push({ prompt, errors: check.errors });
+    onDone?.(result.msPerPrompt.length, ms);
   }
   return result;
 }

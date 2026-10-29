@@ -31,13 +31,20 @@ def pair(o, d, s, shot, alt):
             f'<figcaption>After {o}, {d} {s}</figcaption></figure></div>')
 
 
+VERDICT = {'A': None, 'B': 'Withdrawn, not pickable: design-critic r2 REDO 3.88. The chips wrap to 5 rows at 360 and break the AC-40 row pattern.', 'C': 'Withdrawn, not pickable: design-critic r2 hard fail. With Prices open at 360 the &ldquo;+&rdquo; sits off screen over &ldquo;100%&rdquo; and &ldquo;See all 4&rdquo; is clipped.'}
+
+
 def article(o, title, desc):
     r = R['options'][o]
+    v = VERDICT[o]
     figs = ''.join(f'<h3>{cap}</h3>{pair(o, d, s, sh, cap)}' for d, s, sh, cap in PAIRS)
     states = ''.join(f'<figure class="solo"><img src="{o}-{d}-{sc}-{st}.png" alt="Option {o} at {d} {sc}: {cap}" loading="lazy"><figcaption>{o}, {d} {sc}: {cap}</figcaption></figure>' for st, cap in STATES for sc in ('light', 'dark') for d in ('1280', '360'))
-    return f'''<article data-option="{o}" data-inventory="{r['inventory']}" data-aligned="pass" data-result="result.json">
+    meta = f'<p class="verdict">{v}</p>' if v else f'<p class="meta"><b>Inventory:</b> {r["inventory"]} &middot; new items shown {r["added"]} &middot; aligned: pass &middot; text fit: pass &middot; 44 px targets &middot; no sideways scroll &middot; outline boxes seen in {len(r["highlight"])} of 8 highlight frames &middot; design-critic r2 PASS 4.13</p>'
+    cls = ' class="withdrawn"' if v else ''
+    return f'''<article{cls} data-option="{o}" data-inventory="{r['inventory']}" data-aligned="pass" data-result="result.json">
 <h2>{o} &middot; {title}</h2>
-<p class="meta"><b>Inventory:</b> {r['inventory']} &middot; new items shown {r['added']} &middot; aligned: pass &middot; text fit: pass &middot; 44 px targets &middot; no sideways scroll &middot; outline boxes seen in {len(r['highlight'])} of 8 highlight frames</p>
+{meta}
+<p><b>Inventory:</b> {r['inventory']}</p>
 <p>{desc}</p>
 <p><b>Initial focus:</b> unchanged (the card opens where it does today); opening a role moves focus to its Font control.</p>
 <h3>Highlight: hover and open (1280 and 360, light and dark)</h3>
@@ -62,7 +69,6 @@ body = f'''
 </head>
 <body>
 <main>
-<p class="banner" data-testid="critic-banner">Critic pending &mdash; do not pick</p>
 <h1>FLIER-2 "Flier Studio follow-ups": Fonts by text role (AC-44) and highlight on hover/focus (AC-45)</h1>
 <p class="meta">Live build {R['beforeBuild']} with each option added to the real All fliers card and outlines drawn from the real flier renders (<code>fonts.ts</code>). Galaxy S5 360x640 and Desktop Chrome 1280x800, light and dark; fresh visitor, default Kizomba preset, 4 fliers. Before and after use the same steps and anchors.</p>
 <p>{HL}</p>
@@ -71,11 +77,11 @@ body = f'''
 <h2>Information inventory (role Visitor, {n} rows + {len(R['newItems'])} new)</h2>
 <table><tr><th>#</th><th>Item</th><th>Role</th><th>Source</th><th>360</th><th>1280</th><th>A / B / C</th></tr>{rows}{new}</table>
 <div class="qpics"><img src="A-1280-light-hover.png" alt="Option A hover at 1280" loading="lazy"><img src="B-1280-light-hover.png" alt="Option B hover at 1280" loading="lazy"><img src="C-1280-light-hover.png" alt="Option C hover at 1280" loading="lazy"></div>
+<p class="meta">B and C are withdrawn by design-critic r2 (B REDO 3.88, C hard fail) and are not offered. A passed at 4.13.</p>
 <div class="q" data-qid="q1"><p class="qn"><span class="qi">Q1</span> Which Fonts card?</p>
 <ul class="opts">
-<li data-letter="A"><span class="lt">A</span><span>Role list, open one</span></li>
-<li data-letter="B"><span class="lt">B</span><span>Role chips, one editor</span></li>
-<li data-letter="C"><span class="lt">C</span><span>Type sheet, every role visible</span></li>
+<li data-letter="A"><span class="lt">A</span><span>Role list, open one (critic PASS 4.13)</span></li>
+<li data-letter="B"><span class="lt">B</span><span>Not yet: change A first (say what in the note)</span></li>
 </ul></div>
 </main>
 </body>

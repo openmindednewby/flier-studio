@@ -105,15 +105,18 @@ export function fontTools(side: string): void {
     const bar = q('mini-preview'); const src = document.querySelector<HTMLCanvasElement>('[data-testid="preview-1"] canvas');
     if (bar && src && bar.getBoundingClientRect().height > 1) {
       const peek = mk('div', 'mk-peek'); peek.append(mk('b', '', label ?? ''), mk('small', '', 'on flier 1'));
-      const cv = document.createElement('canvas'); const ht = 108; const wd = Math.round((ht * src.width) / src.height);
-      cv.width = wd * 2; cv.height = ht * 2; cv.style.width = `${String(wd)}px`; cv.style.height = `${String(ht)}px`;
+      const own = runsOf(role, src); const m = 0.04 * src.width;
+      const x0 = own.length ? Math.max(0, Math.min(...own.map((o) => o.x0)) - m) : 0; const y0 = own.length ? Math.max(0, Math.min(...own.map((o) => o.y0)) - m) : 0;
+      const x1 = own.length ? Math.min(src.width, Math.max(...own.map((o) => o.x1)) + m) : src.width; const y1 = own.length ? Math.min(src.height, Math.max(...own.map((o) => o.y1)) + m) : src.height;
+      const k = Math.min(108 / (y1 - y0), (innerWidth - 160) / (x1 - x0)); const wd = Math.round((x1 - x0) * k); const ht = Math.round((y1 - y0) * k);
+      const cv = document.createElement('canvas'); cv.width = wd * 2; cv.height = ht * 2; cv.style.width = `${String(wd)}px`; cv.style.height = `${String(ht)}px`;
       peek.style.bottom = `${String(innerHeight - bar.getBoundingClientRect().top)}px`; peek.append(cv); document.body.append(peek);
-      cv.getContext('2d')?.drawImage(src, 0, 0, cv.width, cv.height);
+      cv.getContext('2d')?.drawImage(src, x0, y0, x1 - x0, y1 - y0, 0, 0, cv.width, cv.height);
     }
     for (const cv of document.querySelectorAll<HTMLCanvasElement>('[data-testid^="preview-"] canvas, .mk-peek canvas')) {
       const r = cv.getBoundingClientRect(); if (r.width < 2) continue;
       const sx = r.width / cv.width; const sy = r.height / cv.height;
-      for (const run of runsOf(role, cv)) {
+      for (const run of runsOf(role, cv).filter((u) => u.x1 > 0 && u.y1 > 0 && u.x0 < cv.width && u.y0 < cv.height)) {
         const pad = 4; const x = r.left + scrollX + run.x0 * sx - pad; const y = r.top + scrollY + run.y0 * sy - pad; const h = (run.y1 - run.y0) * sy + 2 * pad;
         const box = mk('div', 'mk-hi'); box.dataset.role = role;
         Object.assign(box.style, { left: `${String(x)}px`, top: `${String(y)}px`, width: `${String((run.x1 - run.x0) * sx + 2 * pad)}px`, height: `${String(h)}px` });

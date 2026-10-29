@@ -11,15 +11,15 @@ const SEED: [string, string][] = [['BACHATA NIGHT', '07:05'], ['SALSA SOCIAL', '
 const FIXTURE = 'kizomba preset, 4 fliers; drafts seeded by typing 5 titles at 07:05-09:12Z (BACHATA NIGHT, SALSA SOCIAL, BACHATA, KIZOMBA NIGHT, KIZOMBA), drafts 2 and 4 starred; clock 2026-10-29 09:30Z';
 const DESK = { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } };
 const PAIRS = ['top', 'drafts', 'drafts-end', 'form', 'form-mid', 'form-end', 'lines', 'flier', 'size'];
-const AFTER_ONLY = ['rename', 'cleanup', 'toast'];
+const AFTER_ONLY = ['rename', 'cleanup', 'confirm', 'toast'];
 const RUNS = [
   { name: '360', scheme: 'light', use: devices['Galaxy S5'], size: '360x640', shots: [...PAIRS, ...AFTER_ONLY] },
   { name: '1280', scheme: 'light', use: DESK, size: '1280x800', shots: [...PAIRS, ...AFTER_ONLY] },
   { name: '360', scheme: 'dark', use: devices['Galaxy S5'], size: '360x640', shots: ['drafts', 'lines'] },
   { name: '1280', scheme: 'dark', use: DESK, size: '1280x800', shots: ['drafts', 'lines'] },
 ] as const;
-const PANEL: Record<string, string> = { top: 'drafts', 'form-mid': 'form', drafts: 'drafts', 'drafts-end': 'drafts', rename: 'drafts', cleanup: 'drafts', toast: 'drafts', form: 'form', 'form-end': 'form', lines: 'form', flier: 'form', size: 'form' };
-const ANCHOR: Record<string, string> = { top: 'window.scrollTo(0, 0)', 'form-mid': 'field-includesHeading scrollIntoView block center', drafts: 'drafts-panel top - 16', 'drafts-end': 'drafts-panel bottom at viewport bottom - 16', rename: 'drafts-panel top - 16', cleanup: 'drafts-panel top - 16', toast: 'drafts-panel top - 16', form: 'flier-form top - 16', 'form-end': 'flier-form bottom at viewport bottom - 16', lines: 'field-titleBottom scrollIntoView block center', flier: 'preview-1 scrollIntoView block center', size: 'preview-1 scrollIntoView block center' };
+const PANEL: Record<string, string> = { top: 'drafts', 'form-mid': 'form', drafts: 'drafts', 'drafts-end': 'drafts', rename: 'drafts', cleanup: 'drafts', confirm: 'drafts', toast: 'drafts', form: 'form', 'form-end': 'form', lines: 'form', flier: 'form', size: 'form' };
+const ANCHOR: Record<string, string> = { top: 'window.scrollTo(0, 0)', 'form-mid': 'field-includesHeading scrollIntoView block center', drafts: 'drafts-panel top - 16', 'drafts-end': 'drafts-panel bottom at viewport bottom - 16', rename: 'drafts-panel top - 16', cleanup: 'drafts-panel top - 16', confirm: 'drafts-panel top - 16', toast: 'drafts-panel top - 16', form: 'flier-form top - 16', 'form-end': 'flier-form bottom at viewport bottom - 16', lines: 'field-titleBottom scrollIntoView block center', flier: 'preview-1 scrollIntoView block center', size: 'preview-1 scrollIntoView block center' };
 
 async function scan(page: Page): Promise<Record<string, unknown>> {
   return page.evaluate(() => {
@@ -40,6 +40,22 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
       .map(name);
     const under44 = [...document.querySelectorAll('.drafts button, .mk-seg button, .mk-ls button, .mk-bar button, .mk-dlg button, .mk-toast button, .mk-selbar button, .mk-foot button, .mk-top button, .mk-menu button, .mk-nameinput')]
       .filter((n) => inView(n) && (box(n).height < 43.5 || box(n).width < 43.5)).map(name);
+    const midWord = [...document.querySelectorAll('.mk-name, .mk-sub, .draft-stamp > span, .mk-lt p, .mk-toast span, .mk-dlg p, .mk-dlg h2, .mk-bar button, .drafts button, .mk-selbar button')].filter(inView).filter((n) => {
+      const walk = document.createTreeWalker(n, NodeFilter.SHOW_TEXT);
+      for (let t = walk.nextNode(); t; t = walk.nextNode()) {
+        for (const m of (t.textContent ?? '').matchAll(/\S+/g)) {
+          const r = document.createRange(); r.setStart(t, m.index ?? 0); r.setEnd(t, (m.index ?? 0) + m[0].length);
+          if (new Set([...r.getClientRects()].filter((x) => x.width > 0).map((x) => Math.round(x.top))).size > 1) return true;
+        }
+      }
+      return false;
+    }).map((n) => `mid-word ${name(n)}`);
+    const clipped = [...document.querySelectorAll('.drafts input, .drafts li span, .mk-name, .mk-edit')].filter(inView).filter((n) => n.clientWidth > 0 && (n.scrollWidth > n.clientWidth + 1 || n.scrollHeight > n.clientHeight + 1)).map((n) => `clipped ${name(n)}`);
+    const covered = [...document.querySelectorAll('.mk-toast span, .mk-toast button, .mk-bar button')].filter(seen).filter((n) => {
+      const r = box(n); const x = r.left + r.width / 2; const y = r.top + r.height / 2;
+      if (y < 0 || y > innerHeight || x < 0 || x > innerWidth) return n.closest('.mk-toast') !== null;
+      const hit = document.elementFromPoint(x, y); if (hit && hit.closest('.mk-dlg')) return false; if (n.closest('.mk-bar') && hit && hit.closest('[data-testid=mini-preview]')) return false; return !hit || !(n === hit || n.contains(hit));
+    }).map((n) => `covered ${name(n)}`);
     const cv = document.querySelector('[data-testid="preview-1"] canvas');
     const drawn = (window as unknown as { __mkDrawn?: Map<Element, { text: string; w: number; px: number }[]> }).__mkDrawn?.get(cv as Element) ?? [];
     const pick = (t: string[]): { text: string; w: number; px: number } | undefined => drawn.find((r) => t.includes(r.text));
@@ -47,7 +63,7 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
     const b = pick(['WORKSHOP', 'WORKSHOPS']);
     const ae = document.activeElement;
     return {
-      inViewport, misaligned, textFit, under44, hscroll: document.documentElement.scrollWidth > innerWidth,
+      inViewport, misaligned, textFit: [...textFit, ...midWord, ...clipped, ...covered], under44, hscroll: document.documentElement.scrollWidth > innerWidth,
       line: a && b ? { first: a.text, second: b.text, firstW: Math.round(a.w), secondW: Math.round(b.w), firstPx: Math.round(a.px), secondPx: Math.round(b.px), canvasW: (cv as HTMLCanvasElement).width } : null,
       focused: ae && ae !== document.body ? (tid(ae) || `${ae.tagName}:${(ae.getAttribute('aria-label') ?? ae.textContent ?? '').trim().slice(0, 30)}`) : '',
     };
@@ -91,7 +107,7 @@ async function apply(page: Page, side: string): Promise<void> {
 }
 
 async function place(page: Page, shot: string): Promise<void> {
-  await page.evaluate(() => document.querySelectorAll('.mk-dlg, .mk-toast').forEach((n) => n.remove()));
+  await page.evaluate(() => document.querySelectorAll('.mk-dlg, .mk-toast, .mk-menu').forEach((n) => n.remove()));
   await panel(page, PANEL[shot]);
   const top = shot === 'form' ? 'flier-form' : PANEL[shot] === 'drafts' && shot !== 'drafts-end' && shot !== 'top' ? 'drafts-panel' : '';
   if (top) await page.evaluate((x) => { const n = document.querySelector(`[data-testid="${x}"]`); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); }, top);

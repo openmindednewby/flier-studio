@@ -1,0 +1,20 @@
+New text-fit probe (mid-word, clipped, covered) on the r1 mockups at 360 light, before the r2 fixes:
+A-360-light-toast.json: covered SPAN:Deleted “KIZOMBA NIGHT, , covered drafts-undo
+B-360-light-cleanup.json: mid-word draft-name-1, mid-word draft-name-2
+B-360-light-confirm.json: mid-word draft-name-1, mid-word draft-name-2
+B-360-light-drafts-end.json: mid-word draft-name-5, mid-word draft-name-6
+B-360-light-drafts.json: mid-word draft-name-1, mid-word draft-name-2
+B-360-light-rename.json: mid-word draft-name-1, mid-word draft-name-2
+B-360-light-toast.json: mid-word draft-name-1, covered SPAN:Deleted “KIZOMBA NIGHT, , covered drafts-undo
+B-360-light-top.json: mid-word draft-name-1
+C-360-light-cleanup.json: clipped draft-name-2, clipped draft-name-5, covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-confirm.json: clipped draft-name-2, clipped draft-name-5, covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-drafts-end.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-drafts.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-form-end.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-form-mid.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-form.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-lines.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-rename.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset
+C-360-light-toast.json: clipped draft-name-5, covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset, covered SPAN:Deleted “KIZOMBA NIGHT, , covered drafts-undo
+C-360-light-top.json: covered BUTTON:Same width, covered BUTTON:Same size, covered BUTTON:Reset

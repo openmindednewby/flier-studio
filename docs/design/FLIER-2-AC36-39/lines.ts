@@ -42,7 +42,7 @@ export function lineTools(side: string): void {
     '.mk-ls{display:grid;gap:0;border:1px solid var(--border);border-radius:8px}.mk-ls>div{display:grid;grid-template-columns:minmax(0,1fr) 44px 4.2em 44px;gap:6px;align-items:center;padding:6px 10px;min-height:44px}',
     '.mk-ls>div+div{border-top:1px solid var(--border)}.mk-ls b{display:block;font-weight:600}.mk-ls small{color:var(--text-secondary);overflow-wrap:anywhere}.mk-ls output{text-align:center;font-variant-numeric:tabular-nums}',
     '.mk-ls button{min-height:44px;min-width:44px;width:44px;padding:0}.mk-ls .mk-link{grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--background)}.mk-ls .mk-link button{width:100%}',
-    '.mk-sel{position:absolute;border:2px solid var(--text);pointer-events:none;box-sizing:border-box}.mk-bar{position:absolute;display:flex;flex-wrap:wrap;gap:6px;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 16px rgb(0 0 0/.18);z-index:5;max-width:calc(100% - 16px);box-sizing:border-box}',
+    '.mk-sel{position:absolute;border:2px solid var(--text);pointer-events:none;box-sizing:border-box}.mk-bar{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;box-sizing:border-box}.mk-crn{position:absolute;width:14px;height:14px;border:0 solid var(--text);pointer-events:none}.mk-pick{width:100%}',
     '.mk-bar button{min-height:44px;flex:1 1 auto;white-space:nowrap;padding:0 8px}.mk-bar button[aria-pressed="true"]{border:2px solid var(--brand-fill);font-weight:600}.mk-target{font-size:.85rem;color:var(--text-secondary);margin:4px 0 8px}',
   ].join('\n');
   document.head.append(css);
@@ -85,18 +85,21 @@ export function lineTools(side: string): void {
       const rect = cv.getBoundingClientRect(); const k = rect.width / cv.width; const host = cv.parentElement as HTMLElement;
       host.style.position = 'relative';
       const hr = host.getBoundingClientRect();
-      let bottomY = 0;
-      for (const r of pair.slice(0, 2)) {
-        const s = mk('div', 'mk-sel'); s.dataset.testid = 'line-selected';
-        const top = rect.top - hr.top + r.y * k - 3; const h = r.px * k * 1.02 + 6; bottomY = Math.max(bottomY, top + h);
-        Object.assign(s.style, { left: `${rect.left - hr.left + r.x * k - 4}px`, top: `${top}px`, width: `${r.w * k + 8}px`, height: `${h}px` });
-        host.append(s);
+      const two = pair.slice(0, 2);
+      const L = Math.min(...two.map((r) => rect.left - hr.left + r.x * k)) - 6; const R = Math.max(...two.map((r) => rect.left - hr.left + (r.x + r.w) * k)) + 6;
+      const T = Math.min(...two.map((r) => rect.top - hr.top + r.y * k)) - 6; const B = Math.max(...two.map((r) => rect.top - hr.top + (r.y + r.px * 1.02) * k)) + 6;
+      for (const [x, y, sides] of [[L, T, 'Top Left'], [R - 14, T, 'Top Right'], [L, B - 14, 'Bottom Left'], [R - 14, B - 14, 'Bottom Right']] as [number, number, string][]) {
+        const c = mk('div', 'mk-crn'); c.dataset.testid = 'line-selected'; const st = c.style as unknown as Record<string, string>;
+        for (const sd of sides.split(' ')) st[`border${sd}Width`] = '2px';
+        Object.assign(c.style, { left: `${x}px`, top: `${y}px` }); host.append(c);
       }
       const bar = mk('div', 'mk-bar'); bar.dataset.testid = 'line-toolbar'; bar.setAttribute('role', 'toolbar'); bar.setAttribute('aria-label', '2 lines selected');
       for (const l of ['Same width', 'Same size', 'Reset']) { const b = mk('button', '', l) as HTMLButtonElement; b.type = 'button'; if (l !== 'Reset') b.setAttribute('aria-pressed', String(l === on)); bar.append(b); }
-      Object.assign(bar.style, { left: '4px', right: '4px', top: `${bottomY + 8}px` });
-      host.append(bar);
+      const edit = q('edit-1'); if (edit) edit.before(bar); else cv.after(bar);
     }
-    if (bottom) { const hint = mk('p', 'mk-target', 'Line sizes: shift-click two lines on the flier, or Tab to the flier and use the arrow keys.'); hint.dataset.testid = 'line-hint'; bottom.after(hint); }
+    if (bottom) {
+      const box = mk('div', 'mk-lt'); box.dataset.testid = 'line-hint'; const pick = mk('button', 'mk-pick', 'Pick two lines on flier 1') as HTMLButtonElement; pick.type = 'button'; pick.setAttribute('aria-pressed', 'true');
+      box.append(pick, mk('p', 'mk-lt-note', 'Then tap one line on the flier and the next one. On a computer, Shift-click works too.')); bottom.after(box);
+    }
   }
 }

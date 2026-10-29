@@ -3,7 +3,7 @@ import { flierDocSchema, kizombaWorkshopDocs, type FlierDoc } from '@dloizides/p
 import { GenerateSource } from './GenerateSource';
 import { parseLlmDoc } from './parseLlmDoc';
 import { docFromPrompt } from './promptFallback';
-import { hasWebGpuAdapter } from './webGpu';
+import { hasWebGpuAdapter } from '@dloizides/text-generation';
 
 const MB = 1024 * 1024;
 const MODEL_MB = 400;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hasWebGpuAdapter } from './webGpu';
+import { hasWebGpuAdapter } from '@dloizides/text-generation';
 
 describe('hasWebGpuAdapter', () => {
   it('with navigator.gpu present but no adapter, returns false', async () => {

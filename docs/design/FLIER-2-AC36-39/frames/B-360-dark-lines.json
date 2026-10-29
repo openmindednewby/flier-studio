@@ -1,0 +1,53 @@
+{
+ "option": "B",
+ "side": "after",
+ "shot": "lines",
+ "build": "live index-CFTUUDdG.js + mockup B",
+ "file": "B-360-dark-lines.png",
+ "pair": {
+  "route": "/",
+  "state": "form panel open, flier 1 of 4 selected; lines (Same width applied where a line tool exists)",
+  "fixture": "kizomba preset, 4 fliers; drafts seeded by typing 5 titles at 07:05-09:12Z (BACHATA NIGHT, SALSA SOCIAL, BACHATA, KIZOMBA NIGHT, KIZOMBA), drafts 2 and 4 starred; clock 2026-10-29 09:30Z",
+  "viewport": "360x640",
+  "colorScheme": "dark",
+  "scrollAnchor": "field-titleBottom scrollIntoView block center",
+  "crop": "viewport"
+ },
+ "focusedOnLoad": "BODY",
+ "inViewport": [
+  "field-titleBottom",
+  "flier-form",
+  "group-toggle-text",
+  "line-link",
+  "line-sizes",
+  "mini-open",
+  "mini-position",
+  "mini-preview",
+  "mini-see-all",
+  "nav-ai",
+  "nav-all",
+  "nav-configs",
+  "nav-drafts",
+  "nav-form",
+  "nav-previews",
+  "pick-anchor",
+  "pick-scale",
+  "pick-scale-value",
+  "rail-toggle",
+  "section-nav"
+ ],
+ "misaligned": [],
+ "textFit": [],
+ "under44": [],
+ "hscroll": false,
+ "line": {
+  "first": "KIZOMBA",
+  "second": "WORKSHOP",
+  "firstW": 627,
+  "secondW": 627,
+  "firstPx": 169,
+  "secondPx": 133,
+  "canvasW": 1080
+ },
+ "focused": "nav-form"
+}

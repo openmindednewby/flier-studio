@@ -39,8 +39,8 @@ function goldenStyle(content: FlierContent): FlierStyle {
 
 export const GOLDEN_HOUR: FlierTheme = { id: ThemeId.GoldenHour, nameKey: 'themes.goldenHour', styleFor: goldenStyle };
 
-const SAMPLE_HEADER = { headerTop: 113, titleScriptGap: 13, scriptTitleGap: 25, titleScale: 1.31, titleBottomScale: 1.75 };
-const SAMPLE_ROWS = { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 2, toPicture: true } };
+const SAMPLE_HEADER = { headerTop: 113, titleScriptGap: 13, scriptTitleGap: 25, titleScale: 0.82, titleBottomScale: 0.82 };
+const SAMPLE_ROWS = { icons: { schedule: [RowIcon.Person, RowIcon.People], prices: [RowIcon.Ticket], size: 106 }, dividers: { thickness: 2, toPicture: true }, priceLabelScale: 0.62, venue: { body: true, bare: true } };
 
 function sampleStyle(content: FlierContent): FlierStyle {
   const classic = classicStyle(content);
@@ -51,7 +51,7 @@ function sampleStyle(content: FlierContent): FlierStyle {
     layout: fits ? LayoutId.PictureRight : classic.layout,
     palette: PaletteId.KizombaSample,
     fonts: FontSetId.KizombaSample,
-    background: BackgroundStyle.Brush,
+    background: BackgroundStyle.Solid,
     picture,
   };
   if (!fits) return base;

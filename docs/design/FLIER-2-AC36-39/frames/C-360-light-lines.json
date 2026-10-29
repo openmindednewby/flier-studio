@@ -35,7 +35,10 @@
   "pick-scale",
   "pick-scale-value",
   "rail-toggle",
-  "section-nav"
+  "section-nav",
+  "style-includesHeading",
+  "style-script",
+  "style-titleBottom"
  ],
  "misaligned": [],
  "textFit": [],

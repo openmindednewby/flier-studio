@@ -21,7 +21,6 @@
   "edit-1",
   "edit-2",
   "edit-3",
-  "field-footer",
   "field-includesHeading",
   "field-script",
   "field-titleBottom",
@@ -48,6 +47,10 @@
   "rail-toggle",
   "remove-background",
   "section-nav",
+  "style-footer",
+  "style-includesHeading",
+  "style-script",
+  "style-titleBottom",
   "upload-logo",
   "upload-picture"
  ],

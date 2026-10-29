@@ -33,7 +33,12 @@
   "nav-form",
   "nav-previews",
   "rail-toggle",
-  "section-nav"
+  "section-nav",
+  "style-footer",
+  "style-includesHeading",
+  "style-schedule",
+  "style-script",
+  "style-venue"
  ],
  "misaligned": [],
  "textFit": [],

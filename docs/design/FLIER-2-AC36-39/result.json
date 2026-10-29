@@ -570,13 +570,112 @@
     "B": "line-sizes",
     "C": "line-toolbar"
    }
+  },
+  {
+   "id": "new-style-title",
+   "item": "Style control on field title (AC-40)",
+   "probe": {
+    "A": "style-title",
+    "B": "style-title",
+    "C": "style-title"
+   }
+  },
+  {
+   "id": "new-style-titleBottom",
+   "item": "Style control on field titleBottom (AC-40)",
+   "probe": {
+    "A": "style-titleBottom",
+    "B": "style-titleBottom",
+    "C": "style-titleBottom"
+   }
+  },
+  {
+   "id": "new-style-script",
+   "item": "Style control on field script (AC-40)",
+   "probe": {
+    "A": "style-script",
+    "B": "style-script",
+    "C": "style-script"
+   }
+  },
+  {
+   "id": "new-style-includesHeading",
+   "item": "Style control on field includesHeading (AC-40)",
+   "probe": {
+    "A": "style-includesHeading",
+    "B": "style-includesHeading",
+    "C": "style-includesHeading"
+   }
+  },
+  {
+   "id": "new-style-footer",
+   "item": "Style control on field footer (AC-40)",
+   "probe": {
+    "A": "style-footer",
+    "B": "style-footer",
+    "C": "style-footer"
+   }
+  },
+  {
+   "id": "new-style-venue",
+   "item": "Style control on field venue (AC-40)",
+   "probe": {
+    "A": "style-venue",
+    "B": "style-venue",
+    "C": "style-venue"
+   }
+  },
+  {
+   "id": "new-style-schedule",
+   "item": "Style control on field schedule (AC-40)",
+   "probe": {
+    "A": "style-schedule",
+    "B": "style-schedule",
+    "C": "style-schedule"
+   }
+  },
+  {
+   "id": "new-style-prices",
+   "item": "Style control on field prices (AC-40)",
+   "probe": {
+    "A": "style-prices",
+    "B": "style-prices",
+    "C": "style-prices"
+   }
+  },
+  {
+   "id": "new-style-includesItems",
+   "item": "Style control on field includesItems (AC-40)",
+   "probe": {
+    "A": "style-includesItems",
+    "B": "style-includesItems",
+    "C": "style-includesItems"
+   }
+  },
+  {
+   "id": "new-style-items",
+   "item": "Style control on field items (AC-40)",
+   "probe": {
+    "A": "style-items",
+    "B": "style-items",
+    "C": "style-items"
+   }
+  },
+  {
+   "id": "new-style-panel",
+   "item": "Style panel: font, size, colour, weight/italic, letter spacing, alignment, this/all fliers, Reset to theme (AC-40)",
+   "probe": {
+    "A": "style-panel",
+    "B": "style-panel",
+    "C": "style-panel"
+   }
   }
  ],
  "options": {
   "A": {
    "inventory": "65/65",
    "lost": [],
-   "added": "4/4",
+   "added": "15/15",
    "misaligned": [],
    "textFit": [],
    "hscroll": [],
@@ -624,7 +723,7 @@
   "B": {
    "inventory": "65/65",
    "lost": [],
-   "added": "4/4",
+   "added": "15/15",
    "misaligned": [],
    "textFit": [],
    "hscroll": [],
@@ -672,7 +771,7 @@
   "C": {
    "inventory": "65/65",
    "lost": [],
-   "added": "4/4",
+   "added": "15/15",
    "misaligned": [],
    "textFit": [],
    "hscroll": [],
@@ -958,6 +1057,9 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -1206,6 +1308,8 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -1314,6 +1418,9 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -1416,7 +1523,6 @@
      "pick-background",
      "pick-fonts",
      "pick-format",
-     "pick-layout",
      "pick-palette",
      "pick-scale",
      "pick-scale-value",
@@ -1429,6 +1535,7 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -1626,7 +1733,10 @@
      "pick-scale",
      "pick-scale-value",
      "rail-toggle",
-     "section-nav"
+     "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom"
     ]
    }
   },
@@ -1914,7 +2024,10 @@
      "pick-scale",
      "pick-scale-value",
      "rail-toggle",
-     "section-nav"
+     "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom"
     ]
    }
   },
@@ -2247,6 +2360,8 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -2493,6 +2608,7 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -2600,6 +2716,8 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -2690,6 +2808,7 @@
      "flier-form",
      "group-toggle-pictures",
      "group-toggle-text",
+     "line-link",
      "line-sizes",
      "nav-ai",
      "nav-all",
@@ -2701,7 +2820,6 @@
      "pick-background",
      "pick-fonts",
      "pick-format",
-     "pick-layout",
      "pick-palette",
      "pick-scale",
      "pick-scale-value",
@@ -2714,6 +2832,7 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -2912,7 +3031,9 @@
      "pick-scale",
      "pick-scale-value",
      "rail-toggle",
-     "section-nav"
+     "section-nav",
+     "style-script",
+     "style-titleBottom"
     ]
    }
   },
@@ -3201,7 +3322,9 @@
      "pick-scale",
      "pick-scale-value",
      "rail-toggle",
-     "section-nav"
+     "section-nav",
+     "style-script",
+     "style-titleBottom"
     ]
    }
   },
@@ -3512,7 +3635,6 @@
      "edit-1",
      "edit-2",
      "edit-3",
-     "field-footer",
      "field-includesHeading",
      "field-script",
      "field-titleBottom",
@@ -3539,6 +3661,10 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-footer",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -3788,6 +3914,9 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -3871,7 +4000,6 @@
      "edit-1",
      "edit-2",
      "edit-3",
-     "field-footer",
      "field-includesHeading",
      "field-script",
      "field-titleBottom",
@@ -3898,6 +4026,10 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-footer",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -3984,7 +4116,6 @@
      "edit-1",
      "edit-2",
      "edit-3",
-     "field-includesHeading",
      "field-script",
      "field-titleBottom",
      "flier-form",
@@ -4013,6 +4144,9 @@
      "rail-toggle",
      "remove-background",
      "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom",
      "upload-logo",
      "upload-picture"
     ]
@@ -4209,7 +4343,10 @@
      "pick-scale",
      "pick-scale-value",
      "rail-toggle",
-     "section-nav"
+     "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom"
     ]
    }
   },
@@ -4496,7 +4633,10 @@
      "pick-scale",
      "pick-scale-value",
      "rail-toggle",
-     "section-nav"
+     "section-nav",
+     "style-includesHeading",
+     "style-script",
+     "style-titleBottom"
     ]
    }
   },

@@ -21,7 +21,6 @@
   "edit-1",
   "edit-2",
   "edit-3",
-  "field-footer",
   "field-includesItems",
   "field-items",
   "field-prices",
@@ -42,7 +41,11 @@
   "previews",
   "rail-toggle",
   "remove-flier",
-  "section-nav"
+  "section-nav",
+  "style-includesItems",
+  "style-items",
+  "style-prices",
+  "style-schedule"
  ],
  "misaligned": [],
  "textFit": [],

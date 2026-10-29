@@ -25,6 +25,7 @@
   "flier-form",
   "group-toggle-pictures",
   "group-toggle-text",
+  "line-link",
   "line-sizes",
   "nav-ai",
   "nav-all",
@@ -36,7 +37,6 @@
   "pick-background",
   "pick-fonts",
   "pick-format",
-  "pick-layout",
   "pick-palette",
   "pick-scale",
   "pick-scale-value",
@@ -49,6 +49,7 @@
   "rail-toggle",
   "remove-background",
   "section-nav",
+  "style-titleBottom",
   "upload-logo",
   "upload-picture"
  ],

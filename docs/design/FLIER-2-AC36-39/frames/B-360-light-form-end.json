@@ -19,7 +19,6 @@
   "field-items",
   "field-prices",
   "field-schedule",
-  "field-venue",
   "flier-form",
   "mini-open",
   "mini-position",
@@ -33,7 +32,10 @@
   "nav-previews",
   "rail-toggle",
   "remove-flier",
-  "section-nav"
+  "section-nav",
+  "style-includesItems",
+  "style-items",
+  "style-prices"
  ],
  "misaligned": [],
  "textFit": [],

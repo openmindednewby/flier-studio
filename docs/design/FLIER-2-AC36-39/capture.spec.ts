@@ -3,6 +3,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { draftsMock, readDrafts } from './drafts';
 import { lineRender, lineTools } from './lines';
+import { styleTools } from './style';
 
 const OUT = join(process.cwd(), 'docs/design/FLIER-2-AC36-39');
 const BUILD = process.env.CAPTURE_BUILD ?? 'live';
@@ -11,15 +12,15 @@ const SEED: [string, string][] = [['BACHATA NIGHT', '07:05'], ['SALSA SOCIAL', '
 const FIXTURE = 'kizomba preset, 4 fliers; drafts seeded by typing 5 titles at 07:05-09:12Z (BACHATA NIGHT, SALSA SOCIAL, BACHATA, KIZOMBA NIGHT, KIZOMBA), drafts 2 and 4 starred; clock 2026-10-29 09:30Z';
 const DESK = { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } };
 const PAIRS = ['top', 'drafts', 'drafts-end', 'form', 'form-mid', 'form-end', 'lines', 'flier', 'size'];
-const AFTER_ONLY = ['rename', 'cleanup', 'confirm', 'toast'];
+const AFTER_ONLY = ['rename', 'cleanup', 'confirm', 'toast', 'style'];
 const RUNS = [
   { name: '360', scheme: 'light', use: devices['Galaxy S5'], size: '360x640', shots: [...PAIRS, ...AFTER_ONLY] },
   { name: '1280', scheme: 'light', use: DESK, size: '1280x800', shots: [...PAIRS, ...AFTER_ONLY] },
   { name: '360', scheme: 'dark', use: devices['Galaxy S5'], size: '360x640', shots: ['drafts', 'lines'] },
   { name: '1280', scheme: 'dark', use: DESK, size: '1280x800', shots: ['drafts', 'lines'] },
 ] as const;
-const PANEL: Record<string, string> = { top: 'drafts', 'form-mid': 'form', drafts: 'drafts', 'drafts-end': 'drafts', rename: 'drafts', cleanup: 'drafts', confirm: 'drafts', toast: 'drafts', form: 'form', 'form-end': 'form', lines: 'form', flier: 'form', size: 'form' };
-const ANCHOR: Record<string, string> = { top: 'window.scrollTo(0, 0)', 'form-mid': 'field-includesHeading scrollIntoView block center', drafts: 'drafts-panel top - 16', 'drafts-end': 'drafts-panel bottom at viewport bottom - 16', rename: 'drafts-panel top - 16', cleanup: 'drafts-panel top - 16', confirm: 'drafts-panel top - 16', toast: 'drafts-panel top - 16', form: 'flier-form top - 16', 'form-end': 'flier-form bottom at viewport bottom - 16', lines: 'field-titleBottom scrollIntoView block center', flier: 'preview-1 scrollIntoView block center', size: 'preview-1 scrollIntoView block center' };
+const PANEL: Record<string, string> = { top: 'drafts', 'form-mid': 'form', drafts: 'drafts', 'drafts-end': 'drafts', rename: 'drafts', cleanup: 'drafts', confirm: 'drafts', toast: 'drafts', style: 'form', form: 'form', 'form-end': 'form', lines: 'form', flier: 'form', size: 'form' };
+const ANCHOR: Record<string, string> = { top: 'window.scrollTo(0, 0)', 'form-mid': 'field-includesHeading scrollIntoView block center', drafts: 'drafts-panel top - 16', 'drafts-end': 'drafts-panel bottom at viewport bottom - 16', rename: 'drafts-panel top - 16', cleanup: 'drafts-panel top - 16', confirm: 'drafts-panel top - 16', style: 'field-titleBottom scrollIntoView block center', toast: 'drafts-panel top - 16', form: 'flier-form top - 16', 'form-end': 'flier-form bottom at viewport bottom - 16', lines: 'field-titleBottom scrollIntoView block center', flier: 'preview-1 scrollIntoView block center', size: 'preview-1 scrollIntoView block center' };
 
 async function scan(page: Page): Promise<Record<string, unknown>> {
   return page.evaluate(() => {
@@ -33,12 +34,12 @@ async function scan(page: Page): Promise<Record<string, unknown>> {
     const sameLine = (a: DOMRect, b: DOMRect): boolean => a.top < b.bottom - 1 && b.top < a.bottom - 1;
     const off = (a: DOMRect, b: DOMRect): boolean => Math.abs(a.top - b.top) > 1 || Math.abs(a.height - b.height) > 1;
     const say = (n: Element): string => `${name(n)} top ${box(n).top.toFixed(0)} h ${box(n).height.toFixed(0)}`;
-    const misaligned = [...document.querySelectorAll('main .row, .mk-seg, .mk-acts, .mk-r-acts, .mk-link, .mk-bar, .mk-btns, .mk-selbar')].map(controls).filter((cs) => cs.length > 1)
+    const misaligned = [...document.querySelectorAll('main .row, .mk-seg, .mk-acts, .mk-r-acts, .mk-link, .mk-bar, .mk-btns, .mk-selbar, .mk-srow, .mk-sseg, .mk-step, .mk-sw, .mk-sfoot')].map(controls).filter((cs) => cs.length > 1)
       .flatMap((cs) => cs.flatMap((a, i) => cs.slice(i + 1).filter((b) => sameLine(box(a), box(b)) && off(box(a), box(b))).map((b) => [say(a), say(b)])));
-    const textFit = [...document.querySelectorAll('main button, main h2, main h3, main label > span, .mk-name, .mk-sub, .mk-lt p, .mk-toast span, .mk-dlg h2, .mk-dlg p, .mk-dlg button, .drafts li span')]
+    const textFit = [...document.querySelectorAll('main button, main h2, main h3, main label > span, .mk-name, .mk-sub, .mk-lt p, .mk-toast span, .mk-dlg h2, .mk-dlg p, .mk-dlg button, .drafts li span, .mk-sp h4, .mk-sf > span, .mk-sty')]
       .filter((n) => inView(n) && ((n.scrollWidth > n.clientWidth + 1 && getComputedStyle(n).overflowX !== 'auto') || box(n).right > innerWidth + 0.5))
       .map(name);
-    const under44 = [...document.querySelectorAll('.drafts button, .mk-seg button, .mk-ls button, .mk-bar button, .mk-dlg button, .mk-toast button, .mk-selbar button, .mk-foot button, .mk-top button, .mk-menu button, .mk-nameinput')]
+    const under44 = [...document.querySelectorAll('.drafts button, .mk-seg button, .mk-ls button, .mk-bar button, .mk-dlg button, .mk-toast button, .mk-selbar button, .mk-foot button, .mk-top button, .mk-menu button, .mk-nameinput, .mk-sp button, .mk-sty')]
       .filter((n) => inView(n) && (box(n).height < 43.5 || box(n).width < 43.5)).map(name);
     const midWord = [...document.querySelectorAll('.mk-name, .mk-sub, .draft-stamp > span, .mk-lt p, .mk-toast span, .mk-dlg p, .mk-dlg h2, .mk-bar button, .drafts button, .mk-selbar button')].filter(inView).filter((n) => {
       const walk = document.createTreeWalker(n, NodeFilter.SHOW_TEXT);
@@ -103,6 +104,7 @@ async function apply(page: Page, side: string): Promise<void> {
   const drafts = await page.evaluate(readDrafts);
   await page.evaluate(draftsMock, { side, drafts });
   await page.evaluate(lineTools, side);
+  await page.evaluate(styleTools, side);
   await page.waitForTimeout(250);
 }
 
@@ -113,7 +115,7 @@ async function place(page: Page, shot: string): Promise<void> {
   if (top) await page.evaluate((x) => { const n = document.querySelector(`[data-testid="${x}"]`); if (n) window.scrollTo(0, n.getBoundingClientRect().top + scrollY - 16); }, top);
   if (shot === 'drafts-end' || shot === 'form-end') await page.evaluate((id) => { const n = document.querySelector(`[data-testid="${id}"]`); if (n) window.scrollTo(0, n.getBoundingClientRect().bottom + scrollY - innerHeight + 16); }, shot === 'drafts-end' ? 'drafts-panel' : 'flier-form');
   if (shot === 'top') await page.evaluate(() => window.scrollTo(0, 0));
-  const centre = shot === 'form-mid' ? 'field-includesHeading' : shot === 'lines' ? 'field-titleBottom' : shot === 'flier' || shot === 'size' ? 'preview-1' : '';
+  const centre = shot === 'form-mid' ? 'field-includesHeading' : shot === 'lines' || shot === 'style' ? 'field-titleBottom' : shot === 'flier' || shot === 'size' ? 'preview-1' : '';
   if (centre) await page.evaluate((id) => document.querySelector(`[data-testid="${id}"]`)?.scrollIntoView({ block: 'center' }), centre);
   await page.waitForTimeout(300);
 }
@@ -145,7 +147,7 @@ for (const r of RUNS) {
           }
           await place(page, shot);
           if (AFTER_ONLY.includes(shot)) {
-            await page.evaluate((s) => (window as unknown as { mkDraftState: (x: string) => void }).mkDraftState(s), shot);
+            await page.evaluate((s) => { const w = window as unknown as { mkDraftState: (x: string) => void; mkStyleOpen: (k: string) => void }; if (s === 'style') w.mkStyleOpen('titleBottom'); else w.mkDraftState(s); }, shot);
             await page.waitForTimeout(200);
           }
           const file = `${side}-${r.name}-${r.scheme}-${shot}.png`;

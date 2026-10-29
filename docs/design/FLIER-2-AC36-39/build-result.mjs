@@ -13,6 +13,8 @@ const NEW = [
   { id: 'new-draft-delete', item: 'Delete one draft, 5 s Undo toast (AC-37)', probe: { A: 'draft-delete-1', B: 'draft-more-1', C: 'draft-delete-1' } },
   { id: 'new-draft-cleanup', item: 'Delete all except favourites, behind a confirm (AC-37)', probe: { A: 'drafts-cleanup', B: 'drafts-cleanup', C: 'drafts-select' } },
   { id: 'new-line-tool', item: 'Same width / Same size on two consecutive lines (AC-38/39)', probe: { A: 'line-pair', B: 'line-sizes', C: 'line-toolbar' } },
+  ...['title', 'titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'].map((k) => ({ id: `new-style-${k}`, item: `Style control on field ${k} (AC-40)`, probe: { A: `style-${k}`, B: `style-${k}`, C: `style-${k}` } })),
+  { id: 'new-style-panel', item: 'Style panel: font, size, colour, weight/italic, letter spacing, alignment, this/all fliers, Reset to theme (AC-40)', probe: { A: 'style-panel', B: 'style-panel', C: 'style-panel' } },
 ];
 const rows = [
   ...beforeIds.map((id, i) => ({ n: i + 1, item: `\`${id}\``, id, role: 'Visitor', source: `live ${before[0]?.build ?? ''}, seen in ${[...new Set(before.filter((f) => f.inViewport.includes(id)).map((f) => `${f.file.split('-')[1]} ${f.shot}`))].slice(0, 3).join(', ')}`, kind: 'probe' })),

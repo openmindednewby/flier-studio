@@ -28,7 +28,6 @@
   "field-titleBottom",
   "field-venue",
   "flier-form",
-  "group-toggle-text",
   "line-hint",
   "line-selected",
   "line-toolbar",
@@ -45,7 +44,13 @@
   "preview-grid",
   "previews",
   "rail-toggle",
-  "section-nav"
+  "section-nav",
+  "style-footer",
+  "style-includesHeading",
+  "style-schedule",
+  "style-script",
+  "style-titleBottom",
+  "style-venue"
  ],
  "misaligned": [],
  "textFit": [],

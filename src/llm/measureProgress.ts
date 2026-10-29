@@ -7,6 +7,7 @@ const PERCENT = 100;
 export interface MeasureProgress {
   download(e: ProgressEvent): void;
   prompt(k: number, total: number, ms: number, source: GenerateSource): void;
+  running(k: number, total: number): void;
 }
 
 function percentOf(e: ProgressEvent): number {
@@ -17,7 +18,8 @@ function percentOf(e: ProgressEvent): number {
 export function createMeasureProgress(render: (text: string) => void): MeasureProgress {
   let download = '';
   const prompts: string[] = [];
-  const show = (): void => render([download, ...prompts].filter((line) => line !== '').join('\n'));
+  let current = '';
+  const show = (): void => render([download, ...prompts, current].filter((line) => line !== '').join('\n'));
   return {
     download(e) {
       download = FM('measure.download', e.file, String(percentOf(e)));
@@ -25,6 +27,11 @@ export function createMeasureProgress(render: (text: string) => void): MeasurePr
     },
     prompt(k, total, ms, source) {
       prompts.push(FM('measure.prompt', String(k), String(total), String(ms), source));
+      current = '';
+      show();
+    },
+    running(k, total) {
+      current = FM('measure.running', String(k), String(total));
       show();
     },
   };

@@ -11,11 +11,15 @@ export async function runModelMeasure(out: HTMLElement, live: HTMLElement): Prom
   const progress = createMeasureProgress((text) => { live.textContent = text; });
   const generator = createGenerator(browserDeps((e) => progress.download(e)));
   const traces: PromptTrace[] = [];
+  progress.running(1, FIXED_PROMPTS.length);
   const result = await measurePrompts(FIXED_PROMPTS, async (p) => {
     const outcome = await generator.generate(p);
     traces.push(traceOf(p, outcome));
     return outcome.source === GenerateSource.Model ? outcome.doc : null;
-  }, (k, ms) => progress.prompt(k, FIXED_PROMPTS.length, ms, traces[k - 1].source));
+  }, (k, ms) => {
+    progress.prompt(k, FIXED_PROMPTS.length, ms, traces[k - 1].source);
+    if (k < FIXED_PROMPTS.length) progress.running(k + 1, FIXED_PROMPTS.length);
+  });
   const webGpu = await hasWebGpuAdapter();
   out.textContent = JSON.stringify(measureReport(result, traces, { at: new Date().toISOString(), webGpu, loadMs: generator.loadMs() }), null, 2);
 }

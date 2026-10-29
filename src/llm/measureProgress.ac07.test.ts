@@ -33,6 +33,26 @@ describe('createMeasureProgress', () => {
 
     expect(render).toHaveBeenLastCalledWith('Model download: model.gguf 100%\nPrompt 1/20: 900 ms, model\nPrompt 2/20: 1200 ms, fallback');
   });
+
+  it('with prompt 1 started and no download event (model already cached), renders a running line at once', () => {
+    const render = vi.fn();
+    const progress = createMeasureProgress(render);
+
+    progress.running(1, 20);
+
+    expect(render).toHaveBeenLastCalledWith('Prompt 1/20: running');
+  });
+
+  it('after prompt 1 finishes and prompt 2 starts, shows the finished line then the running line', () => {
+    const render = vi.fn();
+    const progress = createMeasureProgress(render);
+    progress.running(1, 20);
+    progress.prompt(1, 20, 900, GenerateSource.Model);
+
+    progress.running(2, 20);
+
+    expect(render).toHaveBeenLastCalledWith('Prompt 1/20: 900 ms, model\nPrompt 2/20: running');
+  });
 });
 
 describe('measurePrompts', () => {

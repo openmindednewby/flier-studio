@@ -1,4 +1,4 @@
-import { FormatId, LayoutId, PaletteId, kizombaWorkshopDocs, type FlierDoc } from '@dloizides/poster-render';
+import { FormatId, LayoutId, PaletteId, kizombaWorkshopDocs, type FlierDoc, type FontSetId } from '@dloizides/poster-render';
 import { cloneDocs } from '../presets/kizomba';
 
 const STYLES = ['kizomba', 'salsa', 'bachata', 'tango', 'zouk', 'swing', 'hip hop', 'yoga', 'milonga'];
@@ -37,16 +37,37 @@ function titleFor(prompt: string): string {
   return (style ?? 'kizomba').toUpperCase();
 }
 
-/** Deterministic prompt-to-flier match used when no model can run (no WebGPU) or the model reply is invalid. */
+export interface Picks {
+  layout: LayoutId;
+  format: FormatId;
+  palette: PaletteId;
+  fonts?: FontSetId;
+  title: string;
+  subtitle: string;
+}
+
+/** Deterministic prompt-to-flier match used when no model can run or the model fails to load. */
 export function docFromPrompt(prompt: string): FlierDoc {
-  const layout = pick(prompt, LAYOUTS, LayoutId.PictureRight);
+  return docWith(prompt, {
+    layout: pick(prompt, LAYOUTS, LayoutId.PictureRight),
+    format: pick(prompt, FORMATS, FormatId.Story),
+    palette: pick(prompt, PALETTES, PaletteId.Sand),
+    title: titleFor(prompt),
+    subtitle: pick(prompt, SUBTITLES, 'WORKSHOP'),
+  });
+}
+
+/** The sample flier with the picked settings and the prompt's date and time. */
+export function docWith(prompt: string, picks: Picks): FlierDoc {
+  const { layout } = picks;
   const presets = cloneDocs(kizombaWorkshopDocs);
   const doc = layout === LayoutId.List ? presets[LIST_DOC_INDEX] : presets[0];
   doc.layout = layout;
-  doc.format = pick(prompt, FORMATS, FormatId.Story);
-  doc.palette = pick(prompt, PALETTES, PaletteId.Sand);
-  doc.blocks.title = titleFor(prompt);
-  doc.blocks.titleBottom = pick(prompt, SUBTITLES, 'WORKSHOP');
+  doc.format = picks.format;
+  doc.palette = picks.palette;
+  if (picks.fonts !== undefined) doc.fonts = picks.fonts;
+  doc.blocks.title = picks.title;
+  doc.blocks.titleBottom = picks.subtitle;
   const date = DATE.exec(prompt)?.[0];
   if (date !== undefined) doc.blocks.script = date;
   const time = TIME.exec(prompt)?.[0];

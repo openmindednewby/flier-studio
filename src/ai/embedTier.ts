@@ -50,6 +50,9 @@ const FIELDS: readonly FieldSpec[] = [
   } },
 ];
 
+/** The value each setting falls back to when no labelled example is close enough. */
+export const EMBED_FALLBACKS: Readonly<Partial<Record<keyof AiSettings, string>>> = Object.fromEntries(FIELDS.map((spec) => [spec.field, spec.fallback]));
+
 async function labelAll(embed: Embed): Promise<Labelled[][]> {
   const out: Labelled[][] = [];
   for (const spec of FIELDS) {

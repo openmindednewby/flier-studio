@@ -17,34 +17,64 @@ async function box(target: Locator): Promise<{ x: number; y: number; width: numb
   return found ?? { x: 0, y: 0, width: 0, height: 0 };
 }
 
-test.describe('D31 Generate is a keyword match, not an on-device AI', () => {
-  test('the Generate card carries no AI badge and names the keyword match', async ({ page }) => {
+const MAX_TASK_MS = 200;
+const MODEL_RUN_MS = 180_000;
+const MODEL_HOSTS = /huggingface|\.gguf|wllama/;
+
+async function watchLongTasks(page: Page): Promise<void> {
+  await page.addInitScript(() => {
+    const w = window as unknown as { longTasks: number[] };
+    w.longTasks = [];
+    new PerformanceObserver((list) => {
+      for (const e of list.getEntries()) w.longTasks.push(e.duration);
+    }).observe({ type: 'longtask', buffered: true });
+  });
+}
+
+async function longestTask(page: Page): Promise<number> {
+  return page.evaluate(() => Math.max(0, ...(window as unknown as { longTasks: number[] }).longTasks));
+}
+
+test.describe('D32 Generate runs the on-device AI with keyword gap fill', () => {
+  test('the Generate card carries the On-device AI badge and names the 24 MB download', async ({ page }) => {
     await open(page);
 
     await openPanel(page, Panel.Generate);
     const card = page.getByTestId('generate');
 
-    await expect(card.getByRole('heading', { level: 2 })).toHaveText('Generate from prompt');
-    await expect(card.locator('.badge')).toHaveCount(0);
-    await expect(card.getByTestId('ai-note')).toHaveText('A keyword match in this browser fills the flier from your words; your text never leaves it.');
+    await expect(card.getByRole('heading', { level: 2 })).toContainText('On-device AI');
+    await expect(card.locator('.badge')).toHaveText('On-device AI');
+    await expect(card.getByTestId('ai-note')).toHaveText('On-device AI reads your words in this browser (about a 24 MB download, once); keywords fill anything it misses. Your text never leaves the browser.');
   });
 
-  test('Generate fills the flier from the prompt without downloading any model', async ({ page }) => {
-    const modelRequests: string[] = [];
-    page.on('request', (r) => {
-      if (/huggingface|\.gguf|wllama/.test(r.url())) modelRequests.push(r.url());
-    });
+  test('when the model cannot load, the keyword match still fills the flier without blocking the page', async ({ page }) => {
+    await watchLongTasks(page);
+    await page.route(MODEL_HOSTS, (route) => route.abort());
     await open(page);
     await openPanel(page, Panel.Generate);
     await page.getByTestId('prompt-text').fill('Tango milonga on Saturday 21 November 21:00 - 01:00');
 
     await page.getByTestId('prompt-generate').click();
 
-    await expect(page.getByTestId('prompt-status')).toHaveText('Filled from your words with a keyword match');
-    expect(modelRequests).toEqual([]);
+    await expect(page.getByTestId('prompt-status')).toHaveText('The on-device AI could not load here, so a keyword match filled the flier', { timeout: MODEL_RUN_MS });
+    expect(await longestTask(page)).toBeLessThanOrEqual(MAX_TASK_MS);
   });
 
-  test('a Generate entry sits above the fliers on the first screen and jumps to the Generate card', async ({ page }) => {
+  test('with the model, Generate fills the flier off the main thread', async ({ page }) => {
+    test.skip(process.env.AI_MODEL !== '1', 'downloads the ~24 MB embedding model: run with AI_MODEL=1');
+    test.setTimeout(MODEL_RUN_MS * 2);
+    await watchLongTasks(page);
+    await open(page);
+    await openPanel(page, Panel.Generate);
+    await page.getByTestId('prompt-text').fill('Tango milonga on Saturday 21 November 21:00 - 01:00');
+
+    await page.getByTestId('prompt-generate').click();
+
+    await expect(page.getByTestId('prompt-status')).toHaveText('Filled by the on-device AI; keywords filled the gaps', { timeout: MODEL_RUN_MS });
+    expect(await longestTask(page)).toBeLessThanOrEqual(MAX_TASK_MS);
+  });
+
+  test('a Generate with on-device AI entry sits above the fliers on the first screen and jumps to the Generate card', async ({ page }) => {
     await open(page);
     const entry = page.getByTestId('ai-entry');
     const viewport = page.viewportSize()?.height ?? 0;
@@ -53,22 +83,22 @@ test.describe('D31 Generate is a keyword match, not an on-device AI', () => {
 
     await entry.click();
 
-    await expect(entry).toHaveText('Generate from a description');
+    await expect(entry).toHaveText('Generate with on-device AI');
     expect(entryBox.y + entryBox.height).toBeLessThanOrEqual(viewport);
     expect(entryBox.y).toBeLessThan(gridBox.y);
     expect(entryBox.height).toBeGreaterThanOrEqual(HIT);
     await expect(page.getByTestId('prompt-text')).toBeInViewport();
   });
 
-  test('the page title, description and Open Graph description no longer claim on-device AI', async ({ page }) => {
+  test('the page title, description and Open Graph description name the on-device AI', async ({ page }) => {
     await open(page);
 
     const description = await page.locator('meta[name=description]').getAttribute('content');
     const og = await page.locator('meta[property="og:description"]').getAttribute('content');
 
-    await expect(page).not.toHaveTitle(/AI/);
-    expect(description).not.toContain('AI');
-    expect(og).not.toContain('AI');
+    await expect(page).toHaveTitle(/on-device AI/);
+    expect(description).toContain('on-device AI');
+    expect(og).toContain('on-device AI');
   });
 });
 

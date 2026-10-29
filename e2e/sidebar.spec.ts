@@ -132,7 +132,7 @@ test.describe('AC-30 / AC-31 All fliers says what each setting changes', () => {
     for (const id of ['theme-row', 'all-layout-row', 'all-palette-row', 'all-fonts-row', 'all-custom-layouts']) {
       await expect(registry.getByTestId(id).locator('.setting-what')).not.toBeEmpty();
     }
-    await expect(page.getByTestId('all-ai-line')).toContainText('Generate can set any of these from your words:');
+    await expect(page.getByTestId('all-ai-line')).toContainText('The on-device AI can set any of these:');
   });
 
   test('the describe-the-look link in All fliers is a hit box at least 44 px tall', async ({ page }) => {

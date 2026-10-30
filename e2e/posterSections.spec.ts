@@ -86,7 +86,7 @@ test.describe('Poster sections: hover highlights (AC-47), click edits (AC-48)', 
     await expect(page.getByTestId('mini-sheet')).toBeVisible();
     await expect(page.getByTestId('mini-sheet')).toHaveAttribute('aria-label', 'Flier 2 full size');
   });
-  test.fixme('AC-45: with the Venue editor open, the outline sits on the venue line of the flier', async ({ page }) => {
+  test('AC-45: with the Venue editor open, the outline sits on the venue line of the flier', async ({ page }) => {
     await openPanel(page, Panel.All);
     await page.getByTestId('role-venue').click();
 

@@ -15,7 +15,7 @@ const STROKE = 2;
 const DASH: number[] = [6, 4];
 const LINE_HEIGHT = 1.2;
 const BOXES = new WeakMap<HTMLCanvasElement, Readonly<Record<LineKey, Rect | undefined>>>();
-const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0, quiet: false, over: '', at: '', hushedAt: '' };
+const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0, quiet: false, over: '', at: '', hushedAt: '', downAt: '' };
 const CONTROL = 'button, select, input, .role-row';
 
 const px = (n: number): string => `${String(Math.round(n))}px`;
@@ -120,11 +120,13 @@ export function wakeOnMove(e: PointerEvent): boolean {
   return true;
 }
 
+const shiftedUnder = (e: PointerEvent): boolean => now.downAt !== '' && spot(e) === now.downAt;
+
 const track = (): void => {
   if (now.at !== '') return;
   now.at = '-';
-  document.addEventListener('pointermove', (e) => { now.at = spot(e); }, { capture: true, passive: true });
-  document.addEventListener('pointerdown', (e) => { now.at = spot(e); }, { capture: true, passive: true });
+  document.addEventListener('pointermove', (e) => { now.at = spot(e); if (now.at !== now.downAt) now.downAt = ''; }, { capture: true, passive: true });
+  document.addEventListener('pointerdown', (e) => { now.at = spot(e); now.downAt = now.at; }, { capture: true, passive: true });
 };
 
 /** Outlines the lines on the one flier holding `node`. */
@@ -169,17 +171,17 @@ export function afterRender(): void {
 export function outlineOn(node: HTMLElement, lines: readonly LineKey[], name: string): void {
   const show = (): void => showOutline(lines, name);
   track();
-  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && wakeOnMove(e)) show(); });
+  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && !shiftedUnder(e) && wakeOnMove(e)) show(); });
   node.addEventListener('pointerover', (e) => {
     const to = e.target instanceof Element ? e.target.closest(CONTROL) : null;
     const id = to?.getAttribute('data-testid') ?? '';
     if (to === null) now.over = '';
-    if (e.pointerType !== 'mouse' || to === null || id === now.over) return;
+    if (e.pointerType !== 'mouse' || to === null || id === now.over || shiftedUnder(e)) return;
     now.over = id;
     if (wakeOnMove(e)) show();
   });
   node.addEventListener('keydown', (e) => { if (e.key === 'Tab') wakeOutline(); });
-  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { now.over = ''; clearOutline(); } });
+  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && !shiftedUnder(e)) { now.over = ''; clearOutline(); } });
   node.addEventListener('focusin', show);
   node.addEventListener('focusout', (e) => { if (!node.contains(e.relatedTarget as Node | null)) clearOutline(); });
   node.addEventListener('pointerdown', (e) => {

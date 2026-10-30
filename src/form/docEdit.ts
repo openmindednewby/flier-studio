@@ -62,7 +62,7 @@ export function applyText(doc: FlierDoc, t: BlockText): FlierDoc {
   const blocks: FlierBlocks = {
     title: t.title.trim(), titleBottom: opt(t.titleBottom), script: opt(t.script), venue: nonEmpty(lines(t.venue)),
     schedule: textToSchedule(t.schedule), prices: textToPrices(t.prices),
-    includes: items ? { heading: t.includesHeading.trim(), items } : undefined, footer: opt(t.footer),
+    includes: items ? { heading: t.includesHeading.trim(), items } : undefined, footer: opt(t.footer), lines: doc.blocks.lines,
   };
   const next: FlierDoc = { ...doc, blocks: JSON.parse(JSON.stringify(blocks)) as FlierBlocks };
   const list = textToItems(t.items);

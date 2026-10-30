@@ -94,3 +94,9 @@ dialog.confirm p { margin: 0 0 16px; }
 .order-row { display: grid; grid-template-columns: minmax(0, 1fr) 46px 46px; gap: 6px; align-items: center; min-height: 44px; padding-left: 12px; }
 .order-row button { width: 46px; min-height: 46px; padding: 0; }
 .order-name { font-weight: 600; overflow-wrap: anywhere; }
+.free-lines { display: flex; flex-direction: column; gap: 8px; }
+.free-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.free-line input { flex: 1 1 12rem; min-width: 0; min-height: 44px; }
+.free-line-tools { display: flex; gap: 6px; flex: 0 0 auto; }
+.free-line-tools .icon-button { min-width: 44px; min-height: 44px; }
+.add-line { align-self: flex-start; min-height: 44px; }

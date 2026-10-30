@@ -8,6 +8,7 @@ import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
 import { foldToggle } from './collapsible';
 import { addFormTools } from './formTools';
+import { freeLinesBox } from './freeLinesView';
 import { button, el, fileButton, labelled } from './dom';
 import { UploadKind } from './UploadKind';
 
@@ -87,10 +88,17 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     return shaped;
   };
   container.oninput = (): void => actions.change(read());
+  const host = {
+    doc: (): FlierDoc => live.doc,
+    set: (next: FlierDoc): void => { live.doc = next; actions.change(read()); },
+    apply: (edit: (d: FlierDoc) => FlierDoc, everyFlier: boolean): void => { live.doc = edit(live.doc); if (everyFlier) actions.restyleAll(edit); else actions.change(read()); },
+    count: position[1],
+  };
   const controls: Record<string, HTMLElement> = {
     ...Object.fromEntries(PICKERS.map((p) => [p, labelled(`form.${p}`, pickers[p])])),
     ...Object.fromEntries([...SINGLE, ...MULTI].map((key) => [key, labelled(`form.${key}`, texts[key])])),
     bullets: el('label', { class: 'check-row' }, [bullets, el('span', { text: FM('form.bullets') })]),
+    lines: freeLinesBox(host),
     anchor: labelled('form.anchor', anchor),
     scale: labelledValue('form.scale', scale, scaleValue),
     picture: fileButton('form.picture', 'upload-picture', 'image/*', (f) => actions.upload(UploadKind.Picture, f)),
@@ -104,12 +112,7 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     el('div', { class: 'row actions' }, [button('form.remove', 'remove-flier', actions.remove)]),
   ]);
   container.replaceChildren(el('h2', { class: 'fold-head' }, [foldToggle(body, { id: 'flier-form', title: FM('form.heading') })]), body);
-  addFormTools(body, {
-    doc: () => live.doc,
-    set: (next) => { live.doc = next; actions.change(read()); },
-    apply: (edit, everyFlier) => { live.doc = edit(live.doc); if (everyFlier) actions.restyleAll(edit); else actions.change(read()); },
-    count: position[1],
-  });
+  addFormTools(body, host);
 }
 
 /** AC-49: re-sorts the text fields to the selected flier's top-to-bottom order, keeping focus where it was. */

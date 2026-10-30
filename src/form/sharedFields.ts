@@ -1,6 +1,7 @@
 import type { FlierDoc, ScheduleRow } from '@dloizides/poster-render';
 import { cloneDocs } from '../presets/kizomba';
 import { EditScope } from './EditScope';
+import { withLinesOf } from './freeLines';
 
 const levelRows = (doc: FlierDoc): ScheduleRow[] => doc.blocks.schedule ?? doc.items?.[0]?.schedule ?? [];
 
@@ -21,6 +22,7 @@ export function nextDocs(scope: EditScope, docs: readonly FlierDoc[], index: num
   if (scope !== EditScope.All) return out;
   const after = edited.blocks;
   if (before.blocks.footer !== after.footer) out.forEach((d) => setFooter(d, after.footer));
+  if (JSON.stringify(before.blocks.lines) !== JSON.stringify(after.lines)) out.forEach((d, i) => { out[i] = withLinesOf(d, out[index]); });
   const was = levelRows(before);
   levelRows(edited).forEach((row, i) => {
     if (was[i] !== undefined && was[i].label !== row.label) out.forEach((d) => setLevel(d, i, row.label));

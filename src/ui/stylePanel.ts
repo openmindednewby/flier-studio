@@ -4,7 +4,6 @@ import { FM } from '../i18n/fm';
 import { el, textButton } from './dom';
 import { STYLE_FONTS } from './styleFonts';
 import { styleSegment, styleSelect, styleSwatches } from './styleControls';
-import { neverShrinks } from './sizeGuard';
 import { clearOutline, drawnText, hushOutline, outlineOn } from './textOutline';
 
 export interface StyleHost {
@@ -48,10 +47,6 @@ const WIDTH: Stepper = { prop: 'widthScale', ids: ['style-narrower', 'style-widt
 function stepper(target: StyleTarget, host: StyleHost, change: Change, s: Stepper): HTMLElement {
   const go = (steps: number, id: string): void => {
     const next = s.step(host.doc(), target.lines, steps);
-    if (s.prop === 'sizeScale' && steps > 0 && !neverShrinks(host.doc(), next, target.lines)) {
-      node.closest('.style-panel')?.querySelector('[data-testid="style-drawn"]')?.replaceChildren(FM('style.needsWidth', drawnText(target.lines)));
-      return;
-    }
     change({ [s.prop]: styleOf(next, target.lines[0])[s.prop] }, id);
   };
   const node = el('div', { class: 'style-step' }, [

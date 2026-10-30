@@ -1,5 +1,5 @@
 import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/design-tokens';
-import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
+import { PictureAnchor, roleOrder, type FlierDoc } from '@dloizides/poster-render';
 import { cutPicture, cutoutFile, inFlight, lazy } from './cutout/cutoutFlow';
 import { draftActions } from './drafts/draftActions';
 import { DraftAutosave } from './drafts/draftAutosave';
@@ -40,6 +40,7 @@ import { renderGate } from './ui/renderGate';
 import { renderPromptPanel } from './ui/promptPanel';
 import { PanelKey } from './ui/PanelKey';
 import { aiEntry, sectionRail } from './ui/sectionNav';
+import { boxesOf } from './ui/textOutline';
 import { UploadKind } from './ui/UploadKind';
 import './ui/styles.css';
 import './ui/sidebar.css';
@@ -77,6 +78,9 @@ const allFliers = allFliersCard({
   replace: (ticked, replacement) => void replaceText(ticked, replacement),
   roleStyles: () => state.roles,
   setRoleStyles: (roles) => { state.roles = roles; roleStore.save(roles); refreshPreviews(); },
+  drawnRoles: () => roleOrder((state.canvases[state.selected] as HTMLCanvasElement | undefined) === undefined ? {} : boxesOf(state.canvases[state.selected]) ?? {}),
+  orderDoc: () => docsOf()[state.selected],
+  reorder: (edit, everyFlier) => { state.fliers = withDocs(state.fliers, docsOf().map((d, i) => (everyFlier || i === state.selected ? edit(d) : d))); showForm(); refreshPreviews(); },
 }, previewGrid);
 const draftStore = new DraftStore();
 const drafts = draftsPanel(draftActions(draftStore, { restore: (draft) => restore(draft), refresh: () => showDrafts(), failed: (message) => { status.textContent = message; } }));

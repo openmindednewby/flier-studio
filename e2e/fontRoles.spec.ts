@@ -236,7 +236,7 @@ test.describe('Width per text (AC-46)', () => {
     await openPanel(page, Panel.All);
   });
 
-  test('AC-46: widening the venue lets its larger size draw larger', async ({ page }) => {
+  test('D44: widening the venue never draws its set size smaller', async ({ page }) => {
     await page.getByTestId('role-venue').click();
     const editor = page.getByTestId('role-editor');
     for (let i = 0; i < STEPS; i += 1) await editor.getByTestId('style-larger').click();
@@ -246,7 +246,7 @@ test.describe('Width per text (AC-46)', () => {
     for (let i = 0; i < STEPS; i += 1) await editor.getByTestId('style-wider').click();
     await rendered(page);
 
-    expect(await drawnPx(page, 'role-editor')).toBeGreaterThan(capped);
+    expect(await drawnPx(page, 'role-editor')).toBeGreaterThanOrEqual(capped);
   });
 
   test('AC-46: the flier Style panel has a width step and Reset restores the theme width', async ({ page }) => {

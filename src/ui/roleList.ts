@@ -1,7 +1,7 @@
 import type { FlierDoc, LineStyle } from '@dloizides/poster-render';
 import { percent, resetLines, restyle } from '../form/lineEdit';
 import type { TextRole } from '../form/TextRole';
-import { ROLE_LINES, TEXT_ROLES, type RoleStyles } from '../form/textRoles';
+import { ROLE_LINES, TEXT_ROLES, rolesInFlierOrder, type RoleStyles } from '../form/textRoles';
 import { FM } from '../i18n/fm';
 import { el, textButton } from './dom';
 import { styleFields, type StyleHost, type StyleTarget } from './stylePanel';
@@ -11,6 +11,7 @@ export interface RoleActions {
   roleStyles(): RoleStyles;
   setRoleStyles(next: RoleStyles): void;
   docs(): FlierDoc[];
+  drawnRoles(): string[];
 }
 
 const nameOf = (role: TextRole): string => FM(`roles.names.${role}`);
@@ -49,7 +50,7 @@ function editor(role: TextRole, actions: RoleActions): HTMLElement {
   return box;
 }
 
-/** AC-44: every text role as a row; one opens its editor, which styles that role on every flier. */
+/** AC-44: every text role as a row, in the selected flier's drawn order (AC-49); one opens its editor for every flier. */
 export function roleList(actions: RoleActions): { nodes: HTMLElement[]; update(): void } {
   const open = { role: '' };
   const rows = TEXT_ROLES.map((role) => {
@@ -67,8 +68,18 @@ export function roleList(actions: RoleActions): { nodes: HTMLElement[]; update()
     row.after(editor(role, actions));
     document.querySelector<HTMLElement>('#role-editor [data-testid="style-font"]')?.focus();
   }));
-  const update = (): void => rows.forEach((r) => { r.meta.textContent = summary(actions.roleStyles()[r.role]); });
+  const what = el('p', { class: 'muted role-what', text: FM('roles.what') });
+  const sort = (): void => {
+    const order = rolesInFlierOrder(actions.drawnRoles());
+    if (order.join() === rows.map((r) => r.role).join()) return;
+    const sorted = order.map((role) => rows.find((r) => r.role === role) ?? rows[0]);
+    const editorNode = document.getElementById('role-editor');
+    sorted.reduce<HTMLElement>((anchor, r) => { anchor.after(r.row); return r.row; }, what);
+    if (editorNode !== null) sorted.find((r) => r.role === open.role)?.row.after(editorNode);
+    rows.splice(0, rows.length, ...sorted);
+  };
+  const update = (): void => { sort(); rows.forEach((r) => { r.meta.textContent = summary(actions.roleStyles()[r.role]); }); };
   update();
   const head = el('h3', { class: 'setting-head', 'data-testid': 'text-roles', text: FM('roles.heading') });
-  return { nodes: [head, el('p', { class: 'muted role-what', text: FM('roles.what') }), ...rows.map((r) => r.row)], update };
+  return { nodes: [head, what, ...rows.map((r) => r.row)], update };
 }

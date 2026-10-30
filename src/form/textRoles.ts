@@ -1,4 +1,4 @@
-import type { FlierDoc, LineKey, LineStyle } from '@dloizides/poster-render';
+import { roleOf, type FlierDoc, type LineKey, type LineStyle } from '@dloizides/poster-render';
 import { FIELD_LINES } from './lineEdit';
 import { TextRole } from './TextRole';
 
@@ -25,6 +25,15 @@ export const ROLE_LINES: Readonly<Record<TextRole, readonly LineKey[]>> = {
   [TextRole.IncludesItems]: of('includesItems'),
   [TextRole.Footer]: of('footer'),
 };
+
+/** The text roles in the order the flier draws them, top to bottom; roles it does not draw follow in their default order. */
+export function rolesInFlierOrder(drawn: readonly string[]): TextRole[] {
+  const rank = (role: TextRole): number => {
+    const hits = ROLE_LINES[role].map((k) => drawn.indexOf(roleOf(k))).filter((i) => i >= 0);
+    return hits.length === 0 ? drawn.length : Math.min(...hits);
+  };
+  return [...TEXT_ROLES].sort((a, b) => rank(a) - rank(b));
+}
 
 const isSet = (style: LineStyle | undefined): style is LineStyle => style !== undefined && Object.keys(style).length > 0;
 

@@ -7,7 +7,6 @@ import { amountBoxes } from './amountBoxes';
 import { afterRender, rememberBoxes } from './textOutline';
 import { recordingCanvas } from './textRuns';
 import { fieldUnder, trackSections } from './posterSections';
-import { rememberAssets } from './sizeGuard';
 
 export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
   await fontsReady(fonts);
@@ -82,7 +81,6 @@ export interface PreviewView {
 export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, view: PreviewView): Promise<HTMLCanvasElement[] | null> {
   const { selected, select, fonts = document.fonts, pause = nextTask, current = (): boolean => true } = view;
   await fontsReady(fonts);
-  rememberAssets(assets);
   const canvases = docs.map(() => el('canvas', { role: 'img' }));
   const errors: (string | null)[] = [];
   for (const [i, doc] of docs.entries()) {

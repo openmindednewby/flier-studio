@@ -62,15 +62,6 @@
   "style-width",
   "style-wider",
   "style-drawn",
-  "style-swatch-1",
-  "style-swatch-2",
-  "style-swatch-3",
-  "style-swatch-4",
-  "style-swatch-5",
-  "style-color",
-  "style-bold",
-  "style-italic",
-  "style-spacing",
   "mini-preview",
   "mini-open",
   "mini-position",
@@ -135,8 +126,7 @@
   "mini-preview",
   "mini-open",
   "mini-position",
-  "mini-see-all",
-  "outline-peek"
+  "mini-see-all"
  ],
  "A-build-360-light-card-end": [
   "section-nav",
@@ -160,8 +150,7 @@
   "mini-preview",
   "mini-open",
   "mini-position",
-  "mini-see-all",
-  "outline-peek"
+  "mini-see-all"
  ],
  "A-build-360-light-add": [
   "section-nav",
@@ -187,8 +176,7 @@
   "mini-preview",
   "mini-open",
   "mini-position",
-  "mini-see-all",
-  "outline-peek"
+  "mini-see-all"
  ],
  "A-build-360-light-replace-typed": [
   "section-nav",

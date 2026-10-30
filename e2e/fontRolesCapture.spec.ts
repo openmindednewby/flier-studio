@@ -50,6 +50,7 @@ test.describe('AC-44/45/46 build captures', () => {
       await shot(page, `A-build-${width}-${scheme}-${isMobile ? 'peek' : 'hover'}`);
 
       await page.getByTestId('role-prices').click();
+      if (!isMobile) await page.mouse.move(0, 0);
       await framed(page, 'shared-fields', `A-build-${width}-${scheme}-shared`);
       await framed(page, 'all-custom-layouts', `A-build-${width}-${scheme}-card-end`);
       await framed(page, 'add-flier', `A-build-${width}-${scheme}-add`);

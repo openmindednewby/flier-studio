@@ -4,6 +4,7 @@ import { el } from './dom';
 
 const PAD = 4;
 const INSET = 2;
+const MIN_INSET_H = 12;
 const UNDERLAY = 4;
 const TOUCH_MS = 2000;
 const DESKTOP_MIN = 1024;
@@ -44,9 +45,10 @@ function outlineFigure(figure: HTMLElement, lines: readonly LineKey[]): void {
   if (hit === null) return;
   const { canvas } = hit;
   const k = canvas.clientWidth / canvas.width;
-  canvas.after(...hit.rects.map((b) => {
+  canvas.after(...hit.rects.filter((b) => b.w > 0 && b.h > 0).map((b) => {
     const box = el('div', { class: 'text-outline', 'aria-hidden': 'true' });
-    Object.assign(box.style, { left: px(canvas.offsetLeft + b.x * k - PAD), top: px(canvas.offsetTop + b.y * k + INSET), width: px(b.w * k + 2 * PAD), height: px(Math.max(b.h * k - 2 * INSET, 0)) });
+    const inset = b.h * k >= MIN_INSET_H ? INSET : -STROKE;
+    Object.assign(box.style, { left: px(canvas.offsetLeft + b.x * k - PAD), top: px(canvas.offsetTop + b.y * k + inset), width: px(b.w * k + 2 * PAD), height: px(b.h * k - 2 * inset) });
     return box;
   }));
 }
@@ -123,7 +125,7 @@ export function afterRender(): void {
 export function outlineOn(node: HTMLElement, lines: readonly LineKey[], name: string): void {
   const show = (): void => showOutline(lines, name);
   node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') show(); });
-  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && !node.contains(document.activeElement)) clearOutline(); });
+  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') clearOutline(); });
   node.addEventListener('focusin', show);
   node.addEventListener('focusout', (e) => { if (!node.contains(e.relatedTarget as Node | null)) clearOutline(); });
   node.addEventListener('pointerdown', (e) => {

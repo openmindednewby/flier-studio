@@ -152,6 +152,44 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
     await expect(page.locator('[data-testid="preview-1"] .text-outline')).toHaveCount(0);
   });
 
+  test('AC-44: every control of the open role editor fits inside the editor card', async ({ page }) => {
+    await page.getByTestId('role-prices').click();
+
+    const outside = await page.evaluate(() => {
+      const card = document.querySelector('[data-testid="role-editor"]')?.getBoundingClientRect();
+      if (card === undefined) return ['no editor'];
+      return [...document.querySelectorAll<HTMLElement>('[data-testid="role-editor"] button, [data-testid="role-editor"] select, [data-testid="role-editor"] output, [data-testid="role-editor"] input')]
+        .filter((n) => { const r = n.getBoundingClientRect(); return r.left < card.left - 1 || r.right > card.right + 1 || n.scrollWidth > n.clientWidth + 1; })
+        .map((n) => n.dataset.testid ?? n.tagName);
+    });
+
+    expect(outside).toEqual([]);
+  });
+
+  test('AC-45: closing a role and moving the pointer away clears the outline', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'hover needs a pointer');
+    await page.getByTestId('role-prices').click();
+    await page.getByTestId('role-prices').click();
+
+    await page.mouse.move(0, 0);
+
+    await expect(page.locator('.text-outline')).toHaveCount(0);
+  });
+
+  test('AC-45: the outline is the same 2px dashed ink in light and dark', async ({ page }) => {
+    const style = async (): Promise<string> => page.evaluate(() => {
+      document.querySelector<HTMLElement>('[data-testid="role-title"]')?.focus();
+      const s = getComputedStyle(document.querySelector('.text-outline') ?? document.body);
+      return `${s.borderTopStyle} ${s.borderTopWidth} ${s.borderTopColor}`;
+    });
+    const light = await style();
+
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.evaluate(() => { document.documentElement.setAttribute('data-theme', 'dark'); });
+
+    expect([light.startsWith('dashed 2px'), await style()]).toEqual([true, light]);
+  });
+
   test('AC-45: a tap on a role shows the outline and the peek for 2 s', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'touch only');
     await page.clock.install();

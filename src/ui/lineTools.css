@@ -51,6 +51,8 @@ dialog.confirm p { margin: 0 0 16px; }
 .style-field { display: grid; gap: 4px; min-width: 0; }
 .style-field > span { font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
 .style-field select { width: 100%; min-height: 44px; }
+.check-row { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.check-row input { width: 24px; height: 24px; margin: 0; }
 .style-step { display: grid; grid-template-columns: 44px minmax(52px, 1fr) 44px; gap: 4px; align-items: center; }
 .style-step button { width: 44px; min-height: 44px; padding: 0; }
 .style-step output { min-width: 52px; text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }

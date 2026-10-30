@@ -16,7 +16,7 @@ export const LEAD_ROW: readonly string[] = ['title'];
 export const FORM_GROUPS: readonly FormGroupSpec[] = [
   { group: FormGroup.Layout, rows: [['layout'], ['format', 'palette'], ['fonts', 'background']] },
   { group: FormGroup.Pictures, rows: [['picture', 'logo'], ['cutout'], ['anchor'], ['scale']] },
-  { group: FormGroup.Text, rows: TEXT_FIELDS.map((key) => [key]) },
+  { group: FormGroup.Text, rows: [...TEXT_FIELDS.map((key) => [key]), ['bullets']] },
 ];
 
 export function groupedControls(): string[] {

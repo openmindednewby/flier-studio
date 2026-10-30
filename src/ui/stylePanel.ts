@@ -24,6 +24,7 @@ const SHEET_TOP_GAP = 24;
 const BOLD = 700;
 const REGULAR = 400;
 const BOLD_FROM = 600;
+const SPACE: Readonly<Record<string, number | undefined>> = { none: undefined, small: 0.25, medium: 0.5, large: 1 };
 const SPACING: Readonly<Record<string, number | undefined>> = { normal: undefined, tight: -0.03, wide: 0.08, wider: 0.16 };
 
 const field = (label: string, control: HTMLElement): HTMLElement => el('div', { class: 'style-field' }, [el('span', { text: label }), control]);
@@ -63,6 +64,8 @@ export function styleFields(target: StyleTarget, host: StyleHost, change: Change
   const doc = host.doc();
   const now = styleOf(doc, target.lines[0]);
   const spacing = Object.entries(SPACING).find(([, v]) => v === now.letterSpacing)?.[0] ?? 'normal';
+  const spaceOf = (v: number | undefined): string => Object.entries(SPACE).find(([, s]) => s === v)?.[0] ?? 'none';
+  const space = (prop: 'spaceAbove' | 'spaceBelow', testId: string): HTMLElement => field(FM(`style.${prop}`), styleSelect(Object.keys(SPACE).map((k) => [k, FM(`style.spaces.${k}`)]), spaceOf(now[prop]), testId, (v) => change({ [prop]: SPACE[v] }, testId)));
   const bold = (now.weight ?? REGULAR) >= BOLD_FROM;
   return [
     field(FM('style.applyTo'), styleSegment([['this', FM('style.thisFlier')], ['all', FM('style.allFliers', String(host.count))]], scope.all ? 'all' : 'this', 'style-scope', (v) => { scope.set(v === 'all'); change(null, `style-scope-${v}`); })),
@@ -76,6 +79,7 @@ export function styleFields(target: StyleTarget, host: StyleHost, change: Change
       field(FM('style.weight'), styleSegment([['bold', FM('style.bold')], ['italic', FM('style.italic')]], [bold ? 'bold' : '', now.italic === true ? 'italic' : ''], 'style', (v) => change(v === 'bold' ? { weight: bold ? REGULAR : BOLD } : { italic: now.italic === true ? undefined : true }, `style-${v}`))),
       field(FM('style.spacing'), styleSelect(Object.keys(SPACING).map((k) => [k, FM(`style.spacings.${k}`)]), spacing, 'style-spacing', (v) => change({ letterSpacing: SPACING[v] }, 'style-spacing'))),
     ]),
+    el('div', { class: 'style-row' }, [space('spaceAbove', 'style-space-above'), space('spaceBelow', 'style-space-below')]),
     field(FM('style.align'), styleSegment(Object.values(LineAlign).map((a) => [a, FM(`style.aligns.${a}`)]), now.align ?? '', 'style-align', (v) => change({ align: v as LineAlign }, `style-align-${v}`))),
   ];
 }

@@ -19,7 +19,7 @@
     "@dloizides/game-input": "^1.12.1",
     "@dloizides/i18n": "^1.3.0",
     "@dloizides/llm-run": "^0.3.0",
-    "@dloizides/poster-render": "^0.12.0",
+    "@dloizides/poster-render": "^0.13.0",
     "@dloizides/save-state": "^1.7.0",
     "@dloizides/text-generation": "^1.3.0",
     "@dloizides/ui-motion": "^1.3.0",

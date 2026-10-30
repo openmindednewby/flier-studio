@@ -6,7 +6,7 @@ import { FORM_GROUPS, LEAD_ROW, groupedControls, textFieldsInFlierOrder } from '
 describe('groupedControls', () => {
   it('across the lead row and the three groups, keeps every form control exactly once', () => {
     const inventory = ['layout', 'format', 'palette', 'fonts', 'background', 'picture', 'logo', 'cutout', 'anchor', 'scale',
-      'title', 'titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'];
+      'title', 'titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items', 'bullets'];
 
     const controls = groupedControls();
 
@@ -52,6 +52,6 @@ describe('textFieldsInFlierOrder', () => {
 
     const order = textFieldsInFlierOrder(drawn);
 
-    expect(order).toEqual(FORM_GROUPS[2].rows.flat());
+    expect(order).toEqual(FORM_GROUPS[2].rows.flat().filter((key) => key !== 'bullets'));
   });
 });

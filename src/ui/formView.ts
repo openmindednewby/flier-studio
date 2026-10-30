@@ -1,4 +1,5 @@
 import { flierDocSchema, type FlierDoc } from '@dloizides/poster-render';
+import { withBullets } from '../form/bullets';
 import { applyText, blocksToText, type BlockText } from '../form/docEdit';
 import { layoutsFor, withFormat } from '../form/layoutOptions';
 import { FORM_GROUPS, LEAD_ROW, textFieldsInFlierOrder } from '../form/formGroups';
@@ -19,8 +20,8 @@ export interface FormActions {
 }
 
 const PICKERS: readonly DocPicker[] = [DocPicker.Format, DocPicker.Layout, DocPicker.Palette, DocPicker.Fonts, DocPicker.Background];
-const SINGLE: readonly (keyof BlockText)[] = ['title', 'titleBottom', 'script', 'includesHeading', 'footer'];
-const MULTI: readonly (keyof BlockText)[] = ['venue', 'schedule', 'prices', 'includesItems', 'items'];
+const SINGLE: readonly (keyof BlockText)[] = ['title', 'titleBottom', 'script', 'includesHeading'];
+const MULTI: readonly (keyof BlockText)[] = ['venue', 'schedule', 'prices', 'includesItems', 'items', 'footer'];
 const scaleSchema = flierDocSchema.properties?.picture?.properties?.scale;
 const SCALE_STEP = '0.05';
 
@@ -76,9 +77,11 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   scale.addEventListener('input', () => { scaleValue.textContent = scalePercent(Number(scale.value)); });
   const live = { doc };
   const texts = textControls(blocksToText(doc));
+  const bullets = el('input', { type: 'checkbox', 'data-testid': 'field-bullets', 'aria-description': FM('hint.field', FM('form.bullets')) });
+  bullets.checked = doc.bullets !== false;
   const read = (): FlierDoc => {
     const values = Object.fromEntries(Object.entries(texts).map(([k, c]) => [k, c.value])) as unknown as BlockText;
-    const next = { ...applyText(live.doc, values), ...Object.fromEntries(PICKERS.map((p) => [p, pickers[p].value])) } as FlierDoc;
+    const next = { ...withBullets(applyText(live.doc, values), bullets.checked), ...Object.fromEntries(PICKERS.map((p) => [p, pickers[p].value])) } as FlierDoc;
     const shaped = withFormat(next, next.format);
     if (shaped.picture) shaped.picture = { ...shaped.picture, anchor: anchor.value as typeof shaped.picture.anchor, scale: Number(scale.value) };
     return shaped;
@@ -87,6 +90,7 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
   const controls: Record<string, HTMLElement> = {
     ...Object.fromEntries(PICKERS.map((p) => [p, labelled(`form.${p}`, pickers[p])])),
     ...Object.fromEntries([...SINGLE, ...MULTI].map((key) => [key, labelled(`form.${key}`, texts[key])])),
+    bullets: el('label', { class: 'check-row' }, [bullets, el('span', { text: FM('form.bullets') })]),
     anchor: labelled('form.anchor', anchor),
     scale: labelledValue('form.scale', scale, scaleValue),
     picture: fileButton('form.picture', 'upload-picture', 'image/*', (f) => actions.upload(UploadKind.Picture, f)),

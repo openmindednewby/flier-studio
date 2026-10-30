@@ -3,6 +3,8 @@ import { FM } from '../i18n/fm';
 import { el } from './dom';
 
 const PAD = 4;
+const INSET = 2;
+const UNDERLAY = 4;
 const TOUCH_MS = 2000;
 const DESKTOP_MIN = 1024;
 const PEEK_H = 108;
@@ -44,7 +46,7 @@ function outlineFigure(figure: HTMLElement, lines: readonly LineKey[]): void {
   const k = canvas.clientWidth / canvas.width;
   canvas.after(...hit.rects.map((b) => {
     const box = el('div', { class: 'text-outline', 'aria-hidden': 'true' });
-    Object.assign(box.style, { left: px(canvas.offsetLeft + b.x * k - PAD), top: px(canvas.offsetTop + b.y * k - PAD), width: px(b.w * k + 2 * PAD), height: px(b.h * k + 2 * PAD) });
+    Object.assign(box.style, { left: px(canvas.offsetLeft + b.x * k - PAD), top: px(canvas.offsetTop + b.y * k + INSET), width: px(b.w * k + 2 * PAD), height: px(Math.max(b.h * k - 2 * INSET, 0)) });
     return box;
   }));
 }
@@ -58,10 +60,15 @@ function peekCanvas(source: HTMLCanvasElement, area: Rect): HTMLCanvasElement {
   const ctx = view.getContext('2d');
   if (ctx === null) return view;
   ctx.drawImage(source, src.x, src.y, src.w, src.h, 0, 0, view.width, view.height);
+  const css = getComputedStyle(document.documentElement);
+  const rect = [PEEK_PAD * scale, PEEK_PAD * scale, area.w * scale, area.h * scale] as const;
+  ctx.lineWidth = UNDERLAY;
+  ctx.strokeStyle = css.getPropertyValue('--surface');
+  ctx.strokeRect(...rect);
   ctx.setLineDash(DASH);
   ctx.lineWidth = STROKE;
-  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--text');
-  ctx.strokeRect(PEEK_PAD * scale, PEEK_PAD * scale, area.w * scale, area.h * scale);
+  ctx.strokeStyle = css.getPropertyValue('--text');
+  ctx.strokeRect(...rect);
   return view;
 }
 

@@ -22,7 +22,7 @@ export function styleSelect(options: readonly (readonly [string, string])[], val
 }
 
 /** The palette colours as round swatches plus a Custom colour picker. */
-export function styleSwatches(colours: readonly string[], now: string | undefined, pick: (colour: string, testId: string) => void): HTMLElement {
+export function styleSwatches(colours: readonly string[], now: string | undefined, pick: (colour: string, testId: string) => void, theme?: string): HTMLElement {
   const swatches = colours.slice(0, MAX_SWATCHES).map((colour, i) => {
     const testId = `style-swatch-${String(i + 1)}`;
     const node = textButton('', testId, () => pick(colour, testId), 'swatch');
@@ -32,7 +32,8 @@ export function styleSwatches(colours: readonly string[], now: string | undefine
     return node;
   });
   const custom = el('input', { type: 'color', 'data-testid': 'style-color', 'aria-label': FM('style.custom'), 'aria-description': FM('hint.field', FM('style.custom')) });
-  if (now !== undefined) custom.value = now;
+  const shown = now ?? theme;
+  if (shown !== undefined) custom.value = shown;
   custom.addEventListener('change', () => pick(custom.value, 'style-color'));
   return el('div', { class: 'style-swatches' }, [...swatches, el('label', { class: 'style-custom' }, [el('span', { text: FM('style.custom') }), custom])]);
 }

@@ -65,6 +65,7 @@ export function roleList(actions: RoleActions): { nodes: HTMLElement[]; update()
     if (open.role === '') return;
     row.setAttribute('aria-expanded', 'true');
     row.after(editor(role, actions));
+    document.querySelector<HTMLElement>('#role-editor [data-testid="style-font"]')?.focus();
   }));
   const update = (): void => rows.forEach((r) => { r.meta.textContent = summary(actions.roleStyles()[r.role]); });
   update();

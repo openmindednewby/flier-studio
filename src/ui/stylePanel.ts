@@ -30,6 +30,8 @@ const field = (label: string, control: HTMLElement): HTMLElement => el('div', { 
 
 const swatchesOf = (doc: FlierDoc): string[] => [...new Set(Object.values((PALETTES as Record<string, object | undefined>)[String(doc.palette)] ?? {}).filter((v): v is string => typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v)))];
 
+const inkOf = (doc: FlierDoc): string | undefined => (PALETTES as Record<string, { ink?: string } | undefined>)[String(doc.palette)]?.ink;
+
 type Change = (patch: LineStyle | null, focus: string) => void;
 
 interface Stepper {
@@ -69,7 +71,7 @@ export function styleFields(target: StyleTarget, host: StyleHost, change: Change
       field(FM('style.size'), stepper(target, host, change, SIZE)),
     ]),
     el('div', { class: 'style-row' }, [field(FM('style.width'), stepper(target, host, change, WIDTH)), field(FM('style.drawn'), drawn(target))]),
-    field(FM('style.colour'), styleSwatches(swatchesOf(doc), now.color, (c, testId) => change({ color: c }, testId))),
+    field(FM('style.colour'), styleSwatches(swatchesOf(doc), now.color, (c, testId) => change({ color: c }, testId), inkOf(doc))),
     el('div', { class: 'style-row' }, [
       field(FM('style.weight'), styleSegment([['bold', FM('style.bold')], ['italic', FM('style.italic')]], [bold ? 'bold' : '', now.italic === true ? 'italic' : ''], 'style', (v) => change(v === 'bold' ? { weight: bold ? REGULAR : BOLD } : { italic: now.italic === true ? undefined : true }, `style-${v}`))),
       field(FM('style.spacing'), styleSelect(Object.keys(SPACING).map((k) => [k, FM(`style.spacings.${k}`)]), spacing, 'style-spacing', (v) => change({ letterSpacing: SPACING[v] }, 'style-spacing'))),

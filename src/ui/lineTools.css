@@ -51,9 +51,9 @@ dialog.confirm p { margin: 0 0 16px; }
 .style-field { display: grid; gap: 4px; min-width: 0; }
 .style-field > span { font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
 .style-field select { width: 100%; min-height: 44px; }
-.style-step { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 4px; align-items: center; }
+.style-step { display: grid; grid-template-columns: 44px minmax(52px, 1fr) 44px; gap: 4px; align-items: center; }
 .style-step button { width: 44px; min-height: 44px; padding: 0; }
-.style-step output { text-align: center; font-variant-numeric: tabular-nums; }
+.style-step output { min-width: 52px; text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .style-seg { display: grid; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; gap: 6px; }
 .style-seg button { width: 100%; min-height: 44px; padding: 0 4px; }
 .style-swatches { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
@@ -76,7 +76,7 @@ dialog.confirm p { margin: 0 0 16px; }
 .role-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 8px; width: 100%; min-height: 44px; padding: 8px 12px; text-align: left; }
 .role-row .role-name { font-weight: 600; }
 .role-row .role-meta { font-size: 0.85rem; }
-.role-row[aria-expanded="true"] { border: 2px solid var(--text); }
+.role-row[aria-expanded="true"], .role-row:hover { border: 2px solid var(--text); }
 .role-editor { box-shadow: none; }
 .style-drawn { display: flex; align-items: center; min-height: 44px; font-variant-numeric: tabular-nums; }
 .text-outline { position: absolute; pointer-events: none; box-sizing: border-box; border: 2px dashed var(--text); border-radius: 4px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--surface) 70%, transparent); }

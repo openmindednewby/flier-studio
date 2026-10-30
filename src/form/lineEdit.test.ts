@@ -1,6 +1,6 @@
 import { LineTieKind, type FlierDoc } from '@dloizides/poster-render';
 import { describe, expect, it } from 'vitest';
-import { FIELD_LINES, TITLE_PAIR, percent, resetLines, restyle, setTie, stepSize, styleOf, tieOf } from './lineEdit';
+import { FIELD_LINES, TITLE_PAIR, percent, resetLines, restyle, setTie, stepSize, stepWidth, styleOf, tieOf } from './lineEdit';
 
 const doc = (extra: Partial<FlierDoc> = {}): FlierDoc => ({ blocks: { title: 'KIZOMBA' }, ...extra }) as FlierDoc;
 
@@ -49,12 +49,38 @@ describe('stepSize', () => {
     expect(next.lineStyles).toBeUndefined();
   });
 
-  it('with many steps down, stops at 25%', () => {
+  it('with many steps down, stops at the smallest step, 5%', () => {
     const base = doc();
 
     const next = stepSize(base, ['title'], -40);
 
-    expect(styleOf(next, 'title').sizeScale).toBe(0.25);
+    expect(styleOf(next, 'title').sizeScale).toBe(0.05);
+  });
+
+  it('with many steps up, grows past 300% with no ceiling', () => {
+    const base = doc({ lineStyles: { title: { sizeScale: 3 } } });
+
+    const next = stepSize(base, ['title'], 10);
+
+    expect(styleOf(next, 'title').sizeScale).toBe(3.5);
+  });
+});
+
+describe('stepWidth', () => {
+  it('with many steps up, widens past 150% with no ceiling', () => {
+    const base = doc({ lineStyles: { venue: { widthScale: 1.5 } } });
+
+    const next = stepWidth(base, ['venue'], 4);
+
+    expect(styleOf(next, 'venue').widthScale).toBe(1.7);
+  });
+
+  it('with many steps down, narrows below 50% to the smallest step, 5%', () => {
+    const base = doc({ lineStyles: { venue: { widthScale: 0.5 } } });
+
+    const next = stepWidth(base, ['venue'], -20);
+
+    expect(styleOf(next, 'venue').widthScale).toBe(0.05);
   });
 });
 

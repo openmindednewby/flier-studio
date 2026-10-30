@@ -35,6 +35,20 @@ async function rolesFollowSections(page: Page): Promise<void> {
   expect(shown[0]).toBe('role-title');
 }
 
+const SECTION_FIELD: Readonly<Record<string, string>> = {
+  'order-venue': 'venue',
+  'order-schedule': 'schedule',
+  'order-prices': 'prices',
+  'order-includes': 'includesHeading',
+  'order-footer': 'footer',
+};
+
+async function fieldsFollowSections(page: Page): Promise<void> {
+  const order = (await sections(page)).map((s) => SECTION_FIELD[s]).filter((f): f is string => f !== undefined);
+  const shown = await page.locator('[data-testid="flier-form"] .row[data-field]').evaluateAll((nodes) => nodes.map((n) => n.getAttribute('data-field') ?? ''));
+  expect(shown.filter((f) => order.includes(f))).toEqual(order);
+}
+
 async function selectFlier(page: Page, n: number): Promise<void> {
   await trim(page, n).scrollIntoViewIfNeeded();
   const box = (await trim(page, n).locator('canvas').boundingBox()) ?? { x: 0, y: 0, width: 0, height: 0 };
@@ -68,6 +82,7 @@ test.describe('Text order: role list follows the flier (AC-49), reorder the text
     await expect(page.getByTestId('section-order').locator('li').first()).toBeVisible();
 
     await rolesFollowSections(page);
+    await fieldsFollowSections(page);
   });
 
   test('AC-50: Move up by keyboard re-lays out the flier and re-sorts both lists', async ({ page }) => {
@@ -75,6 +90,7 @@ test.describe('Text order: role list follows the flier (AC-49), reorder the text
 
     expect(await sections(page)).toEqual([...before.slice(0, -2), moved, before[before.length - 2]]);
     await rolesFollowSections(page);
+    await fieldsFollowSections(page);
     await expect(page.getByTestId(`${moved}-up`)).toBeFocused();
   });
 

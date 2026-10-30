@@ -1,7 +1,7 @@
 import { flierDocSchema, type FlierDoc } from '@dloizides/poster-render';
 import { applyText, blocksToText, type BlockText } from '../form/docEdit';
 import { layoutsFor, withFormat } from '../form/layoutOptions';
-import { FORM_GROUPS, LEAD_ROW } from '../form/formGroups';
+import { FORM_GROUPS, LEAD_ROW, textFieldsInFlierOrder } from '../form/formGroups';
 import { scalePercent } from '../form/pictureScale';
 import { DocPicker, anchorOptions, schemaOptions } from '../form/schemaOptions';
 import { FM } from '../i18n/fm';
@@ -49,7 +49,7 @@ function labelledValue(labelKey: string, control: HTMLInputElement, value: HTMLO
 function groups(controls: Record<string, HTMLElement>): HTMLElement[] {
   return FORM_GROUPS.map(({ group, rows }) => {
     const id = `form-group-${group}`;
-    const body = el('div', { class: 'fold-body' }, rows.map((row) => el('div', { class: 'row' }, row.map((key) => controls[key]))));
+    const body = el('div', { class: 'fold-body' }, rows.map((row) => el('div', { class: 'row', 'data-field': row.join(' ') }, row.map((key) => controls[key]))));
     const toggle = foldToggle(body, { id: `group-${group}`, title: FM(`form.groups.${group}`), testId: `group-toggle-${group}`, className: 'group-toggle' });
     return el('div', { class: 'group', role: 'group', 'aria-labelledby': id }, [el('h3', { id }, [toggle]), body]);
   });
@@ -106,6 +106,16 @@ export function renderForm(container: HTMLElement, doc: FlierDoc, position: [num
     apply: (edit, everyFlier) => { live.doc = edit(live.doc); if (everyFlier) actions.restyleAll(edit); else actions.change(read()); },
     count: position[1],
   });
+}
+
+/** AC-49: re-sorts the text fields to the selected flier's top-to-bottom order, keeping focus where it was. */
+export function sortTextFields(container: HTMLElement, drawn: readonly string[]): void {
+  const rows = textFieldsInFlierOrder(drawn).map((f) => container.querySelector<HTMLElement>(`.row[data-field="${f}"]`)).filter((n): n is HTMLElement => n !== null);
+  const shown = [...(rows[0]?.parentElement?.children ?? [])].filter((n) => rows.includes(n as HTMLElement));
+  if (shown.every((n, i) => n === rows[i])) return;
+  const active = document.activeElement instanceof HTMLElement && container.contains(document.activeElement) ? document.activeElement : null;
+  rows[0]?.parentElement?.append(...rows);
+  active?.focus({ preventScroll: true });
 }
 
 const INITIAL_FOCUS = ['field-title', 'flier-form-toggle'];

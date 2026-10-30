@@ -15,7 +15,7 @@ const STROKE = 2;
 const DASH: number[] = [6, 4];
 const LINE_HEIGHT = 1.2;
 const BOXES = new WeakMap<HTMLCanvasElement, Readonly<Record<LineKey, Rect | undefined>>>();
-const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0, quiet: false, over: '' };
+const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0, quiet: false, over: '', at: '', hushedAt: '' };
 const CONTROL = 'button, select, input, .role-row';
 
 const px = (n: number): string => `${String(Math.round(n))}px`;
@@ -101,6 +101,7 @@ const removeAll = (): void => { document.querySelectorAll('.text-outline, .outli
 /** D45: hides the outline until the pointer enters a control, a row or a poster section again. */
 export function hushOutline(): void {
   now.quiet = true;
+  now.hushedAt = now.at;
   now.lines = [];
   removeAll();
 }
@@ -109,6 +110,22 @@ export function hushOutline(): void {
 export function wakeOutline(): void {
   now.quiet = false;
 }
+
+const spot = (e: PointerEvent): string => `${String(e.clientX)},${String(e.clientY)}`;
+
+/** D45: wakes the outline for a pointer that has moved since the hush; a redraw under a still pointer does not. */
+export function wakeOnMove(e: PointerEvent): boolean {
+  if (now.quiet && spot(e) === now.hushedAt) return false;
+  wakeOutline();
+  return true;
+}
+
+const track = (): void => {
+  if (now.at !== '') return;
+  now.at = '-';
+  document.addEventListener('pointermove', (e) => { now.at = spot(e); }, { capture: true, passive: true });
+  document.addEventListener('pointerdown', (e) => { now.at = spot(e); }, { capture: true, passive: true });
+};
 
 /** Outlines the lines on the one flier holding `node`. */
 export function outlineOnly(node: HTMLElement, lines: readonly LineKey[]): void {
@@ -151,15 +168,15 @@ export function afterRender(): void {
 /** Outlines the lines while the pointer is over the node or focus is inside it; a tap holds it 2 s. */
 export function outlineOn(node: HTMLElement, lines: readonly LineKey[], name: string): void {
   const show = (): void => showOutline(lines, name);
-  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { wakeOutline(); show(); } });
+  track();
+  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && wakeOnMove(e)) show(); });
   node.addEventListener('pointerover', (e) => {
     const to = e.target instanceof Element ? e.target.closest(CONTROL) : null;
     const id = to?.getAttribute('data-testid') ?? '';
     if (to === null) now.over = '';
     if (e.pointerType !== 'mouse' || to === null || id === now.over) return;
     now.over = id;
-    wakeOutline();
-    show();
+    if (wakeOnMove(e)) show();
   });
   node.addEventListener('keydown', (e) => { if (e.key === 'Tab') wakeOutline(); });
   node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { now.over = ''; clearOutline(); } });

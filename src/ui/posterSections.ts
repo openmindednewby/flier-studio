@@ -1,6 +1,6 @@
 import type { LineKey, Rect } from '@dloizides/poster-render';
 import { FIELD_LINES } from '../form/lineEdit';
-import { boxesOf, clearOutline, hushOutline, outlineOnly, wakeOutline } from './textOutline';
+import { boxesOf, clearOutline, hushOutline, outlineOnly, wakeOnMove } from './textOutline';
 
 type Boxes = Readonly<Record<LineKey, Rect | undefined>>;
 
@@ -34,7 +34,7 @@ export function trackSections(trim: HTMLElement, canvas: HTMLCanvasElement): voi
     trim.dataset.section = field;
     if (e.pointerType !== 'mouse') return;
     if (field === '') clearOutline();
-    else { wakeOutline(); outlineOnly(trim, FIELD_LINES[field] ?? []); }
+    else if (wakeOnMove(e)) outlineOnly(trim, FIELD_LINES[field] ?? []);
   });
   trim.addEventListener('pointerdown', hushOutline);
   trim.addEventListener('pointerleave', () => { trim.dataset.section = ''; clearOutline(); });

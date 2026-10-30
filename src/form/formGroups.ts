@@ -1,3 +1,5 @@
+import { roleOf } from '@dloizides/poster-render';
+import { FIELD_LINES } from './lineEdit';
 import { FormGroup } from './FormGroup';
 
 export interface FormGroupSpec {
@@ -19,4 +21,13 @@ export const FORM_GROUPS: readonly FormGroupSpec[] = [
 
 export function groupedControls(): string[] {
   return [...LEAD_ROW, ...FORM_GROUPS.flatMap((g) => g.rows.flat())];
+}
+
+/** AC-49: the text fields in the flier's top-to-bottom order; fields it does not draw follow in form order. */
+export function textFieldsInFlierOrder(drawn: readonly string[]): string[] {
+  const rank = (field: string): number => {
+    const hits = (FIELD_LINES[field] ?? []).map((k) => drawn.indexOf(roleOf(k))).filter((i) => i >= 0);
+    return hits.length === 0 ? drawn.length : Math.min(...hits);
+  };
+  return [...TEXT_FIELDS].sort((a, b) => rank(a) - rank(b));
 }

@@ -52,7 +52,8 @@ dialog.confirm p { margin: 0 0 16px; }
 .style-field > span { font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
 .style-field select { width: 100%; min-height: 44px; }
 .check-row { display: flex; align-items: center; gap: 10px; min-height: 44px; }
-.check-row input { width: 24px; height: 24px; margin: 0; }
+.check-row { cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.check-row input[type="checkbox"] { width: 20px; height: 20px; min-width: 0; min-height: 0; padding: 0; margin: 0; flex: none; accent-color: var(--brand-fill); }
 .style-step { display: grid; grid-template-columns: 44px minmax(52px, 1fr) 44px; gap: 4px; align-items: center; }
 .style-step button { width: 44px; min-height: 44px; padding: 0; }
 .style-step output { min-width: 52px; text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }

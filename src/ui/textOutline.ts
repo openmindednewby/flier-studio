@@ -26,6 +26,11 @@ export function rememberBoxes(canvas: HTMLCanvasElement, boxes: Readonly<Record<
   BOXES.set(canvas, boxes);
 }
 
+/** The line boxes of a preview canvas, if it has been drawn. */
+export function boxesOf(canvas: HTMLCanvasElement): Readonly<Record<LineKey, Rect | undefined>> | undefined {
+  return BOXES.get(canvas);
+}
+
 function found(figure: HTMLElement | undefined, lines: readonly LineKey[]): { canvas: HTMLCanvasElement; rects: Rect[] } | null {
   const canvas = figure?.querySelector('canvas') ?? null;
   const boxes = canvas === null ? undefined : BOXES.get(canvas);
@@ -91,6 +96,13 @@ function peek(lines: readonly LineKey[], name: string): void {
 }
 
 const removeAll = (): void => { document.querySelectorAll('.text-outline, .outline-peek').forEach((n) => n.remove()); };
+
+/** Outlines the lines on the one flier holding `node`. */
+export function outlineOnly(node: HTMLElement, lines: readonly LineKey[]): void {
+  removeAll();
+  const figure = node.closest<HTMLElement>('figure');
+  if (figure !== null) outlineFigure(figure, lines);
+}
 
 /** Outlines the lines on every preview (and a peek strip under 1024 px); never drawn on the canvas. */
 export function showOutline(lines: readonly LineKey[], name: string): void {

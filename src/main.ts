@@ -102,7 +102,7 @@ function refreshPreviews(): void {
   previewGrid.dataset.render = 'pending';
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(docs);
-    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, current }) : null;
+    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, edit: editSection, current }) : null;
     if (canvases === null) return;
     state.canvases = canvases;
     mini.update(state.canvases[state.selected], state.selected, docs.length);
@@ -160,6 +160,12 @@ function pick(index: number): void {
 function enlarge(index: number, from: HTMLElement): void {
   pick(index);
   mini.enlarge(state.canvases[index], index, from);
+}
+
+function editSection(index: number, field: string): void {
+  pick(index);
+  rail.show(PanelKey.Form);
+  document.querySelector<HTMLElement>(`[data-testid="style-${field}"]`)?.click();
 }
 
 function restore(draft: Draft): void {

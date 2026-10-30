@@ -245,4 +245,31 @@ test.describe('Width per text (AC-46)', () => {
 
     await expect(panel.getByTestId('style-width')).toHaveText('100%');
   });
+
+  test('AC-45: right after a reload with a saved role style, hovering and focusing a role outlines it', async ({ page, isMobile }) => {
+    await page.getByTestId('role-title').click();
+    await page.getByTestId('role-editor').getByTestId('style-font').selectOption(FACE);
+    await rendered(page);
+    await page.reload();
+    await rendered(page);
+    await openPanel(page, Panel.All);
+
+    const shown = await outlinesNow(page, 'role-prices');
+
+    expect(shown[0]).toBeGreaterThan(0);
+    test.skip(isMobile, 'hover needs a pointer');
+    await page.getByTestId('pick-theme').hover();
+    await page.getByTestId('role-title').hover();
+    await expect(page.locator('[data-testid="preview-1"] .text-outline').first()).toBeVisible();
+  });
+
+  test('AC-46: Larger alone never draws the venue smaller', async ({ page }) => {
+    await page.getByTestId('role-venue').click();
+    const before = await drawnPx(page, 'role-editor');
+
+    await page.getByTestId('role-editor').getByTestId('style-larger').click();
+    await rendered(page);
+
+    expect(await drawnPx(page, 'role-editor')).toBeGreaterThanOrEqual(before);
+  });
 });

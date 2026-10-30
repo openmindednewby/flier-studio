@@ -64,6 +64,15 @@ test.describe('Bullets on/off, line spacing and a multi-line footer', () => {
     await expect(page.getByTestId('field-bullets')).toBeChecked();
   });
 
+  test('a ticked bullets box draws a tick mark', async ({ page }) => {
+    const box = page.getByTestId('field-bullets');
+    await box.setChecked(true);
+
+    const mark = await box.evaluate((n) => getComputedStyle(n, '::after').content);
+
+    expect(mark).toBe('"✓"');
+  });
+
   test('space above Large moves the second includes item down', async ({ page }) => {
     const gap = async (): Promise<number> => {
       const [first, second] = await Promise.all([drawn(page, '2 drinks'), drawn(page, 'Kizomba room')]);

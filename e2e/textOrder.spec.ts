@@ -122,7 +122,7 @@ test.describe('Text order: role list follows the flier (AC-49), reorder the text
   });
 
   test('AC-50: the order is kept in the flier after a reload', async ({ page }) => {
-    const { moved } = await moveLastUp(page);
+    const { before, moved } = await moveLastUp(page);
     const after = await sections(page);
 
     await page.reload();
@@ -130,7 +130,7 @@ test.describe('Text order: role list follows the flier (AC-49), reorder the text
     await openPanel(page, Panel.All);
 
     expect(await sections(page)).toEqual(after);
-    expect(after).toContain(moved);
+    expect(after.indexOf(moved)).toBe(before.length - 2);
   });
 
   test('AC-50: every move button is at least 44 by 44', async ({ page }) => {

@@ -67,11 +67,12 @@ test.describe('Poster sections: hover highlights (AC-47), click edits (AC-48)', 
 
   test('AC-48: clicking where there is no text only selects the flier', async ({ page }) => {
     const spot = await scan(page, 2, (s) => s === '');
+    await page.clock.install();
 
     await page.mouse.click(spot.x, spot.y);
 
     await expect(trim(page, 2)).toHaveAttribute('aria-pressed', 'true');
-    await page.waitForTimeout(WITHIN_MS * 5);
+    await page.clock.runFor(WITHIN_MS * 5);
     await expect(page.getByTestId('style-panel')).toHaveCount(0);
   });
 

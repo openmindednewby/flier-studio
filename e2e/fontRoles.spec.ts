@@ -6,7 +6,8 @@ const TITLE = 'KIZOMBA';
 const FACE = 'Anton';
 const OWN_FACE = 'Oswald';
 const TOUCH_SHOW_MS = 2000;
-const TOUCH_SLACK_MS = 800;
+const JUST_BEFORE_MS = TOUCH_SHOW_MS - 1;
+const PAST_END_MS = 2;
 
 interface Run { text: string; font: string; flier: number }
 
@@ -138,8 +139,8 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
       return document.querySelector<HTMLCanvasElement>('[data-testid="preview-1"] canvas')?.toDataURL();
     });
 
-    expect(outlined).toBe(plain);
-    await expect(page.locator('[data-testid="preview-1"] canvas .text-outline')).toHaveCount(0);
+    await expect(page.locator('[data-testid="preview-1"] canvas ~ .text-outline').first()).toBeAttached();
+    expect(outlined, 'focusing a role must not change the exported PNG').toBe(plain);
   });
 
   test('AC-45: hovering a role outlines its text, moving away clears it', async ({ page, isMobile }) => {
@@ -153,12 +154,19 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
 
   test('AC-45: a tap on a role shows the outline and the peek for 2 s', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'touch only');
+    await page.clock.install();
+    await page.reload();
+    await rendered(page);
+    await openPanel(page, Panel.All);
+    await page.clock.pauseAt(Date.now() + TOUCH_SHOW_MS);
+
     await page.getByTestId('role-title').tap();
     await page.evaluate(() => { (document.activeElement as HTMLElement | null)?.blur(); });
 
-    await expect(page.getByTestId('outline-peek')).toBeVisible();
-    await page.waitForTimeout(TOUCH_SHOW_MS + TOUCH_SLACK_MS);
-    await expect(page.getByTestId('outline-peek')).toBeHidden();
+    await page.clock.fastForward(JUST_BEFORE_MS);
+    await expect(page.getByTestId('outline-peek'), 'the peek must still show just before 2 s').toBeVisible();
+    await page.clock.fastForward(PAST_END_MS);
+    await expect(page.getByTestId('outline-peek'), 'the peek must clear once 2 s have passed').toBeHidden();
   });
 });
 

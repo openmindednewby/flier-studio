@@ -16,7 +16,7 @@ function spyOnRuns(): void {
   CanvasRenderingContext2D.prototype.fillText = function fillText(this: CanvasRenderingContext2D, ...args: [string, number, number, number?]): void {
     const figure = this.canvas.closest('[data-testid^="preview-"]');
     const flier = figure === null ? 0 : Number(figure.getAttribute('data-testid')?.split('-')[1] ?? 0);
-    runs.push({ text: String(args[0]).toUpperCase(), font: this.font, flier });
+    runs.push({ text: String(args[0]), font: this.font, flier });
     if (args[3] === undefined) orig.call(this, args[0], args[1], args[2]);
     else orig.call(this, args[0], args[1], args[2], args[3]);
   };
@@ -59,7 +59,7 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
   });
 
   test('AC-44: the Fonts card lists every text role', async ({ page }) => {
-    await expect(page.getByTestId('text-roles').locator('[data-testid^="role-"][aria-expanded]')).toHaveCount(ROLE_COUNT);
+    await expect(page.getByTestId('all-fliers-row').locator('[data-testid^="role-"][aria-expanded]')).toHaveCount(ROLE_COUNT);
   });
 
   test('AC-44: a face picked for Title redraws the title of every flier in it', async ({ page }) => {
@@ -67,7 +67,7 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
 
     const runs = await titleFonts(page);
     expect(runs.length).toBeGreaterThan(1);
-    expect(runs.every((r) => r.font.includes(FACE))).toBe(true);
+    expect(runs.filter((r) => !r.font.includes(FACE))).toEqual([]);
     await expect(page.getByTestId('role-title')).toContainText(FACE);
   });
 

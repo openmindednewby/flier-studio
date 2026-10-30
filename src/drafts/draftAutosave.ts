@@ -28,7 +28,8 @@ export class DraftAutosave {
     const json = JSON.stringify(fliers);
     if (json === this.last) return true;
     try {
-      await this.store.add({ at, thumb, fliers: JSON.parse(json) as ThemedFlier[] });
+      const [latest] = await this.store.list();
+      await this.store.add({ at, thumb, fliers: JSON.parse(json) as ThemedFlier[], name: latest?.name });
       this.last = json;
       this.events.saved();
       return true;

@@ -1,5 +1,5 @@
 import { DEFAULT_CSS_VAR_NAMES, FLIER_TOKENS, toCssVars } from '@dloizides/design-tokens';
-import { PictureAnchor, type FlierDoc } from '@dloizides/poster-render';
+import { PictureAnchor, roleOrder, type FlierDoc } from '@dloizides/poster-render';
 import { cutPicture, cutoutFile, inFlight, lazy } from './cutout/cutoutFlow';
 import { draftActions } from './drafts/draftActions';
 import { DraftAutosave } from './drafts/draftAutosave';
@@ -34,12 +34,13 @@ import { renderConfigPanel } from './ui/configPanel';
 import { button, el } from './ui/dom';
 import { draftTime, draftsPanel, thumbOf } from './ui/draftsPanel';
 import { createMiniPreview } from './ui/miniPreview';
-import { focusInitial, renderForm } from './ui/formView';
+import { focusInitial, renderForm, sortTextFields } from './ui/formView';
 import { downloadCanvas, markSelected, renderPreviews } from './ui/previews';
 import { renderGate } from './ui/renderGate';
 import { renderPromptPanel } from './ui/promptPanel';
 import { PanelKey } from './ui/PanelKey';
 import { aiEntry, sectionRail } from './ui/sectionNav';
+import { boxesOf } from './ui/textOutline';
 import { UploadKind } from './ui/UploadKind';
 import './ui/styles.css';
 import './ui/sidebar.css';
@@ -77,6 +78,9 @@ const allFliers = allFliersCard({
   replace: (ticked, replacement) => void replaceText(ticked, replacement),
   roleStyles: () => state.roles,
   setRoleStyles: (roles) => { state.roles = roles; roleStore.save(roles); refreshPreviews(); },
+  drawnRoles,
+  orderDoc: () => docsOf()[state.selected],
+  reorder: (edit, everyFlier) => { state.fliers = withDocs(state.fliers, docsOf().map((d, i) => (everyFlier || i === state.selected ? edit(d) : d))); showForm(); refreshPreviews(); },
 }, previewGrid);
 const draftStore = new DraftStore();
 const drafts = draftsPanel(draftActions(draftStore, { restore: (draft) => restore(draft), refresh: () => showDrafts(), failed: (message) => { status.textContent = message; } }));
@@ -102,14 +106,19 @@ function refreshPreviews(): void {
   previewGrid.dataset.render = 'pending';
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(docs);
-    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, current }) : null;
+    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, edit: editSection, current }) : null;
     if (canvases === null) return;
     state.canvases = canvases;
     mini.update(state.canvases[state.selected], state.selected, docs.length);
     allFliers.update(docs.length);
+    sortTextFields(formBox, drawnRoles());
     void autosave.save(state.fliers, thumbOf(state.canvases[0]));
     previewGrid.dataset.render = 'done';
   }, RENDER_DELAY_MS);
+}
+
+function drawnRoles(): string[] {
+  return roleOrder((state.canvases[state.selected] as HTMLCanvasElement | undefined) === undefined ? {} : boxesOf(state.canvases[state.selected]) ?? {});
 }
 
 function showForm(): void {
@@ -121,6 +130,7 @@ function showForm(): void {
     restyleAll: (edit) => { state.fliers = withDocs(state.fliers, docsOf().map(edit)); refreshPreviews(); },
     remove: () => { if (state.fliers.length > 1) { state.fliers.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
   });
+  sortTextFields(formBox, drawnRoles());
 }
 
 async function upload(kind: UploadKind, file: File): Promise<void> {
@@ -160,6 +170,12 @@ function pick(index: number): void {
 function enlarge(index: number, from: HTMLElement): void {
   pick(index);
   mini.enlarge(state.canvases[index], index, from);
+}
+
+function editSection(index: number, field: string): void {
+  pick(index);
+  rail.show(PanelKey.Form);
+  document.querySelector<HTMLElement>(`[data-testid="style-${field}"]`)?.click();
 }
 
 function restore(draft: Draft): void {

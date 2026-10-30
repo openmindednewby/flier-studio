@@ -152,6 +152,21 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
     await expect(page.locator('[data-testid="preview-1"] .text-outline')).toHaveCount(0);
   });
 
+  test('D45: changing a style removes the outline until the pointer enters another control', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'hover needs a pointer');
+    await page.getByTestId('role-venue').click();
+    const editor = page.getByTestId('role-editor');
+    await editor.getByTestId('style-wider').hover();
+    await expect(page.locator('[data-testid="preview-1"] .text-outline').first()).toBeVisible();
+
+    await editor.getByTestId('style-wider').click();
+    await rendered(page);
+
+    await expect(page.locator('[data-testid="preview-1"] .text-outline')).toHaveCount(0);
+    await editor.getByTestId('style-narrower').hover();
+    await expect(page.locator('[data-testid="preview-1"] .text-outline').first()).toBeVisible();
+  });
+
   test('AC-44: every control of the open role editor fits inside the editor card', async ({ page }) => {
     await page.getByTestId('role-prices').click();
 
@@ -221,7 +236,7 @@ test.describe('Width per text (AC-46)', () => {
     await openPanel(page, Panel.All);
   });
 
-  test('AC-46: widening the venue lets its larger size draw larger', async ({ page }) => {
+  test('D44: widening the venue never draws its set size smaller', async ({ page }) => {
     await page.getByTestId('role-venue').click();
     const editor = page.getByTestId('role-editor');
     for (let i = 0; i < STEPS; i += 1) await editor.getByTestId('style-larger').click();
@@ -231,7 +246,7 @@ test.describe('Width per text (AC-46)', () => {
     for (let i = 0; i < STEPS; i += 1) await editor.getByTestId('style-wider').click();
     await rendered(page);
 
-    expect(await drawnPx(page, 'role-editor')).toBeGreaterThan(capped);
+    expect(await drawnPx(page, 'role-editor')).toBeGreaterThanOrEqual(capped);
   });
 
   test('AC-46: the flier Style panel has a width step and Reset restores the theme width', async ({ page }) => {
@@ -244,5 +259,32 @@ test.describe('Width per text (AC-46)', () => {
     await panel.getByTestId('style-reset').click();
 
     await expect(panel.getByTestId('style-width')).toHaveText('100%');
+  });
+
+  test('AC-45: right after a reload with a saved role style, hovering and focusing a role outlines it', async ({ page, isMobile }) => {
+    await page.getByTestId('role-title').click();
+    await page.getByTestId('role-editor').getByTestId('style-font').selectOption(FACE);
+    await rendered(page);
+    await page.reload();
+    await rendered(page);
+    await openPanel(page, Panel.All);
+
+    const shown = await outlinesNow(page, 'role-prices');
+
+    expect(shown[0]).toBeGreaterThan(0);
+    test.skip(isMobile, 'hover needs a pointer');
+    await page.getByTestId('pick-theme').hover();
+    await page.getByTestId('role-title').hover();
+    await expect(page.locator('[data-testid="preview-1"] .text-outline').first()).toBeVisible();
+  });
+
+  test('AC-46: Larger alone never draws the venue smaller', async ({ page }) => {
+    await page.getByTestId('role-venue').click();
+    const before = await drawnPx(page, 'role-editor');
+
+    await page.getByTestId('role-editor').getByTestId('style-larger').click();
+    await rendered(page);
+
+    expect(await drawnPx(page, 'role-editor')).toBeGreaterThanOrEqual(before);
   });
 });

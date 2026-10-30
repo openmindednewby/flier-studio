@@ -1,6 +1,7 @@
+import { roleOf } from '@dloizides/poster-render';
 import { describe, expect, it } from 'vitest';
 import { FM } from '../i18n/fm';
-import { FORM_GROUPS, LEAD_ROW, groupedControls } from './formGroups';
+import { FORM_GROUPS, LEAD_ROW, groupedControls, textFieldsInFlierOrder } from './formGroups';
 
 describe('groupedControls', () => {
   it('across the lead row and the three groups, keeps every form control exactly once', () => {
@@ -34,5 +35,23 @@ describe('FORM_GROUPS', () => {
     const layoutRow = FORM_GROUPS.flatMap((g) => g.rows).find((row) => row.includes('layout'));
 
     expect(layoutRow).toEqual(['layout']);
+  });
+});
+
+describe('textFieldsInFlierOrder', () => {
+  it('with footer drawn above venue, lists footer then venue first', () => {
+    const drawn = [roleOf('title'), roleOf('footer'), roleOf('venue.0')];
+
+    const order = textFieldsInFlierOrder(drawn);
+
+    expect(order.slice(0, 2)).toEqual(['footer', 'venue']);
+  });
+
+  it('with nothing drawn, keeps the form order', () => {
+    const drawn: string[] = [];
+
+    const order = textFieldsInFlierOrder(drawn);
+
+    expect(order).toEqual(FORM_GROUPS[2].rows.flat());
   });
 });

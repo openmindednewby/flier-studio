@@ -1,11 +1,7 @@
 import { LineTieKind, sameSize, sameWidth, type FlierDoc, type LineKey, type LineStyle } from '@dloizides/poster-render';
 
 const SIZE_STEP = 0.05;
-const MIN_SCALE = 0.25;
-const MAX_SCALE = 3;
 const HUNDRED = 100;
-const MIN_WIDTH = 0.5;
-const MAX_WIDTH = 1.5;
 const VENUE_LINES = 3;
 const INCLUDES_LINES = 6;
 const SCHEDULE_ROWS = 6;
@@ -57,15 +53,17 @@ export function resetLines(doc: FlierDoc, keys: readonly LineKey[]): FlierDoc {
 
 export const scaleOf = (doc: FlierDoc, key: LineKey): number => styleOf(doc, key).sizeScale ?? 1;
 
-/** Moves the size of the lines `steps` steps of 5%, kept inside 25%..300%; 100% drops the override. */
+const stepped = (from: number, steps: number): number => Math.max(SIZE_STEP, Math.round((from + steps * SIZE_STEP) * HUNDRED) / HUNDRED);
+
+/** Moves the size of the lines `steps` steps of 5%, with no ceiling and never below one step; 100% drops the override. */
 export function stepSize(doc: FlierDoc, keys: readonly LineKey[], steps: number): FlierDoc {
-  const next = Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.round((scaleOf(doc, keys[0]) + steps * SIZE_STEP) * HUNDRED) / HUNDRED));
+  const next = stepped(scaleOf(doc, keys[0]), steps);
   return restyle(doc, keys, { sizeScale: next === 1 ? undefined : next });
 }
 
-/** Moves the width the lines may fill `steps` steps of 5%, kept inside 50%..150%; 100% drops the override. */
+/** Moves the width the lines may fill `steps` steps of 5%, no ceiling, never below one step; 100% drops it. */
 export function stepWidth(doc: FlierDoc, keys: readonly LineKey[], steps: number): FlierDoc {
-  const next = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, Math.round(((styleOf(doc, keys[0]).widthScale ?? 1) + steps * SIZE_STEP) * HUNDRED) / HUNDRED));
+  const next = stepped(styleOf(doc, keys[0]).widthScale ?? 1, steps);
   return restyle(doc, keys, { widthScale: next === 1 ? undefined : next });
 }
 

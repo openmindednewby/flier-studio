@@ -6,6 +6,7 @@ import { fontsReady, type FontLoader } from './fonts';
 import { amountBoxes } from './amountBoxes';
 import { afterRender, rememberBoxes } from './textOutline';
 import { recordingCanvas } from './textRuns';
+import { fieldUnder, trackSections } from './posterSections';
 
 export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
   await fontsReady(fonts);
@@ -32,19 +33,28 @@ const DOUBLE_TAP_MS = 300;
 const nextTask = (): Promise<void> => new Promise((resolve) => { setTimeout(resolve, 0); });
 
 function selectable(trim: HTMLElement, i: number, view: PreviewView): HTMLElement {
-  const tap = { last: 0 };
-  trim.addEventListener('click', () => view.select(i));
+  const tap = { last: 0, timer: 0 };
+  const canvas = trim.querySelector('canvas');
+  if (canvas !== null) trackSections(trim, canvas);
+  trim.addEventListener('click', (e) => {
+    window.clearTimeout(tap.timer);
+    view.select(i);
+    const field = canvas === null ? undefined : fieldUnder(canvas, e);
+    if (field !== undefined && e.detail < 2) tap.timer = window.setTimeout(() => view.edit?.(i, field), DOUBLE_TAP_MS);
+  });
   trim.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     e.preventDefault();
     view.select(i);
   });
-  trim.addEventListener('dblclick', () => view.enlarge(i, trim));
+  trim.addEventListener('dblclick', () => { window.clearTimeout(tap.timer); view.enlarge(i, trim); });
   trim.addEventListener('pointerup', (e) => {
     if (e.pointerType !== 'touch') return;
     const twice = e.timeStamp - tap.last < DOUBLE_TAP_MS;
     tap.last = twice ? 0 : e.timeStamp;
-    if (twice) view.enlarge(i, trim);
+    if (!twice) return;
+    window.clearTimeout(tap.timer);
+    view.enlarge(i, trim);
   });
   return trim;
 }
@@ -61,6 +71,7 @@ export interface PreviewView {
   selected: number;
   select: (i: number) => void;
   enlarge: (i: number, from: HTMLElement) => void;
+  edit?: (i: number, field: string) => void;
   fonts?: FontLoader;
   pause?: () => Promise<void>;
   current?: () => boolean;

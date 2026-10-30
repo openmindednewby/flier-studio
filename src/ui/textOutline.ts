@@ -15,7 +15,8 @@ const STROKE = 2;
 const DASH: number[] = [6, 4];
 const LINE_HEIGHT = 1.2;
 const BOXES = new WeakMap<HTMLCanvasElement, Readonly<Record<LineKey, Rect | undefined>>>();
-const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0 };
+const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0, quiet: false, over: '', at: '', hushedAt: '', downAt: '' };
+const CONTROL = 'button, select, input, .role-row';
 
 const px = (n: number): string => `${String(Math.round(n))}px`;
 const figures = (): HTMLElement[] => [...document.querySelectorAll<HTMLElement>('figure[data-testid^="preview-"]')];
@@ -24,6 +25,11 @@ const selectedFigure = (): HTMLElement | undefined => document.querySelector<HTM
 /** Keeps the line boxes poster-render reported for a preview canvas. */
 export function rememberBoxes(canvas: HTMLCanvasElement, boxes: Readonly<Record<LineKey, Rect | undefined>>): void {
   BOXES.set(canvas, boxes);
+}
+
+/** The line boxes of a preview canvas, if it has been drawn. */
+export function boxesOf(canvas: HTMLCanvasElement): Readonly<Record<LineKey, Rect | undefined>> | undefined {
+  return BOXES.get(canvas);
 }
 
 function found(figure: HTMLElement | undefined, lines: readonly LineKey[]): { canvas: HTMLCanvasElement; rects: Rect[] } | null {
@@ -92,8 +98,48 @@ function peek(lines: readonly LineKey[], name: string): void {
 
 const removeAll = (): void => { document.querySelectorAll('.text-outline, .outline-peek').forEach((n) => n.remove()); };
 
+/** D45: hides the outline until the pointer enters a control, a row or a poster section again. */
+export function hushOutline(): void {
+  now.quiet = true;
+  now.hushedAt = now.at;
+  now.lines = [];
+  removeAll();
+}
+
+/** Lets the outline show again. */
+export function wakeOutline(): void {
+  now.quiet = false;
+}
+
+const spot = (e: PointerEvent): string => `${String(e.clientX)},${String(e.clientY)}`;
+
+/** D45: wakes the outline for a pointer that has moved since the hush; a redraw under a still pointer does not. */
+export function wakeOnMove(e: PointerEvent): boolean {
+  if (now.quiet && spot(e) === now.hushedAt) return false;
+  wakeOutline();
+  return true;
+}
+
+const shiftedUnder = (e: PointerEvent): boolean => now.downAt !== '' && spot(e) === now.downAt;
+
+const track = (): void => {
+  if (now.at !== '') return;
+  now.at = '-';
+  document.addEventListener('pointermove', (e) => { now.at = spot(e); if (now.at !== now.downAt) now.downAt = ''; }, { capture: true, passive: true });
+  document.addEventListener('pointerdown', (e) => { now.at = spot(e); now.downAt = now.at; }, { capture: true, passive: true });
+};
+
+/** Outlines the lines on the one flier holding `node`. */
+export function outlineOnly(node: HTMLElement, lines: readonly LineKey[]): void {
+  if (now.quiet) return;
+  removeAll();
+  const figure = node.closest<HTMLElement>('figure');
+  if (figure !== null) outlineFigure(figure, lines);
+}
+
 /** Outlines the lines on every preview (and a peek strip under 1024 px); never drawn on the canvas. */
 export function showOutline(lines: readonly LineKey[], name: string): void {
+  if (now.quiet) return;
   removeAll();
   now.lines = lines;
   now.name = name;
@@ -124,11 +170,22 @@ export function afterRender(): void {
 /** Outlines the lines while the pointer is over the node or focus is inside it; a tap holds it 2 s. */
 export function outlineOn(node: HTMLElement, lines: readonly LineKey[], name: string): void {
   const show = (): void => showOutline(lines, name);
-  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') show(); });
-  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') clearOutline(); });
+  track();
+  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && !shiftedUnder(e) && wakeOnMove(e)) show(); });
+  node.addEventListener('pointerover', (e) => {
+    const to = e.target instanceof Element ? e.target.closest(CONTROL) : null;
+    const id = to?.getAttribute('data-testid') ?? '';
+    if (to === null) now.over = '';
+    if (e.pointerType !== 'mouse' || to === null || id === now.over || shiftedUnder(e)) return;
+    now.over = id;
+    if (wakeOnMove(e)) show();
+  });
+  node.addEventListener('keydown', (e) => { if (e.key === 'Tab') wakeOutline(); });
+  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && !shiftedUnder(e)) { now.over = ''; clearOutline(); } });
   node.addEventListener('focusin', show);
   node.addEventListener('focusout', (e) => { if (!node.contains(e.relatedTarget as Node | null)) clearOutline(); });
   node.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'touch' && node.matches('.style-panel')) hushOutline();
     if (e.pointerType !== 'touch') return;
     now.until = Date.now() + TOUCH_MS;
     show();

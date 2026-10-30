@@ -53,7 +53,10 @@ dialog.confirm p { margin: 0 0 16px; }
 .style-field select { width: 100%; min-height: 44px; }
 .check-row { display: flex; align-items: center; gap: 10px; min-height: 44px; }
 .check-row { cursor: pointer; font-size: 0.85rem; font-weight: 600; }
-.check-row input[type="checkbox"] { width: 20px; height: 20px; min-width: 0; min-height: 0; padding: 0; margin: 0; flex: none; accent-color: var(--brand-fill); }
+.check-row input[type="checkbox"] { appearance: none; position: relative; display: grid; place-items: center; width: var(--hit); height: var(--hit); min-width: 0; min-height: 0; padding: 0; margin: 0 -12px; flex: none; border: 0; background: linear-gradient(Canvas, Canvas) center / 16px 16px no-repeat, linear-gradient(currentColor, currentColor) center / 20px 20px no-repeat; border-radius: 6px; cursor: pointer; }
+.check-row input[type="checkbox"]:checked { background: linear-gradient(var(--brand-fill), var(--brand-fill)) center / 20px 20px no-repeat; }
+.check-row input[type="checkbox"]:checked::after { content: "¹3"; color: Canvas; font-size: 14px; font-weight: 700; line-height: 1; }
+.check-row input[type="checkbox"]:focus-visible { outline: 2px solid var(--brand-fill); outline-offset: -8px; }
 .style-step { display: grid; grid-template-columns: 44px minmax(52px, 1fr) 44px; gap: 4px; align-items: center; }
 .style-step button { width: 44px; min-height: 44px; padding: 0; }
 .style-step output { min-width: 52px; text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }

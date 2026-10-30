@@ -1,8 +1,10 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { Panel, openPanel } from './panel';
 
 const WITHIN_MS = 100;
 const STEPS = 40;
 const EDGE = 0.02;
+const SLACK = 6;
 
 interface Spot { x: number; y: number; section: string }
 
@@ -83,5 +85,20 @@ test.describe('Poster sections: hover highlights (AC-47), click edits (AC-48)', 
 
     await expect(page.getByTestId('mini-sheet')).toBeVisible();
     await expect(page.getByTestId('mini-sheet')).toHaveAttribute('aria-label', 'Flier 2 full size');
+  });
+  test.fixme('AC-45: with the Venue editor open, the outline sits on the venue line of the flier', async ({ page }) => {
+    await openPanel(page, Panel.All);
+    await page.getByTestId('role-venue').click();
+
+    const boxes = await page.getByTestId('preview-1').locator('.text-outline').evaluateAll((all) => all.map((b) => {
+      const r = b.getBoundingClientRect();
+      return { left: r.left + scrollX, right: r.right + scrollX, top: r.top + scrollY, bottom: r.bottom + scrollY };
+    }));
+
+    const spot = await scan(page, 1, (s) => s === 'venue');
+    const at = await page.evaluate(() => ({ x: scrollX, y: scrollY }));
+    const venue = { x: spot.x + at.x, y: spot.y + at.y };
+    const holds = boxes.some((b) => venue.x >= b.left - SLACK && venue.x <= b.right + SLACK && venue.y >= b.top - SLACK && venue.y <= b.bottom + SLACK);
+    expect(holds, `venue line at ${String(Math.round(venue.y))}, outlines at ${boxes.map((b) => Math.round(b.top)).join(',')}`).toBe(true);
   });
 });

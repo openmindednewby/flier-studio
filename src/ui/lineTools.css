@@ -88,6 +88,6 @@ dialog.confirm p { margin: 0 0 16px; }
 .outline-peek strong, .outline-peek small { display: block; }
 .outline-peek canvas { display: block; max-width: 55%; height: auto; }
 .section-order { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.order-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px 44px; gap: 6px; align-items: center; min-height: 44px; padding-left: 12px; }
-.order-row button { width: 44px; min-height: 44px; padding: 0; }
+.order-row { display: grid; grid-template-columns: minmax(0, 1fr) 46px 46px; gap: 6px; align-items: center; min-height: 44px; padding-left: 12px; }
+.order-row button { width: 46px; min-height: 46px; padding: 0; }
 .order-name { font-weight: 600; overflow-wrap: anywhere; }

@@ -5,7 +5,7 @@ import { ROLE_LINES, TEXT_ROLES, type RoleStyles } from '../form/textRoles';
 import { FM } from '../i18n/fm';
 import { el, textButton } from './dom';
 import { styleFields, type StyleHost, type StyleTarget } from './stylePanel';
-import { outlineOn } from './textOutline';
+import { hushOutline, outlineOn } from './textOutline';
 
 export interface RoleActions {
   roleStyles(): RoleStyles;
@@ -37,10 +37,10 @@ function editor(role: TextRole, actions: RoleActions): HTMLElement {
   const scope = { all: true, set: (): void => undefined };
   const draw = (focus: string): void => {
     const fields = styleFields(target, host, (patch, next) => {
-      if (patch !== null) host.apply((d) => restyle(d, target.lines, patch), true);
+      if (patch !== null) { hushOutline(); host.apply((d) => restyle(d, target.lines, patch), true); }
       draw(next);
     }, scope);
-    const reset = textButton(FM('style.reset'), 'style-reset', () => { host.apply((d) => resetLines(d, target.lines), true); draw('style-reset'); });
+    const reset = textButton(FM('style.reset'), 'style-reset', () => { hushOutline(); host.apply((d) => resetLines(d, target.lines), true); draw('style-reset'); });
     box.replaceChildren(...fields.slice(1, -1), el('div', { class: 'style-foot' }, [reset, el('small', { class: 'muted', text: FM('roles.keeps') })]));
     if (focus !== '') box.querySelector<HTMLElement>(`[data-testid="${focus}"]`)?.focus();
   };

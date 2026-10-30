@@ -15,7 +15,8 @@ const STROKE = 2;
 const DASH: number[] = [6, 4];
 const LINE_HEIGHT = 1.2;
 const BOXES = new WeakMap<HTMLCanvasElement, Readonly<Record<LineKey, Rect | undefined>>>();
-const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0 };
+const now = { lines: [] as readonly LineKey[], name: '', until: 0, timer: 0, quiet: false, over: '' };
+const CONTROL = 'button, select, input, .role-row';
 
 const px = (n: number): string => `${String(Math.round(n))}px`;
 const figures = (): HTMLElement[] => [...document.querySelectorAll<HTMLElement>('figure[data-testid^="preview-"]')];
@@ -97,8 +98,21 @@ function peek(lines: readonly LineKey[], name: string): void {
 
 const removeAll = (): void => { document.querySelectorAll('.text-outline, .outline-peek').forEach((n) => n.remove()); };
 
+/** D45: hides the outline until the pointer enters a control, a row or a poster section again. */
+export function hushOutline(): void {
+  now.quiet = true;
+  now.lines = [];
+  removeAll();
+}
+
+/** Lets the outline show again. */
+export function wakeOutline(): void {
+  now.quiet = false;
+}
+
 /** Outlines the lines on the one flier holding `node`. */
 export function outlineOnly(node: HTMLElement, lines: readonly LineKey[]): void {
+  if (now.quiet) return;
   removeAll();
   const figure = node.closest<HTMLElement>('figure');
   if (figure !== null) outlineFigure(figure, lines);
@@ -106,6 +120,7 @@ export function outlineOnly(node: HTMLElement, lines: readonly LineKey[]): void 
 
 /** Outlines the lines on every preview (and a peek strip under 1024 px); never drawn on the canvas. */
 export function showOutline(lines: readonly LineKey[], name: string): void {
+  if (now.quiet) return;
   removeAll();
   now.lines = lines;
   now.name = name;
@@ -136,11 +151,22 @@ export function afterRender(): void {
 /** Outlines the lines while the pointer is over the node or focus is inside it; a tap holds it 2 s. */
 export function outlineOn(node: HTMLElement, lines: readonly LineKey[], name: string): void {
   const show = (): void => showOutline(lines, name);
-  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') show(); });
-  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') clearOutline(); });
+  node.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { wakeOutline(); show(); } });
+  node.addEventListener('pointerover', (e) => {
+    const to = e.target instanceof Element ? e.target.closest(CONTROL) : null;
+    const id = to?.getAttribute('data-testid') ?? '';
+    if (to === null) now.over = '';
+    if (e.pointerType !== 'mouse' || to === null || id === now.over) return;
+    now.over = id;
+    wakeOutline();
+    show();
+  });
+  node.addEventListener('keydown', (e) => { if (e.key === 'Tab') wakeOutline(); });
+  node.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { now.over = ''; clearOutline(); } });
   node.addEventListener('focusin', show);
   node.addEventListener('focusout', (e) => { if (!node.contains(e.relatedTarget as Node | null)) clearOutline(); });
   node.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'touch' && node.matches('.style-panel')) hushOutline();
     if (e.pointerType !== 'touch') return;
     now.until = Date.now() + TOUCH_MS;
     show();

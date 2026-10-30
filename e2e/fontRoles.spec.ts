@@ -152,6 +152,21 @@ test.describe('Fonts by text role (AC-44) and highlight on hover/focus (AC-45)',
     await expect(page.locator('[data-testid="preview-1"] .text-outline')).toHaveCount(0);
   });
 
+  test('D45: changing a style removes the outline until the pointer enters another control', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'hover needs a pointer');
+    await page.getByTestId('role-venue').click();
+    const editor = page.getByTestId('role-editor');
+    await editor.getByTestId('style-wider').hover();
+    await expect(page.locator('[data-testid="preview-1"] .text-outline').first()).toBeVisible();
+
+    await editor.getByTestId('style-wider').click();
+    await rendered(page);
+
+    await expect(page.locator('[data-testid="preview-1"] .text-outline')).toHaveCount(0);
+    await editor.getByTestId('style-narrower').hover();
+    await expect(page.locator('[data-testid="preview-1"] .text-outline').first()).toBeVisible();
+  });
+
   test('AC-44: every control of the open role editor fits inside the editor card', async ({ page }) => {
     await page.getByTestId('role-prices').click();
 

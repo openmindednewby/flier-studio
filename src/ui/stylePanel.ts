@@ -5,7 +5,7 @@ import { el, textButton } from './dom';
 import { STYLE_FONTS } from './styleFonts';
 import { styleSegment, styleSelect, styleSwatches } from './styleControls';
 import { neverShrinks } from './sizeGuard';
-import { clearOutline, drawnText, outlineOn } from './textOutline';
+import { clearOutline, drawnText, hushOutline, outlineOn } from './textOutline';
 
 export interface StyleHost {
   doc(): FlierDoc;
@@ -120,12 +120,12 @@ export function openStylePanel(target: StyleTarget, host: StyleHost, opener: HTM
   const close = (): void => { clearOutline(); panel.remove(); opener.setAttribute('aria-expanded', 'false'); opener.focus(); };
   const draw = (focus: string): void => {
     const foot = el('div', { class: 'style-foot' }, [
-      textButton(FM('style.reset'), 'style-reset', () => { host.apply((d) => resetLines(d, target.lines), scope.all); draw('style-reset'); }),
+      textButton(FM('style.reset'), 'style-reset', () => { hushOutline(); host.apply((d) => resetLines(d, target.lines), scope.all); draw('style-reset'); }),
       el('small', { class: 'muted', text: FM('style.keeps') }),
       textButton(FM('style.done'), 'style-done', close, 'primary'),
     ]);
     panel.replaceChildren(el('h4', { text: FM('style.title', target.name) }), ...styleFields(target, host, (patch, next) => {
-      if (patch !== null) host.apply((d) => restyle(d, target.lines, patch), scope.all);
+      if (patch !== null) { hushOutline(); host.apply((d) => restyle(d, target.lines, patch), scope.all); }
       draw(next);
     }, scope), foot);
     panel.querySelector<HTMLElement>(`[data-testid="${focus}"]`)?.focus();

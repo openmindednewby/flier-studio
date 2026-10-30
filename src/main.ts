@@ -20,6 +20,8 @@ import { asksFirst, firstShown, presetFliers, presetStatusKey, savesDraftFirst }
 import { importShared } from './share/importShared';
 import { decodeShare, shareFragmentOf } from './share/shareCodec';
 import { ConfigStore } from './store/configStore';
+import { RoleStyleStore } from './store/roleStyleStore';
+import { withRoleStyles } from './form/textRoles';
 import { ImageStore } from './store/imageStore';
 import { FlierStore } from './store/flierStore';
 import { cloneFlier, toDoc, toThemed } from './theme/flierTheme';
@@ -48,7 +50,8 @@ const DOWNLOAD_GAP_MS = 300;
 const DESKTOP_MIN = 1024;
 
 const working = new FlierStore();
-const state = { fliers: working.load() ?? kizombaPreset().map((d) => toThemed(d)), selected: 0, scope: EditScope.This, canvases: [] as HTMLCanvasElement[] };
+const roleStore = new RoleStyleStore();
+const state = { fliers: working.load() ?? kizombaPreset().map((d) => toThemed(d)), selected: 0, scope: EditScope.This, canvases: [] as HTMLCanvasElement[], roles: roleStore.load() };
 const docsOf = (): FlierDoc[] => state.fliers.map(toDoc);
 const assets = new AssetBook(new ImageStore());
 const configs = new ConfigStore();
@@ -72,6 +75,8 @@ const allFliers = allFliersCard({
   setSetting: (id, value) => setSetting(id, value),
   openGenerate: () => rail.show(PanelKey.Ai, true),
   replace: (ticked, replacement) => void replaceText(ticked, replacement),
+  roleStyles: () => state.roles,
+  setRoleStyles: (roles) => { state.roles = roles; roleStore.save(roles); refreshPreviews(); },
 }, previewGrid);
 const draftStore = new DraftStore();
 const drafts = draftsPanel(draftActions(draftStore, { restore: (draft) => restore(draft), refresh: () => showDrafts(), failed: (message) => { status.textContent = message; } }));
@@ -91,7 +96,7 @@ let timer: number | undefined;
 const nextRender = renderGate();
 function refreshPreviews(): void {
   working.save(state.fliers);
-  const docs = docsOf();
+  const docs = docsOf().map((d) => withRoleStyles(d, state.roles));
   window.clearTimeout(timer);
   const current = nextRender();
   previewGrid.dataset.render = 'pending';

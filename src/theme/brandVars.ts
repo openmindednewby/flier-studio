@@ -13,7 +13,7 @@ export function brandCssVars(): string {
   const { dark } = FLIER_TOKENS;
   const still = durations.instant;
   return [
-    `:root { --brand-fill: ${FLIER_TOKENS.primary}; --on-brand-fill: ${FLIER_TOKENS.onBrand}; --focus-ring: ${FLIER_TOKENS.primary}; --mark-ink: ${FLIER_TOKENS.primary}; --mark-halo: ${FLIER_TOKENS.onBrand}; ${motionVars(durations.fast, durations.base, durations.slow)} }`,
+    `:root { --brand-fill: ${FLIER_TOKENS.primary}; --on-brand-fill: ${FLIER_TOKENS.onBrand}; --focus-ring: ${FLIER_TOKENS.primary}; --mark-ink: ${FLIER_TOKENS.primary}; --mark-halo: ${FLIER_TOKENS.onBrand}; --outline-ink: ${FLIER_TOKENS.light.text}; --outline-halo: ${FLIER_TOKENS.light.surface}; ${motionVars(durations.fast, durations.base, durations.slow)} }`,
     `:root[data-theme="dark"] { --brand-fill: ${dark.brandFill ?? FLIER_TOKENS.primary}; --on-brand-fill: ${dark.onBrandFill ?? FLIER_TOKENS.onBrand}; --focus-ring: ${dark.focusRing ?? FLIER_TOKENS.primary}; }`,
     `@media (prefers-reduced-motion: reduce) { :root { ${motionVars(still, still, still)} } }`,
   ].join('\n');

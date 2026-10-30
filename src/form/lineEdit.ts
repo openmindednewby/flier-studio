@@ -4,6 +4,8 @@ const SIZE_STEP = 0.05;
 const MIN_SCALE = 0.25;
 const MAX_SCALE = 3;
 const HUNDRED = 100;
+const MIN_WIDTH = 0.5;
+const MAX_WIDTH = 1.5;
 const VENUE_LINES = 3;
 const INCLUDES_LINES = 6;
 const SCHEDULE_ROWS = 6;
@@ -59,6 +61,12 @@ export const scaleOf = (doc: FlierDoc, key: LineKey): number => styleOf(doc, key
 export function stepSize(doc: FlierDoc, keys: readonly LineKey[], steps: number): FlierDoc {
   const next = Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.round((scaleOf(doc, keys[0]) + steps * SIZE_STEP) * HUNDRED) / HUNDRED));
   return restyle(doc, keys, { sizeScale: next === 1 ? undefined : next });
+}
+
+/** Moves the width the lines may fill `steps` steps of 5%, kept inside 50%..150%; 100% drops the override. */
+export function stepWidth(doc: FlierDoc, keys: readonly LineKey[], steps: number): FlierDoc {
+  const next = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, Math.round(((styleOf(doc, keys[0]).widthScale ?? 1) + steps * SIZE_STEP) * HUNDRED) / HUNDRED));
+  return restyle(doc, keys, { widthScale: next === 1 ? undefined : next });
 }
 
 export const percent = (scale: number): string => `${String(Math.round(scale * HUNDRED))}%`;

@@ -7,9 +7,10 @@ import { FM } from '../i18n/fm';
 import { foldableCard } from './collapsible';
 import { button, el, labelled } from './dom';
 import { replacePanel, type ReplaceActions } from './replacePanel';
+import { roleList, type RoleActions } from './roleList';
 import { themePicker, type ThemeActions } from './themeControls';
 
-export interface AllFliersActions extends ThemeActions {
+export interface AllFliersActions extends ThemeActions, RoleActions {
   scope(): EditScope;
   setScope(scope: EditScope): void;
   add(): void;
@@ -66,6 +67,7 @@ export function allFliersCard(actions: AllFliersActions, grid: HTMLElement): All
   theme.pick.setAttribute('aria-label', FM('form.theme'));
   theme.label.firstElementChild?.after(what('allFliers.themeWhat'));
   const rows = SETTINGS.map((spec) => settingRow(spec, actions));
+  const roles = roleList(actions);
   const custom = el('div', { class: 'setting setting-custom', 'data-testid': 'all-custom-layouts' }, [el('span', { text: FM('allFliers.custom') }), what('allFliers.customWhat')]);
   const shared = sharedText(actions);
   const replace = replacePanel(grid, { texts: () => actions.docs().map(blocksToText), replace: actions.replace });
@@ -73,7 +75,7 @@ export function allFliersCard(actions: AllFliersActions, grid: HTMLElement): All
   const card = foldableCard('all-fliers', FM('allFliers.heading'), [
     note,
     el('div', { class: 'registry', 'data-testid': 'all-fliers-row', 'data-registry': 'settings' }, [
-      el('h3', { class: 'setting-head', text: FM('allFliers.lookHeading') }), theme.label, ...rows.map((r) => r.row), custom, aiLine(actions), ...shared.nodes,
+      el('h3', { class: 'setting-head', text: FM('allFliers.lookHeading') }), theme.label, ...rows.map((r) => r.row), ...roles.nodes, custom, aiLine(actions), ...shared.nodes,
     ]),
     replace.node,
     el('div', { class: 'row' }, [button('form.add', 'add-flier', actions.add)]),
@@ -83,6 +85,7 @@ export function allFliersCard(actions: AllFliersActions, grid: HTMLElement): All
     note.textContent = FM('allFliers.note', String(count));
     rows.forEach((r) => r.fill(actions.docs()));
     shared.update(count);
+    roles.update();
     replace.refresh();
   };
   return { card, update };

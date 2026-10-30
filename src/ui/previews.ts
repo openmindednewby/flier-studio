@@ -3,6 +3,8 @@ import { listHint } from '../form/listHint';
 import { FM } from '../i18n/fm';
 import { button, downloadBlob, el, textButton } from './dom';
 import { fontsReady, type FontLoader } from './fonts';
+import { amountBoxes } from './amountBoxes';
+import { afterRender, rememberBoxes } from './textOutline';
 import { recordingCanvas } from './textRuns';
 
 export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
@@ -12,7 +14,7 @@ export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, i
 
 function draw(doc: FlierDoc, assets: PosterAssets, canvas: HTMLCanvasElement): string | null {
   try {
-    render(doc, assets, recordingCanvas(canvas));
+    rememberBoxes(canvas, amountBoxes(canvas, render(doc, assets, recordingCanvas(canvas)).lineBoxes));
     return null;
   } catch (e) {
     return e instanceof FlierDocError ? e.errors.join('; ') : String(e);
@@ -91,5 +93,6 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     ]);
   });
   container.replaceChildren(...figures);
+  afterRender();
   return canvases;
 }

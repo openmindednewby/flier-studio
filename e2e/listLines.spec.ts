@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const LIST_FLIER = 4;
 const INTO_TEXT = 0.85;
+const ON_WORDS = 0.15;
 
 interface Drawn { text: string; x: number; y: number }
 
@@ -24,7 +25,7 @@ function recordFillText(): void {
   };
 }
 
-async function listLines(page: Page): Promise<Drawn[]> {
+async function listLines(page: Page, into = INTO_TEXT): Promise<Drawn[]> {
   return page.getByTestId(`preview-${String(LIST_FLIER)}`).locator('.trim canvas').evaluate((canvas: HTMLCanvasElement, into: number) => {
     const all = window.drawnRuns?.get(canvas) ?? [];
     const latest = new Map(all.map((r) => [r.text, r]));
@@ -37,7 +38,7 @@ async function listLines(page: Page): Promise<Drawn[]> {
       const top = run.y - run.size * drop(run.baseline);
       return { text: run.text, x: r.left + (left + run.w * into) * k, y: r.top + (top + run.size / 2) * k };
     });
-  }, INTO_TEXT);
+  }, into);
 }
 
 test.describe('List flier: every drawn line can be pointed at (FLIER-2 "Flier Studio follow-ups")', () => {
@@ -60,5 +61,19 @@ test.describe('List flier: every drawn line can be pointed at (FLIER-2 "Flier St
 
     expect(lines.map((l) => l.text)).toContain('Party pass 10€');
     expect(missed).toEqual([]);
+  });
+
+  test('pointing at the words "Party pass" of every list item selects the Party passes section (D-TPL-2)', async ({ page }) => {
+    await page.getByTestId(`preview-${String(LIST_FLIER)}`).scrollIntoViewIfNeeded();
+    const passes = (await listLines(page, ON_WORDS)).filter((l) => l.text.startsWith('Party pass'));
+    const sections: string[] = [];
+
+    for (const line of passes) {
+      await page.mouse.move(line.x, line.y);
+      sections.push((await page.getByTestId(`preview-${String(LIST_FLIER)}`).locator('.trim').getAttribute('data-section')) ?? '');
+    }
+
+    expect(passes).toHaveLength(3);
+    expect(sections).toEqual(['itemPasses', 'itemPasses', 'itemPasses']);
   });
 });

@@ -6,7 +6,7 @@ import { fontsReady, type FontLoader } from './fonts';
 import { amountBoxes } from './amountBoxes';
 import { afterRender, rememberBoxes } from './textOutline';
 import { recordingCanvas } from './textRuns';
-import { fieldUnder, trackSections } from './posterSections';
+import { fieldUnder, rememberHitBoxes, trackSections } from './posterSections';
 
 export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, index: number, fonts: FontLoader = document.fonts): Promise<void> {
   await fontsReady(fonts);
@@ -15,7 +15,9 @@ export async function downloadCanvas(canvas: HTMLCanvasElement, doc: FlierDoc, i
 
 function draw(doc: FlierDoc, assets: PosterAssets, canvas: HTMLCanvasElement): string | null {
   try {
-    rememberBoxes(canvas, amountBoxes(canvas, render(doc, assets, recordingCanvas(canvas)).lineBoxes));
+    const boxes = render(doc, assets, recordingCanvas(canvas)).lineBoxes;
+    rememberHitBoxes(canvas, boxes);
+    rememberBoxes(canvas, amountBoxes(canvas, boxes));
     return null;
   } catch (e) {
     return e instanceof FlierDocError ? e.errors.join('; ') : String(e);

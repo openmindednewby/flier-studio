@@ -1,8 +1,10 @@
 import type { LineKey, Rect } from '@dloizides/poster-render';
 import { FIELD_LINES } from '../form/lineEdit';
-import { boxesOf, clearOutline, hushOutline, outlineOnly, wakeOnMove } from './textOutline';
+import { clearOutline, hushOutline, outlineOnly, wakeOnMove } from './textOutline';
 
 type Boxes = Readonly<Record<LineKey, Rect | undefined>>;
+
+const HIT_BOXES = new WeakMap<HTMLCanvasElement, Boxes>();
 
 const holds = (r: Rect, x: number, y: number): boolean => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h;
 
@@ -17,9 +19,14 @@ export function fieldOf(line: LineKey | undefined): string | undefined {
   return line === undefined ? undefined : Object.keys(FIELD_LINES).find((k) => FIELD_LINES[k]?.includes(line) === true);
 }
 
+/** D-TPL-2: keeps the whole-line boxes a pointer selects by, apart from the outline boxes. */
+export function rememberHitBoxes(canvas: HTMLCanvasElement, boxes: Boxes): void {
+  HIT_BOXES.set(canvas, boxes);
+}
+
 /** The form field drawn under a pointer on a preview canvas. */
 export function fieldUnder(canvas: HTMLCanvasElement, e: { clientX: number; clientY: number }): string | undefined {
-  const boxes = boxesOf(canvas);
+  const boxes = HIT_BOXES.get(canvas);
   const r = canvas.getBoundingClientRect();
   if (boxes === undefined || r.width === 0) return undefined;
   const k = canvas.width / r.width;

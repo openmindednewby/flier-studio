@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fieldOf, sectionAt } from './posterSections';
+import { fieldOf, fieldUnder, rememberHitBoxes, sectionAt } from './posterSections';
 
 describe('sectionAt', () => {
   it('with a point inside two boxes, returns the smaller box', () => {
@@ -40,5 +40,18 @@ describe('fieldOf', () => {
     const field = fieldOf(undefined);
 
     expect(field).toBeUndefined();
+  });
+});
+
+describe('fieldUnder', () => {
+  it('with the pointer on the words of a party-pass line, returns the party passes field', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1000;
+    canvas.getBoundingClientRect = (): DOMRect => ({ left: 0, top: 0, width: 1000, height: 1000 }) as DOMRect;
+    rememberHitBoxes(canvas, { 'items.2.price': { x: 100, y: 100, w: 300, h: 40 } });
+
+    const field = fieldUnder(canvas, { clientX: 150, clientY: 120 });
+
+    expect(field).toBe('itemPasses');
   });
 });

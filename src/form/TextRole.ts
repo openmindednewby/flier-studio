@@ -11,4 +11,7 @@ export const enum TextRole {
   IncludesHeading = 'includesHeading',
   IncludesItems = 'includesItems',
   Footer = 'footer',
+  ListDates = 'listDates',
+  ListPasses = 'listPasses',
+  ListTimes = 'listTimes',
 }

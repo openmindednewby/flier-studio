@@ -9,21 +9,25 @@ const of = (field: string, suffix = ''): LineKey[] => (FIELD_LINES[field] ?? [])
 export const TEXT_ROLES: readonly TextRole[] = [
   TextRole.Title, TextRole.TitleBottom, TextRole.Script, TextRole.Venue, TextRole.Levels, TextRole.Times,
   TextRole.Prices, TextRole.PriceLabels, TextRole.IncludesHeading, TextRole.IncludesItems, TextRole.Footer,
+  TextRole.ListDates, TextRole.ListPasses, TextRole.ListTimes,
 ];
 
 /** The flier lines each text role draws. */
 export const ROLE_LINES: Readonly<Record<TextRole, readonly LineKey[]>> = {
   [TextRole.Title]: of('title'),
   [TextRole.TitleBottom]: of('titleBottom'),
-  [TextRole.Script]: [...of('script'), ...of('items', '.date')],
+  [TextRole.Script]: of('script'),
   [TextRole.Venue]: of('venue'),
   [TextRole.Levels]: of('schedule', '.label'),
   [TextRole.Times]: of('schedule', '.time'),
-  [TextRole.Prices]: [...of('prices', '.amount'), ...of('items', '.price')],
+  [TextRole.Prices]: of('prices', '.amount'),
   [TextRole.PriceLabels]: of('prices', '.label'),
   [TextRole.IncludesHeading]: of('includesHeading'),
   [TextRole.IncludesItems]: of('includesItems'),
   [TextRole.Footer]: of('footer'),
+  [TextRole.ListDates]: of('items', '.date'),
+  [TextRole.ListPasses]: of('items', '.price'),
+  [TextRole.ListTimes]: (FIELD_LINES.items ?? []).filter((k) => k.includes('.schedule.')),
 };
 
 /** The text roles in the order the flier draws them, top to bottom; roles it does not draw follow in their default order. */

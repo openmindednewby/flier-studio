@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { kizombaPreset } from '../presets/kizomba';
 import { TextRole } from './TextRole';
-import { ROLE_LINES, withRoleStyles } from './textRoles';
+import { ROLE_LINES, TEXT_ROLES, withRoleStyles } from './textRoles';
 
 const doc = kizombaPreset()[0];
 
@@ -36,5 +36,15 @@ describe('withRoleStyles', () => {
     const styled = withRoleStyles(plain, { [TextRole.Footer]: {} });
 
     expect(styled.lineStyles).toBeUndefined();
+  });
+});
+
+describe('ROLE_LINES on the list flier', () => {
+  it('gives list dates, passes and level times their own roles, apart from the date script and prices', () => {
+    const owners = (key: string): TextRole[] => TEXT_ROLES.filter((r) => ROLE_LINES[r].includes(key));
+
+    expect(owners('items.0.date')).toEqual([TextRole.ListDates]);
+    expect(owners('items.0.price')).toEqual([TextRole.ListPasses]);
+    expect(owners('items.2.schedule.1')).toEqual([TextRole.ListTimes]);
   });
 });

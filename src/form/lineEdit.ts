@@ -24,7 +24,7 @@ export const FIELD_LINES: Readonly<Record<string, readonly LineKey[]>> = {
   schedule: rows('schedule', SCHEDULE_ROWS, ['.label', '.time']),
   prices: rows('prices', PRICE_ROWS, ['.amount', '.label']),
   includesItems: rows('includes.items', INCLUDES_LINES),
-  items: rows('items', LIST_ROWS, ['.date', '.price']),
+  items: rows('items', LIST_ROWS, ['.date', '.price', ...Array.from({ length: SCHEDULE_ROWS }, (_, m) => `.schedule.${String(m)}`)]),
 };
 
 type Styles = Record<LineKey, LineStyle | undefined>;

@@ -4,7 +4,7 @@ import type { TemplatesActions } from '../templates/templateActions';
 import type { Template } from '../templates/templateStore';
 import { FM } from '../i18n/fm';
 import { foldableCard } from './collapsible';
-import { el, textButton } from './dom';
+import { el, submitOnEnter, textButton } from './dom';
 import { builtInRow, mineRow } from './templateRow';
 
 export interface TemplatesPanel {
@@ -16,6 +16,7 @@ function saveRow(actions: TemplatesActions): HTMLElement {
   const name = el('input', { type: 'text', 'data-testid': 'templates-save-name', 'aria-label': FM('templates.saveName'), 'aria-description': FM('templates.saveHint'), placeholder: FM('templates.saveHint') });
   const save = textButton(FM('templates.save'), 'templates-save', () => { actions.save(name.value); name.value = ''; });
   save.setAttribute('aria-label', FM('templates.saveLabel'));
+  submitOnEnter(name, () => save.click());
   return el('div', { class: 'template-tools' }, [name, save]);
 }
 

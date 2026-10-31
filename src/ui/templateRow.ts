@@ -3,7 +3,7 @@ import type { TemplatesActions } from '../templates/templateActions';
 import type { Template } from '../templates/templateStore';
 import { FM } from '../i18n/fm';
 import { confirmDelete } from './confirmDialog';
-import { el, textButton } from './dom';
+import { el, submitOnEnter, textButton } from './dom';
 import { THUMB_WIDTH } from './draftRow';
 
 function useButton(name: string, testId: string, onUse: () => void): HTMLButtonElement {
@@ -41,8 +41,8 @@ function renameInPlace(title: HTMLElement, template: Template, n: string, action
     title.hidden = false;
     if (save && input.value.trim() !== template.name) actions.rename(template, input.value);
   };
+  submitOnEnter(input, () => finish(true));
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') finish(true);
     if (e.key === 'Escape') finish(false);
   });
   input.addEventListener('blur', () => finish(true));

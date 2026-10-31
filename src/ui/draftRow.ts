@@ -1,7 +1,7 @@
 import { draftClock, draftName } from '../drafts/draftName';
 import type { Draft } from '../drafts/draftStore';
 import { FM } from '../i18n/fm';
-import { el, textButton } from './dom';
+import { el, submitOnEnter, textButton } from './dom';
 import { iconButton, iconSvg, type IconName } from './icons';
 
 export const THUMB_WIDTH = 36;
@@ -50,8 +50,8 @@ function renameInPlace(title: HTMLElement, draft: Draft, row: RowContext): void 
       row.actions.rename(draft, input.value);
     } else row.focus.now(more);
   };
+  submitOnEnter(input, () => finish(true));
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') finish(true);
     if (e.key === 'Escape') finish(false);
   });
   input.addEventListener('blur', () => finish(true));

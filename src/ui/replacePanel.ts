@@ -3,7 +3,7 @@ import { findMatches, type ReplaceMatch } from '../form/replaceText';
 import { FM } from '../i18n/fm';
 import { plural } from '../i18n/plural';
 import { BADGE_EDGE_PX, BADGE_GAP_PX, badgeSpot, type Box } from './badgePlacement';
-import { el, labelled } from './dom';
+import { el, labelled, submitOnEnter } from './dom';
 import { lineBox, textRunsOf, type LineBox, type TextRun } from './textRuns';
 
 export interface ReplaceActions {
@@ -123,6 +123,7 @@ export function replacePanel(grid: HTMLElement, actions: ReplaceActions): Replac
   word.addEventListener('change', restart);
   withText.addEventListener('input', refresh);
   apply.addEventListener('click', () => actions.replace(matches.filter(isTicked), withText.value));
+  [find, withText].forEach((input) => submitOnEnter(input, () => apply.click()));
   const node = el('div', { class: 'group replace', 'data-testid': 'replace-text' }, [
     el('h3', { text: FM('replace.heading') }),
     el('div', { class: 'row stack-narrow' }, [labelled('replace.find', find), labelled('replace.with', withText)]),

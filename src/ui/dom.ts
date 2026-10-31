@@ -23,6 +23,21 @@ export function textButton(label: string, testId: string, onClick: () => void, e
   return node;
 }
 
+/** ENTER-SUBMIT-1: Enter in a single-line input runs its action, never while composing or with Shift. */
+export function submitOnEnter(input: HTMLInputElement, action: () => void): void {
+  input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.isComposing || e.shiftKey) return;
+    e.preventDefault();
+    action();
+  });
+}
+
+/** Wires Enter in `input` to click `action`, and returns `action`. */
+export function enterClicks<T extends HTMLElement>(input: HTMLInputElement, action: T): T {
+  submitOnEnter(input, () => action.click());
+  return action;
+}
+
 export function labelled(labelKey: string, control: HTMLElement): HTMLLabelElement {
   control.setAttribute('aria-description', FM('hint.field', FM(labelKey)));
   return el('label', {}, [el('span', { text: FM(labelKey) }), control]);

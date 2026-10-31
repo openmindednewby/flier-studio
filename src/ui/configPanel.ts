@@ -1,7 +1,7 @@
 import type { FlierDoc } from '@dloizides/poster-render';
 import { FM } from '../i18n/fm';
 import type { ConfigStore } from '../store/configStore';
-import { button, downloadBlob, el, fileButton, labelled } from './dom';
+import { button, downloadBlob, el, enterClicks, fileButton, labelled } from './dom';
 import { shareRow } from './shareControls';
 
 export interface ConfigActions {
@@ -53,9 +53,9 @@ export function renderConfigPanel(container: HTMLElement, store: ConfigStore, ac
   };
   container.replaceChildren(
     el('h2', { text: FM('config.heading') }),
-    el('div', { class: 'row' }, [labelled('config.name', name), button('config.save', 'config-save', withName((value) => {
+    el('div', { class: 'row' }, [labelled('config.name', name), enterClicks(name, button('config.save', 'config-save', withName((value) => {
       store.save(value, actions.current(), actions.currentThemes()); refresh(value); actions.status(FM('config.saved', value));
-    }), 'primary')]),
+    }), 'primary'))]),
     el('div', { class: 'row' }, [labelled('config.pick', saved)]),
     el('div', { class: 'row' }, [
       button('config.load', 'config-load', load), button('config.rename', 'config-rename', rename),

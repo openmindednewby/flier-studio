@@ -25,9 +25,9 @@ export const ROLE_LINES: Readonly<Record<TextRole, readonly LineKey[]>> = {
   [TextRole.IncludesHeading]: of('includesHeading'),
   [TextRole.IncludesItems]: of('includesItems'),
   [TextRole.Footer]: of('footer'),
-  [TextRole.ListDates]: of('items', '.date'),
-  [TextRole.ListPasses]: of('items', '.price'),
-  [TextRole.ListTimes]: (FIELD_LINES.items ?? []).filter((k) => k.includes('.schedule.')),
+  [TextRole.ListDates]: of('itemDates'),
+  [TextRole.ListPasses]: of('itemPasses'),
+  [TextRole.ListTimes]: of('itemTimes'),
 };
 
 /** The text roles in the order the flier draws them, top to bottom; roles it does not draw follow in their default order. */

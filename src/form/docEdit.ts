@@ -1,4 +1,5 @@
-import type { FlierBlocks, FlierDoc, ListItem, PriceRow, ScheduleRow } from '@dloizides/poster-render';
+import type { FlierBlocks, FlierDoc, PriceRow, ScheduleRow } from '@dloizides/poster-render';
+import { columnsToItems, itemsToColumns, type ListColumns } from './listText';
 
 const SEP = '|';
 export const NL = '\n';
@@ -20,21 +21,7 @@ export function textToPrices(text: string): PriceRow[] | undefined {
   return nonEmpty(lines(text).map((l) => { const [amount, label = ''] = split(l, SEP); return { amount, label }; }));
 }
 
-export function itemsToText(items: readonly ListItem[] | undefined): string {
-  return (items ?? []).map((i) => [i.date, i.price ?? '', i.schedule.map((s) => `${s.label} = ${s.time}`).join(' ; ')].join(' | ')).join(NL);
-}
-
-export function textToItems(text: string): ListItem[] | undefined {
-  return nonEmpty(lines(text).map((l) => {
-    const [date, price = '', rows = ''] = split(l, SEP);
-    const schedule = split(rows, ';').filter((r) => r !== '').map((r) => { const [label, time = ''] = split(r, '='); return { label, time }; });
-    const item: ListItem = { date, schedule };
-    if (price !== '') item.price = price;
-    return item;
-  }));
-}
-
-export interface BlockText {
+export interface BlockText extends ListColumns {
   title: string;
   titleBottom: string;
   script: string;
@@ -44,7 +31,6 @@ export interface BlockText {
   includesHeading: string;
   includesItems: string;
   footer: string;
-  items: string;
 }
 
 export function blocksToText(doc: FlierDoc): BlockText {
@@ -52,7 +38,7 @@ export function blocksToText(doc: FlierDoc): BlockText {
   return {
     title: b.title, titleBottom: b.titleBottom ?? '', script: b.script ?? '', venue: (b.venue ?? []).join(NL),
     schedule: pairsToText(b.schedule), prices: pairsToText(b.prices), includesHeading: b.includes?.heading ?? '',
-    includesItems: (b.includes?.items ?? []).join(NL), footer: b.footer ?? '', items: itemsToText(doc.items),
+    includesItems: (b.includes?.items ?? []).join(NL), footer: b.footer ?? '', ...itemsToColumns(doc.items),
   };
 }
 
@@ -65,7 +51,7 @@ export function applyText(doc: FlierDoc, t: BlockText): FlierDoc {
     includes: items ? { heading: t.includesHeading.trim(), items } : undefined, footer: opt(t.footer), lines: doc.blocks.lines,
   };
   const next: FlierDoc = { ...doc, blocks: JSON.parse(JSON.stringify(blocks)) as FlierBlocks };
-  const list = textToItems(t.items);
+  const list = columnsToItems(t);
   if (list === undefined) delete next.items;
   else next.items = list;
   return next;

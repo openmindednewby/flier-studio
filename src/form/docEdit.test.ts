@@ -1,7 +1,7 @@
 import { kizombaWorkshopDocs, validateFlierDoc } from '@dloizides/poster-render';
 import { describe, expect, it } from 'vitest';
 import { DocPicker, schemaOptions } from './schemaOptions';
-import { applyText, blocksToText, textToItems } from './docEdit';
+import { applyText, blocksToText } from './docEdit';
 
 describe('applyText', () => {
   it('with the text of a preset flier, rebuilds an equal, valid doc', () => {
@@ -20,15 +20,17 @@ describe('applyText', () => {
 
     expect('footer' in rebuilt.blocks).toBe(false);
   });
-});
 
-describe('textToItems', () => {
-  it('with a row "date | price | label = time", returns one list item', () => {
-    const text = 'Sat 5 Dec | 10€ | Level 1 = 20:00';
+  it('with the owner three list rows, rebuilds them unchanged through the three list fields', () => {
+    const doc = { ...kizombaWorkshopDocs[0], items: [
+      { date: 'Sat 31 Oct', price: '20€', schedule: [{ label: 'Beginners', time: '20:00 - 21:00' }] },
+      { date: 'Sat 7 Nov', price: '15€', schedule: [{ label: 'Beginners', time: '20:00 - 21:00' }] },
+      { date: 'Sun 29 Nov', price: '10€', schedule: [{ label: 'Beginners', time: '17:00-18:00' }, { label: 'Intermediates', time: '18:00-19:00' }] },
+    ] };
 
-    const items = textToItems(text);
+    const rebuilt = applyText(doc, blocksToText(doc));
 
-    expect(items).toEqual([{ date: 'Sat 5 Dec', price: '10€', schedule: [{ label: 'Level 1', time: '20:00' }] }]);
+    expect(rebuilt.items).toEqual(doc.items);
   });
 });
 

@@ -7,7 +7,7 @@ export interface FormGroupSpec {
   rows: readonly (readonly string[])[];
 }
 
-const TEXT_FIELDS = ['titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'items'];
+const TEXT_FIELDS = ['titleBottom', 'script', 'includesHeading', 'footer', 'venue', 'schedule', 'prices', 'includesItems', 'itemDates', 'itemPasses', 'itemTimes'];
 
 /** The row above the groups: Title first, so the initial focus lands in the first viewport. */
 export const LEAD_ROW: readonly string[] = ['title'];

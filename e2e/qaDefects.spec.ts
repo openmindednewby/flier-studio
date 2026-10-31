@@ -52,11 +52,11 @@ test('an edited title and an uploaded picture survive a reload without Save', as
   await expect.poll(() => canvasData(page, '1')).toBe(before);
 });
 
-test('the list layout with no rows shows a hint pointing at the List rows field', async ({ page }) => {
+test('the list layout with no rows shows a hint pointing at the Dates field', async ({ page }) => {
   await open(page);
   await page.getByTestId('edit-4').click();
 
-  await page.getByTestId('field-items').fill('');
+  await page.getByTestId('field-itemDates').fill('');
 
   await expect(page.getByTestId('preview-4').getByTestId('list-hint')).toBeVisible();
 });

@@ -3,7 +3,7 @@ import type { BlockText } from './docEdit';
 import { applyMatches, findMatches } from './replaceText';
 
 function texts(schedule: string, footer = ''): BlockText {
-  return { title: '', titleBottom: '', script: '', venue: '', schedule, prices: '', includesHeading: '', includesItems: '', footer, items: '' };
+  return { title: '', titleBottom: '', script: '', venue: '', schedule, prices: '', includesHeading: '', includesItems: '', footer, itemDates: '', itemPasses: '', itemTimes: '' };
 }
 
 describe('findMatches', () => {

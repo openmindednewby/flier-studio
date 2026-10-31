@@ -22,7 +22,7 @@ export interface FormActions {
 
 const PICKERS: readonly DocPicker[] = [DocPicker.Format, DocPicker.Layout, DocPicker.Palette, DocPicker.Fonts, DocPicker.Background];
 const SINGLE: readonly (keyof BlockText)[] = ['title', 'titleBottom', 'script', 'includesHeading'];
-const MULTI: readonly (keyof BlockText)[] = ['venue', 'schedule', 'prices', 'includesItems', 'items', 'footer'];
+const MULTI: readonly (keyof BlockText)[] = ['venue', 'schedule', 'prices', 'includesItems', 'itemDates', 'itemPasses', 'itemTimes', 'footer'];
 const scaleSchema = flierDocSchema.properties?.picture?.properties?.scale;
 const SCALE_STEP = '0.05';
 

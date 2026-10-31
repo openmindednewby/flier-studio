@@ -28,6 +28,14 @@ describe('fieldOf', () => {
     expect(field).toBe('title');
   });
 
+  it.each([['items.0.date', 'itemDates'], ['items.0.price', 'itemPasses'], ['items.2.schedule.1', 'itemTimes']])('with list line %s, returns the %s field', (line, expected) => {
+    const key = line;
+
+    const field = fieldOf(key);
+
+    expect(field).toBe(expected);
+  });
+
   it('with no line, returns undefined', () => {
     const field = fieldOf(undefined);
 

@@ -6,7 +6,7 @@ import { railIcon } from './railIcons';
 
 const RAIL_KEY = 'flier-studio:rail';
 const COLLAPSED = 'collapsed';
-const ORDER: readonly PanelKey[] = [PanelKey.All, PanelKey.Form, PanelKey.Drafts, PanelKey.Ai, PanelKey.Previews, PanelKey.Configs];
+const ORDER: readonly PanelKey[] = [PanelKey.All, PanelKey.Form, PanelKey.Drafts, PanelKey.Templates, PanelKey.Ai, PanelKey.Previews, PanelKey.Configs];
 
 export interface Rail {
   readonly nav: HTMLElement;

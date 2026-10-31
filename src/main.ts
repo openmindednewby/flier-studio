@@ -12,6 +12,7 @@ import type { SettingId } from './form/SettingId';
 import { nextDocs } from './form/sharedFields';
 import { withGenerated } from './form/generatedFlier';
 import { applyTheme, withDocs } from './form/themeScope';
+import { templatesSection } from './templates/templatesSection';
 import { FM } from './i18n/fm';
 import { plural } from './i18n/plural';
 import { kizombaPreset } from './presets/kizomba';
@@ -89,8 +90,13 @@ const autosave = new DraftAutosave(draftStore, {
   full: () => { status.textContent = FM('drafts.full'); },
   failed: (reason) => { status.textContent = FM('drafts.failed', reason); },
 });
+const templates = templatesSection({
+  add: (flier) => { state.fliers.push(cloneFlier(flier)); select(state.fliers.length - 1); return state.fliers.length; },
+  current: () => ({ flier: state.fliers[state.selected], thumb: thumbOf(state.canvases[state.selected]) }),
+  status: (message) => { status.textContent = message; },
+});
 
-const rail = sectionRail({ [PanelKey.All]: allFliers.card, [PanelKey.Form]: formBox, [PanelKey.Drafts]: drafts.card, [PanelKey.Ai]: promptBox, [PanelKey.Configs]: configBox }, previewGrid);
+const rail = sectionRail({ [PanelKey.All]: allFliers.card, [PanelKey.Form]: formBox, [PanelKey.Drafts]: drafts.card, [PanelKey.Templates]: templates, [PanelKey.Ai]: promptBox, [PanelKey.Configs]: configBox }, previewGrid);
 
 function showDrafts(): void {
   draftStore.list().then((list) => drafts.show(list), () => undefined);
@@ -274,7 +280,7 @@ async function start(): Promise<void> {
   app.replaceChildren(
     el('header', {}, [topRow, el('p', { class: 'lead', text: FM('app.lead') }), aiEntry(() => rail.show(PanelKey.Ai, true)), status]),
     rail.nav,
-    el('main', {}, [el('div', { class: 'controls' }, [allFliers.card, formBox, drafts.card, promptBox, configBox]), previews]),
+    el('main', {}, [el('div', { class: 'controls' }, [allFliers.card, formBox, drafts.card, templates, promptBox, configBox]), previews]),
     mini.bar,
     mini.sheet,
   );

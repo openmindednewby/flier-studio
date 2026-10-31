@@ -4,6 +4,7 @@ export const enum Panel {
   All = 'all',
   Form = 'form',
   Drafts = 'drafts',
+  Templates = 'templates',
   Generate = 'ai',
   Configs = 'configs',
 }

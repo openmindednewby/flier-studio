@@ -146,6 +146,10 @@ figcaption.row > * { flex: 1 1 100%; }
 .draft-stamp { display: flex; flex-wrap: wrap; column-gap: 0.4em; }
 .draft-stamp > span { overflow-wrap: anywhere; }
 .drafts button.draft-star { min-width: 5.75em; justify-content: center; }
+.template-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; }
+.template-tools > input, .template-tools > select { flex: 1 1 12em; min-width: 0; }
+.template-tools > button { width: auto; flex: 0 0 auto; }
+.template-gap { display: block; width: 36px; }
 
 header { display: grid; gap: 8px; }
 .top-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }

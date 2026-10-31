@@ -112,7 +112,7 @@ function refreshPreviews(): void {
   previewGrid.dataset.render = 'pending';
   timer = window.setTimeout(async () => {
     const book = await assets.forDocs(docs);
-    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, edit: editSection, current }) : null;
+    const canvases = current() ? await renderPreviews(previewGrid, docs, book, { selected: state.selected, select: pick, enlarge, edit: editSection, remove: removeFlier, current }) : null;
     if (canvases === null) return;
     state.canvases = canvases;
     mini.update(state.canvases[state.selected], state.selected, docs.length);
@@ -127,6 +127,7 @@ function drawnRoles(): string[] {
   return roleOrder((state.canvases[state.selected] as HTMLCanvasElement | undefined) === undefined ? {} : boxesOf(state.canvases[state.selected]) ?? {});
 }
 
+function removeFlier(i: number): void { if (state.fliers.length > 1) { state.fliers.splice(i, 1); select(Math.max(0, i <= state.selected ? state.selected - 1 : state.selected)); } }
 function showForm(): void {
   const docs = docsOf();
   renderForm(formBox, docs[state.selected], [state.selected + 1, docs.length], {
@@ -134,7 +135,7 @@ function showForm(): void {
     upload: (kind, file) => void uploads.track(upload(kind, file)),
     removeBackground: () => void removeBackground(),
     restyleAll: (edit) => { state.fliers = withDocs(state.fliers, docsOf().map(edit)); refreshPreviews(); },
-    remove: () => { if (state.fliers.length > 1) { state.fliers.splice(state.selected, 1); select(Math.max(0, state.selected - 1)); } },
+    remove: () => removeFlier(state.selected),
   });
   sortTextFields(formBox, drawnRoles());
 }

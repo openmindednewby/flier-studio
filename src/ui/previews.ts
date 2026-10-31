@@ -69,11 +69,23 @@ export function markSelected(container: HTMLElement, index: number): void {
   });
 }
 
+/** The Edit, Download and Delete buttons under flier `i` of `count`. */
+export function previewCaption([i, count]: [number, number], view: PreviewView, download: () => void): HTMLElement {
+  const n = String(i + 1);
+  const edit = textButton(FM('previews.edit'), `edit-${n}`, () => view.select(i));
+  edit.setAttribute('aria-label', FM('previews.editLabel', n));
+  const remove = textButton(FM('previews.delete'), `delete-${n}`, () => view.remove?.(i));
+  remove.setAttribute('aria-label', FM('previews.deleteLabel', n));
+  remove.disabled = count < 2;
+  return el('figcaption', { class: 'row' }, [edit, button('previews.download', `download-${n}`, download), remove]);
+}
+
 export interface PreviewView {
   selected: number;
   select: (i: number) => void;
   enlarge: (i: number, from: HTMLElement) => void;
   edit?: (i: number, field: string) => void;
+  remove?: (i: number) => void;
   fonts?: FontLoader;
   pause?: () => Promise<void>;
   current?: () => boolean;
@@ -81,7 +93,7 @@ export interface PreviewView {
 
 /** One live canvas per flier with edit and PNG download; the canvases in order, or null if a newer render took over. */
 export async function renderPreviews(container: HTMLElement, docs: readonly FlierDoc[], assets: PosterAssets, view: PreviewView): Promise<HTMLCanvasElement[] | null> {
-  const { selected, select, fonts = document.fonts, pause = nextTask, current = (): boolean => true } = view;
+  const { selected, fonts = document.fonts, pause = nextTask, current = (): boolean => true } = view;
   await fontsReady(fonts);
   const canvases = docs.map(() => el('canvas', { role: 'img' }));
   const errors: (string | null)[] = [];
@@ -99,10 +111,7 @@ export async function renderPreviews(container: HTMLElement, docs: readonly Flie
     const trim = el('div', { class: 'trim', role: 'button', tabindex: '0', 'aria-pressed': String(i === selected), 'aria-label': FM('previews.flier', n, doc.blocks.title) }, [canvas]);
     return el('figure', { class: i === selected ? 'selected' : '', 'data-testid': `preview-${n}` }, [
       error === null ? selectable(trim, i, view) : problem(doc, error),
-      el('figcaption', { class: 'row' }, [
-        textButton(FM('previews.edit', n), `edit-${n}`, () => select(i)),
-        button('previews.download', `download-${n}`, () => void downloadCanvas(canvas, doc, i)),
-      ]),
+      previewCaption([i, docs.length], view, () => void downloadCanvas(canvas, doc, i)),
     ]);
   });
   container.replaceChildren(...figures);

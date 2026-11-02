@@ -1,3 +1,4 @@
+import { DEFAULT_EMBEDDING_MODEL_URL, loadWllamaRuntime, type WllamaModule } from '@dloizides/llm-run/intent';
 import type { AiSettings } from './aiSettings';
 import { createEmbedTier } from './embedTier';
 import { createLlmTier } from './llmTier';
@@ -15,10 +16,6 @@ export type TierReply =
   | { kind: 'done'; id: number; ms: number; settings?: AiSettings; error?: string; nGpuLayers?: number }
   | { kind: 'progress'; tier: TierId; file: string; totalBytes: number };
 
-const EMBED_URL = 'https://huggingface.co/second-state/All-MiniLM-L6-v2-Embedding-GGUF/resolve/main/all-MiniLM-L6-v2-Q8_0.gguf';
-const WLLAMA_WASM = 'https://cdn.jsdelivr.net/npm/@wllama/wllama@3.6.1/src/wasm/wllama.wasm';
-const EMBED_CTX = 512;
-
 type Tier = { settings(prompt: string): Promise<AiSettings>; nGpuLayers?: number };
 const tiers = tierCache<TierId, Tier>();
 const post = (reply: TierReply): void => {
@@ -26,19 +23,11 @@ const post = (reply: TierReply): void => {
 };
 
 async function loadEmbed(): Promise<Tier> {
-  const { Wllama } = await import('@wllama/wllama/esm/index.js');
-  const wllama = new Wllama({ default: WLLAMA_WASM });
-  await wllama.loadModelFromUrl(EMBED_URL, {
-    embeddings: true,
-    pooling_type: 'LLAMA_POOLING_TYPE_MEAN',
-    n_ctx: EMBED_CTX,
-    n_gpu_layers: 0,
-    progressCallback: ({ total }: { loaded: number; total: number }) => post({ kind: 'progress', tier: TierId.Embed, file: EMBED_URL, totalBytes: total }),
-  });
-  return createEmbedTier(async (text) => {
-    const res = await wllama.createEmbedding({ input: text });
-    return res.data[0].embedding as number[];
-  });
+  const runtime = await loadWllamaRuntime(
+    { model: DEFAULT_EMBEDDING_MODEL_URL, onProgress: ({ total }) => post({ kind: 'progress', tier: TierId.Embed, file: DEFAULT_EMBEDDING_MODEL_URL, totalBytes: total }) },
+    { importModule: () => import('@wllama/wllama/esm/index.js') as unknown as Promise<WllamaModule> },
+  );
+  return createEmbedTier((text) => runtime.embed(text));
 }
 
 async function loadLlm(webGpu: boolean): Promise<Tier> {

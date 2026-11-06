@@ -10,7 +10,7 @@ describe('createEmbedTier', () => {
   it('with a prompt that matches the fallback palette, reports the palette as matched', async () => {
     const tier = createEmbedTier((text) => Promise.resolve(text === PROMPT || text === SAND_EXAMPLE ? NEAR : FAR));
 
-    const s = await tier.settings(PROMPT);
+    const s = await tier.config(PROMPT);
 
     expect([s.palette, s.matched]).toEqual(['sand', ['palette']]);
   });
@@ -18,7 +18,7 @@ describe('createEmbedTier', () => {
   it('with no example above the threshold, keeps the fallbacks and matches nothing', async () => {
     const tier = createEmbedTier((text) => Promise.resolve(text === PROMPT ? NEAR : FAR));
 
-    const s = await tier.settings(PROMPT);
+    const s = await tier.config(PROMPT);
 
     expect([s.palette, s.matched]).toEqual(['sand', []]);
   });
@@ -28,7 +28,7 @@ describe('createEmbedTier', () => {
     const example = [1, 0, 1, 0];
     const tier = createEmbedTier((text) => Promise.resolve(text === PROMPT ? atThreshold : text === SAND_EXAMPLE ? example : [0, 0, 0, 1]));
 
-    const s = await tier.settings(PROMPT);
+    const s = await tier.config(PROMPT);
 
     expect(s.matched).toEqual([]);
   });
@@ -40,7 +40,7 @@ describe('createEmbedTier', () => {
     const unrelated = [0, 0, 1];
     const tier = createEmbedTier((text) => Promise.resolve(text === PROMPT || text === SAND_EXAMPLE ? near : text.startsWith('other') ? unrelated : example));
 
-    const s = await tier.settings(prompt);
+    const s = await tier.config(prompt);
 
     expect(s.matched).toEqual(['palette']);
   });
@@ -51,7 +51,7 @@ describe('createEmbedTier', () => {
     const vectors: Record<string, number[] | undefined> = { [PROMPT]: [1, 0], 'dark black evening colours': further, 'blue ocean colours': closer };
     const tier = createEmbedTier((text) => Promise.resolve(vectors[text] ?? FAR));
 
-    const s = await tier.settings(PROMPT);
+    const s = await tier.config(PROMPT);
 
     expect(s.palette).toBe('sea');
   });
@@ -59,7 +59,7 @@ describe('createEmbedTier', () => {
   it('with an embedding failure on the prompt, rejects so the caller reports the model failed', async () => {
     const tier = createEmbedTier((text) => (text === PROMPT ? Promise.reject(new Error('boom')) : Promise.resolve(FAR)));
 
-    const settings = tier.settings(PROMPT);
+    const settings = tier.config(PROMPT);
 
     await expect(settings).rejects.toThrow('boom');
   });
@@ -67,7 +67,7 @@ describe('createEmbedTier', () => {
   it('with an embedding failure on an example, rejects with that failure', async () => {
     const tier = createEmbedTier(() => Promise.reject(new Error('boom')));
 
-    const settings = tier.settings(PROMPT);
+    const settings = tier.config(PROMPT);
 
     await expect(settings).rejects.toThrow('boom');
   });

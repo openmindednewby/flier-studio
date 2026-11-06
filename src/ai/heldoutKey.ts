@@ -1,10 +1,11 @@
-import type { KeyRow } from './gradedKey';
+import type { KeyRow } from '@dloizides/prompt-to-config';
+import type { AiSettings } from './aiSettings';
 
 const PHONE_LAYOUTS = ['phone-clock-safe', 'phone-arch'];
 const DESKTOP_LAYOUTS = ['desktop-safe', 'desktop-arch'];
 
 /** D31 held-out prompts: written and keyed before either tier ran on them; no rule was tuned against them. */
-export const HELDOUT_KEY: readonly KeyRow[] = [
+export const HELDOUT_KEY: readonly KeyRow<AiSettings>[] = [
   { prompt: 'Bachata night this Friday 13 November from 21:30, dark vibe, insta post', expect: { title: ['BACHATA'], format: ['post'], palette: ['night'], date: ['Friday 13 November'], time: ['21:30'] } },
   { prompt: 'Βραδιά σάλσα το Σάββατο, story για Instagram', expect: { title: ['SALSA', 'ΣΑΛΣΑ'], format: ['story'] } },
   { prompt: 'Μαθήματα κιζόμπα για αρχάριους, τετράγωνη αφίσα', expect: { title: ['KIZOMBA', 'ΚΙΖΟΜΠΑ'], format: ['square'] } },

@@ -78,7 +78,7 @@ describe('createAiGenerator', () => {
     const pending = generate();
     const settings: EmbedSettings = { ...settingsFromPrompt(''), matched: ['palette'] };
 
-    fake.reply({ kind: 'done', id: OTHER_ID, ms: 1, settings });
+    fake.reply({ kind: 'done', id: OTHER_ID, ms: 1, result: settings });
 
     expect(await isSettled(pending)).toBe(false);
   });

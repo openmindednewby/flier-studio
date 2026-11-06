@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { AiSettings } from './aiSettings';
 import type { EmbedSettings } from './embedTier';
-import { gapFill } from './gapFill';
+import { gapFill } from '@dloizides/prompt-to-config';
 import { settingsFromPrompt } from './keywordTier';
 
 const base = settingsFromPrompt('');

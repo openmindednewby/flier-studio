@@ -1,12 +1,12 @@
 import type { FlierDoc } from '@dloizides/poster-render';
+import { createTierRunner, gapFill, TierStatus } from '@dloizides/prompt-to-config';
 import { docFromPrompt, docWith } from '../llm/promptFallback';
 import { fitLayout } from './aiSettings';
 import { AiStatus } from './AiStatus';
 import type { EmbedSettings } from './embedTier';
-import { gapFill } from './gapFill';
 import { settingsFromPrompt } from './keywordTier';
 import { TierId } from './TierId';
-import type { TierReply, TierRequest } from './tierWorker';
+import type { TierRequest } from './tierWorker';
 
 export interface AiOutcome {
   doc: FlierDoc;
@@ -14,9 +14,10 @@ export interface AiOutcome {
 }
 
 type MakeWorker = () => Worker;
-type Settle = (result: EmbedSettings | AiStatus) => void;
 
 export const GENERATE_DEADLINE_MS = 90_000;
+
+const STATUS_FOR: Readonly<Record<TierStatus, AiStatus>> = { [TierStatus.Failed]: AiStatus.Failed, [TierStatus.TimedOut]: AiStatus.TimedOut };
 
 const tierWorker: MakeWorker = () => new Worker(new URL('./tierWorker.ts', import.meta.url), { type: 'module' });
 
@@ -29,42 +30,11 @@ export function outcomeFor(prompt: string, result: EmbedSettings | AiStatus): Ai
 
 /** Generate through the embedding tier in a worker; the model loads on first Generate, a stuck run ends at the deadline. */
 export function createAiGenerator(makeWorker: MakeWorker = tierWorker, deadlineMs = GENERATE_DEADLINE_MS): { generate(prompt: string): Promise<AiOutcome> } {
-  let worker: Worker | null = null;
-  let next = 0;
-  const pending = new Map<number, Settle>();
-  const failAll = (status: AiStatus): void => {
-    for (const settle of pending.values()) settle(status);
-    pending.clear();
-    worker?.terminate();
-    worker = null;
-  };
-  const onReply = (e: MessageEvent<TierReply>): void => {
-    if (e.data.kind !== 'done') return;
-    const settle = pending.get(e.data.id);
-    pending.delete(e.data.id);
-    settle?.((e.data.settings as EmbedSettings | undefined) ?? AiStatus.Failed);
-  };
-  const start = (): Worker => {
-    const w = makeWorker();
-    w.addEventListener('message', onReply);
-    w.addEventListener('error', () => failAll(AiStatus.Failed));
-    return w;
-  };
+  const runner = createTierRunner<Omit<TierRequest, 'id'>, EmbedSettings>(makeWorker, deadlineMs);
   return {
     async generate(prompt: string): Promise<AiOutcome> {
-      const w = worker ?? start();
-      worker = w;
-      next += 1;
-      const id = next;
-      const result = await new Promise<EmbedSettings | AiStatus>((resolve) => {
-        const timer = setTimeout(() => failAll(AiStatus.TimedOut), deadlineMs);
-        pending.set(id, (r) => {
-          clearTimeout(timer);
-          resolve(r);
-        });
-        w.postMessage({ id, tier: TierId.Embed, prompt, webGpu: false } satisfies TierRequest);
-      });
-      return outcomeFor(prompt, result);
+      const result = await runner.run({ tier: TierId.Embed, prompt, webGpu: false });
+      return outcomeFor(prompt, typeof result === 'string' ? STATUS_FOR[result] : result);
     },
   };
 }

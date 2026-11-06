@@ -1,10 +1,10 @@
 import { hasWebGpuAdapter } from '@dloizides/text-generation';
 import { fitLayout, type AiSettings } from '../ai/aiSettings';
-import { GRADED_KEY, gradeSettings, type KeyRow } from '../ai/gradedKey';
+import { gradeConfig, p50, type KeyRow } from '@dloizides/prompt-to-config';
+import { GRADED_KEY } from '../ai/gradedKey';
 import { HELDOUT_KEY } from '../ai/heldoutKey';
 import { settingsFromPrompt } from '../ai/keywordTier';
 import { TierId } from '../ai/TierId';
-import { p50 } from '../ai/tierStats';
 import type { TierReply, TierRequest } from '../ai/tierWorker';
 
 const MB = 1024 * 1024;
@@ -15,7 +15,7 @@ interface Row { prompt: string; right: boolean; misses: string[]; settings?: AiS
 
 interface TierResult { tier: TierId; downloadMB: number; loadMs: number; msPerPrompt: number[]; p50Ms: number; longestTaskMs: number; score: number; nGpuLayers?: number; rows: Row[] }
 
-type Answer = { ms: number; settings?: AiSettings; error?: string; nGpuLayers?: number };
+type Answer = { ms: number; result?: AiSettings; error?: string; nGpuLayers?: number };
 type Ask = (prompt: string) => Promise<Answer>;
 
 const longTasks: { start: number; end: number }[] = [];
@@ -40,7 +40,7 @@ function workerAsk(worker: Worker, tier: TierId, webGpu: boolean, bytes: Map<str
   });
 }
 
-interface Run { live: HTMLElement; keys: readonly KeyRow[] }
+interface Run { live: HTMLElement; keys: readonly KeyRow<AiSettings>[] }
 
 async function measureTier(tier: TierId, ask: Ask, bytes: Map<string, number>, { live, keys }: Run): Promise<TierResult> {
   const t0 = performance.now();
@@ -50,8 +50,8 @@ async function measureTier(tier: TierId, ask: Ask, bytes: Map<string, number>, {
   for (const [k, key] of keys.entries()) {
     const got = await ask(key.prompt);
     msPerPrompt.push(Math.round(got.ms));
-    const grade = got.settings === undefined ? { right: false, misses: ['error'] } : gradeSettings(key.expect, fitLayout(got.settings));
-    rows.push({ prompt: key.prompt, ...grade, settings: got.settings, error: got.error });
+    const grade = got.result === undefined ? { right: false, misses: ['error'] } : gradeConfig(key.expect, fitLayout(got.result));
+    rows.push({ prompt: key.prompt, ...grade, settings: got.result, error: got.error });
     live.textContent = JSON.stringify({ tier, prompt: k + 1, of: keys.length, ms: msPerPrompt[k] });
   }
   const downloadMB = Math.round(([...bytes.values()].reduce((a, b) => a + b, 0) / MB) * ROUND) / ROUND;
@@ -62,7 +62,7 @@ async function measureTier(tier: TierId, ask: Ask, bytes: Map<string, number>, {
 const keywordAsk: Ask = (prompt) => {
   const started = performance.now();
   const settings = settingsFromPrompt(prompt);
-  return Promise.resolve({ ms: performance.now() - started, settings });
+  return Promise.resolve({ ms: performance.now() - started, result: settings });
 };
 
 /** The AC-42 tier comparison page (?measure=tiers): grades each tier on the 20 prompts and prints JSON. */

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { FIXED_PROMPTS } from '../llm/fixedPrompts';
 import type { AiSettings } from './aiSettings';
-import { GRADED_KEY, gradeSettings } from './gradedKey';
+import { gradeConfig } from '@dloizides/prompt-to-config';
+import { GRADED_KEY } from './gradedKey';
 
 const BASE = { format: 'phone', layout: 'phone-arch', palette: 'rose', fonts: 'classic', background: 'tint', pictureAnchor: 'center', pictureScale: '1', title: 'TANGO', subtitle: '', date: '', time: '' } as AiSettings;
 
@@ -15,11 +16,11 @@ describe('GRADED_KEY', () => {
   });
 });
 
-describe('gradeSettings', () => {
+describe('gradeConfig', () => {
   it('with every keyed field accepted, is right with no misses', () => {
     const key = { format: ['phone'], layout: ['phone-arch', 'phone-clock-safe'], title: ['TANGO'] };
 
-    const grade = gradeSettings(key, BASE);
+    const grade = gradeConfig(key, BASE);
 
     expect(grade).toEqual({ right: true, misses: [] });
   });
@@ -27,7 +28,7 @@ describe('gradeSettings', () => {
   it('with a layout outside the accepted list, misses layout', () => {
     const key = { layout: ['phone-clock-safe'] };
 
-    const grade = gradeSettings(key, BASE);
+    const grade = gradeConfig(key, BASE);
 
     expect(grade).toEqual({ right: false, misses: ['layout'] });
   });
@@ -35,7 +36,7 @@ describe('gradeSettings', () => {
   it('with a date that differs only in case and outer spaces, is right', () => {
     const key = { date: ['Saturday 21 November'] };
 
-    const grade = gradeSettings(key, { ...BASE, date: ' saturday 21 november ' });
+    const grade = gradeConfig(key, { ...BASE, date: ' saturday 21 november ' });
 
     expect(grade.right).toBe(true);
   });

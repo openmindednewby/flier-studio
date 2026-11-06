@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { p50 } from './tierStats';
+import { p50 } from '@dloizides/prompt-to-config';
 
 describe('p50', () => {
   it('with an odd count, returns the middle value', () => {

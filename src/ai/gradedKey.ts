@@ -1,18 +1,12 @@
+import type { KeyRow } from '@dloizides/prompt-to-config';
 import type { AiSettings } from './aiSettings';
-
-export type KeyFields = Partial<Record<keyof AiSettings, readonly string[]>>;
-
-export interface KeyRow {
-  readonly prompt: string;
-  readonly expect: KeyFields;
-}
 
 const PHONE_LAYOUTS = ['phone-clock-safe', 'phone-arch'];
 const DESKTOP_LAYOUTS = ['desktop-safe', 'desktop-arch'];
 const PICTURE_LAYOUTS = ['picture-right', 'picture-left', 'picture-bottom', 'arch'];
 
 /** The human-picked answer for each AC-07 prompt; a field not listed is not graded (the prompt does not ask for it). */
-export const GRADED_KEY: readonly KeyRow[] = [
+export const GRADED_KEY: readonly KeyRow<AiSettings>[] = [
   { prompt: 'Kizomba workshop on Saturday 31 October, Level 1 20:00 - 21:00, party pass 20€', expect: { title: ['KIZOMBA'], layout: PICTURE_LAYOUTS, date: ['Saturday 31 October'], time: ['20:00 - 21:00'] } },
   { prompt: 'Salsa social night, Instagram post, dark colours', expect: { title: ['SALSA'], format: ['post'], palette: ['night'] } },
   { prompt: 'Bachata beginners class every Tuesday at 19:30, story', expect: { title: ['BACHATA'], format: ['story'], time: ['19:30'] } },
@@ -34,18 +28,3 @@ export const GRADED_KEY: readonly KeyRow[] = [
   { prompt: 'Laptop wallpaper, calm sand colours', expect: { format: ['desktop'], palette: ['sand'], layout: DESKTOP_LAYOUTS } },
   { prompt: 'Upcoming zouk socials schedule, story', expect: { title: ['ZOUK'], format: ['story'], layout: ['list'] } },
 ];
-
-export interface Grade {
-  right: boolean;
-  misses: string[];
-}
-
-const norm = (v: string): string => v.trim().toLowerCase();
-
-/** A prompt is right only when every keyed field holds one of its accepted values. */
-export function gradeSettings(key: KeyFields, got: AiSettings): Grade {
-  const misses = Object.entries(key)
-    .filter(([field, accepted]) => !(accepted ?? []).map(norm).includes(norm(String(got[field as keyof AiSettings]))))
-    .map(([field]) => field);
-  return { right: misses.length === 0, misses };
-}

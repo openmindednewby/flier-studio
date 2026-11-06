@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { tierCache } from './tierCache';
+import { tierCache } from '@dloizides/prompt-to-config';
 
 describe('tierCache', () => {
   it('after a failed load, loads again on the next call', async () => {

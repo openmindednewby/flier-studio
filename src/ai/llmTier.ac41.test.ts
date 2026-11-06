@@ -15,7 +15,7 @@ describe('createLlmTier', () => {
     const { run } = fakeRun();
     const tier = createLlmTier({ run, webGpu: false });
 
-    await tier.settings(PROMPT);
+    await tier.config(PROMPT);
 
     expect(run).toHaveBeenCalledWith(LLM_MODEL_ID, expect.objectContaining({ nGpuLayers: 0 }));
   });
@@ -24,7 +24,7 @@ describe('createLlmTier', () => {
     const { run, create } = fakeRun();
     const tier = createLlmTier({ run, webGpu: true });
 
-    await tier.settings(PROMPT);
+    await tier.config(PROMPT);
 
     expect(String(create.mock.calls[0][0].grammar)).toContain('root ::=');
   });
@@ -33,7 +33,7 @@ describe('createLlmTier', () => {
     const { run } = fakeRun();
     const tier = createLlmTier({ run, webGpu: true });
 
-    const s = await tier.settings(PROMPT);
+    const s = await tier.config(PROMPT);
 
     expect([s.format, s.palette]).toEqual(['post', 'night']);
   });

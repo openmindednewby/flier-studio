@@ -1,11 +1,7 @@
 import type { ProgressEvent, run } from '@dloizides/llm-run';
-import { parseSettings, type AiSettings } from './aiSettings';
-import { settingsGrammar } from './settingsGrammar';
+import { createLlmTier as createConfigLlmTier, type ConfigTier } from '@dloizides/prompt-to-config';
+import { AI_SCHEMA, type AiSettings } from './aiSettings';
 
-const MB = 1024 * 1024;
-const MAX_MB = 145;
-const MAX_TOKENS = 128;
-export const GPU_ALL_LAYERS = 99;
 export const LLM_MODEL_ID = 'unsloth/SmolLM2-135M-Instruct-GGUF';
 
 const SYSTEM = [
@@ -24,29 +20,15 @@ export interface LlmTierDeps {
   onProgress?: (e: ProgressEvent) => void;
 }
 
-/** Tier 1: SmolLM2-135M through llm-run, reply constrained by the settings grammar, GPU layers explicit. */
-export function createLlmTier(deps: LlmTierDeps): { settings(prompt: string): Promise<AiSettings>; nGpuLayers: number } {
-  const nGpuLayers = deps.webGpu ? GPU_ALL_LAYERS : 0;
-  let client: ReturnType<typeof run> | null = null;
-  const grammar = settingsGrammar();
-  return {
-    nGpuLayers,
-    async settings(prompt: string): Promise<AiSettings> {
-      client ??= deps.run(LLM_MODEL_ID, { maxModelBytes: MAX_MB * MB, nGpuLayers, onProgress: deps.onProgress });
-      const reply = await (await client).chat.completions.create({
-        messages: [
-          { role: 'system', content: SYSTEM },
-          { role: 'user', content: EXAMPLE_ASK },
-          { role: 'assistant', content: EXAMPLE_REPLY },
-          { role: 'user', content: prompt },
-        ],
-        grammar,
-        max_tokens: MAX_TOKENS,
-        temperature: 0,
-      });
-      const parsed = parseSettings(reply.choices[0]?.message.content ?? '');
-      if (!parsed.ok) throw new Error(`invalid settings: ${parsed.errors.join(', ')}`);
-      return parsed.settings;
-    },
-  };
+/** Tier 1: SmolLM2-135M over the shared grammar-constrained LLM tier with the Flier schema and prompt. */
+export function createLlmTier(deps: LlmTierDeps): ConfigTier<AiSettings> & { readonly nGpuLayers: number } {
+  return createConfigLlmTier({
+    run: deps.run,
+    modelId: LLM_MODEL_ID,
+    webGpu: deps.webGpu,
+    schema: AI_SCHEMA,
+    system: SYSTEM,
+    examples: [{ ask: EXAMPLE_ASK, reply: EXAMPLE_REPLY }],
+    onProgress: deps.onProgress,
+  });
 }

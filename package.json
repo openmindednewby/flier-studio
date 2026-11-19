@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "measure:prompts": "vite-node scripts/measure-prompts.ts",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint-baseline lint -- . --max-warnings 0"
   },
   "dependencies": {
     "@dloizides/background-removal": "^0.1.1",
